@@ -1,0 +1,97 @@
+<GridLayout>
+    
+   
+    <!-- <--------------english-content---------------------->
+   <GridLayout  rows="auto,*,auto" columns="*" class="page"  *ngIf="lang=='English'">
+        <form [formGroup]="introForm">
+                <GridLayout row="0"  rows="auto,auto,auto,auto,*,auto,auto,auto" columns="*" class="margins">
+                    <StackLayout row="0" orientation="vertical" class="img-layout">
+                        <Label text="Profile" class="prtxt"></Label>
+                        <Image class="camico" [src]="profiledata"></Image>
+                        <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png"></Image>
+                    </StackLayout>
+                <GridLayout row="1" rows="auto" columns="auto,*">
+                    <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                    <TextField class="input" formControlName="Name" [(ngModel)]="tailorintrodata.Name" editable="true" row="0" col="1" hint="Name"
+                    text="" autocorrect="false"
+                    autocapitalizationType="none"></TextField>
+                    <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                    *ngIf=" introForm.get('Name').invalid &&  introForm.get('Name').dirty" 
+                    text="Required !" row="0" col="1"></Label>    
+                </GridLayout>  
+                <GridLayout row="2" rows="auto" columns="auto,*">
+                    <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                    <TextField class="input" formControlName="NameAE" [(ngModel)]="tailorintrodata.NameAE" editable="true" row="0" col="1" hint="Friendly Name in Arabic"
+                    text="" autocorrect="false" 
+                    autocapitalizationType="none"></TextField>  
+                    <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                    *ngIf=" introForm.get('NameAE').invalid &&  introForm.get('NameAE').dirty" 
+                    text="Required !" row="0" col="1"></Label>  
+                </GridLayout> 
+                <GridLayout row="3" rows="auto" columns="auto,*">
+                    <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                    <TextField class="input" formControlName="Email" [(ngModel)]="tailorintrodata.Email" editable="true" row="0" col="1" hint="Email"
+                    text="" autocorrect="false"
+                    autocapitalizationType="none"></TextField>
+                    <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                    *ngIf=" introForm.get('Email').invalid &&  introForm.get('Email').dirty" 
+                    text="Enter Valid Email !" row="0" col="1"></Label>        
+                </GridLayout>
+                
+                </GridLayout>
+            </form>
+                <GridLayout  row="2" rows="auto" columns="*" >
+                    <Button text="Next" row="0" col="0" (tap)="insertintroPage()" class="nxtbtn"></Button>  
+                </GridLayout> 
+            </GridLayout> 
+
+
+
+
+    <!-- <--------------arabic-content---------------------->
+
+
+            <GridLayout  rows="auto,*,auto" columns="*" class="page"  *ngIf="lang=='Arabic'">
+                <form [formGroup]="introForm">
+                        <GridLayout row="0"  rows="auto,auto,auto,auto,*,auto,auto,auto"   columns="*" class="margins">
+                            <StackLayout row="0" orientation="vertical" class="img-layout">
+                                <Label [text]="aedata.Profile" class="prtxt"></Label>
+                                <Image class="camico" [src]="profiledata"></Image>
+                                <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png"></Image>
+                            </StackLayout>
+                        <RGridLayout  isRtl="true" row="1" rows="auto" columns="auto,*">
+                            <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                            <TextField class="input" style="text-align: right;" formControlName="Name" [(ngModel)]="tailorintrodata.Name" editable="true" row="0" col="1" hint="اسم الفرع باللغة الانجليزية"
+                            text="" autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                            <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                            *ngIf=" introForm.get('Name').invalid &&  introForm.get('Name').dirty" 
+                            text="Required !" row="0" col="1"></Label>    
+                        </RGridLayout>  
+                        <RGridLayout  isRtl="true" row="2" rows="auto" columns="auto,*">
+                            <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                            <TextField class="input"  style="text-align: right;" formControlName="NameAE" [(ngModel)]="tailorintrodata.NameAE" editable="true" row="0" col="1" hint="الاسم المتعارف عليه لدي باللغة العربية"
+                            text="" autocorrect="false" 
+                            autocapitalizationType="none"></TextField>  
+                            <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                            *ngIf=" introForm.get('NameAE').invalid &&  introForm.get('NameAE').dirty" 
+                            text="Required !" row="0" col="1"></Label>  
+                        </RGridLayout> 
+                        <RGridLayout  isRtl="true" row="3" rows="auto" columns="auto,*">
+                            <Image row="0" col="0" class="nameico" src="~/assets/profile/Namewhite.png"></Image>
+                            <TextField class="input"  style="text-align: right;" formControlName="Email" [(ngModel)]="tailorintrodata.Email" editable="true" row="0" col="1" hint="الايميل"
+                            text="" autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                            <Label style="color: #ff0707;" class="error" horizontalAlignment="right"
+                            *ngIf=" introForm.get('Email').invalid &&  introForm.get('Email').dirty" 
+                            text="Enter Valid Email !" row="0" col="1"></Label>        
+                        </RGridLayout>
+                        
+                        </GridLayout>
+                    </form>
+                        <GridLayout  row="2" rows="auto" columns="*" >
+                            <Button [text]="aedata.Next" row="0" col="0" (tap)="insertintroPage()" class="nxtbtn"></Button>  
+                        </GridLayout> 
+                    </GridLayout> 
+            
+</GridLayout>

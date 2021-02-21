@@ -1,0 +1,60 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <-----------english-header---------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Gender Selection" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+<!-- <-----------arabic-header---------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Gender_Selection" row="0" col="1"  android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+
+
+    <!-- <-----------english-content---------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView"> 
+            <GridLayout  class="margins">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let gender of gendersarray" (tap)="gotodressType(gender.Id)">
+                        <GridLayout rows="auto,auto" columns="*">
+                            <Label row="0" col="0" style="z-index: 1000;"  horizontalAlignment="right" class="genderdtxt" [text]="gender.gender" verticalAlignment="center"></Label>
+                            
+                       
+                      <Image row="0" col="0" [src]="imageurl+gender.ImageURL" class="genderimg"></Image> 
+                        </GridLayout>
+                           
+                    </DockLayout >
+            </WrapLayout> 
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+
+                
+    <!-- <-----------arabic-content---------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView"> 
+            <GridLayout  class="margins" >
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let gender of gendersarray" (tap)="gotodressType(gender.Id)">
+                        <RGridLayout rows="auto,auto" columns="*"  >
+                            <Label row="0" col="0" style="z-index: 1000;"    horizontalAlignment="right" class="genderdtxt" [text]="gender.GenderInArabic" verticalAlignment="center"></Label>
+                            
+                       
+                      <Image row="0" col="0" [src]="imageurl+gender.ImageURL" class="genderimg"></Image> 
+                        </RGridLayout>
+                           
+                    </DockLayout >
+            </WrapLayout> 
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+    </Page>

@@ -1,0 +1,268 @@
+/* Add mobile styles for the component here.  */
+.header{
+
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.bell-image{
+    height: 25;
+    width: 25;
+    margin-right: auto;
+}
+.action-image{
+    height: 40;
+    width: 40;
+    margin-left: auto;
+    border-radius: 50%;
+    border-width: 1;
+    border-color: gold;
+      }
+      .action-label{
+          text-align: center !important;
+          font-size: 15;
+          font-weight: bold;
+      }
+.m-icon{
+    height: 25;
+    width: 100; 
+    margin: 9;
+}
+.bg-footer{
+   
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    /* background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);  */
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+
+  .margins{
+    margin-top: 10;
+    margin-bottom: 40; 
+}
+.bg-tabs{
+    background:gray;
+    text-align: center;
+    margin: 25;
+    border-radius: 25;
+}
+.selected{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d); 
+    line-height: 9;
+    border-radius: 25 0 0 25;
+    color: #05375c;
+}
+.selected1{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    line-height: 9;
+    border-radius: 0 25 25 0;
+}
+.selected .txt{
+color: #05375c;
+margin: 8;
+font-size: 14;
+font-weight: bold;
+}
+.selected1 .txt{
+    color: #05375c;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+.txt{ 
+    color: white;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+    .txt-icon{
+        width: 30;
+    }
+    .tick-icon{
+        width: 25;
+        margin-right:25;
+        margin-bottom: 15;
+    }
+    .borders{
+        margin: 15;
+    }
+    .input{
+        border-width: 0 0 2 0;
+        border-color: #929496;
+        /* padding-left: 5;
+        padding-right: 10; */
+        font-size: 15;
+        color: #05375c;
+    }
+    .txt-marg{
+        margin-top: 9;
+    }
+    .camico{
+        height: 150;
+        width: 150;
+        border-width: 2;
+        border-color: goldenrod;
+        border-radius: 80;  
+    }
+    .opencamico{
+        height: 40;
+        width: 40;
+        margin-top: -25;
+        margin-left: 50;
+    }
+    .gender-icon{
+        height: 25;
+        width: 25;
+        margin-left: 10;
+    }
+    .gender-btn{
+        border-width: 2;
+        border-color: gray;
+        border-radius: 21;
+        height: 40;
+        padding: 5;
+        
+        /* margin-top: 15; */
+        margin: 10;
+    }
+    .gendertxt{
+        text-align: left !important;
+        font-size: 14;
+        color:darkgray;
+        margin-left: 10;
+    }
+    .arrow-icon{
+        height: 17;
+        width: 17;
+        margin-right:10;
+    }
+    .editbtn{
+        background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+        /* width: 350; */
+        border-radius: 21;
+        color: white;
+        font-size: 15;
+        height: 40;
+    }
+    .cancelbtn{
+        border-radius: 21;
+        color: black;
+        font-size: 15;
+        height: 40;
+        border-width: 1;
+        border-color: #05375c;
+    }
+    .updatebtn{
+        background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+        /* width: 350; */
+        border-radius: 21;
+        color: white;
+        font-size: 15;
+        height: 40;
+    }
+    .edit-marg{
+        margin-top: 15;
+    }
+
+
+
+    .shop-icon{
+        width: 30;
+        margin-right: 15;
+        margin-bottom: 10;
+    }
+    .map-icon{
+width: 20;
+margin-right: 15;
+    }
+    .mapimg{
+        height: 81;
+        width: 100;
+    }
+    .maptxt{
+        margin-left: 15;
+    }
+    .mapbrdr{
+        /* border-width: 2;
+        border-color: gray; */
+        border-radius: 21; 
+        height: 80;
+    }
+    .bindmaptxt{
+        color: black;
+        margin: 10;
+    }
+    .shoptxt{
+        color: #05375c;
+        text-align: center;
+        font-size: 15;
+    }
+    .shop-bg{
+        background-color: rgb(170, 170, 170);
+        height: 25;
+        margin-left: -400 !important;
+        
+        margin-right: -400 !important;
+        padding: 0;
+    }
+    .uploadbg{
+        border-width: 1;
+        border-color:#05375c ;
+        border-radius: 21;
+        /* padding: 3; */
+        height: 30;
+    }
+    .upload{
+        font-size: 12;
+        font-weight: bold;
+        color: #05375c;
+        margin-right: 5;
+    }
+    .upload-icon{
+        width: 25;
+        height: 25;
+        margin: 1;
+    }
+    .shop-card{
+        background-color: white;
+        margin: 5;
+        padding-left: 10;
+        padding-top: 5;
+        padding-bottom: 5;
+        margin-bottom: 10;
+    }
+    .shop-cardadd{
+        margin-top: 10;
+        
+        padding: 5;
+        
+        background-color: transparent;
+        
+    }
+    .tailortxt{
+        font-size: 14;
+        font-weight: bold;
+        color: #05375c;
+    }
+    .tailorcitytxt{
+        
+        font-size: 14;
+        color: #05375c;
+        margin-right: 50;
+        text-transform: lowercase;
+        margin-top: -5;
+        margin-bottom: -5;
+        
+    }
+    .addimg{
+        height: 80;
+        width: 80;
+    }
+    .selectallimg{
+        height: 30;
+        width: 30;
+      }
+      .isactivetxt{
+          color:#05375c ;
+          font-size: 13;
+      }

@@ -1,0 +1,16 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" >
+<StackLayout  horizontalAlignment="center" verticalAlignment="center" class="borderfull" *ngIf="lang=='English'">
+    <Label [text]="alerttxt" class="txt" textWrap="true"></Label>
+    <GridLayout rows="auto" columns="*,*" orientation="horizontal" marginTop="12" class="fullbtn">
+    <Button text="Ok" width="100%" row="0" col="0" (tap)="okfunc('true')" class="okbtn"></Button>
+    <Button text="cancel" width="100%"  row="0" col="1" (tap)="close('false')" class="canclbtn"></Button>
+    </GridLayout>
+</StackLayout>
+<StackLayout  horizontalAlignment="center" verticalAlignment="center" class="borderfull" *ngIf="lang=='Arabic'">
+    <Label [text]="alerttxtae" class="txt" textWrap="true"></Label>
+    <GridLayout rows="auto" columns="*,*" orientation="horizontal" marginTop="12" class="fullbtn">
+        <Button [text]="aedata.Cancel" width="100%"  row="0" col="0" (tap)="close('false')" class="canclbtn"></Button>
+    <Button [text]="aedata.Ok" width="100%" row="0" col="1" (tap)="okfunc('true')" class="okbtn"></Button>
+    </GridLayout>
+</StackLayout>
+</Page>

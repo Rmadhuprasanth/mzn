@@ -1,0 +1,119 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+  <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*,auto" >
+        <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+        <Label text="Store Timings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        <Image src="~/assets/profile/White.png" row="0" col="2" (tap)="gotoNotifications()" android:horizontalAlignment="right" stretch="aspectFill"  class="bell-image"></Image>
+      </GridLayout>
+       </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+       <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <GridLayout rows="auto" columns="auto,*,auto"  isRtl="true">
+        <Image [src]="profilImageURL" row="0" col="0"  isRtl="true" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+        <Label [text]="aedata.Store_Timings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        <Image src="~/assets/profile/White.png" row="0" col="2" (tap)="gotoNotifications()" android:horizontalAlignment="right" stretch="aspectFill"  class="bell-image"></Image>
+      </GridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <GridLayout class="margins">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <GridLayout  class="margins" rows="auto,auto" columns="*">
+                <WrapLayout  orientation="horizontal" >
+                    <GridLayout  *ngFor="let shop of Branches; let i = index" row="{{i}}" col="0"  (tap)="gotostoreTimings(shop.ShopId)"   elevation="5"  rows="auto,auto" columns="*" class="shop-card" shadow="2"
+                    cornerRadius="15">
+                    <Label row="0" col="0" class="tailortxt" [text]="shop.ShopNameInEnglish"></Label>
+                    <Label  row="1" col="0" class="tailorcitytxt" [text]="shop.StateName +'-'+ shop.CountryName"></Label>
+                </GridLayout>
+            </WrapLayout>   
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+                <GridLayout>
+                    <GridLayout rows="*,auto">
+              
+                      <GridLayout row="1" columns="*,*,*,*" height="48" class="bg-footer">
+                        <StackLayout col="0" (tap)="selectedindex(0)">
+              
+                          <Image class="m-icon" *ngIf="selectedindexval != 0" src="~/assets/footer/beforeclick/home-n.png"></Image>
+                          <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="1" (tap)="selectedindex(1)">
+                          <Image class="m-icon" *ngIf="selectedindexval != 1" src="~/assets/footer/beforeclick/dashboard-n.png">
+                          </Image>
+                          <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="2" (tap)="selectedindex(2)">
+                          <Image class="m-icon" *ngIf="selectedindexval != 2" src="~/assets/footer/beforeclick/skill-update-n.png">
+                          </Image>
+                          <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                          </Image>
+                        </StackLayout>
+                        <StackLayout col="3" (tap)="selectedindex(3)">
+                          <Image class="m-icon" *ngIf="selectedindexval != 3" src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                          <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+                        </StackLayout>
+                      </GridLayout>
+                    </GridLayout>
+                  </GridLayout>   
+                  
+            </GridLayout>
+
+
+
+
+
+
+
+
+            
+    <!-- <--------------arabic-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+      <GridLayout class="margins">
+      <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+          <GridLayout  class="margins" rows="auto,auto" columns="*">
+              <WrapLayout  orientation="horizontal" >
+                  <RGridLayout  isRtl="true" *ngFor="let shop of Branches; let i = index" row="{{i}}" col="0"  (tap)="gotostoreTimings(shop.ShopId)"   elevation="5"  rows="auto,auto" columns="*" class="shop-card" shadow="2"
+                  cornerRadius="15">
+                  <Label horizontalAlignment="left" row="0" col="0" class="tailortxt" [text]="shop.ShopNameInArabic"></Label>
+                  <Label horizontalAlignment="left" row="1" col="0" class="tailorcitytxt" [text]="shop.StateName +'-'+ shop.CountryName"></Label>
+              </RGridLayout>
+          </WrapLayout>   
+              </GridLayout>
+              </ScrollView>
+              </GridLayout>
+
+              <GridLayout>
+                  <GridLayout rows="*,auto">
+            
+                    <RGridLayout  isRtl="true" row="1" columns="*,*,*,*" height="48" class="bg-footer">
+                      <StackLayout col="0" (tap)="selectedindex(0)">
+            
+                        <Image class="m-icon" *ngIf="selectedindexval != 0" src="~/assets/footer/beforeclick/home-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                      </StackLayout>
+                      <StackLayout col="1" (tap)="selectedindex(1)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 1" src="~/assets/footer/beforeclick/dashboard-n.png">
+                        </Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                      </StackLayout>
+                      <StackLayout col="2" (tap)="selectedindex(2)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 2" src="~/assets/footer/beforeclick/skill-update-n.png">
+                        </Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                        </Image>
+                      </StackLayout>
+                      <StackLayout col="3" (tap)="selectedindex(3)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 3" src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+                      </StackLayout>
+                    </RGridLayout>
+                  </GridLayout>
+                </GridLayout>   
+                
+          </GridLayout>
+    </Page>

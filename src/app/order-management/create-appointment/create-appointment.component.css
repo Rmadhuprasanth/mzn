@@ -1,0 +1,147 @@
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .gray-bg{
+    background-color: rgb(189, 189, 189);
+  }
+  .header-txt{
+      font-size: 16;
+      color: #05375c;
+      padding-left: 15;
+  }
+  .banner{
+    border-radius: 21px;
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+background-size:     cover;                      
+background-repeat:   no-repeat;
+background-position: center center;
+width: 100%;
+height: 100;
+  }
+  .shopgrid{
+      height: 50;
+      margin-top: 15;
+  }
+  .shoptxt{
+      font-size: 15;
+      color:#05375c;
+      vertical-align: middle;
+      width: 100;
+      border-width: 0 2 0 0;
+      height: 50;
+      margin-top: 10;
+      margin-left: 5;
+      border-color: rgb(172, 171, 171);
+  }
+  .shoptxtae{
+    font-size: 15;
+    color:#05375c;
+    vertical-align: middle;
+    width: 100;
+    border-width: 0 0 0 2;
+    height: 50;
+    margin-top: 10;
+    margin-left: 5;
+    border-color: rgb(172, 171, 171);
+    text-align: right;
+}
+  .shopcontent{
+    font-size: 15;
+    color:#05375c;
+    vertical-align: middle;
+    height: 50;
+    margin-top: 10;
+    margin-left: 5;
+  }
+  .Dateico{
+      height: 25;
+      width: 25;
+  }
+  .Datetxt{
+    font-size: 16;
+    color:#05375c;
+    vertical-align: middle;
+  }
+  .Date{
+    font-size: 16;
+    color:#05375c;
+    vertical-align: middle; 
+  }
+  .dategrid{
+    border-width: 0 0 1 0;
+    margin-top: 20;
+    border-color: rgb(172, 171, 171);
+  }
+  .status{
+      font-size: 15;
+      font-weight: bold;
+      color:#05375c;
+  }
+  .status-btn{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+        color: #05375c;
+        height: 35;
+        width: 90;
+        border-radius: 21;
+        border-width: 1;
+        border-color: rgb(238, 238, 238);
+  }
+  .statusgrid{
+    margin-top: 15;
+  }
+  .rejectgrid{
+    margin-top: 15;
+    padding: 5;
+
+  }
+  .rejecttxt{
+      font-size: 13;
+      color:#05375c ;
+      border-width: 0 0 1 0;
+      border-color: #05375c;
+  }
+  .rejectdate{
+    font-size: 13;
+    color:#05375c ;
+
+  }
+  .rejetreason{
+    font-size: 13;
+    color:#05375c ;
+    min-height: 50;
+  }
+  .Cancel-btn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    font-size: 15;
+    text-align: center;
+    height: 40;
+    width: 100;
+    border-radius: 21;
+  }
+  .Save-btn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    font-size: 15;
+    text-align: center;
+    height: 40;
+    width: 100;
+    border-radius: 21;
+  }

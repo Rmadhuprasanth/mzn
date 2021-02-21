@@ -1,0 +1,62 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Choose Your Language" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Choose_Your_Language" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+       <!-- <--------------english-content---------------------->
+       <GridLayout class="page" *ngIf="lang=='English'">
+        <GridLayout rows="auto,auto" col="*"  class="margins">
+            <WrapLayout  orientation="horizontal" > 
+                <DockLayout   stretchLastChild="false" width="100%"  *ngFor="let language of langarray">
+    <GridLayout rows="auto" col="auto,*" class="border">
+    <GridLayout row="0" col="0">
+        <Image  horizontalAlignment="left"  #checksize (tap)="selectLang(language.Name)" [src]="language.Name==selectedlang ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+        dock="right" class="uncheck-img"></Image>
+    </GridLayout>
+    <GridLayout row="0" col="1">
+    <Label horizontalAlignment="right" class="langtxt" [text]="language.identifier"></Label>
+    </GridLayout>
+    </GridLayout>
+                </DockLayout>
+            </WrapLayout>
+            <GridLayout row="1" col="0">
+                <Button   text="Ok"  (tap)="setLang()" class="okbtn"></Button>
+            </GridLayout>
+        </GridLayout>
+       </GridLayout>
+
+            <!-- <--------------arabic-content---------------------->
+<RGridLayout  isRtl="true"  class="page" *ngIf="lang=='Arabic'">
+    <GridLayout rows="auto,auto" col="*"  class="margins">
+        <WrapLayout  orientation="horizontal" > 
+            <DockLayout   stretchLastChild="false" width="100%"  *ngFor="let language of langarray">
+<GridLayout rows="auto" col="auto,*" class="border">
+<GridLayout row="0" col="0">
+    <Image  horizontalAlignment="right"  #checksize (tap)="selectLang(language.Name)" [src]="language.Name==selectedlang ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+    dock="right" class="uncheck-img"></Image>
+</GridLayout>
+<GridLayout row="0" col="1">
+<Label horizontalAlignment="left" class="langtxt" [text]="language.identifier"></Label>
+</GridLayout>
+</GridLayout>
+            </DockLayout>
+        </WrapLayout>
+        <GridLayout row="1" col="0">
+            <Button   [text]="aedata.Ok" (tap)="setLang()" class="okbtn"></Button>
+        </GridLayout>
+    </GridLayout>
+</RGridLayout>
+       </Page>

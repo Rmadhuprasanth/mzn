@@ -1,0 +1,87 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Reference Image" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Reference_Image" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+<GridLayout class="page" *ngIf="lang=='English'">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+        <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+            <StackLayout row="0" col="0" class="reviewbg">
+            <Label text="Preview" class="Previewtxt"></Label>     
+            </StackLayout>
+            <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+            <Image  [src]="zooimg" class="zoomimg"></Image>
+            </StackLayout>
+ 
+        </GridLayout>  
+    </ScrollView>
+
+    <GridLayout>
+        <GridLayout rows="*,auto">
+            <GridLayout row="1"  height="120" >
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                    <WrapLayout  orientation="vertical">
+                        <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" shadow="4"  cornerRadius="15">
+                            <WrapLayout  orientation="vertical">
+                                <DockLayout stretchLastChild="true"  *ngFor="let ref of ReferenceImage" class="cardStyle" (tap)="selectimg(ref.Image)"> 
+                                    <Image  *ngIf="detailId == ref.DetailId"  [src]="imgUrl+ref.Image" dock="top" class="slidimg"></Image>  
+                                </DockLayout>  
+                        </WrapLayout>
+                        </GridLayout> 
+                    </WrapLayout>  
+                </ScrollView>
+                </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+</GridLayout>
+
+
+
+    <!-- <--------------arabic-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+                <StackLayout row="0" col="0" class="reviewbg">
+                <Label [text]="aedata.Preview" class="Previewtxt"></Label>     
+                </StackLayout>
+                <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+                <Image  [src]="zooimg" class="zoomimg"></Image>
+                </StackLayout>
+     
+            </GridLayout>  
+        </ScrollView>
+    
+        <GridLayout>
+            <GridLayout rows="*,auto">
+                <GridLayout row="1"  height="120" >
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" shadow="4"  cornerRadius="15">
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"  *ngFor="let ref of ReferenceImage" class="cardStyle" (tap)="selectimg(ref.Image)"> 
+                                        <Image  *ngIf="detailId == ref.DetailId"  [src]="imgUrl+ref.Image" dock="top" class="slidimg"></Image>  
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+                    </ScrollView>
+                    </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    
+    </GridLayout>
+</Page>

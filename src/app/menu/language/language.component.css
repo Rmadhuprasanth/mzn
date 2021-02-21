@@ -1,0 +1,53 @@
+/* Add mobile styles for the component here.  */
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .langbtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 37;
+    width: auto;
+    color: white;
+    font-size: 15;
+    border-radius: 25;
+    margin-top: 20;
+  }
+  .uncheck-img{
+    height: 25;
+    width: 25;
+  }
+  .langtxt{
+font-size: 15;
+color: #05375c;
+  }
+  .border{
+      border-width:0 0 1 0 ;
+      border-color: darkgray;
+      padding-bottom: 5;
+      padding-top: 5;
+  }
+  .okbtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 37;
+    width: auto;
+    color: white;
+    font-size: 15;
+    border-radius: 25;
+    margin-top: 20; 
+  }

@@ -1,0 +1,255 @@
+<!-- <ns-loader *ngIf="loader=='true'"></ns-loader> -->
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" >
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Price Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar>
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Price_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+
+                <GridLayout row="0" col="0" rows="auto" columns="auto,*">
+                    <Image [src]="productImg" row="0" col="0" class="dressimg"></Image>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" verticalAlignment="middle" >
+                        <Label row="0" col="0" [text]="productName" class="dressname"></Label>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,auto">
+                            <Label row="0" col="0" text="Qty" class="qty"></Label>
+                            <Label row="0" col="1" [text]="':'+Qty" class="qtytxt"></Label>
+                        </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+<!-- <GridLayout row="1" col="0" rows="auto" columns="*,*" style="margin-bottom: 10;">
+    <Label text="Material Required" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders">
+        <TextView row="0" col="0" class="text" ></TextView>
+        <Label row="0" col="1" class="thickbrdr"></Label>
+        <Label text="Meter" row="0" col="2" class="metertxt" horizontalAlignment="center"
+            verticalAlignment="middle"></Label>
+    </GridLayout>
+</GridLayout> -->
+
+<GridLayout row="2" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label text="No.of.days Required" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders">
+        <TextView row="0" col="0" class="text" keyboardType="number" (textChange)="getnoOfDays($event)"></TextView>
+        <Label row="0" col="1" class="thickbrdr"></Label>
+        <Label text="Days" row="0" col="2" class="metertxt" horizontalAlignment="center"
+            verticalAlignment="middle"></Label>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="3" col="0" rows="auto,auto" columns="*"  style="margin-bottom: 10;">
+<GridLayout row="0" col="0" rows="auto" columns="*,*"  >
+    <Label text="Delivery Date" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders" > <!--(tap)="dateclick(showdategrid)" -->
+        <TextView row="0" col="0"  editable="false" class="text" [text]="selecteddate"></TextView>
+        <Label row="0" col="1" class="thickbrdr"></Label>
+            <Image  row="0" col="2" src="~/assets/profile/calender.png" class="calenderimg"></Image>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="1" col="0" rows="auto" columns="*"  *ngIf="dateshow">
+    <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+    [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+    (dateChange)="onDateChanged($event)" >
+        </DatePicker>
+</GridLayout>
+</GridLayout>
+
+<GridLayout row="4" col="0" rows="auto,auto" columns="*"  style="margin-bottom: 10;">
+    <GridLayout row="0" col="0" rows="auto" columns="*,*"  >
+        <Label text="Validity" row="0" col="0" class="requiretxt"></Label>
+        <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders" (tap)="datevalididty(showdategridvalidity)">
+            <TextView row="0" col="0"  editable="false" class="text" [text]="selectedValiddate"></TextView>
+            <Label row="0" col="1" class="thickbrdr"></Label>
+                <Image  row="0" col="2" src="~/assets/profile/calender.png" class="calenderimg"></Image>
+        </GridLayout>
+    </GridLayout>
+    <GridLayout row="1" col="0" rows="auto" columns="*"  *ngIf="dateshowvalidity">
+        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+        [minDate]="minvalidDate" [maxDate]="maxvalidDate" verticalAlignment="center"
+        (dateChange)="onvalidDateChanged($event)" >
+            </DatePicker>
+    </GridLayout>
+    </GridLayout>
+
+<StackLayout   row="5" col="0" class="bg-border" style="margin-bottom: 10;">
+    <Label text="Oreder Pricing (AED)" class="pricehead"></Label>
+</StackLayout> 
+
+<GridLayout row="6" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label text="Stitching Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView row="0" col="0" class="textcharge" keyboardType="number"  verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="stitchingCharge"  (textChange)="stitchingcharges($event,'1')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView row="0" col="2" hint="0" class="pointtxt" keyboardType="number" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+
+<GridLayout row="7" col="0" rows="auto"  *ngIf="MaterialTypeId == 3"  columns="*,*"  style="margin-bottom: 10;">
+    <Label text="Material Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView row="0" col="0" class="textcharge" keyboardType="number" verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="MaterialCharge"   (textChange)="materialcharges($event,'2')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView row="0" col="2" hint="0" class="pointtxt" keyboardType="number" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="8" col="0" rows="auto"   *ngIf="MeasurementType == 3" columns="*,*"  style="margin-bottom: 10;">
+    <Label text="Measurement Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView row="0" col="0"  hint="0" keyboardType="number" class="textcharge"  verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="measurementCharge"  (textChange)="measurmentcharges($event,'3')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView row="0" col="2" hint="0" keyboardType="number" class="pointtxt" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout> 
+<GridLayout row="9" col="0" rows="auto" *ngIf="MaterialTypeId == 2" columns="*,*"  style="margin-bottom: 10;">
+    <Label text="MaterialCollection Charges" textWrap="true" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView row="0" col="0" keyboardType="number" class="textcharge" hint="0" verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="matCollection"  (textChange)="matCollectioncharges($event,'5')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView row="0" col="2" hint="0" keyboardType="number" class="pointtxt" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="10" col="0" class="allbrdr"   ></GridLayout>
+<GridLayout row="11" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label text="Total" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders">
+        <TextView row="0" col="0" class="text"verticalAlignment="center" horizontalAlignment="center" [text]="total"  editable="false"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView row="0" col="2" hint="0" class="pointtxt"  editable="false" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="12" col="0" class="allbrdr"   ></GridLayout>
+<Button row="13" col="0" text="CONTINUE" class="continuebtn" (tap)="insertTailorCharges()"></Button>
+</GridLayout>
+            </ScrollView>
+    </GridLayout>
+
+
+
+
+
+
+
+    
+    <!-- <--------------arabic-content---------------------->
+    <RGridLayout   isRtl="true"  class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <RGridLayout   isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+
+                <GridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*">
+                    <Image [src]="productImg" row="0" col="0" class="dressimg"></Image>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" verticalAlignment="middle" >
+                        <Label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" [text]="productName" class="dressname"></Label>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,auto">
+                            <Label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" [text]="aedata.Qty" class="qty"></Label>
+                            <Label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" [text]="Qty+'  :'" class="qtytxt"></Label>
+                        </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+<GridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.No_of_days_Required" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders">
+        <TextView  style="transform: scaleX(-1);"  row="0" col="0" class="text" keyboardType="number" (textChange)="getnoOfDays($event)"></TextView>
+        <Label row="0" col="1" class="thickbrdr"></Label>
+        <Label style="transform: scaleX(-1);"  [text]="aedata.Days" row="0" col="2" class="metertxt" horizontalAlignment="center"
+            verticalAlignment="middle"></Label>
+    </GridLayout>
+</GridLayout>
+<GridLayout  isRtl="true"  row="3" col="0" rows="auto,auto" columns="*"  style="margin-bottom: 10;">
+<GridLayout  row="0" col="0" rows="auto" columns="*,*"  >
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Delivery_Date" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders" > <!--(tap)="dateclick(showdategrid)" -->
+        <TextView  style="transform: scaleX(-1);"  row="0" col="0"  editable="false" class="text" [text]="selecteddate"></TextView>
+        <Label row="0" col="1" class="thickbrdr"></Label>
+            <Image  row="0" col="2" src="~/assets/profile/calender.png" class="calenderimg"></Image>
+    </GridLayout>
+</GridLayout>
+<GridLayout  style="transform: scaleX(-1);"  row="1" col="0" rows="auto" columns="*"  *ngIf="dateshow">
+    <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+    [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+    (dateChange)="onDateChanged($event)" >
+        </DatePicker>
+</GridLayout>
+</GridLayout>
+
+<GridLayout  isRtl="true" row="4" col="0" rows="auto,auto" columns="*"  style="margin-bottom: 10;">
+    <GridLayout   row="0" col="0" rows="auto" columns="*,*"  >
+        <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Validity" row="0" col="0" class="requiretxt"></Label>
+        <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders" (tap)="datevalididty(showdategridvalidity)">
+            <TextView  style="transform: scaleX(-1);"  row="0" col="0"  editable="false" class="text" [text]="selectedValiddate"></TextView>
+            <Label row="0" col="1" class="thickbrdr"></Label>
+                <Image  row="0" col="2" src="~/assets/profile/calender.png" class="calenderimg"></Image>
+        </GridLayout>
+    </GridLayout>
+    <GridLayout  style="transform: scaleX(-1);"  row="1" col="0" rows="auto" columns="*"  *ngIf="dateshowvalidity">
+        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+        [minDate]="minvalidDate" [maxDate]="maxvalidDate" verticalAlignment="center"
+        (dateChange)="onvalidDateChanged($event)" >
+            </DatePicker>
+    </GridLayout>
+    </GridLayout>
+
+<StackLayout   row="5" col="0" class="bg-border" style="margin-bottom: 10;">
+    <Label  horizontalAlignment="right"  [text]="aedata.Oreder_Pricing_AED" class="pricehead"></Label>
+</StackLayout> 
+
+<GridLayout  isRtl="true"  row="6" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Stitching_Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView  style="transform: scaleX(-1);"  row="0" col="0" class="textcharge" keyboardType="number"  verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="stitchingCharge"  (textChange)="stitchingcharges($event,'1')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView  style="transform: scaleX(-1);"  row="0" col="2" hint="0" class="pointtxt" keyboardType="number" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+
+<GridLayout  isRtl="true"   row="7" col="0" rows="auto"  *ngIf="MaterialTypeId == 3"  columns="*,*"  style="margin-bottom: 10;">
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Material_Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView  style="transform: scaleX(-1);"  row="0" col="0" class="textcharge" keyboardType="number" verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="MaterialCharge"   (textChange)="materialcharges($event,'2')"></TextView>
+        <Label  style="transform: scaleX(-1);"  row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView  style="transform: scaleX(-1);"  row="0" col="2" hint="0" class="pointtxt" keyboardType="number" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout  isRtl="true"  row="8" col="0" rows="auto"   *ngIf="MeasurementType == 3" columns="*,*"  style="margin-bottom: 10;">
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Measurement_Charges" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView style="transform: scaleX(-1);"  row="0" col="0"  hint="0" keyboardType="number" class="textcharge"  verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="measurementCharge"  (textChange)="measurmentcharges($event,'3')"></TextView>
+        <Label row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView style="transform: scaleX(-1);"  row="0" col="2" hint="0" keyboardType="number" class="pointtxt" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout> 
+<GridLayout  isRtl="true"  row="9" col="0" rows="auto" *ngIf="MaterialTypeId == 2" columns="*,*"  style="margin-bottom: 10;">
+    <Label  horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.MaterialCollection_Charges" textWrap="true" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borderscharge">
+        <TextView style="transform: scaleX(-1);"  row="0" col="0" keyboardType="number" class="textcharge" hint="0" verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="matCollection"  (textChange)="matCollectioncharges($event,'5')"></TextView>
+        <Label style="transform: scaleX(-1);"  row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView style="transform: scaleX(-1);"  row="0" col="2" hint="0" keyboardType="number" class="pointtxt" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="10" col="0" class="allbrdr"   ></GridLayout>
+<GridLayout  isRtl="true"  row="11" col="0" rows="auto" columns="*,*"  style="margin-bottom: 10;">
+    <Label horizontalAlignment="left"  style="transform: scaleX(-1);"  [text]="aedata.Total" row="0" col="0" class="requiretxt"></Label>
+    <GridLayout row="0" col="1" rows="auto" columns="auto,auto,*" class="borders">
+        <TextView style="transform: scaleX(-1);"  row="0" col="0" class="text"verticalAlignment="center" horizontalAlignment="center" [text]="total"  editable="false"></TextView>
+        <Label style="transform: scaleX(-1);"  row="0" col="1" class="thickbrdrprice"></Label>
+        <TextView style="transform: scaleX(-1);"  row="0" col="2" hint="0" class="pointtxt"  editable="false" verticalAlignment="center" horizontalAlignment="center"></TextView>
+    </GridLayout>
+</GridLayout>
+<GridLayout row="12" col="0" class="allbrdr"   ></GridLayout>
+<Button row="13" col="0" [text]="aedata.CONTINUE" class="continuebtn" (tap)="insertTailorCharges()"></Button>
+</RGridLayout>
+            </ScrollView>
+    </RGridLayout>
+</Page>

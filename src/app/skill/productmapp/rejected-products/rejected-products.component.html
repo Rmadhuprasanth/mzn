@@ -1,0 +1,90 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+
+    <!-- <----------------english-header------------------------>
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Products" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   
+    </GridLayout>
+    </ActionBar> 
+
+<!-- <----------------arabic-header------------------------>
+
+<ActionBar class="header" *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+    <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+    <Label [text]="aedata.Products" row="0" col="1"  android:horizontalAlignment="center" class="action-label"></Label>
+  
+   </RGridLayout>
+   </ActionBar> 
+    <!-- <---------------------english-content----------------->
+<GridLayout  rows="auto,*" columns="*" *ngIf="lang=='English'">
+  <GridLayout row="0"  col="0" rows="auto" columns="*,auto">
+            <TextField class="search" (textChange)="searchItem($event)" autocorrect="false"  hint="Search Products"  autocapitalizationType="none"  row="0" col="0"></TextField>
+            <Image  src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+            <Image  src="~/assets/productmapp/filters.png"  row="0" col="1" class="filterimg"></Image>
+        </GridLayout>
+
+    <GridLayout row="1"  col="0" class="page" > 
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  class="margins" *ngIf="showdata"> 
+                
+                <WrapLayout  orientation="horizontal" >  
+                    <DockLayout   stretchLastChild="false" width="33%"    *ngFor="let product of productlist" (tap)="gotorejectdetails(product.ProductId)">
+                        <GridLayout rows="auto,auto" columns="*">
+                        <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyle">
+                        <Image row="0"  col="0" [src]="imagurl+product.ProductImage"    class="st-img"></Image>
+                        </GridLayout>  
+                        <StackLayout  row="1"  col="0" class="namestarttxt">
+                            <Label  [text]="product.ProductName" textWrap="true"   class="st-txt"></Label> 
+                            
+                        </StackLayout>    
+                    </GridLayout>
+                    </DockLayout >  
+            </WrapLayout>
+                </GridLayout>
+                <GridLayout  class="margins" *ngIf="showtext">
+                    <Label  horizontalAlignment="center" verticalAlignment="center" class="nodata" text="No Data Found !"></Label>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+            </GridLayout>
+
+
+
+
+
+               <!-- <---------------------arabic-content----------------->
+<RGridLayout  rows="auto,*"  isRtl="true" columns="*" *ngIf="lang=='Arabic'">
+    <GridLayout row="0"  isRtl="true" col="0" rows="auto" columns="*,auto">
+              <TextField   style="transform: scaleX(-1);text-align: center;"   class="search" (textChange)="searchItem($event)" autocorrect="false"  hint="إبحث عن منتجات"  autocapitalizationType="none"  row="0" col="0"></TextField>
+              <Image  src="~/assets/productmapp/searchs.png" style="transform: scaleX(-1);" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+              <Image  src="~/assets/productmapp/filters.png"  row="0" col="1" class="filterimg"></Image>
+          </GridLayout>
+  
+      <RGridLayout   isRtl="true" row="1"  col="0" class="page" > 
+          <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+              <RGridLayout   isRtl="true" class="margins" *ngIf="showdata"> 
+                  
+                  <WrapLayout  orientation="horizontal" >  
+                      <DockLayout   stretchLastChild="false" width="33%"    *ngFor="let product of productlist" (tap)="gotorejectdetails(product.ProductId)">
+                          <GridLayout rows="auto,auto" columns="*">
+                          <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyle">
+                          <Image row="0"  col="0" [src]="imagurl+product.ProductImage"    class="st-img"></Image>
+                          </GridLayout>  
+                          <StackLayout  row="1"  col="0" class="namestarttxt">
+                              <Label  style="transform: scaleX(-1);"  [text]="product.ProductNameInArabic" textWrap="true"   class="st-txt"></Label> 
+                              
+                          </StackLayout>    
+                      </GridLayout>
+                      </DockLayout >  
+              </WrapLayout>
+                  </RGridLayout>
+                  <GridLayout isRtl="true"  class="margins" *ngIf="showtext">
+                      <Label  style="transform: scaleX(-1);"  horizontalAlignment="center" verticalAlignment="center" class="nodata" [text]="No_Data_Found"></Label>
+                  </GridLayout>
+                  </ScrollView>
+                  </RGridLayout>
+              </RGridLayout>
+    </Page>

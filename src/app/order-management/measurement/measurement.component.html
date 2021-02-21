@@ -1,0 +1,175 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Measurement Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Measurement_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar>
+       
+    <!-- <--------------english-content---------------------->
+<GridLayout class="page" *ngIf="lang=='English'">
+        <GridLayout  class="margins" *ngIf="partsshow">
+            <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                <GridLayout row="0" col="0" rows="auto" columns="auto,*" shadow="4"  cornerRadius="15">
+                    <StackLayout row="0" col="0" class="dressdiv">
+                        <Image [src]="measurementdata.DressSubTypeImage" class="dressimg"></Image>
+                    </StackLayout>
+                    <GridLayout row="0" col="1" rows="auto,auto,auto" columns="*" style="padding:7;" >
+                        <GridLayout row="0" col="0"  rows="auto" columns="auto,*">
+                        <Label row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInEnglish" ></Label>
+                        <Label row="0" col="1"  horizontalAlignment="right"   [text]="measurementdata.CreatedOn" ></Label>
+                    </GridLayout>
+                    <Label row="1" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInEnglish +'-'+measurementdata.Gender" ></Label>
+                    <GridLayout row="2" col="0"  rows="auto" columns="auto,*">
+                        <Label row="0" col="0" class="dressname" horizontalAlignment="left"   text="Measurement By :" ></Label>
+                        <Label row="0" col="1" class="dressname" horizontalAlignment="left"   [text]="measurementdata.MeasurementBy" ></Label>
+                    </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout row="1" col="0">
+                <WrapLayout  orientation="horizontal" >  
+                    <DockLayout   stretchLastChild="false" width="50%"  *ngFor="let measurement of measurement">
+                        <GridLayout  rows="auto,auto" columns="*"  class="cardStyle">
+                        <Image row="0"  col="0" [src]="imgUrl+measurement.Image"    class="st-img"></Image>
+                        <Label row="1"  col="0"  [text]="measurement.Name +' '+measurement.MeasurementParts" class="st-txt"></Label>
+                        </GridLayout>  
+                    </DockLayout >  
+            </WrapLayout>
+        </GridLayout>
+            </GridLayout>
+        </ScrollView>
+        </GridLayout>
+        <GridLayout *ngIf="addmeasurement"> 
+            <ListView row="0" [items]="measurementListtoUpdate"   separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <WrapLayout  orientation="horizontal" >
+                <DockLayout   stretchLastChild="false" width="100%" class="cardStyle1" shadow="2"  cornerRadius="15" (tap)="selecttoupdate(item.Id)">
+                    <GridLayout rows="30,auto" columns="*" class="bg-card" >  
+                        <StackLayout  row="0" col="0"></StackLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,*"> 
+                            <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                <Image [src]=" imageurlstitching+item.Image" class="ordrimg" row="0" col="0"></Image>
+                                <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                    <label row="0" col="0" class="order-txt" text="Dress Type"></label>
+                                    <label row="1" col="0"  class="order-txt" text="Measurement Date"></label>
+                                    <label row="2" col="0"  class="order-txt" text="Measurement By"></label> 
+                                 </GridLayout>
+                                 </GridLayout>
+                                 <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                    <label row="0" col="0" class="detail-txt" [text]="item.NameInEnglish"></label> 
+                                    <label row="1" col="0" class="detail-txt" [text]="item.UserDate | date"></label>
+                                    <label row="2" col="0" class="detail-txt" textWrap="true"  horizontalAlignment="left"  [text]="item.UserName"></label>
+                                </GridLayout>
+                                <Image  #checksize  horizontalAlignment="right" verticalAlignment="top" row="0" col="1" [src]="item.Id==selecteddressId  ? '~/assets/dashbord/Check box.png':''" value="" class="uncheck-img"></Image>
+
+                        </GridLayout>
+                    </GridLayout>
+                </DockLayout >
+        </WrapLayout>
+        </ng-template>
+        </ListView>
+        </GridLayout>
+    <GridLayout *ngIf="addmeasurement"> 
+        <GridLayout rows="*,auto">
+            <GridLayout row="1" col="0" rows="auto" columns="*" class="bgbtn">
+              <Button *ngIf="!selecteddressId" row="0" col="0" text="Add new measurement" (tap)="gotoAddMeasurement()" class="bgbtn"></Button>
+              <Button *ngIf="selecteddressId" row="0" col="0" text="Ok" (tap)="UpdateMeasurement()" class="bgbtn"></Button>
+            
+            </GridLayout>
+        </GridLayout>
+    </GridLayout> 
+</GridLayout>
+
+
+
+
+
+     
+    <!-- <--------------arabic-content---------------------->
+    <RGridLayout class="page" *ngIf="lang=='Arabic'" isRtl="true">
+            <RGridLayout  isRtl="true" class="margins" *ngIf="partsshow">
+                <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                <RGridLayout  isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                    <GridLayout row="0" col="0" rows="auto" columns="auto,*" shadow="4"  cornerRadius="15">
+                        <StackLayout row="0" col="0" class="dressdiv">
+                            <Image [src]="measurementdata.DressSubTypeImage" class="dressimg"></Image>
+                        </StackLayout>
+                        <GridLayout row="0" col="1" rows="auto,auto,auto" columns="*" style="padding:7;" >
+                            <GridLayout row="0" col="0"  rows="auto" columns="auto,*">
+                            <Label style="transform: scaleX(-1);"   row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInArabic" ></Label>
+                            <Label style="transform: scaleX(-1);"    row="0" col="1"  horizontalAlignment="right"   [text]="measurementdata.CreatedOn" ></Label>
+                        </GridLayout>
+                        <Label  style="transform: scaleX(-1);"  row="1" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInArabic +'-'+measurementdata.Gender" ></Label>
+                        <GridLayout row="2" col="0"  rows="auto" columns="auto,*">
+                            <Label  style="transform: scaleX(-1);"  row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="':' + aedata.Measurement_By" ></Label>
+                            <Label  style="transform: scaleX(-1);"  row="0" col="1" class="dressname" horizontalAlignment="left"   [text]="measurementdata.MeasurementBy" ></Label>
+                        </GridLayout>
+                        </GridLayout>
+                    </GridLayout>
+                    <GridLayout row="1" col="0">
+                    <WrapLayout  orientation="horizontal" >  
+                        <DockLayout   stretchLastChild="false" width="50%"  *ngFor="let measurement of measurement">
+                            <GridLayout  rows="auto,auto" columns="*"  class="cardStyle">
+                            <Image row="0"  col="0" [src]="imgUrl+measurement.Image"    class="st-img"></Image>
+                            <Label  style="transform: scaleX(-1);"  row="1"  col="0"  [text]="measurement.Name +' '+measurement.MeasurementParts" class="st-txt"></Label>
+                            </GridLayout>  
+                        </DockLayout >  
+                </WrapLayout>
+            </GridLayout>
+                </RGridLayout>
+            </ScrollView>
+            </RGridLayout>
+            <RGridLayout  isRtl="true" *ngIf="addmeasurement"> 
+                <ListView row="0" [items]="measurementListtoUpdate"   separatorColor="transparent">
+                    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <WrapLayout  orientation="horizontal" >
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle1" shadow="2"  cornerRadius="15" (tap)="selecttoupdate(item.Id)">
+                        <GridLayout rows="30,auto" columns="*" class="bg-card" >  
+                            <StackLayout  row="0" col="0"></StackLayout>
+                            <GridLayout row="1" col="0" rows="auto" columns="*,*"> 
+                                <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                    <Image  style="transform: scaleX(-1);" [src]=" imageurlstitching+item.Image" class="ordrimg" row="0" col="0"></Image>
+                                    <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                        <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="0" class="order-txt" [text]="aedata.Dress_Type"></label>
+                                        <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="1" col="0"  class="order-txt" [text]="aedata.Date"></label> 
+                                        <label  style="transform: scaleX(-1);" textWrap="true" horizontalAlignment="left" row="2" col="0"  class="order-txt" [text]="aedata.Measurement_By"></label> 
+                                     </GridLayout>
+                                     </GridLayout>
+                                     <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                        <label  style="transform: scaleX(-1);"  horizontalAlignment="left" row="0" col="0" class="detail-txt" [text]="item.NameInArabic"></label>
+                                        <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="1" col="0" class="detail-txt" [text]="item.UserDate | date"></label>
+                                        <label  style="transform: scaleX(-1);" row="2" col="0" class="detail-txt" textWrap="true"  horizontalAlignment="left"  [text]="item.UserName"></label>
+                                    </GridLayout>
+                                    <Image  style="transform: scaleX(-1);"  #checksize  horizontalAlignment="right" verticalAlignment="top" row="0" col="1" [src]="item.Id==selecteddressId  ? '~/assets/dashbord/Check box.png':''" value="" class="uncheck-img"></Image>
+    
+                            </GridLayout>
+                        </GridLayout>
+                    </DockLayout >
+            </WrapLayout>
+            </ng-template>
+            </ListView>
+            </RGridLayout>
+        
+    <!-- *ngIf="addmeasurement" -->
+        <GridLayout *ngIf="addmeasurement"> 
+            <GridLayout rows="*,auto">
+                <GridLayout row="1" col="0" rows="auto" columns="*" class="bgbtn">
+                  <Button  *ngIf="!selecteddressId"  row="0"   col="0" [text]="aedata.Add_new_measurement" (tap)="gotoAddMeasurement()" class="bgbtn"></Button>
+              <Button *ngIf="selecteddressId" row="0" col="0" [text]="aedata.Ok" (tap)="UpdateMeasurement()" class="bgbtn"></Button>
+                
+                </GridLayout>
+            </GridLayout>
+        </GridLayout> 
+    </RGridLayout>
+</Page>

@@ -1,0 +1,196 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Create New Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Create_New_Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label text="Choose Stitching Products" class="header-txt"></Label>
+                </StackLayout>
+
+                <GridLayout row="2" col="0"
+                    rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"
+                    columns="*">
+
+                    <GridLayout row="0" col="0" rows="auto" columns="*,*,*,*" class="margins">
+                        <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" class="uncheck-img" (tap)="getdresstypeforbanner(1)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Male"></Label>
+                        </GridLayout>
+                        <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" class="uncheck-img" (tap)="getdresstypeforbanner(2)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Female"></Label>
+                        </GridLayout>
+
+                        <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(3)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center"
+                                text="Boy"></Label>
+                        </GridLayout>
+                        <GridLayout row="0" col="3" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 4 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(4)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center"
+                                text="Girl"></Label>
+                        </GridLayout>
+                    </GridLayout>
+
+
+                    <GridLayout row="3" col="0" class="border"></GridLayout>
+
+
+                    <GridLayout row="4" col="0" rows="auto" columns="auto,*"  class="margins">
+                        <Image row="0" col="0"  horizontalAlignment="left" verticalAlignment="center" src="~/assets/productmapp/filters.png" class="filter"></Image>
+                            <GridLayout row="0"  col="1" rows="auto" columns="*,auto">
+                                <TextField class="search"  autocorrect="false"  hint="Search Products"  autocapitalizationType="none"  row="0" col="0"></TextField>
+                                <Image  src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+                            </GridLayout>
+                    </GridLayout>
+
+                    <GridLayout  row="5" col="0"  class="margins">
+                        <WrapLayout  orientation="horizontal" >
+                            <DockLayout   stretchLastChild="false" width="100%" class="cardStyle"  shadow="2"  cornerRadius="15" *ngFor="let dress of dresstype">
+                                <GridLayout rows="auto" columns="*" class="bg-card" > 
+                                    <GridLayout row="0" col="0" rows="auto" columns="*" (tap)="selectdress(dress.Id)"> 
+                                        <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                            <Image [src]="imageurl+dress.ImageURL" stretch="aspectFill" class="ordrimg" row="0" col="0"></Image>
+                                             
+                                             <label row="0" col="1"  horizontalAlignment="left" verticalAlignment="center"  class="order-txt" [text]="dress.NameInEnglish"></label>
+                                             </GridLayout>
+                                             <Image  #checksize  horizontalAlignment="right" verticalAlignment="top" row="0" col="0" [src]="dress.Id==selecteddressId  ? '~/assets/dashbord/Check box.png':''" value="" class="uncheck-img"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </DockLayout >
+                    </WrapLayout>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+         <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+         <GridLayout>
+            <GridLayout rows="*,auto">
+                <GridLayout row="1" col="0" rows="auto" columns="*" >
+                <Button row="0" col="0" text="Next" class="donebtn " (tap)="next()"> </Button>
+            </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+
+
+
+
+
+    
+    <!-- <--------------arabic-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label [text]="aedata.Choose_Stitching_Products" class="header-txt"></Label>
+                </StackLayout>
+
+                <GridLayout row="2" col="0"
+                    rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"
+                    columns="*">
+
+                    <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="*,*,*,*" class="margins">
+                        <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" class="uncheck-img" (tap)="getdresstypeforbanner(1)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Male"></Label>
+                        </GridLayout>
+                        <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" class="uncheck-img" (tap)="getdresstypeforbanner(2)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Female"></Label>
+                        </GridLayout>
+
+                        <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(3)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center"
+                                [text]="aedata.Boy"></Label>
+                        </GridLayout>
+                        <GridLayout row="0" col="3" rows="auto" columns="auto,auto">
+                            <Image #checksize row="0" col="0"
+                                [src]="slectedgender == 4 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(4)"></Image>
+                            <Label row="0" col="1" class="ofertext" verticalAlignment="center"
+                                [text]="aedata.Girl"></Label>
+                        </GridLayout>
+                    </RGridLayout>
+
+
+                    <GridLayout row="3" col="0" class="border"></GridLayout>
+
+
+                    <RGridLayout  isRtl="true" row="4" col="0" rows="auto" columns="auto,*"  class="margins">
+                        <Image row="0" col="0"  horizontalAlignment="left" verticalAlignment="center" src="~/assets/productmapp/filters.png" class="filter"></Image>
+                            <GridLayout row="0"  col="1" rows="auto" columns="*,auto">
+                                <TextField class="search"  autocorrect="false"  hint="Search Products"  autocapitalizationType="none"  row="0" col="0"></TextField>
+                                <Image  src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+                            </GridLayout>
+                    </RGridLayout>
+
+                    <GridLayout  row="5" col="0"  class="margins">
+                        <WrapLayout  orientation="horizontal" >
+                            <DockLayout   stretchLastChild="false" width="100%" class="cardStyle"  shadow="2"  cornerRadius="15" *ngFor="let dress of dresstype">
+                                <GridLayout rows="auto" columns="*" class="bg-card" > 
+                                    <GridLayout  row="0" col="0" rows="auto" columns="*" (tap)="selectdress(dress.Id)"> 
+                                        <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                            <Image [src]="imageurl+dress.ImageURL" stretch="aspectFill" class="ordrimgae" row="0" col="0"></Image>
+                                             
+                                             <label row="0" col="1"  horizontalAlignment="left" verticalAlignment="center"  class="order-txt" [text]="dress.NameInArabic"></label>
+                                             </RGridLayout>
+                                             <Image  #checksize  horizontalAlignment="left" verticalAlignment="top" row="0" col="0" [src]="dress.Id==selecteddressId  ? '~/assets/dashbord/Check box.png':''" value="" class="uncheck-img"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </DockLayout >
+                    </WrapLayout>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+         <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+         <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <GridLayout row="1" col="0" rows="auto" columns="*" >
+                <Button row="0" col="0" [text]="aedata.Next" class="donebtn " (tap)="next()"> </Button>
+            </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

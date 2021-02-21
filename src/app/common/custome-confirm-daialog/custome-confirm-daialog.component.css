@@ -1,0 +1,29 @@
+/* Add mobile styles for the component here.  */
+/* .fullbtn{
+    background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);
+} */
+.okbtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    /* border-radius: 0,0,0,12; */
+    margin: 0;
+    padding: 0;
+}
+.canclbtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    /* border-radius: 0,0,12,0; */
+    border-width: 0,0,0,1;
+    border-color: rgb(184, 176, 176);
+    margin: 0;
+    padding: 0;
+    
+}
+.borderfull{
+    border-radius:30;
+}
+.txt{
+    font-size: 14px;
+    text-align: center;
+    margin: 10;
+}

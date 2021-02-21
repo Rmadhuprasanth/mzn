@@ -1,0 +1,56 @@
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .gray-bg{
+    background-color:darkgray;
+    margin-top: 10;
+    margin-bottom: 10;
+  }
+  .header-txt{
+    font-size: 16;
+    color: #05375c;
+    padding-left: 15;
+    text-align: center;
+}
+.filter{
+    height: 30;
+    width: 80;
+}
+.donebtn{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    font-size: 14;
+    height: 35;
+    border-radius: 18;
+}
+.banner{
+    border-radius: 21px;
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+background-size:     cover;                      
+background-repeat:   no-repeat;
+background-position: center center;
+width: 100%;
+height: 100;
+margin-bottom: 10;
+  }
+  .uncheck-img{
+    height: 25;
+    width: 25;
+  }

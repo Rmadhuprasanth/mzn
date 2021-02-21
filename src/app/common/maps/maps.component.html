@@ -1,0 +1,60 @@
+<Page 
+xmlns="http://www.nativescript.org/tns.xsd"
+xmlns:maps="nativescript-google-maps-sdk"
+>
+    <ActionBar class="header"   *ngIf="lang=='English'">
+        <Label text="choose from map"></Label>
+    </ActionBar>
+    <ActionBar class="header"   *ngIf="lang=='Arabic'">
+        <Label [text]="aedata.choose_from_map"></Label>
+    </ActionBar>
+<GridLayout  rows="auto,*,auto" columns="*" >
+    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"  *ngIf="lang=='English'">
+        <TextField class="input" editable="true" row="0" col="0" hint="Search"
+        text="" autocorrect="false"
+        autocapitalizationType="none" style="text-align: center;" [(ngModel)]="selectedaddress" (textChange)="searchadresss($event)"></TextField> 
+        <WrapLayout  row="1" col="0"  orientation="horizontal"  class=" hegh"> 
+            <StackLayout *ngFor='let places of places; let myIndex = index'   width="100%" >
+                <Label [text]="places.description" (tap)="getgeocodes(places.description)" class="acadrss"></Label>
+            </StackLayout> 
+    </WrapLayout>
+        <Label row="1" col="0" [text]="addr" class="addrestxt" textWrap="true"></Label>
+    </GridLayout>
+
+
+    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"  *ngIf="lang=='Arabic'">
+        <TextField  *ngIf="lang=='Arabic'" class="input" editable="true" row="0" col="0" hint="البحث"
+        text="" autocorrect="false"
+        autocapitalizationType="none" style="text-align: center;" [(ngModel)]="selectedaddress" (textChange)="searchadresss($event)"></TextField> 
+        <WrapLayout  row="1" col="0"  orientation="horizontal"  class=" hegh"> 
+            <StackLayout *ngFor='let places of places; let myIndex = index'   width="100%" >
+                <Label [text]="places.description" (tap)="getgeocodes(places.description)" class="acadrss"></Label>
+            </StackLayout> 
+    </WrapLayout>
+        <Label row="1" col="0" [text]="addr" class="addrestxt" textWrap="true"></Label>
+    </GridLayout>
+    <GridLayout row="1">
+    <MapView #mapView [latitude]="latitude" [longitude]="longitude"
+    [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom" [bearing]="bearing"
+    [tilt]="tilt" i-padding="50,50,50,50" [padding]="padding" (mapReady)="onMapReady($event)"
+    (markerSelect)="onMarkerEvent($event)" 
+    (markerEndDragging)="onMarkerEvent($event)" 
+    (markerInfoWindowTapped)="onMarkerEvent($event)" (coordinateTapped)="onCoordinateTapped($event)"
+    (cameraChanged)="onCameraChanged($event)"
+    (cameraMove)="onCameraMove($event)" markerDraggable="true"></MapView>
+</GridLayout>
+
+
+<GridLayout row="2"   *ngIf="lang=='English'">
+    <Button text="Confirm Location" class="confirmbtn" width="100%" (tap)="gotoshopprofile()"></Button>
+</GridLayout>
+
+
+<GridLayout row="2"   *ngIf="lang=='Arabic'">
+    <Button [text]="aedata.Confirm_Location" class="confirmbtn" width="100%" (tap)="gotoshopprofile()"></Button>
+</GridLayout>
+</GridLayout>    
+
+
+</Page>
+

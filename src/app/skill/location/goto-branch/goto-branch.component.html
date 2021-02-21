@@ -1,0 +1,60 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <---------------englsih-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Branches" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+
+<!-- <---------------arabic-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'" >
+        <RGridLayout rows="auto" columns="auto,*"isRtl="true" >
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Branches" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+       <!-- <---------------englsih-content--------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> -->
+             
+            <!-- <GridLayout  class="margins" rows="auto,auto" columns="*"> -->
+                <ListView row="0" [items]="Branches"   separatorColor="transparent">
+                    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <WrapLayout  orientation="horizontal" >
+                    <GridLayout  row="{{i}}" col="0"  (tap)="gotocountry(item.ShopId)"   elevation="5"  rows="auto,auto" columns="*" class="shop-card"  shadow="2"
+                    cornerRadius="25">
+                    <Label row="0" col="0" class="tailortxt" [text]="item.ShopNameInEnglish"></Label>
+                    <Label row="1" col="0" class="tailorcitytxt" [text]="item.AddressInEnglish +'-'+ item.StateName"></Label>
+                </GridLayout>
+            </WrapLayout> 
+            </ng-template>
+            </ListView>  
+                <!-- </GridLayout> -->
+                <!-- </ScrollView> -->
+                </GridLayout>   
+
+
+
+
+
+                  <!-- <---------------arabic-content--------------------->
+    <RGridLayout class="page" *ngIf="lang=='Arabic'"  isRtl="true" >
+        <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <RGridLayout  class="margins" rows="auto,auto" columns="*"  isRtl="true"> -->
+                <ListView row="0" [items]="Branches"   separatorColor="transparent">
+                    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <WrapLayout  orientation="horizontal" >
+                    <RGridLayout isRtl="true"   row="{{i}}" col="0"  (tap)="gotocountry(item.ShopId)"   elevation="5"  rows="auto,auto" columns="*" class="shop-card" shadow="2"
+                    cornerRadius="25">
+                    <Label row="0" col="0" horizontalAlignment="left" class="tailortxt" [text]="item.ShopNameInArabic"></Label>
+                    <Label row="1" col="0" horizontalAlignment="left" class="tailorcitytxt" [text]="item.AddressinArabic +'-'+ item.StateName"></Label>
+                </RGridLayout>
+            </WrapLayout>  
+            </ng-template>
+            </ListView> 
+                <!-- </RGridLayout>
+                </ScrollView> -->
+                </RGridLayout>   
+    </Page>

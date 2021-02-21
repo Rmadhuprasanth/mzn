@@ -1,0 +1,63 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <---------------english-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*">
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Choose Country" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+<!-- <---------------arabic-header--------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Choose_Country" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+       <!-- <---------------english-content--------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  -->
+            <ListView row="0" [items]="countries"  class="margins"  separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout   rows="auto,auto" columns="*">
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" shadow="2"
+                    cornerRadius="25"  (tap)="gotostate(item.Id)">
+                        <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="item.CountryName" verticalAlignment="center"></Label>
+           
+                        <Image  #checkcompany  src="~/assets/dressmap/Right arrow.png" 
+                         dock="right" class="uncheck-img"></Image>
+                    </DockLayout >
+                    
+            </WrapLayout> 
+                </GridLayout>
+                </ng-template>
+                </ListView>
+                <!-- </ScrollView> -->
+                </GridLayout> 
+                
+                
+                   <!-- <---------------arabic-content--------------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  -->
+            <ListView row="0" [items]="countries"  class="margins"  separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout  rows="auto,auto" columns="*">
+                <WrapLayout  orientation="horizontal" > 
+                    <RDockLayout  isRtl="true"  stretchLastChild="false" width="100%" class="cardStyle" shadow="2"
+                    cornerRadius="25"    (tap)="gotostate(item.Id)">
+                        <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="item.CountryName" verticalAlignment="center"></Label>
+           
+                        <Image  style="transform: scaleX(-1);"   #checkcompany  src="~/assets/dressmap/Right arrow.png" 
+                         dock="right" class="uncheck-img"></Image>
+                    </RDockLayout >
+                    
+            </WrapLayout> 
+                </GridLayout>
+                </ng-template>
+                </ListView>
+                <!-- </ScrollView> -->
+                </GridLayout>  
+    </Page>

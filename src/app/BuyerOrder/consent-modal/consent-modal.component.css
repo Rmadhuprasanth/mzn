@@ -1,0 +1,30 @@
+.okbtn{
+    background: #05375c;
+    color: white;
+    border-radius: 21;
+    margin-left: 10;
+    padding: 0;
+    width: 80;
+    height: 40;
+}
+.canclbtn{
+    background:#05375c;
+    color: white;
+    border-radius: 21;
+    margin-right: 10;
+    padding: 0;
+    width: 80;
+    height: 40;
+    
+}
+.borderfull{
+    /* border-radius:30; */
+    background: #05375c;
+    width: 100%;
+}
+.txt{
+    font-size: 14px;
+    text-align: center;
+    margin: 10;
+    color: white;
+}

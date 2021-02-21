@@ -1,0 +1,71 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .ordrimg{
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+      height: 60;
+      width: 60;
+      margin:5;
+      border-radius: 60;
+  }
+  .order-txt{
+      font-size: 13;
+      color:#05375c ;
+      margin-top: -8;
+  }
+  .detail-txt{
+    font-size: 13;
+    color:#05375c ;
+    text-align: left;
+    margin-left: 10;
+    margin-top: -8;
+  }
+  .bg-card{
+    background-color:#05375c;
+    border-width: 2;
+    border-radius: 12;
+    /* border-color: rgb(252, 252, 252); */
+    border-color:rgb(247, 247, 247);
+    /* android-elevation:55 !important; */
+    
+  }
+  .cardStyle{
+    margin-bottom: -10;
+  }
+  .bg-child{
+    background:white;
+    padding-bottom: 10;
+    padding-top: 10;
+    margin-right: 1;
+    border-radius: 0 0 0 10; 
+  }
+  .bg-child1{
+    background:white;
+    padding-bottom: 10;
+    padding-top: 10;
+    margin-left: 1;
+    border-radius: 0 0 10 0; 
+  }
+  .nodata{
+   font-size: 14;
+   color: darkgray;
+   
+ }

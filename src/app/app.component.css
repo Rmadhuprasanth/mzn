@@ -1,0 +1,31 @@
+.sideStackLayout{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9) !important;
+}
+.nt-drawer__header{
+    background-color: transparent;
+    margin-top: 10;
+  
+}
+.nt-drawer__header-image{
+    border-width: 2;
+    border-color: #c3922e;
+}
+.nt-drawer__body{
+    color: white;
+}
+.nt-drawer__list-item{
+
+    margin-top: -5;
+    margin-bottom: -5;
+}
+.p-r-10{
+    padding-left: 10;
+    font-size: 14;
+}
+.imgspro{
+    height: 100;
+    width: 100;
+}
+.img{
+    margin-right: 300 !important;
+}

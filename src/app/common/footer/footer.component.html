@@ -1,0 +1,24 @@
+<GridLayout>
+    <GridLayout rows="*,auto">
+       
+        <GridLayout row="1" columns="*,*,*,*" height="48" class="bg-footer">
+            <StackLayout col="0" (tap)="selectedindex(0)">
+              
+            <Image class="m-icon" *ngIf="selectedindexval != 0" src="~/assets/footer/beforeclick/home-n.png"></Image>
+            <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+            </StackLayout>
+            <StackLayout col="1" (tap)="selectedindex(1)">
+                <Image class="m-icon" *ngIf="selectedindexval != 1" src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+            </StackLayout>
+            <StackLayout col="2" (tap)="selectedindex(2)">
+                <Image class="m-icon" *ngIf="selectedindexval != 2" src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png"></Image>
+            </StackLayout>
+            <StackLayout col="3" (tap)="selectedindex(3)">
+                <Image class="m-icon" *ngIf="selectedindexval != 3" src="~/assets/footer/beforeclick/reward-n.png"></Image> 
+                <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+            </StackLayout>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>

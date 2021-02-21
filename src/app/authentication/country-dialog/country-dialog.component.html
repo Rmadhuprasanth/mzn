@@ -1,0 +1,61 @@
+  
+
+<page >
+    <GridLayout rows="500,auto" columns="*"  *ngIf="lang=='English'">
+ 
+    
+<StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+    <StackLayout class="text-header" > 
+        <Label text="Choose Your country" textWrap="true"></Label>
+    </StackLayout>
+    
+     
+    <ListView [items]="countries" (tap)="onItemSelecting($event)" class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <FlexboxLayout flexDirection="row" class="list-group-item"  (tap)="close(item)">
+                <Image [src]="imageurl+item.Flag" class="thumb img-circle"></Image>
+                <Label [text]="item.CountryName" class="list-group-item-heading" 
+                   style="width: 60%"></Label>
+        </FlexboxLayout> 
+        </ng-template>
+     
+    </ListView>   
+</StackLayout>  
+<StackLayout row="1"> 
+    <Button class="Cancelbtn" text="Cancel"  (tap)="close()"></Button> 
+</StackLayout> 
+</GridLayout>
+
+
+
+<RGridLayout  isRtl="true"  rows="500,auto" columns="*"  *ngIf="lang=='Arabic'">
+ 
+    
+    <StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+        <RStackLayout  isRtl="true" class="text-header" > 
+            <Label  isRtl="true" [text]="aedata.Choose_Your_country" textWrap="true"></Label>
+        </RStackLayout>
+        
+         
+        <ListView [items]="countries" (tap)="onItemSelecting($event)" class="list-group">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout rows="auto" columns="*,auto"   horizontalAlignment="right"   (tap)="close(item)">
+                    
+                    <Label row="0" col="0"   style="text-align: right;" horizontalAlignment="right"  [text]="item.CountryName" 
+                    ></Label>
+                    <Image row="0" col="1"   horizontalAlignment="right"   [src]="imageurl+item.Flag" class="thumb img-circle"></Image>
+            </GridLayout> 
+            </ng-template>
+         
+        </ListView>   
+    </StackLayout>  
+    <RStackLayout row="1"  isRtl="true" > 
+        <Button    class="Cancelbtn" [text]="aedata.Cancel"  (tap)="close()"></Button> 
+    </RStackLayout> 
+    </RGridLayout>
+</page>
+
+
+
+  
+

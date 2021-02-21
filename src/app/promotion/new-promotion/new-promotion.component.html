@@ -1,0 +1,91 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Create New Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Create_New_Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label text="Choose Banner" class="header-txt"></Label>
+                </StackLayout>
+               
+
+                <GridLayout  row="1" col="0" class="margins" style="margin-bottom: 40;">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" *ngFor="let banner of banner" >
+                            <GridLayout rows="auto" columns="*" (tap)="selectbanner(banner.Id,banner.Image)" >
+                                <Image row="0" col="0"  stretch="aspectFill"  [src]="bannerurl+banner.Image" class="banner"></Image>
+                                <Image  #checksize  horizontalAlignment="right" verticalAlignment="top" row="0" col="0" [src]="banner.Id==selectedbannerId ? '~/assets/dashbord/Check box.png':''"   class="uncheck-img"></Image>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+        <!-- <AbsoluteLayout row="0" col="0" class="margins">
+            <Image top="40" left="250" horizontalAlignment="right" src="~/assets/productmapp/filters.png" class="filter">
+            </Image>
+        </AbsoluteLayout> -->
+
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto">
+                <Button row="1" col="0" text="Done" class="donebtn " (tap)="saveselected()" style="margin-bottom: 10;"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+    
+    
+
+
+
+     <!-- <--------------arabic-content---------------------->
+     <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label [text]="aedata.Choose_Banner" class="header-txt"></Label>
+                </StackLayout>
+               
+
+                <GridLayout  row="1" col="0" class="margins" style="margin-bottom: 40;">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" *ngFor="let banner of banner" >
+                            <GridLayout rows="auto" columns="*" (tap)="selectbanner(banner.Id,banner.Image)" >
+                                <Image row="0" col="0"  stretch="aspectFill"  [src]="bannerurl+banner.Image" class="banner"></Image>
+                                <Image  #checksize  horizontalAlignment="left" verticalAlignment="top" row="0" col="0" [src]="banner.Id==selectedbannerId ? '~/assets/dashbord/Check box.png':''"   class="uncheck-img"></Image>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto">
+                <Button row="1" col="0" [text]="aedata.Done" class="donebtn " (tap)="saveselected()" style="margin-bottom: 10;"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout> 
+
+</Page>

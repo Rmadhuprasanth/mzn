@@ -1,0 +1,71 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+<GridLayout rows="150,*,*,*" coloumns="*" class="parent" *ngIf="lang=='English'">
+
+    <StackLayout orientation="vertical" class="headdiv">
+
+    </StackLayout>
+    <StackLayout row="1" orientation="vertical" class="img-layout">
+        
+        <Image class="logo" src="~/assets/500_500.png"></Image>
+        <Label text="OTP sent to your number" class="otpsent"></Label>
+        <Label text="Please verify the OTP by entering the below" class="otpenter"></Label>
+    </StackLayout> 
+    <!-- <GridLayout row="2"  rows="auto" columns="*, *,*,*,*,*" class="margtxt">
+        <TextField class="otptxt"  text="" #otp1 maxLength=1 returnKeyType=next autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,1)" hint="*" row="0" col="0"></TextField>
+        <TextField class="otptxt" text="" #otp2 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none" (textChange)="otpController($event,2)"  hint="*" row="0" col="1"></TextField>
+        <TextField class="otptxt" text="" #otp3 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,3)" hint="*" row="0" col="2"></TextField>
+        <TextField class="otptxt" text="" #otp4 maxLength=1 returnKeyType=next   autocorrect="false" autocapitalizationType="none" (textChange)="otpController($event,4)" hint="*" row="0" col="3"></TextField>
+        <TextField class="otptxt" text="" #otp5 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,5)" hint="*" row="0" col="4"></TextField>
+        <TextField class="otptxt" text="" #otp6 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,6)" hint="*" row="0" col="5"></TextField>
+      
+        </GridLayout> (textChange)="otp1($event)" [(ngModel)]="Otpnumber.Number" -->
+        <GridLayout row="2"  rows="auto" columns="*" class="margtxt">
+            <TextField class="otptxtfull" maxLength=6  autocorrect="false" keyboardType="number"   
+            autocapitalizationType="none"  (textChange)="otp1($event)" hint="* * * * * * " row="0"></TextField>
+         
+            </GridLayout> 
+    <GridLayout row="3"  rows="auto" columns="*, *"  class="marg">
+        <Button row="0" col="0"class="resend-btn" (tap)="resendotp()" text="Resend" ></Button> 
+        <Button row="0" col="1" class="cont-btn" (tap)="changeNumber()" text="Change number" ></Button>  
+      
+        </GridLayout>  
+                
+</GridLayout> 
+
+
+<!-- <---------------------------Arabic-------------------------------->
+
+
+<RGridLayout  isRtl="true" rows="150,*,*,*" coloumns="*" class="parent" *ngIf="lang=='Arabic'">
+
+    <StackLayout orientation="vertical" class="headdiv">
+
+    </StackLayout>
+    <RStackLayout row="1"  isRtl="true"  orientation="vertical" class="img-layout">
+        
+        <Image style="transform: scaleX(-1);" class="logo" src="~/assets/500_500.png"></Image>
+        <Label  horizontalAlignment="center" style="transform: scaleX(-1);" [text]="aedata.OTP_sent_to_your_number" class="otpsent"></Label>
+        <Label  horizontalAlignment="center" style="transform: scaleX(-1);" [text]="aedata.Please_verify_the_OTP_by_entering_the_below" class="otpenter"></Label>
+    </RStackLayout> 
+    <!-- <GridLayout row="2"  rows="auto" columns="*, *,*,*,*,*" class="margtxt">
+        <TextField class="otptxt"  text="" #otp1 maxLength=1 returnKeyType=next autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,1)" hint="*" row="0" col="0"></TextField>
+        <TextField class="otptxt" text="" #otp2 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none" (textChange)="otpController($event,2)"  hint="*" row="0" col="1"></TextField>
+        <TextField class="otptxt" text="" #otp3 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,3)" hint="*" row="0" col="2"></TextField>
+        <TextField class="otptxt" text="" #otp4 maxLength=1 returnKeyType=next   autocorrect="false" autocapitalizationType="none" (textChange)="otpController($event,4)" hint="*" row="0" col="3"></TextField>
+        <TextField class="otptxt" text="" #otp5 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,5)" hint="*" row="0" col="4"></TextField>
+        <TextField class="otptxt" text="" #otp6 maxLength=1 returnKeyType=next  autocorrect="false" autocapitalizationType="none"  (textChange)="otpController($event,6)" hint="*" row="0" col="5"></TextField>
+      
+        </GridLayout> (textChange)="otp1($event)" [(ngModel)]="Otpnumber.Number" -->
+        <GridLayout row="2"  rows="auto" columns="*" class="margtxt">
+            <TextField class="otptxtfull" maxLength=6  autocorrect="false" keyboardType="number"   
+            autocapitalizationType="none"  (textChange)="otp1($event)" hint="* * * * * * " row="0"></TextField>
+         
+            </GridLayout> 
+    <RGridLayout row="3"  isRtl="true"  rows="auto" columns="*, *"  class="marg">
+        <Button  style="transform: scaleX(-1);" row="0" col="1"class="resend-btn" (tap)="resendotp()" [text]="aedata.Resend" ></Button> 
+        <Button  style="transform: scaleX(-1);" row="0" col="0" class="cont-btn" (tap)="changeNumber()" [text]="aedata.Change_number" ></Button>  
+      
+        </RGridLayout>  
+                
+</RGridLayout>
+</Page>

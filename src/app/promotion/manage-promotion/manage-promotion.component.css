@@ -1,0 +1,112 @@
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .bg-tabs{
+    background:darkgray;
+    text-align: center;
+    /* margin: 25; */
+    border-radius: 25;
+}
+.selected{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d); 
+    line-height: 9;
+    border-radius: 25 0 0 25;
+    color: #05375c;
+}
+.selected1{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d); 
+    line-height: 9;
+    border-radius: 0 25 25 0;
+}
+.selected .txt{
+color: #05375c;
+margin: 8;
+font-size: 13;
+font-weight: bold;
+}
+.selected1 .txt{
+    color: #05375c;
+    margin: 8;
+    font-size: 13;
+    font-weight: bold;
+    }
+.txt{
+    color: white;
+    margin: 8;
+    font-size: 13;
+    font-weight: bold;
+    }
+    .banner{
+      border-radius: 21px;
+      background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+  background-size:     cover;                      
+  background-repeat:   no-repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100;
+    }
+    .Expresstxt{
+  background: rgb(240, 239, 239);
+  width: 100; 
+  height: 40;
+  border-radius: 0 15 15 0;
+  }
+  .protxtx{
+    text-align: center;
+    color: #05375c;
+  }
+  .protxtx1{
+    text-align: center;
+    color: #05375c;
+    margin-bottom: -17px;
+
+  }
+  .shoptxt{
+    text-align: left;
+    color: #05375c;
+    font-size: 14;
+  }
+  .exptxt{
+    text-align: right;
+    color: #05375c;
+    font-size: 14;
+  }
+  .offbg{
+    background: rgb(240, 239, 239);
+    width: 70; 
+    height: 20;
+    border-radius: 0 15 15 0;
+  }
+  .editico{
+    height: 30;
+    width: 30;
+  }
+  .bg-all{
+    background: rgb(223, 223, 223);
+    /* padding-left: 10;
+    padding-right: 10; */
+    padding: 10;
+  }
+  .cardStyle{
+    margin-bottom: 10;
+  }
+  .borders{
+    margin-top: 10;
+}

@@ -1,0 +1,33 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Settings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Settings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+       <!-- <--------------english-content---------------------->
+       <GridLayout class="page" *ngIf="lang=='English'">
+        <GridLayout rows="auto" col="*">
+
+            <Button row="0" col="0" [text]="'Language Settings-'+lang" (tap)="gotolanguagesettings()" class="langbtn"></Button>
+        </GridLayout>
+       </GridLayout>
+
+            <!-- <--------------arabic-content---------------------->
+<RGridLayout  isRtl="true"  class="page" *ngIf="lang=='Arabic'">
+    <GridLayout rows="auto" col="*">
+        <Button row="0" col="0" [text]="lang+'-'+ aedata.Language_Settings" class="langbtn" (tap)="gotolanguagesettings()"></Button>
+    </GridLayout>
+</RGridLayout>
+       </Page>

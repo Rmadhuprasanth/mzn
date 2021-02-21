@@ -1,0 +1,57 @@
+/* Add mobile styles for the component here.  */
+.page{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.camico{
+    height: 130;
+    width: 130;
+    border-radius: 80;
+    border-width: 2;
+    border-color: gold;
+}
+.margins{
+    margin-top: 80;
+    margin-left: 20;
+    margin-right: 20;
+}
+.opencamico{
+    height: 40;
+    width: 40;
+    margin-top: -25;
+    margin-left: 50;
+}
+.prtxt{
+    text-align: center;
+    font-size: 16;
+    color: white;
+    margin-bottom: 10;
+}
+.input{
+    border-width: 0 0 2 0;
+    border-color: gray;
+    color: white;
+    margin-bottom: 30;
+    margin-left: 3;
+    placeholder-color: #ffffff;
+}
+
+.nameico{
+    height: 25;
+    width: 25;
+    margin-bottom: 17;
+}
+.nxtbtn{
+    margin-left: -10;
+    margin-right: -10;
+    margin-bottom: -8;
+    padding: 0;
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    color:#05375c ;
+}
+.error{
+font-size: 14;
+margin-right: 25;
+margin-top: 0;
+margin-bottom: 0;
+padding: 0;
+}

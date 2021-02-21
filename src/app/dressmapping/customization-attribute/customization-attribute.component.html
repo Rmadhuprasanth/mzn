@@ -1,0 +1,61 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <----------------------english-header------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Customization Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <----------------------arabic-header------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Customization_Details" row="0"  col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <----------------------english-content------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <GridLayout  class="margins">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false"  #checkcompany  value="{{attribute.Switch}}" width="45%" class="cardStyle" 
+                    *ngFor="let attribute of attributearray; let i = index"  >
+                        <!-- attribute.Id,attribute.CustomizationAttributeId,attribute.AttributeNameInEnglish,attribute -->
+                        <GridLayout rows="110,auto" columns="*">
+                        <Image row="0"  col="0" [src]="imageurl+attribute.AttributeImage"  stretch="aspectFill"  (tap)="getattribute(checkcompany.value,attribute.Id,attribute.CustomizationAttributeId)" dock="top" class="st-img"></Image>
+                        <Image row="0"  col="0" [src]="attribute.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"  dock="bottom"  horizontalAlignment="right" verticalAlignment="top" class="zoomicon"></Image>
+                        <Image row="0"  col="0" src="~/assets/dressmap/Zoom.png" dock="bottom" (tap)="openzoomImg(attribute.AttributeImage)" horizontalAlignment="right" verticalAlignment="bottom" class="zoomicon"></Image>
+                        <Label row="1"  col="0" class="st-txt"  dock="bottom" [text]="attribute.AttributeNameInEnglish"></Label>
+                        </GridLayout>
+                    </DockLayout >
+            </WrapLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+
+
+                  <!-- <----------------------arabic-content------------------->
+    <RGridLayout class="page" *ngIf="lang=='Arabic'"  isRtl="true">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <RGridLayout  class="margins"  isRtl="true">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false"  #checkcompany  value="{{attribute.Switch}}" width="45%" class="cardStyle" 
+                    *ngFor="let attribute of attributearray; let i = index"  >
+                        <!-- attribute.Id,attribute.CustomizationAttributeId,attribute.AttributeNameInEnglish,attribute -->
+                        <RGridLayout rows="110,auto" columns="*" isRtl="true" >
+                        <Image row="0"  col="0" [src]="imageurl+attribute.AttributeImage"  stretch="aspectFill" (tap)="getattribute(checkcompany.value,attribute.Id,attribute.CustomizationAttributeId)" dock="top" class="st-img"></Image>
+                        <Image row="0"  col="0" [src]="attribute.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"  dock="bottom"  horizontalAlignment="right" verticalAlignment="top" class="zoomicon"></Image>
+                        <Image row="0"  style="transform: scaleX(-1);" col="0" src="~/assets/dressmap/Zoom.png" dock="bottom" (tap)="openzoomImg(attribute.AttributeImage)" horizontalAlignment="right" verticalAlignment="bottom" class="zoomicon"></Image>
+                        <Label row="1"   col="0" class="st-txt"   dock="bottom" [text]="attribute.AttributeNameinArabic"></Label>
+                        </RGridLayout>
+                    </DockLayout >
+            </WrapLayout>
+                </RGridLayout>
+                </ScrollView>
+                </RGridLayout>
+    </Page>

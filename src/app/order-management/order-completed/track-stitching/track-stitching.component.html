@@ -1,0 +1,67 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Track Order" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Track_Order" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+       <!-- <--------------english-header---------------------->
+    <GridLayout  class="page" *ngIf="lang=='English'"> 
+        <GridLayout  class="margins" >
+    <ScrollView  row="1" scrollBarIndicatorVisible="false">
+        <WrapLayout  orientation="horizontal"> 
+            <DockLayout   stretchLastChild="false" width="100%"  *ngFor="let track of items">
+        <GridLayout rows="auto,auto,auto" col="*" >
+<GridLayout row="0" col="0" rows="auto" columns="*,auto,*"  >
+    <Label row="0" col="0" [text]="track.Date" class="tracktxt"   width="100%"  shadow="2"  cornerRadius="15" horizontalAlignment="center"  verticalAlignment="middle"></Label>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/1_Order-placed.png':'~/assets/order-management/Delivered/Order-Placed.png'"  *ngIf="track.Id == '1'" row="0" col="1" class="trackimg"></Image>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/2_Material-Received.png':'~/assets/order-management/Delivered/Material Received.png'" *ngIf="track.Id == '2'" row="0" col="1" class="trackimgsmall"></Image>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/3_Measurement-Done.png':'~/assets/order-management/Delivered/Measurement Done.png'"  *ngIf="track.Id == '3'" row="0" col="1" class="trackimgsmall"></Image>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/4_Stitching-Started.png':'~/assets/order-management/Delivered/Stitching Started.png'"  *ngIf="track.Id == '4'" row="0" col="1" class="trackimgsmall"></Image>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/5_Ready-for-dispatching.png':'~/assets/order-management/Delivered/Ready-for-Dispatching.png'"  *ngIf="track.Id == '5'" row="0" col="1" class="trackimgsmall"></Image>
+    <Image [src]="track.status == false ? '~/assets/order-management/Pending/6_Dispatched.png':'~/assets/order-management/Delivered/Dispatched.png'"  *ngIf="track.Id == '6'" row="0" col="1" class="trackimgsmall"></Image>
+    <Label row="0" col="2" class="tracktxt" [text]="track.StatusInEnglish" width="100%"  shadow="2"  cornerRadius="15"  horizontalAlignment="center"  verticalAlignment="middle"></Label>
+</GridLayout>
+        </GridLayout>
+    </DockLayout>
+    </WrapLayout>
+        </ScrollView>
+
+    </GridLayout>
+</GridLayout>
+
+ <!-- <--------------arabic-header---------------------->
+ <GridLayout  class="page" *ngIf="lang=='Arabic'"> 
+    <GridLayout  class="margins" >
+<ScrollView  row="1" scrollBarIndicatorVisible="false">
+    <WrapLayout  orientation="horizontal"> 
+        <DockLayout   stretchLastChild="false" width="100%"  *ngFor="let track of items">
+    <GridLayout rows="auto,auto,auto" col="*" >
+<RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="*,auto,*"  >
+<Label row="0" col="0" [text]="track.Date" class="tracktxt"   width="100%"  shadow="2"  cornerRadius="15" horizontalAlignment="center"  verticalAlignment="middle"></Label>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/1_Order-placed.png':'~/assets/order-management/Delivered/Order-Placed.png'"  *ngIf="track.Id == '1'" row="0" col="1" class="trackimg"></Image>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/2_Material-Received.png':'~/assets/order-management/Delivered/Material Received.png'" *ngIf="track.Id == '2'" row="0" col="1" class="trackimgsmall"></Image>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/3_Measurement-Done.png':'~/assets/order-management/Delivered/Measurement Done.png'"  *ngIf="track.Id == '3'" row="0" col="1" class="trackimgsmall"></Image>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/4_Stitching-Started.png':'~/assets/order-management/Delivered/Stitching Started.png'"  *ngIf="track.Id == '4'" row="0" col="1" class="trackimgsmall"></Image>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/5_Ready-for-dispatching.png':'~/assets/order-management/Delivered/Ready-for-Dispatching.png'"  *ngIf="track.Id == '5'" row="0" col="1" class="trackimgsmall"></Image>
+<Image [src]="track.status == false ? '~/assets/order-management/Pending/6_Dispatched.png':'~/assets/order-management/Delivered/Dispatched.png'"  *ngIf="track.Id == '6'" row="0" col="1" class="trackimgsmall"></Image>
+<Label row="0" col="2" class="tracktxt" [text]="track.StatusInArabic" width="100%"  shadow="2"  cornerRadius="15"  horizontalAlignment="center"  verticalAlignment="middle"></Label>
+</RGridLayout>
+    </GridLayout>
+</DockLayout>
+</WrapLayout>
+    </ScrollView>
+
+</GridLayout>
+</GridLayout>
+</Page>

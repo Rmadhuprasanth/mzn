@@ -1,0 +1,90 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Rejected Quotation" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"   isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Rejected_Quotation" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+<GridLayout class="page"  *ngIf="lang=='English'">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  class="margins" *ngIf="showdata">
+            <WrapLayout  orientation="horizontal" > 
+                <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let list of appSubmittedqutationList" shadow="2"  cornerRadius="15" >
+                    <GridLayout rows="30,auto" columns="*" class="bg-card" >  
+                        <StackLayout  row="0" col="0"><Label [text]="list.FirstName" horizontalAlignment="center" class="names"></Label></StackLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="*,*"> 
+                            <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                <Image [src]="imageurlstitching+list.Image" class="ordrimg" row="0" col="0"></Image>
+                                <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                    <label row="0" col="0" class="order-txt" text="Order Date"></label>
+                                    <label row="1" col="0"  class="order-txt" text="Order Id"></label>
+                                    <label row="2" col="0"  class="order-txt" text="Product Name"></label> 
+                                 </GridLayout>
+                                 </GridLayout>
+                                 <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                    <label row="0" col="0" class="detail-txt" [text]="list.OrderDate"></label>
+                                    <label row="1" col="0" class="detail-txt" [text]="list.OrderId"></label>
+                                    <label row="2" col="0" class="detail-txt" [text]="list.ProductNameInEnglish"></label>
+                                </GridLayout>
+                        </GridLayout>
+                    </GridLayout>
+                </DockLayout >
+        </WrapLayout>
+        </GridLayout>
+        <GridLayout  class="margins" *ngIf="showtext">
+            <Label  horizontalAlignment="center" verticalAlignment="center" class="nodata" text="No Data Found !"></Label>
+        </GridLayout>
+    </ScrollView>
+    </GridLayout>
+
+
+
+
+
+    
+    <!-- <--------------arabic-content---------------------->
+<RGridLayout class="page"  isRtl="true" *ngIf="lang=='Arabic'">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <RGridLayout  isRtl="true" class="margins" *ngIf="showdata">
+            <WrapLayout  orientation="horizontal" > 
+                <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let list of appSubmittedqutationList" shadow="2"  cornerRadius="15" >
+                    <RGridLayout  isRtl="true" rows="30,auto" columns="*" class="bg-card" >  
+                        <StackLayout  row="0" col="0"><Label [text]="list.FirstName" horizontalAlignment="center" class="names"></Label></StackLayout>
+                        <GridLayout  isRtl="true" row="1" col="0" rows="auto" columns="*,*"> 
+                            <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                <Image  style="transform: scaleX(-1);"  [src]="imageurlstitching+list.Image" class="ordrimg" row="0" col="0"></Image>
+                                <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="0" col="0" class="order-txt" [text]="aedata.Order_Date"></label>
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="1" col="0"  class="order-txt" [text]="aedata.Order_Id"></label>
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="2" col="0"  class="order-txt" [text]="aedata.Product_Name"></label> 
+                                 </GridLayout>
+                                 </GridLayout>
+                                 <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="0" col="0" class="detail-txt" [text]="list.OrderDate"></label>
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="1" col="0" class="detail-txt" [text]="list.OrderId"></label>
+                                    <label style="transform: scaleX(-1);"  horizontalAlignment="left" row="2" col="0" class="detail-txt" [text]="list.ProductNameInEnglish"></label>
+                                </GridLayout>
+                        </GridLayout>
+                    </RGridLayout>
+                </DockLayout >
+        </WrapLayout>
+        </RGridLayout>
+        <GridLayout  class="margins" *ngIf="showtext">
+            <Label  horizontalAlignment="center" verticalAlignment="center" class="nodata" [text]="aedata.No_Data_Found"></Label>
+        </GridLayout>
+    </ScrollView>
+    </RGridLayout>
+</Page>

@@ -1,0 +1,545 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Appointment Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"   isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Appointment_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout rows="40,*" class="margins" *ngIf="lang=='English'">
+        <GridLayout row="0" columns="*,*" height="48" class="bg-tabs" *ngIf="showmeasuretheader && showmatheader">
+            <StackLayout col="0" (tap)="selectedheader(0)" [ngClass]="(selectedheaders=='0')?'selected':'my-class2'"> 
+                
+                <Label text="Measurement" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)" [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+                  
+                  <Label text="Material" class="txt"></Label>
+               
+                    </StackLayout>
+        </GridLayout> 
+<!-- <-------------------------------------measurement--------------------------------- -->
+
+        <GridLayout row="1"   *ngIf="selectedheaders =='0'" class="borders">
+
+            <!-- <---------------------------createAppointMent-measure------------------------------- -->
+            <GridLayout class="page" *ngIf="createmeasure">
+                <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                    <GridLayout  rows="auto,auto" columns="*" >
+                        <StackLayout row="0" col="0" class="gray-bg">
+                            <Label [text]="appointmentdatameasure.NameInEnglish" class="header-txt"></Label>
+                        </StackLayout>
+                        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+            <Image  row="0" col="0" [src]="appointmentdatameasure.BodyImage != undefined ? imgUrl+appointmentdatameasure.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+            <GridLayout row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                <Label  row="0" col="0" text="Shop Name"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="appointmentdatameasure.TailorNameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+            </GridLayout>
+            
+            <GridLayout row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                <Label  row="0" col="0" text="Appointment Type"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="appointmentdatameasure.NameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+            </GridLayout>
+            
+            <GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+                <GridLayout row="0" col="0" rows="auto,auto" columns="*,auto,*">
+                <Label  row="0" col="0" text="Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" hint="Select date" [text]="selecteddate" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" (tap)="dateclickmeasure(showdategrid)"></Image>
+            </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="dateshow">
+                    <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                    [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                    (dateChange)="onDateChangedmeasure($event)" >
+                        </DatePicker>  
+                    </GridLayout>
+            </GridLayout>
+            
+            
+            <GridLayout row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" (tap)="openTimemeasure()"> 
+                <Label  row="0" col="0" text="Time Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="selectedTimemeasure" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+            </GridLayout>
+            
+            <GridLayout row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+                <Label  row="0" col="0" text="Appointment Status"  horizontalAlignment="left" class="status"></Label>
+                <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  text="Pending" class="status-btn"  ></Button>
+            </GridLayout>
+            <GridLayout row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid" > 
+                <Button row="0" col="0" horizontalAlignment="center" *ngIf="! appointmentdatameasure.AppoinmentDt"  verticalAlignment="middle"  text="Cancel" class="Cancel-btn"  (tap)="cancel()"></Button>
+                <Button row="0" col="1" horizontalAlignment="center"  *ngIf="! appointmentdatameasure.AppoinmentDt" verticalAlignment="middle"  text="Save" class="Save-btn"  (tap)="cerateMeasurement('measurement')"></Button>
+            </GridLayout>
+            
+                        </GridLayout>
+                    </GridLayout>
+                </ScrollView>
+            </GridLayout>
+
+ <!-- <---------------------------ApproveAppointMent-measure------------------------------- -->
+ <GridLayout class="page"  *ngIf="Approvemeasure">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  rows="auto,auto" columns="*" >
+            <StackLayout row="0" col="0" class="gray-bg">
+                <Label [text]="appointmentdatameasure.NameInEnglish" class="header-txt"></Label>
+            </StackLayout>
+            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+<Image  row="0" col="0" [src]="appointmentdatameasure.BodyImage != undefined ? imgUrl+appointmentdatameasure.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+<GridLayout row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" text="Shop Name"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.TailorNameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</GridLayout>
+
+<GridLayout row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" text="Appointment Type"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.NameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</GridLayout>
+
+<GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+    <GridLayout row="0" col="0" rows="auto,auto" columns="*,auto,*">
+    <Label  row="0" col="0" text="Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.AppoinmentDt" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" ></Image>
+</GridLayout>
+</GridLayout>
+
+
+<GridLayout row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" > 
+    <Label  row="0" col="0" text="Time Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.AppointmentTime" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+</GridLayout>
+
+<GridLayout row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+    <Label  row="0" col="0" text="Appointment Status"  horizontalAlignment="left" class="status"></Label>
+    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="appointmentdatameasure.Status" class="status-btn"  ></Button>
+</GridLayout>
+<GridLayout row="6" col="0" rows="auto,auto" columns="*" class="rejectgrid"  shadow="4"  cornerRadius="5" *ngIf="rejecttxt">
+    <GridLayout row="0" col="0" rows="auto" columns="auto,*" >
+    <Label  row="0" col="0" text="Rejected Reason:"  horizontalAlignment="left" class="rejecttxt"></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.RejectDt"  horizontalAlignment="right" class="rejectdate"></Label>
+</GridLayout>
+<GridLayout row="1" col="0" rows="auto" columns="*" >
+    <TextView   hint="Rejected Reason"   (textChange)="reasontxt($event)"  textWrap="true" class="rejetreason"></TextView>
+</GridLayout>
+</GridLayout>
+<GridLayout row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid" *ngIf='appointmentdatameasure.Status=="Pending"'> 
+    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  text="Reject" class="Cancel-btn" (tap)="approveRejectAppointment('2','measurement')" ></Button>
+    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  text="Approve" class="Save-btn"  (tap)="approveRejectAppointment('1','measurement')"></Button>
+</GridLayout>
+
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>
+<GridLayout class="page" *ngIf="noappointment">
+<Label text="No AppointMnet data found !" style="font-size: 15;color: gray;"  horizontalAlignment="center"  verticalAlignment="middle" ></Label>
+</GridLayout>
+            </GridLayout>
+
+
+<!-- <-------------------------------------material--------------------------------- -->
+            <GridLayout row="1"   *ngIf="selectedheaders =='1'" class="borders">
+               <!-- <---------------------------createAppointMent-Material------------------------------- -->
+<GridLayout class="page"  *ngIf="createMaterial">
+                    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                        <GridLayout  rows="auto,auto" columns="*" >
+                            <StackLayout row="0" col="0" class="gray-bg">
+                                <Label [text]="appointmentdatamaterial.NameInEnglish" class="header-txt"></Label>
+                            </StackLayout>
+                            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+                <Image  row="0" col="0" [src]="appointmentdatamaterial.BodyImage != undefined ? imgUrlmaterial+appointmentdatamaterial.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+                <GridLayout row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                    <Label  row="0" col="0" text="Shop Name"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="appointmentdatamaterial.TailorNameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+                </GridLayout>
+                
+                <GridLayout row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                    <Label  row="0" col="0" text="Appointment Type"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="appointmentdatamaterial.NameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+                </GridLayout>
+                
+                <GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+                    <GridLayout row="0" col="0" rows="auto,auto" columns="*,auto,*">
+                    <Label  row="0" col="0" text="Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" hint="Select date" [text]="selecteddatematerial" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" (tap)="dateclickmaterial(showdategridmaterial)"></Image>
+                </GridLayout>
+                    <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="dateshowmaterial">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                        [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                        (dateChange)="onDateChangedmaterial($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+                
+                
+                <GridLayout row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" (tap)="openTimematerial()"> 
+                    <Label  row="0" col="0" text="Time Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="selectedTimematerial" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+                </GridLayout>
+                
+                <GridLayout row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+                    <Label  row="0" col="0" text="Appointment Status"  horizontalAlignment="left" class="status"></Label>
+                    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  text="Pending" class="status-btn"  ></Button>
+                </GridLayout>
+                <GridLayout row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid" > 
+                    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle" *ngIf="! appointmentdatamaterial.AppoinmentDt"  text="Cancel" class="Cancel-btn"  (tap)="cancel()"></Button>
+                    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle" *ngIf="! appointmentdatamaterial.AppoinmentDt" text="Save" class="Save-btn"  (tap)="cerateMeasurement('material')"></Button>
+                </GridLayout>
+                
+                            </GridLayout>
+                        </GridLayout>
+                    </ScrollView>
+                </GridLayout>
+
+     <!-- <---------------------------ApproveAppointMent-Material------------------------------- -->
+<GridLayout class="page"  *ngIf="ApproveMaterial">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  rows="auto,auto" columns="*" >
+            <StackLayout row="0" col="0" class="gray-bg">
+                <Label [text]="appointmentdatamaterial.NameInEnglish" class="header-txt"></Label>
+            </StackLayout>
+            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+<Image  row="0" col="0" [src]="appointmentdatamaterial.BodyImage != undefined ? imgUrl+appointmentdatamaterial.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+<GridLayout row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" text="Shop Name"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.TailorNameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</GridLayout>
+
+<GridLayout row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" text="Appointment Type"  textWrap="true" class="shoptxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.NameInEnglish" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</GridLayout>
+
+<GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+    <GridLayout row="0" col="0" rows="auto,auto" columns="*,auto,*">
+    <Label  row="0" col="0" text="Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.AppoinmentDt" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" ></Image>
+</GridLayout>
+</GridLayout>
+
+
+<GridLayout row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" > 
+    <Label  row="0" col="0" text="Time Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.AppointmentTime" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+</GridLayout>
+
+<GridLayout row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+    <Label  row="0" col="0" text="Appointment Status"  horizontalAlignment="left" class="status"></Label>
+    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="appointmentdatamaterial.Status" class="status-btn"  ></Button>
+</GridLayout>
+<GridLayout row="6" col="0" rows="auto,auto" columns="*" class="rejectgrid"  shadow="4"  cornerRadius="5" *ngIf="rejecttxt">
+    <GridLayout row="0" col="0" rows="auto" columns="auto,*" >
+    <Label  row="0" col="0" text="Rejected Reason:"  horizontalAlignment="left" class="rejecttxt"></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.RejectDt"  horizontalAlignment="right" class="rejectdate"></Label>
+</GridLayout>
+<GridLayout row="1" col="0" rows="auto" columns="*" >
+    <TextView   hint="Rejected Reason"   (textChange)="reasontxt($event)"  textWrap="true" class="rejetreason"></TextView>
+</GridLayout>
+</GridLayout>
+<GridLayout row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid"  *ngIf='appointmentdatamaterial.Status=="Pending"'> 
+    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  text="Reject" class="Cancel-btn" (tap)="approveRejectAppointment('2','material')" ></Button>
+    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  text="Approve" class="Save-btn"  (tap)="approveRejectAppointment('1','material')"></Button>
+</GridLayout>
+
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>
+<GridLayout class="page" *ngIf="noappointmentmaterial">
+<Label text="No AppointMnet data found !" style="font-size: 15;color: gray;"  horizontalAlignment="center"  verticalAlignment="middle" ></Label>
+</GridLayout>
+            </GridLayout>
+
+
+
+                </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+    <!-- <--------------english-content---------------------->
+    <GridLayout rows="40,*" class="margins" *ngIf="lang=='Arabic'">
+        <RGridLayout row="0"  isRtl="true" columns="*,*" height="48" class="bg-tabs"  *ngIf="showmeasuretheader && showmatheader">
+            <StackLayout col="0" (tap)="selectedheader(0)" [ngClass]="(selectedheaders=='0')?'selected1':'my-class2'"> 
+                
+                <Label [text]="aedata.Measurement" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)" [ngClass]="(selectedheaders=='1')?'selected':'my-class2'">
+                  
+                  <Label [text]="aedata.Material" class="txt"></Label>
+               
+                    </StackLayout>
+        </RGridLayout> 
+<!-- <-------------------------------------measurement--------------------------------- -->
+
+        <GridLayout row="1"   *ngIf="selectedheaders =='0'" class="borders">
+
+            <!-- <---------------------------createAppointMent-measure------------------------------- -->
+            <GridLayout class="page" *ngIf="createmeasure">
+                <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                    <GridLayout  rows="auto,auto" columns="*" >
+                        <RStackLayout   isRtl="true" row="0" col="0" class="gray-bg">
+                            <Label  horizontalAlignment="left"  [text]="appointmentdatameasure.NameInArabic" class="header-txt"></Label>
+                        </RStackLayout>
+                        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+            <Image  row="0" col="0" [src]="appointmentdatameasure.BodyImage != undefined ? imgUrl+appointmentdatameasure.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+            <RGridLayout  isRtl="true" row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                <Label  row="0" col="0" [text]="aedata.Shop_Name"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="appointmentdatameasure.TailorNameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+            </RGridLayout>
+            
+            <RGridLayout  isRtl="true" row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                <Label  row="0" col="0" [text]="aedata.Appointment_Type"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="appointmentdatameasure.NameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+            </RGridLayout>
+            
+            <GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+                <RGridLayout  isRtl="true" row="0" col="0" rows="auto,auto" columns="*,auto,*">
+                <Label  row="0" col="0" [text]="aedata.Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" hint="Select date" [text]="selecteddate" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" (tap)="dateclickmeasure(showdategrid)"></Image>
+            </RGridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="dateshow">
+                    <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                    [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                    (dateChange)="onDateChangedmeasure($event)" >
+                        </DatePicker>  
+                    </GridLayout>
+            </GridLayout>
+            
+            
+            <RGridLayout  isRtl="true" row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" (tap)="openTimemeasure()"> 
+                <Label  row="0" col="0" [text]="aedata.Time_Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                <Label  row="0" col="1" [text]="selectedTimemeasure" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+            </RGridLayout>
+            
+            <RGridLayout  isRtl="true" row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+                <Label  row="0" col="0" [text]="aedata.Appointment_Status"  horizontalAlignment="left" class="status"></Label>
+                <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="aedata.Pending" class="status-btn"  ></Button>
+            </RGridLayout>
+            <RGridLayout  isRtl="true" row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid"  *ngIf="! appointmentdatameasure.AppoinmentDt"> 
+                <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Cancel" class="Cancel-btn"  (tap)="cancel()"></Button>
+                <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Save" class="Save-btn"  (tap)="cerateMeasurement('measurement')"></Button>
+            </RGridLayout>
+            
+                        </GridLayout>
+                    </GridLayout>
+                </ScrollView>
+            </GridLayout>
+
+ <!-- <---------------------------ApproveAppointMent-measure------------------------------- -->
+ <GridLayout class="page"  *ngIf="Approvemeasure">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  rows="auto,auto" columns="*" >
+            <RStackLayout  isRtl="true" row="0" col="0" class="gray-bg">
+                <Label  horizontalAlignment="left"  [text]="appointmentdatameasure.NameInArabic" class="header-txt"></Label>
+            </RStackLayout>
+            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+<Image  row="0" col="0" [src]="appointmentdatameasure.BodyImage != undefined ? imgUrl+appointmentdatameasure.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+<RGridLayout  isRtl="true" row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" [text]="aedata.Shop_Name"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.TailorNameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</RGridLayout>
+
+<RGridLayout  isRtl="true" row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" [text]="aedata.Appointment_Type"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.NameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</RGridLayout>
+
+<GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+    <RGridLayout  isRtl="true" row="0" col="0" rows="auto,auto" columns="*,auto,*">
+    <Label  row="0" col="0" [text]="aedata.Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.AppoinmentDt" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" ></Image>
+</RGridLayout>
+</GridLayout>
+
+
+<RGridLayout  isRtl="true" row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" > 
+    <Label  row="0" col="0" [text]="aedata.Time_Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.AppointmentTime" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+</RGridLayout>
+
+<RGridLayout  isRtl="true" row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+    <Label  row="0" col="0" [text]="aedata.Appointment_Status"  horizontalAlignment="left" class="status"></Label>
+    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="appointmentdatameasure.Status" class="status-btn"  ></Button>
+</RGridLayout>
+<GridLayout row="6" col="0" rows="auto,auto" columns="*" class="rejectgrid"  shadow="4"  cornerRadius="5" *ngIf="rejecttxt">
+    <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="auto,*" >
+    <Label  row="0" col="0" [text]="aedata.Rejected_Reasons+':'"  horizontalAlignment="left" class="rejecttxt"></Label>
+    <Label  row="0" col="1" [text]="appointmentdatameasure.RejectDt"  horizontalAlignment="right" class="rejectdate"></Label>
+</RGridLayout>
+<GridLayout row="1" col="0" rows="auto" columns="*" >
+    <TextView   hint="سبب الرفض"   (textChange)="reasontxt($event)"  textWrap="true" class="rejetreason"></TextView>
+</GridLayout>
+</GridLayout>
+<RGridLayout  isRtl="true" row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid" *ngIf='appointmentdatameasure.Status=="Pending"'> 
+    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Reject" class="Cancel-btn" (tap)="approveRejectAppointment('2','measurement')" ></Button>
+    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Approve" class="Save-btn"  (tap)="approveRejectAppointment('1','measurement')"></Button>
+</RGridLayout>
+
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>
+<GridLayout class="page" *ngIf="noappointment">
+<Label [text]="aedata.No_AppointMnet_data_found" style="font-size: 15;color: gray;"  horizontalAlignment="center"  verticalAlignment="middle" ></Label>
+</GridLayout>
+            </GridLayout>
+
+
+<!-- <-------------------------------------material--------------------------------- -->
+            <GridLayout row="1"   *ngIf="selectedheaders =='1'" class="borders">
+               <!-- <---------------------------createAppointMent-Material------------------------------- -->
+<GridLayout class="page"  *ngIf="createMaterial">
+                    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                        <GridLayout  rows="auto,auto" columns="*" >
+                            <RStackLayout  isRtl="true" row="0" col="0" class="gray-bg">
+                                <Label   horizontalAlignment="left"  [text]="appointmentdatamaterial.NameInArabic" class="header-txt"></Label>
+                            </RStackLayout>
+                            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+                <Image  row="0" col="0" [src]="appointmentdatamaterial.BodyImage != undefined ? imgUrlmaterial+appointmentdatamaterial.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+                <RGridLayout  isRtl="true" row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                    <Label  row="0" col="0" [text]="aedata.Shop_Name"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="appointmentdatamaterial.TailorNameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+                </RGridLayout>
+                
+                <RGridLayout  isRtl="true" row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+                    <Label  row="0" col="0" [text]="aedata.Appointment_Type"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="appointmentdatamaterial.NameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+                </RGridLayout>
+                
+                <GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+                    <RGridLayout  isRtl="true" row="0" col="0" rows="auto,auto" columns="*,auto,*">
+                    <Label  row="0" col="0" [text]="aedata.Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" hint="Select date" [text]="selecteddatematerial" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" (tap)="dateclickmaterial(showdategridmaterial)"></Image>
+                </RGridLayout>
+                    <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="dateshowmaterial">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                        [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                        (dateChange)="onDateChangedmaterial($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+                
+                
+                <RGridLayout  isRtl="true" row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" (tap)="openTimematerial()"> 
+                    <Label  row="0" col="0" [text]="aedata.Time_Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+                    <Label  row="0" col="1" [text]="selectedTimematerial" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+                    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+                </RGridLayout>
+                
+                <RGridLayout  isRtl="true" row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+                    <Label  row="0" col="0" [text]="aedata.Appointment_Status"  horizontalAlignment="left" class="status"></Label>
+                    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="aedata.Pending" class="status-btn"  ></Button>
+                </RGridLayout>
+                <RGridLayout  isRtl="true" row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid"  *ngIf="! appointmentdatamaterial.AppoinmentDt"> 
+                    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Cancel" class="Cancel-btn"  (tap)="cancel()"></Button>
+                    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Save" class="Save-btn"  (tap)="cerateMeasurement('material')"></Button>
+                </RGridLayout>
+                
+                            </GridLayout>
+                        </GridLayout>
+                    </ScrollView>
+                </GridLayout>
+
+     <!-- <---------------------------ApproveAppointMent-Material------------------------------- -->
+<GridLayout class="page"  *ngIf="ApproveMaterial">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  rows="auto,auto" columns="*" >
+            <RStackLayout  isRtl="true" row="0" col="0" class="gray-bg">
+                <Label   horizontalAlignment="left"  [text]="appointmentdatamaterial.NameInArabic" class="header-txt"></Label>
+            </RStackLayout>
+            <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="allmargins">
+<Image  row="0" col="0" [src]="appointmentdatamaterial.BodyImage != undefined ? imgUrl+appointmentdatamaterial.BodyImage:'~/assets/dashbord/Background.jpg'" class="banner"></Image>
+<RGridLayout  isRtl="true" row="1" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" [text]="aedata.Shop_Name"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.TailorNameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</RGridLayout>
+
+<RGridLayout  isRtl="true" row="2" col="0" rows="auto,auto" columns="auto,*"  class="shopgrid" shadow="4"  cornerRadius="5">
+    <Label  row="0" col="0" [text]="aedata.Appointment_Type"  textWrap="true" class="shoptxtae"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.NameInArabic" class="shopcontent" horizontalAlignment="left"   verticalAlignment="center" ></Label>
+</RGridLayout>
+
+<GridLayout row="3" col="0" rows="auto,auto" columns="*" class="dategrid" > 
+    <RGridLayout  isRtl="true" row="0" col="0" rows="auto,auto" columns="*,auto,*">
+    <Label  row="0" col="0" [text]="aedata.Date"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.AppoinmentDt" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico" ></Image>
+</RGridLayout>
+</GridLayout>
+
+
+<RGridLayout  isRtl="true" row="4" col="0" rows="auto,auto" columns="*,auto,*" class="dategrid" > 
+    <Label  row="0" col="0" [text]="aedata.Time_Slot"  textWrap="true" class="Datetxt"  horizontalAlignment="left"  verticalAlignment="center" ></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.AppointmentTime" class="Date" horizontalAlignment="center"   verticalAlignment="center" ></Label>
+    <Image  row="0" col="2" horizontalAlignment="right" src="~/assets/profile/arrow.png" class="Dateico"></Image>
+</RGridLayout>
+
+<RGridLayout  isRtl="true" row="5" col="0" rows="auto,auto" columns="*,auto" class="statusgrid" > 
+    <Label  row="0" col="0" [text]="aedata.Appointment_Status"  horizontalAlignment="left" class="status"></Label>
+    <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  [text]="appointmentdatamaterial.Status" class="status-btn"  ></Button>
+</RGridLayout>
+<GridLayout row="6" col="0" rows="auto,auto" columns="*" class="rejectgrid"  shadow="4"  cornerRadius="5" *ngIf="rejecttxt">
+    <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="auto,*" >
+    <Label  row="0" col="0" [text]="aedata.Rejected_Reason+ ':'"  horizontalAlignment="left" class="rejecttxt"></Label>
+    <Label  row="0" col="1" [text]="appointmentdatamaterial.RejectDt"  horizontalAlignment="right" class="rejectdate"></Label>
+</RGridLayout>
+<GridLayout row="1" col="0" rows="auto" columns="*" >
+    <TextView   hint="سبب الرفض"   (textChange)="reasontxt($event)"  textWrap="true" class="rejetreason"></TextView>
+</GridLayout>
+</GridLayout>
+<RGridLayout  isRtl="true" row="7" col="0" rows="auto,auto" columns="*,*" class="statusgrid"  *ngIf='appointmentdatamaterial.Status=="Pending"' > 
+    <Button row="0" col="0" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Reject" class="Cancel-btn" (tap)="approveRejectAppointment('2','material')" ></Button>
+    <Button row="0" col="1" horizontalAlignment="center"  verticalAlignment="middle"  [text]="aedata.Approve" class="Save-btn"  (tap)="approveRejectAppointment('1','material')"></Button>
+</RGridLayout>
+
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>
+<GridLayout class="page" *ngIf="noappointmentmaterial">
+<Label [text]="aedata.No_AppointMnet_data_found" style="font-size: 15;color: gray;"  horizontalAlignment="center"  verticalAlignment="middle" ></Label>
+</GridLayout>
+            </GridLayout>
+
+
+
+                </GridLayout>
+           
+    </Page>

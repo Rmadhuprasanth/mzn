@@ -1,0 +1,492 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" xmlns:chart="nativescript-ui-chart">
+    <!-- <---------------------english-header------------------------>
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*,auto">
+            <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"
+                class="action-image"></Image>
+            <Label text="Home" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+            <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right"
+                stretch="aspectFill" (tap)="gotoNotifications()" class="bell-image"></Image>
+        </GridLayout>
+    </ActionBar>
+    <!-- <---------------------arabic-header------------------------>
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" isRtl="true" columns="auto,*,auto">
+            <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"
+                class="action-image"></Image>
+            <Label [text]="aedata.Home" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+            <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right"
+                stretch="aspectFill" (tap)="gotoNotifications()" class="bell-image"></Image>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <-------------------------english----------------------------------------->
+    <FlexboxLayout class="page" *ngIf="lang=='English'">
+        <GridLayout>
+
+            <!-- <AbsoluteLayout (tap)="onDrawerButtonTap()">
+        <GridLayout rows="*,auto,*"  top="200" columns="*">
+        <Image  class="imgss" verticalAlign="center" style="z-index: 1"  (tap)="onDrawerButtonTap()" row="1" col="0" stretch="fill" src="~/assets/sidebar/Sidearrow.png"></Image>
+         </GridLayout> 
+    </AbsoluteLayout> -->
+            <GridLayout rows="40,*" class="margins">
+                <GridLayout row="0" columns="*,*" height="48" class="bg-tabs">
+                    <StackLayout col="0" (tap)="selectedheader(0)"
+                        [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                        <Label text="Dashboard" class="txt"></Label>
+                    </StackLayout>
+                    <!-- [ngClass]="selectedheader =='1':selected?" -->
+                    <StackLayout col="1" (tap)="selectedheader(1)"
+                        [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                        <Label text="Analytics" class="txt"></Label>
+
+                    </StackLayout>
+                </GridLayout>
+
+                <ScrollView row="1" orientation="vertical" id="scrollView">
+                    <GridLayout rows="auto,auto,auto,auto" columns="*" *ngIf="selectedheaders =='0'">
+                        <StackLayout row="0" class="stich-brdr">
+                            <Image src="~/assets/dashbord/stitch.png" class="st-img"></Image>
+                            <Label text="Order for Stitching" class="st-txt"></Label>
+                        </StackLayout>
+                        <StackLayout row="1" class="Manage-brdr" (tap)="gotopromotionList()">
+                            <Image src="~/assets/dashbord/promotions.png" class="st-img"></Image>
+                            <Label text="Manage Promotions" class="st-txt"></Label>
+                        </StackLayout>
+                        <GridLayout row="2" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class="ordercol1" col="0" (tap)="gotocompletedordrList()">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.CompletedOrder"
+                                    class="tik-txt"></Label>
+                                <Label horizontalAlignment="center" text="Completed" style="color:#05375c"
+                                    class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/details.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center" text="Order Details" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol3" col="2" (tap)="gotopendingordrList()">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.PendingOrder"
+                                    class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" text="Pending" style="color:#05375c"
+                                    class="pend1-txt"></Label>
+                            </StackLayout>
+                        </GridLayout>
+                        <!-- <--------------------------------buyer-request------------------------------------- -->
+                        <GridLayout row="3" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class="ordercol1" col="0" (tap)="gotobuyerapprovedList()">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.ApprovedRequest"
+                                    class="tik-txt"></Label>
+                                <Label horizontalAlignment="center" text="Submitted" style="color:#05375c"
+                                    class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/buyerrequest.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center" text="Buyer Request" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol3" col="2" (tap)="gotobuyerpendingordrList()">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.PendingRequest"
+                                    class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" text="Quotation" style="color:#05375c"
+                                    class="pend1-txt"></Label>
+                            </StackLayout>
+                        </GridLayout>
+                    </GridLayout>
+                    <GridLayout rows="180,auto,auto,auto" columns="*" *ngIf="selectedheaders =='1'">
+                        <GridLayout row="0" col="0" class="order-brdr bggraph">
+                            <RadCartesianChart tkExampleTitle tkToggleNavButton>
+                                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                                <LineSeries strokeColor="#FC6060" fillColor="#FC6060" tkCartesianSeries
+                                    [items]="categoricalSource" categoryProperty="Country" valueProperty="Amount">
+                                    <PointLabelStyle tkLineLabelStyle margin="10" fontStyle="Bold" fillColor="#FC6060"
+                                        textSize="10" textColor="White"></PointLabelStyle>
+                                </LineSeries>
+                            </RadCartesianChart>
+                        </GridLayout>
+
+
+                        <GridLayout row="1" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class="ordercol1" col="0">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label horizontalAlignment="center" text="18" class="tik-txt"></Label>
+                                <Label *ngFor="let recieved of GetRecivedOrderAMounts" horizontalAlignment="center" [text]="recieved.RecivedOrderAMount+' AED'" style="color:#05375c"
+                                    class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/Order earning.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center"  textWrap="true" text="Order & Earning" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol3" col="2">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label horizontalAlignment="center" text="21" class="pend-txt"></Label>
+                                <Label *ngFor="let pending of GetPendingOrderAMounts" horizontalAlignment="center" [text]="pending.PendingOrderAMount+' AED'" style="color:#05375c"
+                                    class="pend1-txt"></Label>
+                            </StackLayout>
+                        </GridLayout>
+
+
+
+                        <GridLayout row="2" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class="ordercol1" col="0">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label *ngFor="let recieved of GetMzyoonPaidAmount" horizontalAlignment="center" [text]="recieved.MzyoonPaidAmount+'AED'" class="tik-txt"></Label>
+                                <Label  horizontalAlignment="center" text="Recieved" style="color:#05375c"
+                                    class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/Payment.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center" text="Payment" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol3" col="2">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label  *ngFor="let Pending of GetMzyoonUnpaidAmounts" horizontalAlignment="center" [text]="Pending.MzyoonUnpaidAmount+'AED'" class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" text="Pending" style="color:#05375c"
+                                    class="pend1-txt"></Label>
+                            </StackLayout>
+                        </GridLayout>
+
+
+                        <GridLayout row="3" col="0" rows="145" columns="*,*" class="order-brdr">
+                            <GridLayout row="0" col="0" > 
+                                <Label  *ngFor="let statustext of GetPerformenceStatus" class="graphtxt" horizontalAlignment="center" [text]="statustext.Status"></Label>
+                                <RadRadialGauge class="guag">
+                                    <RadialScale tkRadialGaugeScales minimum="0" maximum="5" radius="0.80">
+                                        <!-- <ScaleStyle tkRadialScaleStyle majorTicksCount="7" minorTicksCount="9" lineThickness="0" labelsCount="7" ticksOffset="0"></ScaleStyle> -->
+                                        <ScaleStyle tkRadialScaleStyle ticksVisible="false" labelsVisible="false"
+                                            lineThickness="0"></ScaleStyle>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="1"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(255,0,0,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="1" maximum="2"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle
+                                                fillColor="rgba(224,151,36,0.5)" barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="2" maximum="3"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle
+                                                fillColor="rgba(230,213,91,0.5)" barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="3" maximum="4"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(44,136,85,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="4" maximum="5"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(11,152,23,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialNeedle tkRadialScaleIndicators [value]="GetFullStatusValue"></RadialNeedle>
+                                    </RadialScale>
+                                </RadRadialGauge>
+                            </GridLayout>
+                            <GridLayout row="0" col="1" rows="auto,auto,auto" style="margin-top: 20;">
+                                <Label row="0" col="0" class="graphtxt" horizontalAlignment="center" text="User Review"></Label>
+                                <Label  row="1" col="0" class="graphtxt" horizontalAlignment="center" [text]="GetFullStatusValue"></Label>
+                                <StackLayout   row="2" col="0" >
+                                     <Image row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="GetFullStatusValue == 0"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="GetFullStatusValue == 1"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="GetFullStatusValue == 2"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="GetFullStatusValue == 3"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="GetFullStatusValue == 4"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="GetFullStatusValue == 5"  class="star-img"></Image>
+                                </StackLayout>
+
+                            </GridLayout>
+
+                        </GridLayout>
+                    </GridLayout>
+                </ScrollView>
+                <Image class="imgss" left="40" horizontalAlignment="left" style="margin-left: -60;"
+                    verticalAlign="center" style="z-index: 1" (tap)="onDrawerButtonTap()" row="1" col="0"
+                    stretch="aspectFill" src="~/assets/sidebar/Sidearrow.png"></Image>
+                <!-- <Image  class="imgss" style="margin-left: 130 !important;" verticalAlign="center"   (tap)="onDrawerButtonTap()" row="1" col="0" stretch="fill" src="~/assets/sidebar/Sidearrow.png"></Image> -->
+            </GridLayout>
+            <!-- <-------------------------------------------footer------------------------------------>
+            <GridLayout>
+                <GridLayout rows="*,auto">
+
+                    <GridLayout row="1" columns="*,*,*,*" height="48" class="bg-footer">
+                        <StackLayout col="0" (tap)="selectedindex(0)">
+
+                            <Image class="m-icon" *ngIf="selectedindexval != 0"
+                                src="~/assets/footer/beforeclick/home-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="1" (tap)="selectedindex(1)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 1"
+                                src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="2" (tap)="selectedindex(2)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 2"
+                                src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                            </Image>
+                        </StackLayout>
+                        <StackLayout col="3" (tap)="selectedindex(3)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 3"
+                                src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png">
+                            </Image>
+                        </StackLayout>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </FlexboxLayout>
+
+    <!-- <-------------------------Arabic----------------------------------------->
+
+
+    <FlexboxLayout class="page" *ngIf="lang=='Arabic'">
+        <GridLayout >
+
+            <!-- <AbsoluteLayout (tap)="onDrawerButtonTap()">
+            <GridLayout rows="*,auto,*"  top="200" columns="*">
+            <Image  class="imgss" verticalAlign="center" style="z-index: 1"  (tap)="onDrawerButtonTap()" row="1" col="0" stretch="fill" src="~/assets/sidebar/Sidearrow.png"></Image>
+             </GridLayout> 
+        </AbsoluteLayout> -->
+            <GridLayout  rows="40,*" class="margins">
+                <RGridLayout isRtl="true" row="0" columns="*,*" height="48" class="bg-tabs">
+                    <StackLayout col="0" (tap)="selectedheader(0)"
+                        [ngClass]="(selectedheaders=='0')?'selected1':'my-class2'">
+
+                        <Label [text]="aedata.Dashboard"   class="txt"></Label>
+                    </StackLayout>
+                    <!-- [ngClass]="selectedheader =='1':selected?" -->
+                    <StackLayout col="1" (tap)="selectedheader(1)"
+                        [ngClass]="(selectedheaders=='1')?'selected':'my-class2'">
+
+                        <Label [text]="aedata.Analytics"   class="txt"></Label>
+
+                    </StackLayout>
+                </RGridLayout>
+
+                <ScrollView row="1" orientation="vertical" id="scrollView">
+                    <GridLayout rows="auto,auto,auto,auto" columns="*" *ngIf="selectedheaders =='0'">
+                        <RStackLayout isRtl="true" row="0" class="stich-brdr">
+                            <Image src="~/assets/dashbord/stitch.png"  class="st-img">
+                            </Image>
+                            <Label [text]="aedata.Order_for_Stitching"  class="st-txt"></Label>
+                        </RStackLayout>
+                        <RStackLayout isRtl="true" row="1" class="Manage-brdr" (tap)="gotopromotionList()">
+                            <Image src="~/assets/dashbord/promotions.png"  class="st-img">
+                            </Image>
+                            <Label [text]="aedata.Manage_Promotions"  class="st-txt"></Label>
+                        </RStackLayout>
+                        <RGridLayout isRtl="true" row="2" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout  class="ordercol3" col="0" (tap)="gotocompletedordrList()">
+                                <Image src="~/assets/dashbord/completed.png"  
+                                    class="tik-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.CompletedOrder"
+                                     class="tik-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Completed"
+                                    style="color:#05375c; " class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/details.png"  
+                                    class="det-img"></Image>
+                                <Label horizontalAlignment="center" [text]="aedata.Order_Details"
+                                    style="color:#05375c; " class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol1" col="2" (tap)="gotopendingordrList()">
+                                <Image src="~/assets/dashbord/pending.png" 
+                                    class="pend-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.PendingOrder"
+                                    class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Pending"
+                                    style="color:#05375c; " class="pend1-txt"></Label>
+                            </StackLayout>
+                        </RGridLayout>
+                        <!-- <--------------------------------buyer-request------------------------------------- -->
+                        <RGridLayout isRtl="true" row="3" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class=" ordercol3" col="0" (tap)="gotobuyerapprovedList()">
+                                <Image src="~/assets/dashbord/completed.png" 
+                                    class="tik-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.ApprovedRequest"
+                                    class="tik-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Submitted"
+                                    style="color:#05375c;" class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/buyerrequest.png" 
+                                    class="det-img"></Image>
+                                <Label horizontalAlignment="center" [text]="aedata.Buyer_Request"
+                                    style="color:#05375c;" class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol1" col="2" (tap)="gotobuyerpendingordrList()">
+                                <Image src="~/assets/dashbord/pending.png" 
+                                    class="pend-img"></Image>
+                                <Label horizontalAlignment="center" [text]="dasboarddata.PendingRequest"
+                                   class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Quotation"
+                                    style="color:#05375c;" class="pend1-txt"></Label>
+                            </StackLayout>
+                        </RGridLayout>
+                    </GridLayout>
+                    <GridLayout rows="180,auto,auto,auto" columns="*" *ngIf="selectedheaders =='1'">
+                        <GridLayout row="0" col="0" class="order-brdr bggraph">
+                            <RadCartesianChart tkExampleTitle tkToggleNavButton>
+                                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                                <LineSeries strokeColor="#FC6060" fillColor="#FC6060" tkCartesianSeries
+                                    [items]="categoricalSource" categoryProperty="Country" valueProperty="Amount">
+                                    <PointLabelStyle tkLineLabelStyle margin="10" fontStyle="Bold" fillColor="#FC6060"
+                                        textSize="3" textColor="White"></PointLabelStyle>
+                                </LineSeries>
+                            </RadCartesianChart>
+                        </GridLayout>
+
+
+                        <RGridLayout   isRtl="true" row="1" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class=" ordercol3" col="0">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label horizontalAlignment="center" text="18" class="tik-txt"></Label>
+                                <Label *ngFor="let recieved of GetRecivedOrderAMounts" horizontalAlignment="center" [text]="recieved.RecivedOrderAMount+' AED'" style="color:#05375c"
+                                class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/Order earning.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center" textWrap="true" [text]="aedata.Order_Earning" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol1" col="2">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label horizontalAlignment="center" text="21" class="pend-txt"></Label>
+                                <Label *ngFor="let pending of GetPendingOrderAMounts" horizontalAlignment="center" [text]="pending.PendingOrderAMount+' AED'" style="color:#05375c"
+                                class="pend1-txt"></Label>
+                            </StackLayout>
+                        </RGridLayout>
+
+
+
+                        <RGridLayout  isRtl="true" row="2" rows="auto" columns="*, *,*" class="order-brdr">
+                            <StackLayout class="ordercol3" col="0">
+                                <Image src="~/assets/dashbord/completed.png" class="tik-img"></Image>
+                                <Label *ngFor="let recieved of GetMzyoonPaidAmount" horizontalAlignment="center" [text]="recieved.MzyoonPaidAmount+'AED'" class="tik-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Recieved" style="color:#05375c"
+                                    class="tik1-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol2" col="1">
+                                <Image src="~/assets/dashbord/Payment.png" class="det-img"></Image>
+                                <Label horizontalAlignment="center" [text]="aedata.Payment" style="color:#05375c"
+                                    class="det-txt"></Label>
+                            </StackLayout>
+                            <StackLayout class="ordercol1" col="2">
+                                <Image src="~/assets/dashbord/pending.png" class="pend-img"></Image>
+                                <Label  *ngFor="let Pending of GetMzyoonUnpaidAmounts" horizontalAlignment="center" [text]="Pending.MzyoonUnpaidAmount+'AED'" class="pend-txt"></Label>
+                                <Label horizontalAlignment="center" [text]="aedata.Pending" style="color:#05375c"
+                                    class="pend1-txt"></Label>
+                            </StackLayout>
+                        </RGridLayout>
+
+
+                        <GridLayout row="3" col="0" rows="145" columns="*,*" class="order-brdr">
+                            <GridLayout row="0" col="0" > 
+                                <Label  *ngFor="let statustext of GetPerformenceStatus" class="graphtxt" horizontalAlignment="center" [text]="statustext.Status"></Label>
+                                <RadRadialGauge class="guag">
+                                    <RadialScale tkRadialGaugeScales minimum="0" maximum="5" radius="0.80">
+                                        <!-- <ScaleStyle tkRadialScaleStyle majorTicksCount="7" minorTicksCount="9" lineThickness="0" labelsCount="7" ticksOffset="0"></ScaleStyle> -->
+                                        <ScaleStyle tkRadialScaleStyle ticksVisible="false" labelsVisible="false"
+                                            lineThickness="0"></ScaleStyle>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="1"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(255,0,0,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="1" maximum="2"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle
+                                                fillColor="rgba(224,151,36,0.5)" barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="2" maximum="3"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle
+                                                fillColor="rgba(230,213,91,0.5)" barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="3" maximum="4"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(44,136,85,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialBarIndicator tkRadialScaleIndicators minimum="4" maximum="5"
+                                            location="0.80">
+                                            <BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="rgba(11,152,23,0.5)"
+                                                barWidth="0.3"></BarIndicatorStyle>
+                                        </RadialBarIndicator>
+                                        <RadialNeedle tkRadialScaleIndicators [value]="GetFullStatusValue"></RadialNeedle>
+                                    </RadialScale>
+                                </RadRadialGauge>
+                            </GridLayout>
+                            <RGridLayout  isRtl="true" row="0" col="1" rows="auto,auto,auto" style="margin-top: 20;">
+                                <Label row="0" col="0" class="graphtxt" horizontalAlignment="center" [text]="aedata.User_Review"></Label>
+                                <Label  row="1" col="0" class="graphtxt" horizontalAlignment="center" [text]="GetFullStatusValue"></Label>
+                                <StackLayout   row="2" col="0" >
+                                     <Image row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="GetFullStatusValue  == 0"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="GetFullStatusValue  == 1"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="GetFullStatusValue  == 2"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="GetFullStatusValue  == 3"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="GetFullStatusValue  == 4"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="GetFullStatusValue  == 5"  class="star-img"></Image>
+                                </StackLayout>
+
+                            </RGridLayout>
+
+                        </GridLayout>
+                    </GridLayout>
+                </ScrollView>
+            <RGridLayout  isRtl="true"  row="1" col="0">
+
+                <Image isRtl="true" class="imgss" left="40%"  horizontalAlignment="left"  style="margin-left: -60;"
+                    verticalAlign="center" style="z-index: 1" (tap)="onDrawerButtonTap()"
+                    stretch="aspectFill" src="~/assets/sidebar/Sidearrow.png"></Image>
+            </RGridLayout> 
+            </GridLayout>
+            <!-- <-------------------------------------------footer------------------------------------>
+            <GridLayout >
+                <GridLayout rows="*,auto">
+
+                    <RGridLayout isRtl="true" row="1" columns="*,*,*,*" height="48" class="bg-footer">
+                        <StackLayout col="0" (tap)="selectedindex(0)">
+
+                            <Image class="m-icon" *ngIf="selectedindexval != 0"
+                                src="~/assets/footer/beforeclick/home-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="1" (tap)="selectedindex(1)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 1"
+                                src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                        </StackLayout>
+                        <StackLayout col="2" (tap)="selectedindex(2)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 2"
+                                src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                            </Image>
+                        </StackLayout>
+                        <StackLayout col="3" (tap)="selectedindex(3)">
+                            <Image class="m-icon" *ngIf="selectedindexval != 3"
+                                src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                            <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png">
+                            </Image>
+                        </StackLayout>
+                    </RGridLayout>
+                </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </FlexboxLayout>
+</Page>

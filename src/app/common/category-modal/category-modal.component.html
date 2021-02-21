@@ -1,0 +1,118 @@
+
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" style="width: 400;border-radius: 21 !important;">
+  
+ <!-- <---------------------english-content----------------->
+
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <GridLayout rows="auto,auto">
+        <GridLayout row="0" class="text-header">
+            <Label text="Choose Catogery" textWrap="true"></Label>
+        </GridLayout>
+        <ScrollView  row="1"  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout  rows="auto,auto">
+                <GridLayout row="0" class="margins">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let parentcat of parentcat">
+                            <GridLayout rows="auto,auto,auto" columns="*">
+            
+                                <GridLayout row="0" col="0" rows="auto" columns="auto,*"> 
+                                    <Image row="0" col="0" #checkcompany
+                                        [src]="parentcat.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                        value="{{parentcat.IsActive }}"
+                                        (tap)="getdatabyparentcat(checkcompany.value,parentcat.DisplayId,parentcat.Id)"
+                                        class="checkimg" ></Image>
+                                    <Label row="0" col="1"  [text]="parentcat.DisplayId" class="cattxt"></Label>
+                                </GridLayout>
+            
+                                <GridLayout row="1" col="0">
+                                    <WrapLayout orientation="horizontal">
+                                        <DockLayout stretchLastChild="false" width="100%" class="cardStyleschild"
+                                            *ngFor="let childcat of catdata">
+                                            <GridLayout row="1" col="0" rows="auto" columns="auto,*"
+                                                *ngIf=" childcat.ParentId == identifier && parentcat.IsActive == true">
+                                                <Image row="0" col="0" #checkchildcompany  style="margin: 5;"
+                                                [src]="childcat.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                                value="{{childcat.IsActive }}"
+                                                (tap)="getdatabychildcat(checkchildcompany.value,childcat.DisplayId,childcat.Id)"
+                                                class="checkimg">
+                                                </Image>
+                                                <Label row="0" col="1"    style="margin: 5;" [text]="childcat.DisplayId" class="cattxt"></Label>
+                                            </GridLayout>
+                                        </DockLayout>
+                                    </WrapLayout>
+                                </GridLayout>
+            
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+    </GridLayout>
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <Button row="1" col="0"  class="Cancelbtn" text="Select" (tap)="close()"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout> 
+
+
+ <!-- <---------------------arabic-content----------------->
+
+    
+    <RGridLayout class="page"  isRtl="true" *ngIf="lang=='Arabic'">
+        <RGridLayout  isRtl="true" rows="auto,auto">
+        <GridLayout row="0"  class="text-header">
+            <Label  style="transform: scaleX(-1);" text="Choose Catogery" textWrap="true"></Label>
+        </GridLayout>
+        <ScrollView  row="1"  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <RGridLayout  isRtl="true"  rows="auto,auto">
+                <GridLayout row="0" class="margins">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let parentcat of parentcat">
+                            <GridLayout rows="auto,auto,auto" columns="*">
+            
+                                <GridLayout row="0" col="0" rows="auto" columns="auto,*"> 
+                                    <Image  style="transform: scaleX(-1);" row="0" col="0" #checkcompany
+                                        [src]="parentcat.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                        value="{{parentcat.IsActive }}"
+                                        (tap)="getdatabyparentcat(checkcompany.value,parentcat.DisplayId,parentcat.Id)"
+                                        class="checkimg" ></Image>
+                                    <Label  horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" [text]="parentcat.DisplayId" class="cattxt"></Label>
+                                </GridLayout>
+            
+                                <GridLayout row="1" col="0">
+                                    <WrapLayout orientation="horizontal">
+                                        <DockLayout stretchLastChild="false" width="100%" class="cardStyleschild"
+                                            *ngFor="let childcat of catdata">
+                                            <GridLayout row="1" col="0" rows="auto" columns="auto,*"
+                                                *ngIf=" childcat.ParentId == identifier && parentcat.IsActive == true">
+                                                <Image  style="transform: scaleX(-1);" row="0" col="0" #checkchildcompany  style="margin: 5;"
+                                                [src]="childcat.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                                                value="{{childcat.IsActive }}"
+                                                (tap)="getdatabychildcat(checkchildcompany.value,childcat.DisplayId,childcat.Id)"
+                                                class="checkimg">
+                                                </Image>
+                                                <Label  horizontalAlignment="left"  style="transform: scaleX(-1);" row="0" col="1"  style="margin: 5;" [text]="childcat.DisplayId" class="cattxt"></Label>
+                                            </GridLayout>
+                                        </DockLayout>
+                                    </WrapLayout>
+                                </GridLayout>
+            
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+                </GridLayout>
+            </RGridLayout>
+        </ScrollView>
+    </RGridLayout>
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout   isRtl="true">
+            <RGridLayout  isRtl="true"  rows="*,auto,auto">
+                <Button row="1" col="0"  style="transform: scaleX(-1);" class="Cancelbtn" [text]="aedata.Select" (tap)="close()"> </Button>
+            </RGridLayout>
+        </GridLayout>
+    </RGridLayout> 
+
+</Page>

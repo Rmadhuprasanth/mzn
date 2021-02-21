@@ -1,0 +1,155 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Terms And Conditions" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label text="الشروط والأحكام" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+              <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+<StackLayout row="0" col="0" class="headers">
+    <Label text="Mzyoon" class="main"></Label>
+    <Label text="Terms and Conditions" class="secondary"></Label>
+</StackLayout>
+<StackLayout row="1" col="0" class="allmargins">
+    <Label text="Terms and Conditions" class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout row="2" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt" text="GBM Portal LLC operate Mzyoon app and the website is http://www.Mzyoon.com"></Label>
+    <Label  textWrap="true" class="alltxt"  text="By placing an order on Mzyoon app you are agreeing to these terms and conditions. Please read them carefully. We may not enter into a contract with any person under 18 years of age. By placing an order, you declare that you are at least 18 years old."></Label>
+</StackLayout>
+
+<StackLayout row="3" col="0" class="allmargins">
+    <Label text="General"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout row="4" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt"  text="These terms and conditions are governed by Mzyoon.."></Label>
+</StackLayout>
+
+<StackLayout row="5" col="0" class="allmargins">
+    <Label text="Our guarantee"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout row="6" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt"  text="We guarantee perfect fit and fast delivery."></Label>
+</StackLayout>
+
+<StackLayout row="7" col="0" class="allmargins">
+    <Label text="Legal"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout row="8" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt"  text="United Arab of Emirates is our country of domicile and stipulate that the governing law is the local law."></Label>
+</StackLayout>
+<StackLayout row="9" col="0" class="allmargins">
+    <Label text="Other Terms"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout row="10" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt"  text="*  Visa and Master Card and AED will be accepted for payment."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  We will not trade with or provide any services to OFAC and sanctioned countries."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  Customer using the app who are Minor /under the age of 18 shall not register as a user of the app and shall not transact on or us the app."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  Cardholder must retain a copy of transaction on or use the website."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  User is responsible for maintaining the confidentiality of his account."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  You can cancel or modify order before our process start."></Label>
+    <Label textWrap="true" class="alltxt"  text="* There is no minimum amount for order."></Label>
+    <Label textWrap="true" class="alltxt"  text="*  The product photos accurately show what our dress products look like. These graphical images are for visualization only, especially as the colors vary in accordance with the quality of your device screen. The products you receive may differ slightly from the images in the application."></Label>
+</StackLayout>
+
+<StackLayout row="11" col="0" class="allmargins">
+    <Label text="Contact Us"  class="allheaders"></Label>
+</StackLayout>
+<StackLayout row="12" col="0" class="allmargins">
+    <Label textWrap="true" class="alltxt"  text="If you have any questions about this Policy, please contact us:"></Label>
+    <Label textWrap="true" class="alltxt"  class="allmargins" text="*  By email: info@gbmportal.com"></Label>
+</StackLayout>
+              </GridLayout>
+            </ScrollView>
+            </GridLayout>
+
+
+
+            
+    <!-- <--------------arabic-content---------------------->
+
+    <RGridLayout   isRtl="true" class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+              <RGridLayout   isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+<StackLayout isRtl="true" row="0" col="0" class="headers">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" text="Mzyoon" class="main"></Label>
+    <Label  style="transform: scaleX(-1);"  horizontalAlignment="left"text="الشروط والأحكام" class="secondary"></Label>
+</StackLayout>
+<StackLayout    row="1" col="0" class="allmargins">
+    <Label  horizontalAlignment="right" text="الشروط والأحكام" class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout  row="2" col="0" class="allmargins">
+    <Label horizontalAlignment="right"  textWrap="true" class="alltxt" text="تقوم شركة جي بي ام للتعامل الإلكتروني ذ.م.م بتشغيل تطبيق مزيون والموقع http://www.Mzyoon.com لإلكتروني هو"></Label>
+    <Label  horizontalAlignment="right"  textWrap="true" class="alltxt"  text="عند تقديم طلب على تطبيق مزيون فإنك توافق على هذه الشروط والأحكام. يرجى قراءتها بعناية. لا يجوز لنا التعامل مع أي شخص أقل من 18 عامًا. من خلال تقديم طلب ، فإنك تقر بأن عمرك لا يقل عن 18 عامًا."></Label>
+</StackLayout>
+
+<StackLayout  row="3" col="0" class="allmargins">
+    <Label  horizontalAlignment="right" text="عام"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout isRtl="true" row="4" col="0" class="allmargins">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="تخضع هذه الشروط والأحكام لتطبيق مزيون .."></Label>
+</StackLayout>
+
+<StackLayout row="5" col="0" class="allmargins">
+    <Label   horizontalAlignment="right" text="ضماننا"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout isRtl="true" row="6" col="0" class="allmargins">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="نحن نضمن الملائمة الكاملة والتسليم السريع."></Label>
+</StackLayout>
+
+<StackLayout row="7" col="0" class="allmargins">
+    <Label  horizontalAlignment="right" text="الناحية القانونية"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout isRtl="true" row="8" col="0" class="allmargins">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="الإمارات العربية المتحدة هي بلد إقامتنا وتنص على أن القانون الحاكم هو القانون المحلي."></Label>
+</StackLayout>
+<StackLayout row="9" col="0" class="allmargins">
+    <Label  horizontalAlignment="right" text="الشروط الاخرى"  class="allheaders"></Label>
+</StackLayout>
+
+<StackLayout isRtl="true" row="10" col="0" class="allmargins">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* سيتم قبول بطاقات الفيزا والماستر كارد للدفع بالدرهم الإلكتروني"></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* لن نتاجر مع أو نقدم أي خدمات إلى مكتب مراقبة الأصول الأجنبية والدول الخاضعة للعقوبات."></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="*  لا يجوز للعميل الذي يستخدم التطبيق ممن هم قاصرون / أقل من 18 عامًا أن يسجلوا كمستخدمين للتطبيق ولن يتعاملوا معنا في التطبيق."></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* يجب على حامل البطاقة الاحتفاظ بنسخة من المعاملة على الموقع الإلكتروني أو التطبيق."></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* المستخدم مسؤول عن الحفاظ على سرية حسابه."></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* يمكنك تعديل أو إلغاء طلبك قبل البدء بإجراءات العمل"></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* لا يوجد حد أدنى للطلب."></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="* الصور الخاصة بالمنتجات التي تظهر بالتطبيق هي حسب ماهو متاح لدى الموردين، ولكن هذه الصور للتخيل فقط ، خاصة وأن الألوان تختلف وفقًا لجودة شاشة جهازك. قد تختلف المنتجات التي تتلقاها قليلاً عن الصور الموجودة في التطبيق."></Label>
+</StackLayout>
+
+<StackLayout row="11" col="0" class="allmargins">
+    <Label  horizontalAlignment="right" text="تواصل معنا"  class="allheaders"></Label>
+</StackLayout>
+<StackLayout isRtl="true" row="12" col="0" class="allmargins">
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  text="إذا كانت لديك أي أسئلة حول هذه الشروط والأحكام ، فيرجى الاتصال بنا على:"></Label>
+    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" textWrap="true" class="alltxt"  class="allmargins" text="* الايميل التالي info@gbmportal.com"></Label>
+</StackLayout>
+              </RGridLayout>
+            </ScrollView>
+            </RGridLayout>
+    </Page>

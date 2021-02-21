@@ -1,0 +1,37 @@
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .cardStyle{
+      margin-top: 25;
+  }
+  .genderimg{
+      border-radius: 12;
+  }
+  .genderdtxt{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    font-size: 14;
+    font-weight: bold;
+    border-radius: 12;
+    width: 80;
+    height: 30;
+    text-align: center;
+    margin-right: 10;
+  }

@@ -1,0 +1,63 @@
+/* Add mobile styles for the component here.  */
+.modal-dialog-box {
+  
+    background-color: #dedede29 !important;
+}
+.modal-dialog-container {
+ 
+    background-color: #dedede29 !important;
+  }
+  .page{
+      
+    background:#00000000 !important;
+  }
+  .gifimg{
+      height: 300;
+      width:300;
+      margin: 0;
+      margin-top: -10;
+      padding: 0;
+      border-radius: 50;
+  }
+  .input{
+border-width: 2;
+border-radius: 18;
+border-color: #05375c;
+placeholder-color:  #05375c;
+color:  white;
+text-align: center;
+font-size: 16;
+  }
+ .cancelbtn{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d); 
+    height: 35;
+    width: 60; 
+    color: #05375c;
+    border-radius: 15;
+ }
+ .valbtn{
+    background: rgb(161, 161, 161); 
+    height: 35;
+    width: 60; 
+    color: white;
+    border-radius: 15;
+ }
+ .margin{
+     margin-left: 15;
+     margin-right: 15;
+     bar-color: #8990C4;
+ }
+ .slides{
+     margin: 0;
+     padding: 0;
+ }
+ .range-seek-bar {
+    bar-color: #8990C4;
+    bar-highlight-color: #05375c;
+    thumb-color: #05375c;
+    bar-height: 10;
+    corner-radius: 30;
+}
+.modal-container{
+    background: rgba(53, 53, 53, 0.644) !important;
+}

@@ -1,0 +1,100 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <---------------english-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Products" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   
+    </GridLayout>
+    </ActionBar> 
+
+<!-- <---------------arabic-header--------------------->
+<ActionBar class="header" *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*" isRtl="true"> 
+    <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" isRtl="true" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+    <Label [text]="aedata.Products" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+  
+   </RGridLayout>
+   </ActionBar>
+    <!-- <---------------english-content--------------------->
+<GridLayout  rows="auto,*" columns="*" *ngIf="lang=='English'">
+  <GridLayout row="0"  col="0" rows="auto" columns="*,auto">
+            <!-- <star-rating value="4" totalstars="4" checkedcolor="red" uncheckedcolor="black" size="24px" row="0" col="0" readonly="true"></star-rating> -->
+            <TextField class="search"(textChange)="searchItem($event)"  autocorrect="false"  hint="Search Products"  autocapitalizationType="none"  row="0" col="0"></TextField>
+            <Image  src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+            <Image  src="~/assets/productmapp/filters.png"  row="0" col="1" class="filterimg"></Image>
+        </GridLayout>
+
+    <GridLayout row="1"  col="0" class="page" >
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  class="margins"> 
+                
+                <WrapLayout  orientation="horizontal" >  
+                    <DockLayout   stretchLastChild="false" width="33%"    *ngFor="let item of productlist" (tap)="gotoproductdetails(item.Id)">
+                       
+                        <!-- <ListView [items]="productlist"  (tap)="gotoproductdetails(product.Id)" separatorColor="transparent">
+                            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even"> -->
+                                    <GridLayout  rows="auto,auto" columns="*" >
+                        <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyle">
+                        <Image row="0"  col="0" [src]="imagurl+item.ProductImage" loadMode="async"   class="st-img"></Image>
+                        </GridLayout>  
+                        <StackLayout  row="1"  col="0" class="namestarttxt">
+                            <Label  [text]="item.ProductName" textWrap="true"   class="st-txt"></Label> 
+                            <Image row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="item.RatingsCount == 0"  class="star-img"></Image>
+                            <Image row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="item.RatingsCount == 1"  class="star-img"></Image>
+                            <Image row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="item.RatingsCount == 2"  class="star-img"></Image>
+                            <Image row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="item.RatingsCount == 3"  class="star-img"></Image>
+                            <Image row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="item.RatingsCount == 4"  class="star-img"></Image>
+                            <Image row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="item.RatingsCount == 5"  class="star-img"></Image>
+                        </StackLayout> 
+                        </GridLayout> 
+                    <!-- </ng-template>  
+                </ListView>  -->
+                    </DockLayout >  
+            </WrapLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+            </GridLayout>
+
+
+
+
+             <!-- <---------------arabic-content--------------------->
+<RGridLayout  rows="auto,*" isRtl="true" columns="*" *ngIf="lang=='Arabic'">
+    <GridLayout row="0" isRtl="true"  col="0" rows="auto" columns="*,auto">
+              <!-- <star-rating value="4" totalstars="4" checkedcolor="red" uncheckedcolor="black" size="24px" row="0" col="0" readonly="true"></star-rating> -->
+              <TextField  style="transform: scaleX(-1);text-align:center;"  class="search"(textChange)="searchItem($event)"  autocorrect="false"  hint="إبحث عن منتجات"  autocapitalizationType="none"  row="0" col="0"></TextField>
+              <Image  src="~/assets/productmapp/searchs.png" style="transform: scaleX(-1);" horizontalAlignment="right" verticalAlignment="center"  row="0" col="0" class="searchico"></Image>
+              <Image  src="~/assets/productmapp/filters.png"  row="0" col="1" class="filterimg"></Image>
+          </GridLayout>
+  
+      <RGridLayout isRtl="true" row="1"  col="0" class="page" >
+          <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+              <RGridLayout  class="margins" isRtl="true"> 
+                  
+                  <WrapLayout  orientation="horizontal" >  
+                      <DockLayout   stretchLastChild="false" width="33%"    *ngFor="let product of productlist" (tap)="gotoproductdetails(product.Id)">
+                          <GridLayout rows="auto,auto" columns="*">
+                          <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyle">
+                          <Image  style="transform: scaleX(-1);" row="0"  col="0" [src]="imagurl+product.ProductImage" loadMode="async"   class="st-img"></Image>
+                          </GridLayout>  
+                          <StackLayout  row="1"  col="0" class="namestarttxt">
+                              <Label    style="transform: scaleX(-1);"  [text]="product.ProductNameInArabic" textWrap="true"   class="st-txt"></Label> 
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="product.RatingsCount == 0"  class="star-img"></Image>
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="product.RatingsCount == 1"  class="star-img"></Image>
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="product.RatingsCount == 2"  class="star-img"></Image>
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="product.RatingsCount == 3"  class="star-img"></Image>
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="product.RatingsCount == 4"  class="star-img"></Image>
+                              <Image  style="transform: scaleX(-1);" row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="product.RatingsCount == 5"  class="star-img"></Image>
+                          </StackLayout>    
+                      </GridLayout>
+                      </DockLayout >  
+              </WrapLayout>
+                  </RGridLayout>
+                  </ScrollView>
+                  </RGridLayout>
+              </RGridLayout>
+  
+    </Page>

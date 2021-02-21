@@ -1,0 +1,202 @@
+
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 10;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .img{
+    height:470;
+    width:auto;
+    /* margin-top: -15; */
+  }
+.btntxt{
+  height: 23;
+  width: 55;
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+  border-radius: 10;
+  margin-left: 0;
+  padding: 0;
+  color: white;
+}
+  /* .lines{
+    white-space: nowrap;
+    background-color: #337092;
+    background-image: url("~/assets/order-management/Seeker_blue.png");
+    background-size: 20 20;
+  } */
+
+  .selected{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    line-height: 9;
+    border-radius: 25 0 0 25;
+    color: #05375c;
+}
+.selected1{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    line-height: 9;
+    border-radius: 0 25 25 0;
+}
+.selectedae{
+  background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+  line-height: 9;
+  border-radius: 0 25 25 0;
+  color: #05375c;
+}
+.selected1ae{
+  background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+  line-height: 9;
+  border-radius: 25 0 0 25;
+}
+.selected .txt{
+color: #05375c;
+margin: 8;
+font-size: 14;
+font-weight: bold;
+}
+.selected1 .txt{
+    color: #05375c;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+    .selectedae .txt{
+      color: #05375c;
+      margin: 8;
+      font-size: 14;
+      font-weight: bold;
+      }
+      .selected1ae .txt{
+          color: #05375c;
+          margin: 8;
+          font-size: 14;
+          font-weight: bold;
+          }
+.txt{
+    color: white;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+    .bg-tabs{
+      background:gray;
+      text-align: center;
+      margin: 20;
+      border-radius: 25;
+  }
+
+  .enddot{
+height: 10;
+width: 10;
+  }
+  .gifimg{
+    height: 20;
+    width: 20;
+
+  }
+  .colorline{
+    color: #05375c;
+    font-size: 30;
+  }
+
+  .bground{
+height: 25;
+width: 25;
+border-radius: 20;
+background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+color: white;
+text-align: center;
+  }
+  .nobground{
+    height: 25;
+    width: 25;
+    border-radius: 20;
+    background: rgb(197, 195, 195);
+    color: #05375c;
+    text-align: center;
+      }
+      .cmbg{
+        
+height: 30;
+width: 55;
+border-radius: 10;
+background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+color: white;
+text-align: center;
+      }
+.rightarrow{
+  height: 35;
+  width: 35;
+}
+.partimg{
+  height: 60;
+  width: 60;
+  border-radius: 10 0 0 10;
+}
+.numbrtxt{
+  margin-right: 10;
+  font-size: 15;
+  color: black;
+}
+.parttxt{
+  font-size: 15;
+  color: black;
+}
+
+.bottm{
+  margin-bottom: 40; 
+}
+
+
+
+
+
+  .line {
+    height: 2;
+    /* background: #2f84b0; */
+    background-image: url("~/assets/order-management/single.png");
+    background-size: 30 20;
+    background-repeat: repeat;
+
+    /* border-width: 1;
+    border-style: dashed; */
+    position: absolute;
+    right: 0 !important;
+    animation-name: dude;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+  }
+  @-webkit-keyframes dude {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 80%;
+    }
+  }
+  @keyframes dude {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 80%;
+    }
+  }
+  
+
+

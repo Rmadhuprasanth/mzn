@@ -1,0 +1,101 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Measurement Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Measurement_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+<GridLayout class="page" *ngIf="lang=='English'">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  class="margins">
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                <GridLayout row="0" col="0" rows="auto" columns="auto,*" shadow="4"  cornerRadius="15">
+                    <StackLayout row="0" col="0" class="dressdiv">
+                        <Image [src]="measurementdata.DressSubTypeImage" class="dressimg"></Image>
+                    </StackLayout>
+                    <GridLayout row="0" col="1" rows="auto,auto,auto" columns="*" style="padding:7;" >
+                        <GridLayout row="0" col="0"  rows="auto" columns="auto,*">
+                        <Label row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInEnglish" ></Label>
+                        <Label row="0" col="1"  horizontalAlignment="right"   [text]="measurementdata.CreatedOn" ></Label>
+                    </GridLayout>
+                    <Label row="1" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInEnglish +'-'+measurementdata.Gender" ></Label>
+                    <GridLayout row="2" col="0"  rows="auto" columns="auto,*">
+                        <Label row="0" col="0" class="dressname" horizontalAlignment="left"   text="Measurement By :" ></Label>
+                        <Label row="0" col="1" class="dressname" horizontalAlignment="left"   [text]="measurementdata.MeasurementBy" ></Label>
+                    </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout row="1" col="0">
+                <WrapLayout  orientation="horizontal" >  
+                    <DockLayout   stretchLastChild="false" width="50%"  *ngFor="let measurement of measurement">
+                        <GridLayout  rows="auto,auto" columns="*"  class="cardStyle">
+                        <Image row="0"  col="0" [src]="imgUrl+measurement.Image"    class="st-img"></Image>
+                        <Label row="1"  col="0"  [text]="measurement.Name +' '+measurement.MeasurementParts" class="st-txt"></Label>
+                        </GridLayout>  
+                    </DockLayout >  
+            </WrapLayout>
+        </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+     
+</GridLayout>
+
+
+
+
+
+
+
+
+
+
+    <!-- <--------------arabic-content---------------------->
+    <RGridLayout class="page" *ngIf="lang=='Arabic'" isRtl="true">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <RGridLayout  isRtl="true" class="margins">
+                <RGridLayout  isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                    <GridLayout row="0" col="0" rows="auto" columns="auto,*" shadow="4"  cornerRadius="15">
+                        <StackLayout row="0" col="0" class="dressdiv">
+                            <Image [src]="measurementdata.DressSubTypeImage" class="dressimg"></Image>
+                        </StackLayout>
+                        <GridLayout row="0" col="1" rows="auto,auto,auto" columns="*" style="padding:7;" >
+                            <GridLayout row="0" col="0"  rows="auto" columns="auto,*">
+                            <Label style="transform: scaleX(-1);"    row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInArabic" ></Label>
+                            <Label style="transform: scaleX(-1);"    row="0" col="1"  horizontalAlignment="right"   [text]="measurementdata.CreatedOn" ></Label>
+                        </GridLayout>
+                        <Label row="1" col="0" class="dressname" horizontalAlignment="left"   [text]="measurementdata.NameInArabic +'-'+measurementdata.Gender" ></Label>
+                        <GridLayout row="2" col="0"  rows="auto" columns="auto,*">
+                            <Label style="transform: scaleX(-1);"    row="0" col="0" class="dressname" horizontalAlignment="left"   [text]="aedata.Measurement_By+' :'" ></Label>
+                            <Label style="transform: scaleX(-1);"    row="0" col="1" class="dressname" horizontalAlignment="left"   [text]="measurementdata.MeasurementBy" ></Label>
+                        </GridLayout>
+                        </GridLayout>
+                    </GridLayout>
+                    <GridLayout row="1" col="0">
+                    <WrapLayout  orientation="horizontal" >  
+                        <DockLayout   stretchLastChild="false" width="50%"  *ngFor="let measurement of measurement">
+                            <GridLayout  rows="auto,auto" columns="*"  class="cardStyle">
+                            <Image row="0"  col="0" [src]="imgUrl+measurement.Image"    class="st-img"></Image>
+                            <Label style="transform: scaleX(-1);"    row="1"  col="0"  [text]="measurement.Name +' '+measurement.MeasurementParts" class="st-txt"></Label>
+                            </GridLayout>  
+                        </DockLayout >  
+                </WrapLayout>
+            </GridLayout>
+                </RGridLayout>
+            </RGridLayout>
+        </ScrollView>
+         
+    </RGridLayout>
+</Page>

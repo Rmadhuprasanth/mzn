@@ -1,0 +1,81 @@
+/* Add mobile styles for the component here.  */
+.header{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+
+
+  .cardStyle{
+    margin: 8;
+    text-align: center;
+background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+background-size:     cover;                      
+background-repeat:   no-repeat;
+background-position: center center;
+align-items: center;
+    /* height: 130;  */
+    width: 100;
+    border-width: 1 !important;
+border-color: #05375c !important; 
+border-radius: 16 16 0 0 ; 
+}
+.st-img{
+    height: auto;
+    width: auto;
+    border-radius: 10 10 0 0;
+}
+.st-txt{
+    text-align: center;
+    font-size: 13;
+    font-weight: bold;
+    border-radius: 0 0 16 16; 
+}
+.search{
+    border-width: 1;
+    height: 40;
+    border-radius: 21;
+    padding-left: 5;
+    color: darkgray;
+    text-align: center;
+}
+.filterimg{
+    height: 40;
+    width: 70;
+    margin-right: 10;
+}
+.searchico{
+    height: 23;
+    width: 23;
+    margin-right: 20;
+}
+
+.namestarttxt{
+    margin-top: -7;
+  width: 100;
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color:white;
+    /* padding-bottom: 20;
+    padding-top: 10; */
+    border-radius: 0 0 16 16;
+    height: 65;
+}
+.star-img{
+    height: 30;
+    width: 65;
+}

@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Rating and Write a Review" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Rating_and_Write_a_Review" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar>
+       <!-- <--------------english-content---------------------->
+    <GridLayout  class="page" *ngIf="lang=='English'"> 
+    <ScrollView   scrollBarIndicatorVisible="false">
+        </ScrollView>
+        <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" >
+            <GridLayout row="0" col="0" rows="auto,auto" columns="auto,*" class="margins" *ngFor="let review of storereview">
+                <StackLayout  row="0" col="0"  shadow="2" cornerRadius="15" class="imgcard">
+                    <Image [src]="imgUrl+review.ProfilePicture"class="img"></Image>
+                </StackLayout>
+                <StackLayout  row="0" col="1"  class="starcard"  verticalAlignment="center">
+                <Label row="0" col="1" [text]="review.Name" horizontalAlignment="center" class="order-txt" verticalAlignment="center"></Label>
+                <StarRating row="1" col="1"  horizontalAlignment="left" android:scaleX=".4" android:scaleY=".4"  filledBorderColor="#03426a" filledColor="#03426a"   emptyBorderColor="white" emptyColor="#9c9a9a"  class="stars" min="5" max="5" [value]="review.Rating"> </StarRating>
+            </StackLayout>
+            </GridLayout>
+            <GridLayout row="1" col="0" class="border"></GridLayout>
+            <GridLayout  row="2" col="0" class="margins">
+                <TextView *ngFor="let reviews of storereview" shadow="2"  editable="false"  width="100%" cornerRadius="15"  hint="Review" [text]="reviews.review" class="txtbox"></TextView>
+            </GridLayout>
+        </GridLayout>
+        </GridLayout>
+
+
+
+
+
+           <!-- <--------------arabic-content---------------------->
+    <GridLayout  class="page" *ngIf="lang=='Arabic'"> 
+        <ScrollView   scrollBarIndicatorVisible="false">
+            </ScrollView>
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" >
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto,auto" columns="auto,*" class="margins" *ngFor="let review of storereview">
+                    <StackLayout  row="0" col="0"  shadow="2" cornerRadius="15" class="imgcard">
+                        <Image [src]="imgUrl+review.ProfilePicture"class="img"></Image>
+                    </StackLayout>
+                    <StackLayout  row="0" col="1"  class="starcard"  verticalAlignment="center">
+                    <Label row="0" col="1" [text]="review.Name" horizontalAlignment="center" class="order-txt" verticalAlignment="center"></Label>
+                    <StarRating row="1" col="1"  horizontalAlignment="left" android:scaleX=".4" android:scaleY=".4"  filledBorderColor="#03426a" filledColor="#03426a"   emptyBorderColor="white" emptyColor="#9c9a9a"  class="stars" min="5" max="5" [value]="review.Rating"> </StarRating>
+                </StackLayout>
+                </RGridLayout>
+                <GridLayout row="1" col="0" class="border"></GridLayout>
+                <GridLayout  row="2" col="0" class="margins">
+                    <TextView *ngFor="let reviews of storereview" shadow="2"  editable="false"  width="100%" cornerRadius="15"  hint="Review" [text]="reviews.review" class="txtbox"></TextView>
+                </GridLayout>
+            </GridLayout>
+            </GridLayout>
+</Page>

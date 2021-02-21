@@ -1,0 +1,71 @@
+/* Add mobile styles for the component here.  */
+
+.headdiv{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+
+}
+.img-layout{
+
+    margin-top: -50;
+}
+.logo{
+    height: 100;
+}
+.otpsent{
+    color: #05375c;
+    font-size: 14;
+    text-align: center;
+    margin-top: 5;
+    margin-bottom: 5; 
+}
+.otpenter{
+    color: #05375c;
+    font-size: 14;
+    text-align: center;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+.cont-btn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    border-radius: 21; 
+    height: 40;
+    text-align: center !important;
+}
+.resend-btn{
+      color: black;
+      border-radius: 21; 
+      border-color: #05375c; 
+      border-width: 1;
+      height: 40; 
+      text-align: center !important;
+}
+.otptxt{
+    border-width: 2;
+    border-color: #05375c;
+    width: 45;
+    height: 50;
+    text-align: center;
+    font-size: 14;
+    border-radius: 6;
+    
+}
+.otptxtfull{
+    border-width: 2;
+    border-color: #05375c;
+    height: 50;
+    text-align: center;
+    font-size: 20;
+    border-radius: 6;
+    
+}
+.margtxt{
+    
+    margin-left: 20;
+    margin-right: 20;
+    margin-top: -40;
+}
+.marg{
+    margin: 20;
+    margin-top: -40;
+}

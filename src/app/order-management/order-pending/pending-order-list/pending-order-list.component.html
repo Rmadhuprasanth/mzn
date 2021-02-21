@@ -1,0 +1,95 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Order Pending" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+<!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Order_Pending" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+<!-- <--------------english-cotent---------------------->
+<GridLayout class="page"  *ngIf="lang=='English'">
+    <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">   -->
+        <GridLayout  class="margins"  *ngIf="showdata">
+            <ListView row="0" [items]="pendingList"   separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <WrapLayout  orientation="horizontal" >
+                <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" shadow="2"  cornerRadius="15" (tap)="gotoDetails(item.OrderId)">
+                    <GridLayout rows="30,auto" columns="*" class="bg-card" >  
+                        <StackLayout  row="0" col="0"></StackLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="*,*"> 
+                            <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                <Image [src]="item.OrderType == 'Store' ? imageurl+item.Image : imageurlstitching+item.Image" class="ordrimg" row="0" col="0"></Image>
+                                <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                    <label row="0" col="0" class="order-txt" text="Order Date"></label>
+                                    <label row="1" col="0"  class="order-txt" text="Order Id"></label>
+                                    <label row="2" col="0"  class="order-txt" text="Product Name"></label> 
+                                 </GridLayout>
+                                 </GridLayout>
+                                 <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                    <label row="0" col="0" class="detail-txt" [text]="item.OrderDate"></label>
+                                    <label row="1" col="0" class="detail-txt" [text]="item.OrderId"></label>
+                                    <label row="2" col="0" class="detail-txt" textWrap="true"  horizontalAlignment="left"  [text]="item.Product_Name"></label>
+                                </GridLayout>
+                        </GridLayout>
+                    </GridLayout>
+                </DockLayout >
+        </WrapLayout>
+        </ng-template>
+        </ListView>
+        </GridLayout>
+        <GridLayout  class="margins" *ngIf="showtext">
+            <Label  horizontalAlignment="center" verticalAlignment="center" class="nodata" text="No Data Found !"></Label>
+        </GridLayout>
+    <!-- </ScrollView> -->
+    </GridLayout>
+
+
+
+
+    <!-- <--------------arabic-cotent---------------------->
+<RGridLayout class="page"  *ngIf="lang=='Arabic'" >
+    <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">   -->
+        <RGridLayout  class="margins"  *ngIf="showdata"  isRtl="true">
+            <ListView row="0" [items]="pendingList"   separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <WrapLayout  orientation="horizontal" >
+                <DockLayout  isRtl="true"  stretchLastChild="false" width="100%" class="cardStyle"  shadow="2"  cornerRadius="15" (tap)="gotoDetails(item.OrderId)">
+                    <RGridLayout  isRtl="true"  rows="30,auto" columns="*" class="bg-card" >  
+                        <StackLayout  row="0" col="0"></StackLayout>
+                        <GridLayout isRtl="true"  row="1" col="0" rows="auto" columns="*,*"> 
+                            <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                                <Image [src]="item.OrderType == 'Store' ? imageurl+item.Image : imageurlstitching+item.Image" class="ordrimg" row="0" col="0"></Image>
+                                <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                                    <label row="0" col="0"style="transform: scaleX(-1);"  horizontalAlignment="left"  class="order-txt" [text]="aedata.Order_Date"></label>
+                                    <label row="1" col="0"style="transform: scaleX(-1);" horizontalAlignment="left"  class="order-txt" [text]="aedata.Order_Id"></label>
+                                    <label row="2" col="0"style="transform: scaleX(-1);" horizontalAlignment="left"   class="order-txt" [text]="aedata.Product_Name"></label> 
+                                 </GridLayout>
+                                 </GridLayout>
+                                 <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+                                    <label row="0" col="0" style="transform: scaleX(-1);" horizontalAlignment="left"  class="detail-txt" [text]="item.OrderDate"></label>
+                                    <label row="1" col="0" style="transform: scaleX(-1);" horizontalAlignment="left"  class="detail-txt" [text]="item.OrderId"></label>
+                                    <label row="2" col="0" style="transform: scaleX(-1);" class="detail-txt"   horizontalAlignment="left"  [text]="item.Product_Name"></label>
+                                </GridLayout>
+                        </GridLayout>
+                    </RGridLayout>
+                </DockLayout >
+        </WrapLayout>
+        </ng-template>
+        </ListView>
+        </RGridLayout>
+        <GridLayout  class="margins" *ngIf="showtext">
+            <Label  horizontalAlignment="center" verticalAlignment="center" class="nodata" [text]="aedata.No_Data_Found"></Label>
+        </GridLayout>
+    <!-- </ScrollView> -->
+    </RGridLayout>
+</Page>

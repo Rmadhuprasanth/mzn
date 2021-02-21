@@ -1,0 +1,185 @@
+/* Add mobile styles for the component here.  */
+.header{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.bell-image{
+    height: 25;
+    width: 25;
+    margin-right: auto;
+}
+.action-image{
+    height: 40;
+    width: 40;
+    margin-left: auto;
+    border-radius: 50%;
+    border-width: 1;
+    border-color: gold;
+      }
+      .action-label{
+          text-align: center !important;
+          font-size: 15;
+          font-weight: bold;
+      }
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+.m-icon{
+    height: 25;
+    width: 100; 
+    margin: 9;
+}
+.bg-footer{
+   
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+}
+.margins{
+    margin-top: 10;
+    margin-bottom: 40; 
+}
+.bg-tabs{
+    background:gray;
+    text-align: center;
+    margin: 25;
+    border-radius: 25;
+}
+.selected{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    line-height: 9;
+    border-radius: 25 0 0 25;
+    color: #05375c;
+}
+.selected1{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d); 
+    line-height: 9;
+    border-radius: 0 25 25 0;
+}
+.selected .txt{
+color: #05375c;
+margin: 8;
+font-size: 14;
+font-weight: bold;
+}
+.selected1 .txt{
+    color: #05375c;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+.txt{
+    color: white;
+    margin: 8;
+    font-size: 14;
+    font-weight: bold;
+    }
+    .cardStyle{
+        margin: 15;
+        text-align: center;
+    background-image: url("~/assets/background.jpg") no-repeat;
+        height: 150; 
+        border-width: 1 !important;
+    border-color: #337092 !important; 
+    border-radius: 12;
+    }
+    .st-img{
+        height: 60;
+        margin-top: 25;
+    }
+    .pr-img{
+        height: 70;
+        margin-top: 25;
+    }
+    .st-txt{
+        margin-top: 25;
+        text-align: center;
+        font-size: 13;
+        font-weight: bold;
+        background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+        color:white;
+        padding-bottom: 5;
+        border-radius: 0 0 8 8;
+    }
+    .borders{
+        margin: 0 20 0 20;
+    }
+    .border{
+        border-width: 0.5;
+        border-color:#dec788;
+    }
+    .allborder{
+        border-width: 1;
+        border-color: darkgray;
+    }
+    .filterimg{
+        height: 40;
+        width: 70;
+    }
+    .removetxt{
+        background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+        color: white;
+        height: 28;
+        width: 75;
+        font-size: 13;
+        padding: 5;
+        border-radius: 12;
+        text-align: center;
+    }
+    .marginsprod{
+        margin: 15;
+    }
+    .cardStyleprod{
+        margin: 8;
+        text-align: center;
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+    background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;
+    align-items: center;
+        /* height: 130;  */
+        width: 100;
+        border-width: 1 !important;
+    border-color: #05375c !important; 
+    border-radius: 16 16 0 0 ; 
+    }
+    .st-imgprod{
+        height: auto;
+        width: auto;
+        border-radius: 10 10 0 0;
+    }
+    .st-txtprod{
+        text-align: center;
+        font-size: 13;
+        font-weight: bold;
+        border-radius: 0 0 16 16; 
+    }
+    .st-txtprods{
+        text-align: center;
+        font-size: 12;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+.namestarttxt{
+    margin-top: -7;
+  width: 100;
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color:white;
+    /* padding-bottom: 20;
+    padding-top: 10; */
+    border-radius: 0 0 16 16;
+    height: 60;
+}
+.remove-icon{
+    height: 25;
+    width: 25;
+}
+.dot-icon{
+    height: 15;
+    width: 15;
+    margin: 5;
+
+}
+.star-img{
+    height: 30;
+    width: 65;
+}

@@ -1,0 +1,190 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+  align-items: center; 
+  background-image: url("~/assets/background.jpg") no-repeat;
+}
+.margins{
+  margin: 15;
+}
+.action-image{
+  height: 30;
+  width: 30;
+margin-left: auto;
+}
+.action-label{
+    text-align: center !important;
+    font-size: 15;
+    font-weight: bold;
+}
+.grey-bg{
+  background-color: rgb(189, 189, 189);
+  padding-left: 15;
+
+}
+.header-txt{
+  font-size: 15;
+  color:#05375c ;
+  margin: 3;
+
+}
+.child-header-txt{
+  font-size: 14;
+  color:#05375c ;
+  margin: 3;
+}
+.order-txt{
+  font-size: 13;
+  color:#05375c ;
+}
+.detail-txt{
+font-size: 13;
+color:#05375c ;
+text-align: left;
+margin-left: 10;
+}
+.bg-child{
+padding-bottom: 10;
+padding-top: 10;
+}
+.bg-child1{
+padding-bottom: 10;
+padding-top: 10;
+}
+.child-bg{
+background-color: rgb(214, 214, 214);
+margin-top: 10;
+}
+.child-items-bg{
+background-color: rgb(214, 214, 214);
+margin: 15;
+}
+.item-header-bg{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+padding:2;
+margin:8 8 0 8;
+}
+.item-mrg{
+margin:0 8 8 8;
+background: white;
+padding:4;
+}
+.ietem-header{
+font-size: 14;
+color:white ;
+}
+.itemimg{
+height: 80;
+width: 80;
+margin-right: 5;
+}
+.border{
+border-width: 1 0 0 0;
+margin-top: 5;
+margin-bottom: 5;
+border-color: gray;
+
+}
+.appoint{
+font-size: 13;
+color: #05375c;
+font-weight: bold;
+}
+.appoin-btn{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+color: white;
+height: 30;
+width: auto;
+border-width: 1;
+border-color: rgb(238, 238, 238);
+border-radius: 12;
+font-size: 11;
+margin: 0;
+}
+.mat-btn{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+color: white;
+height: 30;
+width: 120;
+border-width: 1;
+border-color: rgb(238, 238, 238);
+border-radius: 12;
+margin-left: 0;
+margin-right: 0;
+font-size: 11;
+}
+.bg-card{
+margin-left: 15;
+margin-right: 15;
+}
+.track-btn{
+  background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+color: white;
+height: 32;
+width: 60;
+border-width: 1;
+border-color: rgb(238, 238, 238);
+border-radius: 12;
+font-size: 12;
+}
+.tickimg{
+height: 25;
+width: 25;
+}
+.paid-btn{
+background: #07ee54;
+color: white;
+height: 30;
+width: 65;
+border-width: 1;
+border-color: rgb(238, 238, 238);
+border-radius: 12;
+}
+.nopaid{
+  background: #eb1c22;
+  color: white;
+  height: 30;
+  width: 65;
+  border-width: 1;
+  border-color: rgb(238, 238, 238);
+  border-radius: 12;
+  }
+.paymenttxt{
+font-size: 15;
+color:#05375c ;
+margin: 3;
+}
+.order-bg{
+margin-top:5 ;
+background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.completeorder-txt{
+color: white;
+font-size: 14;
+
+}
+.riview{
+  font-size: 14;
+  color: #05375c;
+  width: 100;
+  z-index: 1000;
+  
+}
+.stars{
+  padding:0 !important;
+  margin: 0 !important;
+  margin-left: -90; 
+  background: rgb(177, 176, 176);
+  border-radius: 12px;
+}
+.brdr-rt{
+  border-width: 0 1 0 0;
+  border-color: rgb(238, 238, 238);
+  padding-right: 2;
+}
+.mrgin-child{
+  padding-left:9 ;
+  padding-right:9 ;
+}

@@ -1,0 +1,129 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
+-->    
+ 
+<RadSideDrawer [drawerTransition]="sideDrawerTransition" [drawerLocation]="drawerLocation" [gesturesEnabled]="sideDrawerEnabled" >  
+     
+    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">  
+        <StackLayout row="0" class="nt-drawer__header">
+            <Image class="nt-drawer__header-image fas t-36 imgspro"  stretch="aspectFill" [src]="ShopOwnerImageURL"></Image>
+            <Label class="nt-drawer__header-brand" [text]="TailorNameInEnglish"></Label>
+        </StackLayout>    
+     
+        <ScrollView row="1" class="nt-drawer__body"> 
+         
+            <StackLayout    *ngIf="lang=='English'">
+            
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('Profile')" (tap)="onNavItemTap('/Profile')">
+                   
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/myaccount.png"></Image>
+                    <Label col="1" text="My Account" class="p-r-10"></Label> 
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('AppointmentListComponent')" (tap)="onNavItemTap('/AppointmentListComponent')">
+                    
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/bookanappointment.png"></Image>
+                    <Label col="1" text="Book an Appointment" class="p-r-10"></Label>
+                </GridLayout> 
+                <StackLayout class="hr"></StackLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('SubmittedListComponent')" (tap)="onNavItemTap('/SubmittedListComponent')">
+                   
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/ordrquotation.png"></Image>
+                    <Label col="1" text="Rejected Quotation" class="p-r-10"></Label>
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('PromotionHomeComponent')" (tap)="onNavItemTap('/PromotionHomeComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/promotion.png"></Image>
+                    <Label col="1" text="Promotion" class="p-r-10"></Label>
+                </GridLayout>
+    
+                <StackLayout class="hr"></StackLayout>
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('RejectedProductsComponent')" (tap)="onNavItemTap('/RejectedProductsComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/promotion.png"></Image>
+                    <Label col="1" text="Rejected Products" class="p-r-10"></Label>
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('TandcComponent')" (tap)="onNavItemTap('/TandcComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/tandc.png"></Image>
+                    <Label col="1" text="Terms and Condition" class="p-r-10"></Label>
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('SettingsComponent')" (tap)="onNavItemTap('/SettingsComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/settings.png"></Image>
+                    <Label col="1" text="Settings" class="p-r-10"></Label>
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>   
+                <GridLayout columns="auto, *" (tap)="logout()" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/logout.png"></Image>
+                    <Label col="1" text="Logout" class="p-r-10"></Label>
+                </GridLayout>
+                <StackLayout class="hr"></StackLayout>
+            </StackLayout>
+
+
+
+<!-- <--------------------------arabic------------------------------------->
+
+            <StackLayout  *ngIf="lang=='Arabic'">
+            
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('Profile')" (tap)="onNavItemTap('/Profile')">
+                   
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/myaccount.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.My_Account" class="p-r-10"></Label> 
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout> 
+
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('AppointmentListComponent')" (tap)="onNavItemTap('/AppointmentListComponent')">
+                    
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/bookanappointment.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Book_an_Appointment" class="p-r-10"></Label>
+                </RGridLayout>  
+                <StackLayout class="hr"></StackLayout>
+
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('SubmittedListComponent')" (tap)="onNavItemTap('/SubmittedListComponent')">
+                   
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/ordrquotation.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Rejected_Quotation" class="p-r-10"></Label>
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout>
+
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('PromotionHomeComponent')" (tap)="onNavItemTap('/PromotionHomeComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/promotion.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Promotion" class="p-r-10"></Label>
+                </RGridLayout>
+    
+                <StackLayout class="hr"></StackLayout>
+
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('RejectedProductsComponent')" (tap)="onNavItemTap('/RejectedProductsComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/promotion.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Rejected_Products" class="p-r-10"></Label>
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout>
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('TandcComponent')" (tap)="onNavItemTap('/TandcComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/tandc.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Terms_and_Condition" class="p-r-10"></Label>
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout>
+                <RGridLayout  isRtl="true" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('SettingsComponent')" (tap)="onNavItemTap('/SettingsComponent')">
+                    <Image col="0" class="nt-icon fas" src="~/assets/sidebar/settings.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Settings" class="p-r-10"></Label>
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout>   
+                <RGridLayout  isRtl="true" columns="auto, *" (tap)="logout()" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('')">
+                    <Image  col="0" class="nt-icon fas" src="~/assets/sidebar/logout.png"></Image>
+                    <Label   horizontalAlignment="left" col="1" [text]="aedata.Logout" class="p-r-10"></Label>
+                </RGridLayout>
+                <StackLayout class="hr"></StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+
+    <page-router-outlet tkMainContent></page-router-outlet>
+</RadSideDrawer>

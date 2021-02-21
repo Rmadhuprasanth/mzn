@@ -1,0 +1,61 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <----------------------english-header------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Dress Type" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+
+    <!-- <----------------------arabic-header------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Dress_Type" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <----------------------english-content------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  class="margins">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="45%" class="cardStyle" (tap)="gotodresssubType(dresstype.Id)"  *ngFor="let dresstype of dresstypearray; let i = index" >
+                        <GridLayout rows="110,auto" columns="*">
+                            <Label row="0" col="0" style="z-index: 1000;" *ngIf="dresstype.IsMapped == true" horizontalAlignment="right" class="mappedtxt" text="Mapped" verticalAlignment="center"></Label>
+                            <Label row="0" col="0" style="z-index: 1000;" *ngIf="dresstype.Express == true" horizontalAlignment="left" class="Expresstxt" text="Express" verticalAlignment="center"></Label>
+                            
+                        <Image row="0"  col="0" [src]="imageurl+dresstype.ImageURL"  stretch="aspectFill"  dock="top" class="st-img"></Image>
+                        <Label row="1"  col="0" [text]="dresstype.NameInEnglish" dock="bottom" class="st-txt"></Label>  
+                        </GridLayout>
+                    </DockLayout >
+            </WrapLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+
+
+                  <!-- <----------------------english-content------------------->
+    <RGridLayout class="page" isRtl="true" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <RGridLayout  class="margins" isRtl="true">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="45%" class="cardStyle" (tap)="gotodresssubType(dresstype.Id)"  *ngFor="let dresstype of dresstypearray; let i = index" >
+                        <RGridLayout rows="110,auto" columns="*" isRtl="true">
+                            <Label row="0" col="0"   style="z-index: 1000;text-align: left;" *ngIf="dresstype.IsMapped == true" horizontalAlignment="left" class="mappedtxt" [text]="aedata.Mapped" verticalAlignment="center"></Label>
+                            <Label row="0" col="0"  style="z-index: 1000;text-align: right;" *ngIf="dresstype.Express == true" horizontalAlignment="right" class="Expresstxt" [text]="aedata.Express" verticalAlignment="center"></Label>
+                            
+                        <Image row="0"  col="0" [src]="imageurl+dresstype.ImageURL"  stretch="aspectFill"  dock="top" class="st-img"></Image>
+                        <Label row="1"  col="0"   [text]="dresstype.NameInArabic" dock="bottom" class="st-txt"></Label>  
+                        </RGridLayout>
+                    </DockLayout >
+            </WrapLayout>
+                </RGridLayout>
+                </ScrollView>
+                </RGridLayout>
+
+    </Page>

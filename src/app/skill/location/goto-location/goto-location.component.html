@@ -1,0 +1,83 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <---------------english-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Choose Area" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <---------------arabic-header--------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"   isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Choose_Area" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+       <!-- <---------------english-content--------------------->
+    <GridLayout class="page"  *ngIf="lang=='English'">
+            <GridLayout  class="margins" rows="auto,*,auto" columns="*">
+            <GridLayout row="0" col="0" rows="auto" columns="auto,auto" orientation="horizontal">
+                <Image  row="0" col="0" #selctall value="{{selctallValue}}" [src]="checkimg" 
+                        (tap)="getselectallval(selctall.value)" dock="right" class="selectallimg"></Image>
+                <label  row="0" col="1" verticalAlignment="center" text="Select All" class="selecttxt"></label>
+            </GridLayout>
+            <GridLayout row="1" col="0">
+        <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  -->
+            <ListView row="0" [items]="Loactionarray"    separatorColor="transparent">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <WrapLayout row="" orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" shadow="4"
+                    cornerRadius="25"   >
+                        <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="item.Area" verticalAlignment="center"></Label>
+           
+                        <Image  #checkcompany  [src]="item.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{item.Switch}}"
+                        (tap)="getcheckvalcompany(checkcompany.value,item.Id)" dock="right" class="uncheck-img"></Image>
+                    </DockLayout >
+                    
+            </WrapLayout>
+            </ng-template>
+            </ListView>
+        <!-- </ScrollView>  -->
+    </GridLayout>
+    <GridLayout row="2" col="0">
+        <Button text="Save" class="savebtn" (tap)="insertlocationservice()"></Button>
+    </GridLayout>
+                </GridLayout>
+                </GridLayout>  
+                
+                
+
+
+                    <!-- <---------------english-content--------------------->
+    <GridLayout class="page"  *ngIf="lang=='Arabic'">
+        <GridLayout  class="margins" rows="auto,*,auto" columns="*"  isRtl="true">
+        <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto" orientation="horizontal">
+            <Image  row="0" col="0" #selctall value="{{selctallValue}}" [src]="checkimg" 
+                    (tap)="getselectallval(selctall.value)" dock="right" class="selectallimg"></Image>
+            <label  row="0" col="1" verticalAlignment="center" [text]="aedata.Select_All" class="selecttxt"></label>
+        </RGridLayout>
+        <GridLayout row="1" col="0">
+    <!-- <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  -->
+        <ListView row="0" [items]="Loactionarray"    separatorColor="transparent">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <WrapLayout row="" orientation="horizontal" > 
+                <RDockLayout isRtl="true"  stretchLastChild="false" width="100%" class="cardStyle" shadow="4"
+                cornerRadius="25"   >
+                    <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="item.Area" verticalAlignment="center"></Label>
+       
+                    <Image  #checkcompany   [src]="item.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{item.Switch}}"
+                    (tap)="getcheckvalcompany(checkcompany.value,item.Id)" dock="right" class="uncheck-img"></Image>
+                </RDockLayout >
+                
+        </WrapLayout>
+        </ng-template>
+        </ListView>
+    <!-- </ScrollView>  -->
+</GridLayout>
+<GridLayout row="2" col="0">
+    <Button [text]="aedata.Save" class="savebtn" (tap)="insertlocationservice()"></Button>
+</GridLayout>
+            </GridLayout>
+            </GridLayout>   
+    </Page>

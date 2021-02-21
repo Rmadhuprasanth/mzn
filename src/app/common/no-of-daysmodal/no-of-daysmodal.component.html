@@ -1,0 +1,37 @@
+  
+
+<page>
+    <GridLayout rows="500,auto" columns="*">
+ 
+    
+<StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">
+    <StackLayout class="text-header" *ngIf="lang=='English'"> 
+        <Label text="Choose Your days" textWrap="true"></Label>
+    </StackLayout>  
+    <StackLayout class="text-header" *ngIf="lang=='Arabic'"> 
+        <Label [text]="aedata.Choose_Your_days" textWrap="true"></Label>
+    </StackLayout>
+    
+     
+    <ListView [items]="items"  class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <FlexboxLayout flexDirection="row" class="list-group-item"  (tap)="choosenoofdays(item)">
+                <Label [text]="item.No" class="list-group-item-heading" 
+                   style="width: 100%;text-align: center;font-size: 15;font-weight: bold;"></Label>
+        </FlexboxLayout> 
+        </ng-template>
+     
+    </ListView>   
+</StackLayout>  
+<StackLayout row="1" *ngIf="lang=='English'"> 
+    <Button class="Cancelbtn" text="Cancel"  (tap)="close()"></Button> 
+</StackLayout>
+<StackLayout row="1" *ngIf="lang=='Arabic'"> 
+    <Button class="Cancelbtn" [text]="aedata.Cancel"  (tap)="close()"></Button> 
+</StackLayout> 
+</GridLayout>
+</page>
+
+
+
+

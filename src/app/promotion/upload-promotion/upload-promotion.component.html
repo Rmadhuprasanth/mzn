@@ -1,0 +1,98 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Create New Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+
+    <!-- <--------------arabic-header----------------------> 
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Create_New_Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,150,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label text="All Banners" class="header-txt"></Label>
+                </StackLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="!showshopimgs">
+                    <Image horizontalAlignment="center" verticalAlignment="center" (tap)="openprofilegallery()"
+                        src="~/assets/productmapp/Plus-Gradient.png" class="addimg"></Image>
+                </GridLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="showshopimgs">
+                    <Image horizontalAlignment="center" verticalAlignment="center" 
+                        [src]="showshopimgs"  stretch="aspectFill" class="banner"></Image>
+                </GridLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="showshopimgs">
+                    <Image horizontalAlignment="right" verticalAlignment="top" (tap)="remove()"
+                        src="~/assets/productmapp/close.png" class="addimg"></Image>
+                </GridLayout>
+                <StackLayout row="2" col="0">
+                    <Label horizontalAlignment="center" text="Preffered size for banner 630x220 pixel"
+                        class="preftxt"></Label>
+                </StackLayout>
+              
+            </GridLayout>
+        </ScrollView>
+
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <Button row="1" col="0" text="Done" class="donebtn " (tap)="insertbanner()"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+
+
+
+    
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,150,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label [text]="aedata.All_Banners" class="header-txt"></Label>
+                </StackLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="!showshopimgs">
+                    <Image horizontalAlignment="center" verticalAlignment="center" (tap)="openprofilegallery()"
+                        src="~/assets/productmapp/Plus-Gradient.png" class="addimg"></Image>
+                </GridLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="showshopimgs">
+                    <Image horizontalAlignment="center" verticalAlignment="center" 
+                        [src]="showshopimgs"  stretch="aspectFill" class="banner"></Image>
+                </GridLayout>
+                <GridLayout row="1" col="0" class="grid margins" *ngIf="showshopimgs">
+                    <Image horizontalAlignment="right" verticalAlignment="top" (tap)="remove()"
+                        src="~/assets/productmapp/close.png" class="addimg"></Image>
+                </GridLayout>
+                <StackLayout row="2" col="0">
+                    <Label horizontalAlignment="center" [text]="aedata.Preffered_size_for_banner_630_220_pixel"
+                        class="preftxt"></Label>
+                </StackLayout>
+              
+            </GridLayout>
+        </ScrollView>
+
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <Button row="1" col="0" [text]="aedata.Done" class="donebtn " (tap)="insertbanner()"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+</Page>

@@ -1,0 +1,20 @@
+/* Add mobile styles for the component here.  */
+.text-header{
+    font-size: 17;
+    font-weight: bold;
+    text-align: center;  
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+  height: 50;  
+  vertical-align: middle; 
+  }
+  .Cancelbtn{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    color: white;
+    height: 40;
+    border-radius: 21;
+    width: 200; 
+}
+.list-group-item-heading{
+    font-size: 14;
+}

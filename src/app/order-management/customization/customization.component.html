@@ -1,0 +1,96 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Customization Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Customization_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content---------------------->
+    <GridLayout *ngIf="lang=='English'">
+<GridLayout class="page"  *ngIf="hidemain">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+        <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+            <!-- <ImageZoom [src]="zoomimg" maxZoom="5" minZoom="1"></ImageZoom> -->
+            <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+                <Image  [src]="zoomimg"   class="zoomimg" style="padding: 15;"></Image>
+                </StackLayout>
+        </GridLayout>
+    </ScrollView> 
+
+    <GridLayout>
+        <GridLayout rows="*,auto">
+            <GridLayout row="1"  height="120" style="background-color: white;">
+                <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                    <WrapLayout  orientation="vertical">
+                        <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" >
+                            <WrapLayout  orientation="vertical">
+                                <DockLayout stretchLastChild="true"  *ngFor="let cust of customization" class="cardStyle" (tap)="selecimg(cust.Images)"> 
+                                    <Image [src]="imgUrl+cust.Images" stretch="aspectFill"  dock="top" class="slidimg"></Image>
+                                    <Label [text]="cust.CustomizationNameInEnglish" textWrap="true" dock="bottom" class="clrtxt"></Label>   
+                                </DockLayout>  
+                        </WrapLayout>
+                        </GridLayout> 
+                    </WrapLayout>  
+                </ScrollView>
+                </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+</GridLayout>
+<GridLayout class="page"   *ngIf="hidetext">
+    <Label horizontalAlignment="center" verticalAlignment="center" text="Customization is Empty !"></Label>
+</GridLayout>
+</GridLayout>
+
+
+
+
+
+    <!-- <--------------arabic-content---------------------->
+    <GridLayout *ngIf="lang=='Arabic'">
+        <GridLayout class="page"  *ngIf="hidemain">
+            <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+                    <!-- <ImageZoom [src]="zoomimg" maxZoom="5" minZoom="1"></ImageZoom> -->
+                    <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+                        <Image  [src]="zoomimg"   class="zoomimg" style="padding: 15;"></Image>
+                        </StackLayout>
+                </GridLayout>
+            </ScrollView> 
+        
+            <GridLayout>
+                <GridLayout rows="*,auto">
+                    <GridLayout row="1"  height="120" style="background-color: white;">
+                        <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                            <WrapLayout  orientation="vertical">
+                                <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" >
+                                    <WrapLayout  orientation="vertical">
+                                        <DockLayout stretchLastChild="true"  *ngFor="let cust of customization" class="cardStyle" (tap)="selecimg(cust.Images)"> 
+                                            <Image [src]="imgUrl+cust.Images" stretch="aspectFill"  dock="top" class="slidimg"></Image>
+                                            <Label [text]="cust.CustomizationNameInArabic" textWrap="true" dock="bottom" class="clrtxt"></Label>   
+                                        </DockLayout>  
+                                </WrapLayout>
+                                </GridLayout> 
+                            </WrapLayout>  
+                        </ScrollView>
+                        </GridLayout>
+                </GridLayout>
+            </GridLayout>
+        
+        </GridLayout>
+        <GridLayout class="page"   *ngIf="hidetext">
+            <Label horizontalAlignment="center" verticalAlignment="center" [text]="aedata.Customization_is_Empty"></Label>
+        </GridLayout>
+        </GridLayout>
+</Page>

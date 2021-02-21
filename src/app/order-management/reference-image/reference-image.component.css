@@ -1,0 +1,67 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+  align-items: center; 
+  background-image: url("~/assets/background.jpg") no-repeat;
+}
+.margins{
+  margin: 15;
+}
+.action-image{
+  height: 30;
+  width: 30;
+margin-left: auto;
+}
+.action-label{
+    text-align: center !important;
+    font-size: 15;
+    font-weight: bold;
+}
+.slidimg{
+    height: 80;
+    width: auto; 
+}
+.clrtxt{
+  text-align: center;
+  font-size: 12;
+  background: #05375c ;
+  color: white;
+}
+.cardStyle{
+  text-align: center;
+align-items: center;
+  border-width: 1 !important;
+border-color: #ffffff !important; 
+margin: 7;
+
+}
+.reviewbg{
+  margin-top: 10;
+  margin-bottom: 10;
+  background: rgb(190, 190, 190);
+}
+.Previewtxt{
+  font-size: 15;
+  color: #05375c;
+  text-align: center;
+}
+.image{
+  margin: 15;  
+  height: 300;
+  width: 300;
+}
+.zoomimg{
+  height: 300;
+  width: 300;
+
+}
+.comments{
+  font-size: 14;
+  color:#05375c;
+}
+.cmt-mrg{
+  margin: 15;
+  padding: 5;
+}

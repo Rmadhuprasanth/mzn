@@ -1,0 +1,880 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+  <!-- <--------------english-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='English'">
+   <GridLayout rows="auto" columns="auto,*" >
+   <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+   <Label text="Delivered Order Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+ </GridLayout>
+  </ActionBar> 
+
+  <!-- <--------------arabic-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+    <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+    <Label [text]="aedata.Delivered_Order_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+  </RGridLayout>
+   </ActionBar> 
+   <!-- <--------------english-content---------------------->
+  <GridLayout class="page" *ngIf="lang=='English'">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+      <GridLayout  class="margins">
+        <GridLayout   rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  shadow="2"  cornerRadius="15">
+          <StackLayout row="0" col="0" class="grey-bg">
+            <label class="header-txt" text="Order Details"></label>
+          </StackLayout>
+       <!-- <==================order-details=========================-->
+        <GridLayout  row="1" col="0" rows="auto" columns="*,*" class="bg-card" > 
+            <GridLayout row="0" col="0" rows="auto,auto,auto,auto" columns="*" class="bg-child">
+              <label row="0" col="0" class="order-txt" text="Order Date"></label>
+              <label row="1" col="0"  class="order-txt" text="Order No"></label>
+              <label row="2" col="0"  class="order-txt" text="Order Total Amount"></label>
+          </GridLayout>
+          <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+            <label row="0" col="0" class="detail-txt" [text]="orderDate"></label>
+            <label row="1" col="0" class="detail-txt" [text]="OrderNo"></label>
+            <label row="2" col="0" class="detail-txt" [text]="TotalAmount"></label>
+        </GridLayout>
+      </GridLayout>
+
+       <!-- <==================order-items-margin -INN=========================-->
+      <StackLayout row="2" col="0" class="grey-bg">
+        <label class="header-txt" text="Items"></label>
+      </StackLayout>
+      <GridLayout   row="3" col="0" class="child-items-bg">
+        <WrapLayout  orientation="horizontal" > 
+          <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let items of orderItems">
+            <GridLayout  rows="auto,auto,auto" columns="*">
+              <!-- --------------------sticthing-order------------------------------------- -->
+              <GridLayout *ngIf="items.Type == 'Stitching'" row="0" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" >
+              <!-- <StackLayout row="0" col="0" class="grey-bg">
+                <label class="child-header-txt" text="Seller:Abc Tailor"></label>
+              </StackLayout> -->
+              <GridLayout  row="1" col="0" rows="auto,auto,auto,,auto,auto,auto" columns="*"  class="mrgin-child">
+                <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0" class="order-txt" text="Order Type"></label>
+                  <label row="0" col="1" class="detail-txt" text=":"></label>
+                  <label row="0" col="2" textWrap="true" class="detail-txt" [text]=" items.Type"></label>
+              </GridLayout> 
+              <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+                <label row="0" col="0"  class="order-txt" text="Delivery Type"></label>
+                <label row="0" col="1" class="detail-txt" text=":"></label>
+                <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.DeliveryNameInEnglish"></label>
+            </GridLayout> 
+            <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+              <label row="0" col="0"  class="order-txt" text="Stitching Type"></label>
+              <label row="0" col="1" class="detail-txt" text=":"></label>
+              <label row="0" col="2"  textWrap="true" class="detail-txt" [text]=" items.StitchingType"></label>
+          </GridLayout> 
+          </GridLayout>
+          <GridLayout row="2" col="0"  rows="auto,auto" columns="*">
+          <StackLayout row="0" col="0" class="item-header-bg" >
+            <label class="ietem-header" [text]="items.DressSubtypeName"></label>
+          </StackLayout>
+
+          <GridLayout row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="item-mrg">
+            <GridLayout  row="0" col="0" rows="auto" columns="*,auto"  > 
+              <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child">
+                <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0" class="order-txt" text="Price"></label>
+                  <label row="0" col="1" class="order-txt" text=":"></label>
+                  <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.price"></label>
+                </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0"  class="order-txt" text="Quantity"></label>
+                  <label row="0" col="1" class="order-txt" text=":"></label>
+                  <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.price"></label>
+                </GridLayout>
+                <GridLayout row="2" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0"  class="order-txt" text="Total"></label>
+                  <label row="0" col="1" class="order-txt" text=":"></label>
+                  <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.UnitTotal"></label>
+                </GridLayout>
+                <GridLayout row="3" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0"  class="order-txt" text="Material Type"></label>
+                  <label row="0" col="1" class="order-txt" text=":"></label>
+                  <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.MaterialTypeInEnglish"></label>
+                </GridLayout>
+                <GridLayout row="4" col="0" rows="auto" columns="*,auto,*">
+                  <label row="0" col="0"  class="order-txt" text="Status"></label>
+                  <label row="0" col="1" class="order-txt" text=":"></label>
+                  <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.status"></label>
+                </GridLayout>
+            </GridLayout>
+            <GridLayout row="1" col="1" rows="auto" columns="*" >
+            <Image [src]="dresssubtypeimg+items.Image" class="itemimg" row="0" col="0"></Image>
+          </GridLayout>
+        </GridLayout>
+        <GridLayout  row="1" col="0" class="border"></GridLayout>
+
+
+        <GridLayout row="2" col="0" rows="auto,auto,auto" columns="*">
+          <!-- <---------------Measurement-appointemt--------------------------->
+          <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"   *ngFor="let measureappointment of GetAppoinmentLeftMeasurement">
+            <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"  *ngIf="items.DetaIlId == measureappointment.DetailId">
+            <GridLayout  row="0" col="0" rows="auto" columns="*,*">
+<Label row="0" col="0" horizontalAlignment="left" textWrap="true"  verticalAlignment="middle" text="Measurement Appointment" class="appoint"></Label>
+<!-- <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle" *ngIf="items.MeasurementTypeId == 2" text="Create AppointMent" class="appoin-btn" (tap)="createmeasurementappointment()" ></Button> 
+<Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle" *ngIf="items.MeasurementTypeId == 3" text="Approve AppointMent" class="appoin-btn" (tap)="approveasurementappointment()" ></Button>  -->
+        </GridLayout>
+           <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child"> 
+          <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+            <label row="0" col="0" class="order-txt" text="AppointMent Type"></label>
+            <label row="0" col="1" class="order-txt" text=":"></label>
+            <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.MeasurementInEnglish"></label>
+        </GridLayout>
+        <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+          <label row="0" col="0"  class="order-txt" text="AppointMent Date"></label>
+          <label row="0" col="1" class="order-txt" text=":"></label>
+          <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.OrderDt"></label>
+      </GridLayout>
+      <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+        <label row="0" col="0"  class="order-txt" text="AppointMent Time"></label>
+        <label row="0" col="1" class="order-txt" text=":"></label>
+        <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.AppointmentTime"></label>
+    </GridLayout>
+    <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+      <label row="0" col="0"  class="order-txt" text="AppointMent Status"></label>
+      <label row="0" col="1" class="order-txt" text=":"></label>
+      <label row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.status"></label>
+  </GridLayout>
+    </GridLayout>
+  </GridLayout>
+        </GridLayout>
+
+          <!-- <---------------Material-appointemt--------------------------->
+
+  <GridLayout row="1" col="0" rows="auto,auto,auto" columns="*" *ngFor="let matAppointment of GetAppoinmentLeftMateril">
+    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" *ngIf="items.DetaIlId == matAppointment.DetailId">
+    <GridLayout  row="0" col="0" rows="auto" columns="*,*">
+<Label row="0" col="0" horizontalAlignment="left"  textWrap="true" verticalAlignment="middle" text="Material Appointment" class="appoint"></Label>
+     </GridLayout>
+        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child" > 
+       <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+         <label row="0" col="0" class="order-txt" text="AppointMent Type"></label>
+         <label row="0" col="1" class="order-txt" text=":"></label>
+         <label row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.HeaderInEnglish"></label>
+     </GridLayout>
+     <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+      <label row="0" col="0"  class="order-txt" text="AppointMent Date"></label>
+      <label row="0" col="1" class="order-txt" text=":"></label>
+       <label row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.OrderDt"></label>
+   </GridLayout>
+   <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+    <label row="0" col="0"  class="order-txt" text="AppointMent Time"></label>
+    <label row="0" col="1" class="order-txt" text=":"></label>
+     <label row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.AppointmentTime"></label>
+ </GridLayout>
+ <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+  <label row="0" col="0"  class="order-txt" text="AppointMent Status"></label>
+  <label row="0" col="1" class="order-txt" text=":"></label>
+   <label row="0" col="2" textWrap="true" class="detail-txt" [text]="matAppointment.status"></label>
+</GridLayout>
+ </GridLayout>
+</GridLayout>
+        </GridLayout>
+          <!-- <---------------Measuremnt-appointemt--------------------------->
+        </GridLayout>
+ 
+
+        <GridLayout  row="3" col="0" rows="auto,auto,auto" columns="auto,*"  > 
+        <Button row="1" col="0" horizontalAlignment="left"  verticalAlignment="middle"  text="Material" class="mat-btn"  (tap)="gotoMaterial(items.PatternId,items.DetaIlId)"></Button>
+        <Button row="1" col="1" horizontalAlignment="left"  verticalAlignment="middle"  text="Customization" class="mat-btn"   (tap)="gotoCustomization(items.DetaIlId)"></Button>  
+        <Button row="2" col="0" horizontalAlignment="left"  verticalAlignment="middle"  text="MeasureMent" class="mat-btn"   (tap)="gotoMeasureMent(items.DetaIlId)"></Button>
+        <GridLayout  row="2" col="1" rows="auto" columns="*,auto">
+          <Button row="0" col="0" horizontalAlignment="left"  verticalAlignment="middle" *ngIf="refrenceimgbtn"  text="Reference Image" class="mat-btn"   (tap)="gotoReferenceImg(items.DetaIlId)"></Button>  
+          <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle"  text="Track" class="track-btn"  (tap)="gotoTrackStitching(items.DetaIlId)" ></Button>
+
+        </GridLayout>
+    </GridLayout>
+
+    <GridLayout  row="4" col="0" class="border"></GridLayout>
+    <GridLayout  row="5" col="0" rows="auto" columns="auto,auto" (tap)="gotostitchingreview(items.DetaIlId)"> 
+      <Label row="0" col="0" horizontalAlignment="center" verticalAlignment="middle" text="Write Review" class="riview"></Label>
+      <Image row="0"  col="1" src="~/assets/productmapp/zero.png"  *ngIf="items.Rating == 0.0 || items.Rating == null "  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/one.png"  *ngIf="items.Rating == 1"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/two.png"  *ngIf="items.Rating == 2"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/three.png"  *ngIf="items.Rating == 3"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/four.png"  *ngIf="items.Rating == 4"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/five.png"  *ngIf="items.Rating == 5"  class="star-img"></Image>
+      
+      <!-- <StarRating  row="0" col="1"   android:scaleX=".5" android:scaleY=".5"  filledBorderColor="gold" filledColor="gold"  horizontalAlignment="right" emptyBorderColor="white" emptyColor="#9c9a9a" verticalAlignment="center" class="stars" min="5" max="5" [value]="items.Rating"> -->
+ 
+      <!-- </StarRating> -->
+    </GridLayout>
+          </GridLayout>
+        </GridLayout>
+      </GridLayout>
+      <!-- <--------------------------store-order---------------------------->
+      <GridLayout  *ngIf="items.StitchingType == 'store'" row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto" columns="*" class="mrgin-child" >
+          <!-- <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+            <label row="0" col="0" class="order-txt" text="Order Type"></label>
+            <label row="0" col="1" class="order-txt" text=":"></label>
+            <label row="0" col="2" textWrap="true" class="detail-txt" [text]="items.Type"></label>
+          </GridLayout>  -->
+          <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+            <label row="0" col="0" class="order-txt" text="Delivery Type"></label>
+            <label row="0" col="1" class="order-txt" text=":"></label>
+            <label row="0" col="2" textWrap="true" class="detail-txt" [text]="items.DeliveryNameInEnglish"></label>
+          </GridLayout> 
+    </GridLayout>
+
+
+
+
+    <GridLayout row="2" col="0"  rows="auto,auto" columns="*">
+      <StackLayout row="0" col="0" class="item-header-bg" >
+        <label class="ietem-header" [text]="items.DressSubtypeName"></label>
+      </StackLayout>
+
+      <GridLayout row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="item-mrg">
+        <GridLayout  row="0" col="0" rows="auto"  columns="*,*,auto"   > 
+          <GridLayout  row="0" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  class="brdr-rt">
+            <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+              <label row="0" col="0" class="order-txt" text="Size"></label>
+              <label row="0" col="1" class="detail-txt" text=":"></label>
+              <label row="0" col="2" class="detail-txt" [text]="items.Size"></label>
+            </GridLayout>
+            <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+              <label row="0" col="0" class="order-txt" text="Color"></label>
+              <label row="0" col="1" class="detail-txt" text=":"></label>
+              <label row="0" col="2" class="detail-txt" [ngStyle]="{'background': items.ColorCode}"></label>
+            </GridLayout>
+            <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+              <label row="0" col="0" class="order-txt" text="Qty"></label>
+              <label row="0" col="1" class="detail-txt" text=":"></label>
+              <label row="0" col="2" class="detail-txt" [text]="items.Quantity"></label>
+            </GridLayout>
+            <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+              <label row="0" col="0" class="order-txt" text="Price"></label>
+              <label row="0" col="1" class="detail-txt" text=":"></label>
+              <label row="0" col="2" class="detail-txt" [text]="items.price"></label>
+            </GridLayout>
+    </GridLayout>
+    <GridLayout  row="0" col="1" rows="auto,auto,auto,auto" columns="*"  style="padding-left: 2;"> 
+      <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+        <label row="0" col="0" class="order-txt" text="Brand"></label>
+        <label row="0" col="1" class="detail-txt" text=":"></label>
+        <label row="0" col="2" textWrap="true" class="detail-txt" [text]="items.BrandName"></label>
+      </GridLayout>
+      <GridLayout row="1" col="0" rows="auto" columns="*,auto,*">
+        <label row="0" col="0" class="order-txt" text="Total"></label>
+        <label row="0" col="1" class="detail-txt" text=":"></label>
+        <label row="0" col="2" class="detail-txt" [text]="items.UnitTotal"></label>
+      </GridLayout>
+</GridLayout>
+<GridLayout  row="0" col="2" rows="auto,auto" columns="*"  >
+  <Image [src]="storeimg+items.Image" class="itemimg" row="0" col="0"></Image>
+  <Button row="1" col="0" horizontalAlignment="right"  verticalAlignment="middle"  text="Track" class="track-btn"    (tap)="gotoTrackStore(items.DetaIlId)" ></Button>
+
+</GridLayout>
+
+    </GridLayout>
+
+<GridLayout  row="4" col="0" class="border"></GridLayout>
+<GridLayout  row="5" col="0" rows="auto" columns="*,auto"  (tap)="gotoStorereview(items.DetaIlId)"> 
+  <Label row="0" col="0" horizontalAlignment="center" verticalAlignment="middle" text="Write Review" class="riview"></Label>
+  <StarRating row="0" col="1" android:scaleX=".5" android:scaleY=".5"  filledBorderColor="gold" filledColor="gold"  horizontalAlignment="right" emptyBorderColor="white" emptyColor="#9c9a9a" verticalAlignment="center" class="stars" min="5" max="5" [value]="items.CustomerRating">
+    </StarRating>
+</GridLayout>
+      </GridLayout>
+    </GridLayout>
+
+
+
+
+      </GridLayout>
+            </GridLayout>
+          </DockLayout>
+        </WrapLayout>
+      </GridLayout>
+      
+       <!-- <==================order-items-margin -INN//end=========================-->
+
+       
+       <!-- <==================Price-details=========================-->
+      <StackLayout row="4" col="0" class="grey-bg">
+        <label class="header-txt" text="Price Details"></label>
+      </StackLayout>
+
+      <GridLayout  row="5" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+        <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child">
+          <StackLayout row="0" col="0"  *ngFor="let stCharge of StichingAndMaterialCharge" >
+          <label  *ngIf="stCharge.StichingAndMaterialCharge != 0.00 && stCharge.StichingAndMaterialCharge != null" class="order-txt" text="Stitching And Material Charges"></label>
+          </StackLayout>
+          <StackLayout row="1" col="0" *ngFor="let msrCharge of MeasurementCharges" >
+            <label   class="order-txt" *ngIf="msrCharge.MeasurementCharges != 0.00 && msrCharge.MeasurementCharges != null" text="MeasureMent Charges"></label>
+            </StackLayout>
+            <StackLayout row="2" col="0"  *ngFor="let urgCharge of UrgentStichingCharges" >
+              <label   class="order-txt" *ngIf="urgCharge.UrgentStichingCharges != 0.00 && urgCharge.UrgentStichingCharges != null" text="Urgent Stitching Charges"></label>
+              </StackLayout>
+              <StackLayout row="3" col="0"  *ngFor="let deliverCharge of DeliveryCharge" >
+                <label  class="order-txt" *ngIf="deliverCharge.DeliveryCharge != 0.00 && deliverCharge.DeliveryCharge != null" text="Delivery Charges"></label>
+                </StackLayout>
+                <StackLayout row="4" col="0"  *ngFor="let materdeliverCharge of MaterialDeliveryCharges" >
+                  <label   class="order-txt" *ngIf="materdeliverCharge.MaterialDeliveryCharges != 0.00  && materdeliverCharge.MaterialDeliveryCharges != null" text="Material Delivery Charges"></label>
+                  </StackLayout>
+          
+         
+         
+         
+      </GridLayout>
+      <GridLayout row="0" col="1" rows="auto,auto,auto,auto,auto" columns="*"  class="bg-child1">
+        <StackLayout row="0" col="0"  *ngFor="let stCharge of StichingAndMaterialCharge" >
+          <label  horizontalAlignment="left"  style="text-align: left;" class="detail-txt" *ngIf="stCharge.StichingAndMaterialCharge != 0.00 && stCharge.StichingAndMaterialCharge != null" [text]="':    '+stCharge.StichingAndMaterialCharge"></label>
+        </StackLayout>
+        
+        <StackLayout row="1" col="0"  *ngFor="let msrCharge of MeasurementCharges" >
+          <label  horizontalAlignment="left"  style="text-align: left;" class="detail-txt" *ngIf="msrCharge.MeasurementCharges != 0.00 && msrCharge.MeasurementCharges != null"  [text]="':    '+msrCharge.MeasurementCharges"></label>
+        </StackLayout>
+        <StackLayout row="2" col="0"  *ngFor="let urgCharge of UrgentStichingCharges" >
+          <label horizontalAlignment="left"  style="text-align: left;" class="detail-txt" *ngIf="urgCharge.UrgentStichingCharges != 0.00 && urgCharge.UrgentStichingCharges != null"  [text]="':    '+urgCharge.UrgentStichingCharges"></label>
+        </StackLayout>
+        <StackLayout row="3" col="0"  *ngFor="let deliverCharge of DeliveryCharge" >
+          <label  horizontalAlignment="left"  style="text-align: left;" class="detail-txt" *ngIf="deliverCharge.DeliveryCharge != 0.00 && deliverCharge.DeliveryCharge != null"  [text]="':    '+deliverCharge.DeliveryCharge"></label>
+        </StackLayout>
+        <StackLayout row="4" col="0"  *ngFor="let materdeliverCharge of MaterialDeliveryCharges" >
+         
+        <label  horizontalAlignment="left"  style="text-align: left;" class="detail-txt" *ngIf="materdeliverCharge.MaterialDeliveryCharges != 0.00  && materdeliverCharge.MaterialDeliveryCharges != null"  [text]="':    '+materdeliverCharge.MaterialDeliveryCharges"></label>
+        </StackLayout>
+        
+       
+       
+    </GridLayout>
+  </GridLayout>
+  <GridLayout  row="6" col="0" class="border"></GridLayout>
+
+  <GridLayout  row="7" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+    <GridLayout row="0" col="0" rows="auto,auto" columns="*" class="bg-child">
+      <StackLayout row="0" col="0"   *ngFor="let Total of Total" >
+        <label  *ngIf="Total.Total != 0.00  && Total.Total != null" class="order-txt" text="Total(AED)"></label>
+        </StackLayout>
+        
+      <StackLayout row="1" col="0"  *ngFor="let GetstoreProductPrice of GetstoreProductPrice">
+      <label row="1" col="0"  class="order-txt" *ngIf="GetstoreProductPrice.storeProductPrice != 0.00  && GetstoreProductPrice.storeProductPrice != null" text="Store Products"></label>
+    </StackLayout>
+  </GridLayout>
+  <GridLayout row="0" col="1" rows="auto,auto" columns="*"  class="bg-child1">
+    <StackLayout row="0" col="0"   *ngFor="let Total of Total" >
+      <label  horizontalAlignment="left"  style="text-align: left;"  *ngIf="Total.Total != 0.00  && Total.Total != null" class="detail-txt"  [text]="':    '+Total.Total"></label>
+    </StackLayout>
+    <StackLayout row="1" col="0"   *ngFor="let GetstoreProductPrice of GetstoreProductPrice" >
+      <label  horizontalAlignment="left"  style="text-align: left;"  *ngIf="GetstoreProductPrice.storeProductPrice != 0.00  && GetstoreProductPrice.storeProductPrice != null" class="detail-txt"  [text]="':    '+GetstoreProductPrice.storeProductPrice"></label>
+    </StackLayout>
+</GridLayout>
+</GridLayout>
+<GridLayout  row="8" col="0" class="border"></GridLayout>
+
+<GridLayout  row="9" col="0" rows="auto" columns="*,*" class="bg-card" > 
+<GridLayout row="0" col="0" rows="auto" columns="*" class="bg-child">
+  <label row="0" col="0" class="order-txt" text="Grand Total(AED)"></label>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto" columns="*"  class="bg-child1">
+<label row="0" col="0" horizontalAlignment="right"  *ngFor="let GetGrandTotal of GetGrandTotal"  class="detail-txt" [text]="':    '+GetGrandTotal.GrandTotal"></label>
+</GridLayout>
+</GridLayout>
+
+       <!-- <==================Price-details//end=========================-->
+
+       
+       <!-- <==================Payment-details=========================-->
+<!-- <StackLayout row="10" col="0" class="grey-bg">
+<label class="header-txt" text="Payment Details"></label>
+</StackLayout> -->
+
+
+<!-- <GridLayout  row="11" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+<GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" class="bg-child">
+  <label row="0" col="0" class="order-txt" text="Card/Cash"></label>
+  <label row="1" col="0"  class="order-txt" text="Discount"></label>
+  <label row="2" col="0"  class="order-txt" text="Paid By Points"></label>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto,auto,auto" columns="*" *ngFor="let paymentdetails of GetPaymentDetails" class="bg-child1">
+<label row="0" col="0" horizontalAlignment="left"  style="text-align: left;" class="detail-txt" [text]="':    '+paymentdetails.ReduceAmount"></label>
+<label row="1" col="0" horizontalAlignment="left"  style="text-align: left;" class="detail-txt" [text]="':    '+paymentdetails.ReduceAmount"></label>
+<label row="2" col="0" horizontalAlignment="left"  style="text-align: left;" class="detail-txt" [text]="':    '+paymentdetails.UsedPoint"></label>
+</GridLayout>
+</GridLayout> -->
+<GridLayout  row="12" col="0" class="border"></GridLayout>
+<GridLayout  row="13" col="0" rows="auto" columns="auto,*,*" *ngFor="let paystatus of GetPaymentReceivedStatus">
+<Label row="0" col="0" text="Payment Status" class="paymenttxt"> </Label>
+<Image src="~/assets/order-management/tick-withBG.png" *ngIf="paystatus.PaymentReceivedStatus == 'Paid'" class="tickimg" row="0" col="1"></Image>
+<Image src="~/assets/order-management/pending-red.png" *ngIf="paystatus.PaymentReceivedStatus != 'Paid'" class="tickimg" row="0" col="1"></Image>
+<Button  row="0" col="2" horizontalAlignment="right"  verticalAlignment="middle"  [text]="paystatus.PaymentReceivedStatus" [ngClass]="paystatus.PaymentReceivedStatus == 'Paid'? 'paid-btn':'nopaid'" class="paid-btn"  ></Button>
+</GridLayout>
+<!-- <GridLayout  row="13" col="0" rows="auto" columns="auto,*,*">
+  <Label row="0" col="0" text="Payment Status" class="paymenttxt"> </Label>
+  <Image src="~/assets/order-management/tick-withBG.png" class="tickimg" row="0" col="1"></Image>
+  <Button row="0" col="2" horizontalAlignment="right"  verticalAlignment="middle"  text="Paid" class="paid-btn"  ></Button>
+  </GridLayout> -->
+<GridLayout  row="14" col="0" class="border"></GridLayout>
+
+<!-- <GridLayout  row="15" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+<GridLayout row="0" col="0" rows="auto,auto,auto,auto" columns="*" class="bg-child">
+  <label row="0" col="0" class="order-txt" text="Card Number"></label>
+  <label row="1" col="0"  class="order-txt" text="Transaction Amount"></label>
+  <label row="2" col="0"  class="order-txt" text="Payment Date"></label>
+  <label row="3" col="0"  class="order-txt" text="Transaction Number"></label>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  *ngFor="let paymentdetails of GetPaymentDetails"  class="bg-child1">
+<label row="0" col="0" horizontalAlignment="left" class="detail-txt"  [text]="':    xxx xxx '+paymentdetails.cardlast4"></label>
+<label row="1" col="0" horizontalAlignment="left" class="detail-txt"  [text]="':    '+paymentdetails.Amount"></label>
+<label row="2" col="0" horizontalAlignment="left" class="detail-txt"  [text]="':    '+paymentdetails.PaidOn"></label>
+<label row="3" col="0" horizontalAlignment="left" class="detail-txt"  [text]="':    '+paymentdetails.Transactionid"></label>
+</GridLayout>
+</GridLayout> -->
+
+
+       <!-- <==================Payment-details//end=========================-->
+
+
+       
+       <!-- <==================Delivery Information=========================-->
+<StackLayout row="16" col="0" class="grey-bg">
+<label class="header-txt" text="Delivery Information"></label>
+</StackLayout>
+
+<GridLayout *ngFor="let address of GetBuyerAddress" row="17" col="0" rows="auto,auto" columns="*"   shadow="4"  cornerRadius="15" style="margin: 15;">
+<StackLayout row="0" col="0" class="order-bg">
+  <label class="completeorder-txt" [text]="address.FirstName + address.LastName"></label>
+</StackLayout> 
+<GridLayout row="1" col="0" rows="auto" columns="auto,auto">
+  <Image src="~/assets/order-management/Delivered.png" class="itemimg" row="0" col="0"></Image>
+  <GridLayout row="0" col="1" rows="auto,auto,auto,auto,auto" columns="*"  class="bg-child1">
+    <label row="0" col="0" class="detail-txt" [text]="address.Id"></label>
+    <label row="1" col="0" class="detail-txt" [text]="address.Area +','+ address.StateName"></label>
+    <label row="2" col="0" class="detail-txt" [text]="address.CountryName"></label>
+    <label row="3" col="0" class="detail-txt" [text]="address.PhoneNo"></label>
+</GridLayout>
+</GridLayout>
+</GridLayout>
+
+
+       <!-- <==================Delivery Information//end=========================-->
+    </GridLayout>
+        </GridLayout>
+
+      </ScrollView>
+      </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <!-- <--------------arabic-content---------------------->
+  <RGridLayout class="page" *ngIf="lang=='Arabic'" isRtl="true">
+    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+      <RGridLayout  isRtl="true" class="margins">
+        <RGridLayout  isRtl="true"  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  shadow="2"  cornerRadius="15">
+          <StackLayout row="0" col="0" class="grey-bg">
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" class="header-txt" [text]="aedata.Order_Details"></label>
+          </StackLayout>
+       <!-- <==================order-details=========================-->
+        <GridLayout  row="1" col="0" rows="auto" columns="*,*" class="bg-card" > 
+            <GridLayout row="0" col="0" rows="auto,auto,auto,auto" columns="*" class="bg-child">
+              <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Order_Date"></label>
+              <label horizontalAlignment="left" style="transform: scaleX(-1);" row="1" col="0"  class="order-txt" [text]="aedata.Order_No"></label>
+              <label horizontalAlignment="left" style="transform: scaleX(-1);" row="2" col="0"  class="order-txt" [text]="aedata.Order_Total_Amount"></label>
+          </GridLayout>
+          <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*"  class="bg-child1">
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="detail-txt" [text]="orderDate"></label>
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="1" col="0" class="detail-txt" [text]="OrderNo"></label>
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="2" col="0" class="detail-txt" [text]="TotalAmount"></label>
+        </GridLayout>
+      </GridLayout>
+
+       <!-- <==================order-items-margin -INN=========================-->
+      <StackLayout row="2" col="0" class="grey-bg">
+        <label horizontalAlignment="left" style="transform: scaleX(-1);" class="header-txt" text="Items"></label>
+      </StackLayout>
+      <GridLayout   row="3" col="0" class="child-items-bg">
+        <WrapLayout  orientation="horizontal" > 
+          <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let items of orderItems">
+            <GridLayout  rows="auto,auto,auto" columns="*">
+              <!-- --------------------sticthing-order------------------------------------- -->
+              <GridLayout *ngIf="items.Type == 'Stitching'" row="0" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" >
+              <!-- <StackLayout row="0" col="0" class="grey-bg">
+                <label class="child-header-txt" text="Seller:Abc Tailor"></label>
+              </StackLayout> -->
+              <GridLayout  row="1" col="0" rows="auto,auto,auto,,auto,auto,auto" columns="*"  class="mrgin-child">
+                <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Order_Type"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2" textWrap="true" class="detail-txt" [text]=" items.Type"></label>
+              </GridLayout> 
+              <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+                <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Delivery_Type"></label>
+                <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+                <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.DeliveryNameInEnglish"></label>
+            </GridLayout> 
+            <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+              <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Stitching_Type"></label>
+              <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+              <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]=" items.StitchingType"></label>
+          </GridLayout> 
+          </GridLayout>
+          <GridLayout row="2" col="0"  rows="auto,auto" columns="*">
+          <StackLayout row="0" col="0" class="item-header-bg" >
+            <label horizontalAlignment="left" style="transform: scaleX(-1);"  class="ietem-header" [text]="items.DressSubtypeNameInArabic"></label>
+          </StackLayout>
+
+          <GridLayout row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="item-mrg">
+            <GridLayout  row="0" col="0" rows="auto" columns="*,auto"  > 
+              <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child">
+                <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Price"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.price"></label>
+                </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Quantity"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.price"></label>
+                </GridLayout>
+                <GridLayout row="2" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Total"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.UnitTotal"></label>
+                </GridLayout>
+                <GridLayout row="3" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Material_Type"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.MaterialTypeInArabic"></label>
+                </GridLayout>
+                <GridLayout row="4" col="0" rows="auto" columns="*,auto,*">
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0"  class="order-txt" [text]="aedata.Status"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+                  <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="2"  textWrap="true" class="detail-txt" [text]="items.status"></label>
+                </GridLayout>
+            </GridLayout>
+            <GridLayout row="1" col="1" rows="auto" columns="*" >
+            <Image [src]="dresssubtypeimg+items.Image" class="itemimg" row="0" col="0"></Image>
+          </GridLayout>
+        </GridLayout>
+        <GridLayout  row="1" col="0" class="border"></GridLayout>
+
+
+        <GridLayout row="2" col="0" rows="auto,auto,auto" columns="*">
+          <!-- <---------------Measurement-appointemt--------------------------->
+          <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"   *ngFor="let measureappointment of GetAppoinmentLeftMeasurement">
+            <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*"  *ngIf="items.DetaIlId == measureappointment.DetailId">
+            <GridLayout  row="0" col="0" rows="auto" columns="*,*">
+<Label row="0" col="0" style="transform: scaleX(-1);text-align: right;" horizontalAlignment="left" textWrap="true"  verticalAlignment="middle" [text]="aedata.Measurement_Appointment" class="appoint"></Label>
+<!-- <Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle" *ngIf="items.MeasurementTypeId == 2" text="Create AppointMent" class="appoin-btn" (tap)="createmeasurementappointment()" ></Button> 
+<Button row="0" col="1" horizontalAlignment="right"  verticalAlignment="middle" *ngIf="items.MeasurementTypeId == 3" text="Approve AppointMent" class="appoin-btn" (tap)="approveasurementappointment()" ></Button>  -->
+        </GridLayout>
+           <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child"> 
+          <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.AppointMent_Type"></label>
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.MeasurementInArabic"></label>
+        </GridLayout>
+        <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+          <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Date"></label>
+          <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+          <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.OrderDt"></label>
+      </GridLayout>
+      <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+        <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Time"></label>
+        <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+        <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.AppointmentTime"></label>
+    </GridLayout>
+    <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+      <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Status"></label>
+      <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+      <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2"  textWrap="true" class="detail-txt" [text]="measureappointment.status"></label>
+  </GridLayout>
+    </GridLayout>
+  </GridLayout>
+        </GridLayout>
+
+          <!-- <---------------Material-appointemt--------------------------->
+
+  <GridLayout row="1" col="0" rows="auto,auto,auto" columns="*" *ngFor="let matAppointment of GetAppoinmentLeftMateril">
+    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" *ngIf="items.DetaIlId == matAppointment.DetailId">
+    <GridLayout  row="0" col="0" rows="auto" columns="*,*">
+<Label row="0" col="0"  horizontalAlignment="left" style="transform: scaleX(-1);text-align: right;"  textWrap="true" verticalAlignment="middle" [text]="aedata.Material_Appointment" class="appoint"></Label>
+     </GridLayout>
+        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child" > 
+       <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+         <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.AppointMent_Type"></label>
+         <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+         <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.HeaderInEnglish"></label>
+     </GridLayout>
+     <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+      <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Date"></label>
+      <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+       <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.OrderDt"></label>
+   </GridLayout>
+   <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+    <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Time"></label>
+    <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+     <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2" textWrap="true" class="detail-txt" [text]=" matAppointment.AppointmentTime"></label>
+ </GridLayout>
+ <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+  <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0"  class="order-txt" [text]="aedata.AppointMent_Status"></label>
+  <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="1" class="order-txt" text=":"></label>
+   <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="2" textWrap="true" class="detail-txt" [text]="matAppointment.status"></label>
+</GridLayout>
+ </GridLayout>
+</GridLayout>
+        </GridLayout>
+          <!-- <---------------Measuremnt-appointemt--------------------------->
+        </GridLayout>
+ 
+
+        <GridLayout  row="3" col="0" rows="auto,auto,auto" columns="auto,*"  > 
+        <Button row="1" col="0" horizontalAlignment="left" style="transform: scaleX(-1);"  verticalAlignment="middle"  [text]="aedata.Material" class="mat-btn"  (tap)="gotoMaterial(items.PatternId,items.DetaIlId)"></Button>
+        <Button row="1" col="1" horizontalAlignment="left" style="transform: scaleX(-1);"  verticalAlignment="middle"  [text]="aedata.Customization" class="mat-btn"   (tap)="gotoCustomization(items.DetaIlId)"></Button>  
+        <Button row="2" col="0" horizontalAlignment="left" style="transform: scaleX(-1);"  verticalAlignment="middle"  [text]="aedata.MeasureMent" class="mat-btn"   (tap)="gotoMeasureMent(items.DetaIlId)"></Button>
+        <GridLayout  row="2" col="1" rows="auto" columns="*,auto">
+          <Button row="0" col="0" horizontalAlignment="left" style="transform: scaleX(-1);"  verticalAlignment="middle" *ngIf="refrenceimgbtn"  [text]="aedata.Reference_Image" class="mat-btn"   (tap)="gotoReferenceImg(items.DetaIlId)"></Button>  
+          <Button row="0" col="1" horizontalAlignment="right" style="transform: scaleX(-1);"  verticalAlignment="middle"  [text]="aedata.Track_Order" class="track-btn"  (tap)="gotoTrackStitching(items.DetaIlId)" ></Button>
+
+        </GridLayout>
+    </GridLayout>
+
+    <GridLayout  row="4" col="0" class="border"></GridLayout>
+    <GridLayout  row="5" col="0" rows="auto" columns="auto,auto" (tap)="gotostitchingreview(items.DetaIlId)"> 
+      <Label style="transform: scaleX(-1);" row="0" col="0" horizontalAlignment="left" verticalAlignment="middle" [text]="aedata.Rating_and_Write_a_Review" class="riview"></Label>
+      <Image row="0"  col="1" src="~/assets/productmapp/zero.png"  *ngIf="items.Rating == 0.0 || items.Rating == null "  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/one.png"  *ngIf="items.Rating == 1"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/two.png"  *ngIf="items.Rating == 2"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/three.png"  *ngIf="items.Rating == 3"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/four.png"  *ngIf="items.Rating == 4"  class="star-img"></Image>
+      <Image row="0"  col="1" src="~/assets/productmapp/five.png"  *ngIf="items.Rating == 5"  class="star-img"></Image>
+      
+      <!-- <StarRating  row="0" col="1"   android:scaleX=".5" android:scaleY=".5"  filledBorderColor="gold" filledColor="gold"  horizontalAlignment="right" emptyBorderColor="white" emptyColor="#9c9a9a" verticalAlignment="center" class="stars" min="5" max="5" [value]="items.Rating"> -->
+ 
+      <!-- </StarRating> -->
+    </GridLayout>
+          </GridLayout>
+        </GridLayout>
+      </GridLayout>
+      <!-- <--------------------------store-order---------------------------->
+      <GridLayout  *ngIf="items.StitchingType == 'store'" row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+        <GridLayout  row="1" col="0" rows="auto,auto,auto,auto" columns="*" class="mrgin-child" >
+       
+          <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+            <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Delivery_Type"></label>
+            <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="order-txt" text=":"></label>
+            <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" textWrap="true" class="detail-txt" [text]="items.DeliveryNameInArabic"></label>
+          </GridLayout> 
+    </GridLayout>
+
+
+
+
+    <GridLayout row="2" col="0"  rows="auto,auto" columns="*">
+      <StackLayout row="0" col="0" class="item-header-bg" >
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  class="ietem-header"  [text]="items.DressSubtypeNameInArabic"></label>
+      </StackLayout>
+
+      <GridLayout row="1" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="item-mrg">
+        <GridLayout  row="0" col="0" rows="auto"  columns="*,*,auto"   > 
+          <GridLayout  row="0" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  class="brdr-rt">
+            <GridLayout row="0" col="0" rows="auto" columns="*,auto,*" >
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Size"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" class="detail-txt" [text]="items.Size"></label>
+            </GridLayout>
+            <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" >
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Color"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" class="detail-txt" [ngStyle]="{'background': items.ColorCode}"></label>
+            </GridLayout>
+            <GridLayout row="2" col="0" rows="auto" columns="*,auto,*" >
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Qty"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" class="detail-txt" [text]="items.Quantity"></label>
+            </GridLayout>
+            <GridLayout row="3" col="0" rows="auto" columns="*,auto,*" >
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Price"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+              <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" class="detail-txt" [text]="items.price"></label>
+            </GridLayout>
+    </GridLayout>
+    <GridLayout  row="0" col="1" rows="auto,auto,auto,auto" columns="*"  style="padding-left: 2;"> 
+      <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Brand"></label>
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" textWrap="true" class="detail-txt" [text]="items.BrandName"></label>
+      </GridLayout>
+      <GridLayout row="1" col="0" rows="auto" columns="*,auto,*">
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Total"></label>
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="1" class="detail-txt" text=":"></label>
+        <label horizontalAlignment="left"  style="transform: scaleX(-1);"  row="0" col="2" class="detail-txt" [text]="items.UnitTotal"></label>
+      </GridLayout>
+</GridLayout>
+<GridLayout  row="0" col="2" rows="auto,auto" columns="*"  >
+  <Image [src]="storeimg+items.Image" class="itemimg" row="0" col="0"></Image>
+  <Button row="1" col="0" horizontalAlignment="right"  style="transform: scaleX(-1);"   verticalAlignment="middle"  [text]="aedata.Track_Order" class="track-btn"    (tap)="gotoTrackStore(items.DetaIlId)" ></Button>
+
+</GridLayout>
+
+    </GridLayout>
+
+<GridLayout  row="4" col="0" class="border"></GridLayout>
+<GridLayout  row="5" col="0" rows="auto" columns="*,auto"  (tap)="gotoStorereview(items.DetaIlId)"> 
+  <Label row="0" col="0"  horizontalAlignment="left" style="transform: scaleX(-1);" verticalAlignment="middle" [text]="aedata.Rating_and_Write_a_Review" class="riview"></Label>
+  <StarRating row="0" col="1" android:scaleX=".5" android:scaleY=".5"  filledBorderColor="gold" filledColor="gold"  horizontalAlignment="right" emptyBorderColor="white" emptyColor="#9c9a9a" verticalAlignment="center" class="stars" min="5" max="5" [value]="items.CustomerRating">
+    </StarRating>
+</GridLayout>
+      </GridLayout>
+    </GridLayout>
+
+
+
+
+      </GridLayout>
+            </GridLayout>
+          </DockLayout>
+        </WrapLayout>
+      </GridLayout>
+      
+       <!-- <==================order-items-margin -INN//end=========================-->
+
+       
+       <!-- <==================Price-details=========================-->
+      <StackLayout row="4" col="0" class="grey-bg">
+        <label horizontalAlignment="left" style="transform: scaleX(-1);" class="header-txt" [text]="aedata.Price_Details"></label>
+      </StackLayout>
+
+      <GridLayout  row="5" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+        <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto" columns="*" class="bg-child">
+          <StackLayout row="0" col="0"  *ngFor="let stCharge of StichingAndMaterialCharge" >
+          <label  horizontalAlignment="left" style="transform: scaleX(-1);"  *ngIf="stCharge.StichingAndMaterialCharge != 0.00 && stCharge.StichingAndMaterialCharge != null" class="order-txt" [text]="aedata.Stitching_And_Material_Charges"></label>
+          </StackLayout>
+          <StackLayout row="1" col="0" *ngFor="let msrCharge of MeasurementCharges" >
+            <label  horizontalAlignment="left" style="transform: scaleX(-1);"   class="order-txt" *ngIf="msrCharge.MeasurementCharges != 0.00 && msrCharge.MeasurementCharges != null" [text]="aedata.MeasureMent_Charges"></label>
+            </StackLayout>
+            <StackLayout row="2" col="0"  *ngFor="let urgCharge of UrgentStichingCharges" >
+              <label  horizontalAlignment="left" style="transform: scaleX(-1);"   class="order-txt" *ngIf="urgCharge.UrgentStichingCharges != 0.00 && urgCharge.UrgentStichingCharges != null" [text]="aedata.Urgent_Stitching_Charges"></label>
+              </StackLayout>
+              <StackLayout row="3" col="0"  *ngFor="let deliverCharge of DeliveryCharge" >
+                <label  horizontalAlignment="left" style="transform: scaleX(-1);"  class="order-txt" *ngIf="deliverCharge.DeliveryCharge != 0.00 && deliverCharge.DeliveryCharge != null" [text]="aedata.Delivery_Charges"></label>
+                </StackLayout>
+                <StackLayout row="4" col="0"  *ngFor="let materdeliverCharge of MaterialDeliveryCharges" >
+                  <label  horizontalAlignment="left" style="transform: scaleX(-1);"   class="order-txt" *ngIf="materdeliverCharge.MaterialDeliveryCharges != 0.00  && materdeliverCharge.MaterialDeliveryCharges != null" [text]="aedata.Material_Delivery_Charges"></label>
+                  </StackLayout>
+          
+         
+         
+         
+      </GridLayout>
+      <GridLayout row="0" col="1" rows="auto,auto,auto,auto,auto" columns="*"  class="bg-child1">
+        <StackLayout row="0" col="0"  *ngFor="let stCharge of StichingAndMaterialCharge" >
+          <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);" class="detail-txt" *ngIf="stCharge.StichingAndMaterialCharge != 0.00 && stCharge.StichingAndMaterialCharge != null" [text]="stCharge.StichingAndMaterialCharge+'    :'"></label>
+        </StackLayout>
+        
+        <StackLayout row="1" col="0"  *ngFor="let msrCharge of MeasurementCharges" >
+          <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);" class="detail-txt" *ngIf="msrCharge.MeasurementCharges != 0.00 && msrCharge.MeasurementCharges != null"  [text]="msrCharge.MeasurementCharges+'    :'"></label>
+        </StackLayout>
+        <StackLayout row="2" col="0"  *ngFor="let urgCharge of UrgentStichingCharges" >
+          <label horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);" class="detail-txt" *ngIf="urgCharge.UrgentStichingCharges != 0.00 && urgCharge.UrgentStichingCharges != null"  [text]="urgCharge.UrgentStichingCharges+'    :'"></label>
+        </StackLayout>
+        <StackLayout row="3" col="0"  *ngFor="let deliverCharge of DeliveryCharge" >
+          <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);" class="detail-txt" *ngIf="deliverCharge.DeliveryCharge != 0.00 && deliverCharge.DeliveryCharge != null"  [text]="deliverCharge.DeliveryCharge+'    :'"></label>
+        </StackLayout>
+        <StackLayout row="4" col="0"  *ngFor="let materdeliverCharge of MaterialDeliveryCharges" >
+         
+        <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);" class="detail-txt" *ngIf="materdeliverCharge.MaterialDeliveryCharges != 0.00  && materdeliverCharge.MaterialDeliveryCharges != null"  [text]="materdeliverCharge.MaterialDeliveryCharges+'    :'"></label>
+        </StackLayout>
+        
+       
+       
+    </GridLayout>
+  </GridLayout>
+  <GridLayout  row="6" col="0" class="border"></GridLayout>
+
+  <GridLayout  row="7" col="0" rows="auto" columns="*,auto" class="bg-card" > 
+    <GridLayout row="0" col="0" rows="auto,auto" columns="*" class="bg-child">
+      <StackLayout row="0" col="0"   *ngFor="let Total of Total" >
+        <label horizontalAlignment="left" style="transform: scaleX(-1);"  *ngIf="Total.Total != 0.00  && Total.Total != null" class="order-txt" [text]="aedata.Total_AED"></label>
+        </StackLayout>
+        
+      <StackLayout row="0" col="0"  *ngFor="let GetstoreProductPrice of GetstoreProductPrice">
+      <label horizontalAlignment="left"  style="transform: scaleX(-1);" row="1" col="0"  class="order-txt" *ngIf="GetstoreProductPrice.storeProductPrice != 0.00  && GetstoreProductPrice.storeProductPrice != null" [text]="aedata.Store_Products"></label>
+    </StackLayout>
+  </GridLayout>
+  <GridLayout row="0" col="1" rows="auto,auto" columns="*"  class="bg-child1">
+    <StackLayout row="0" col="0"   *ngFor="let Total of Total" >
+      <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);"  *ngIf="Total.Total != 0.00  && Total.Total != null" class="detail-txt"  [text]="Total.Total+'    :'"></label>
+    </StackLayout>
+    <StackLayout row="1" col="0"   *ngFor="let GetstoreProductPrice of GetstoreProductPrice" >
+      <label  horizontalAlignment="left"  style="text-align: left;transform: scaleX(-1);"  *ngIf="GetstoreProductPrice.storeProductPrice != 0.00  && GetstoreProductPrice.storeProductPrice != null" class="detail-txt"  [text]="GetstoreProductPrice.storeProductPrice+'    :'"></label>
+    </StackLayout>
+</GridLayout>
+</GridLayout>
+<GridLayout  row="8" col="0" class="border"></GridLayout>
+
+<GridLayout  row="9" col="0" rows="auto" columns="*,*" class="bg-card" > 
+<GridLayout row="0" col="0" rows="auto" columns="*" class="bg-child">
+  <label  horizontalAlignment="left"  style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Grand_Total_AED"></label>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto" columns="*"  class="bg-child1">
+<label row="0" col="0"  horizontalAlignment="left"  style="transform: scaleX(-1);"  *ngFor="let GetGrandTotal of GetGrandTotal"  class="detail-txt" [text]="GetGrandTotal.GrandTotal+'    :'"></label>
+</GridLayout>
+</GridLayout>
+
+       <!-- <==================Price-details//end=========================-->
+
+       
+       <!-- <==================Payment-details=========================-->
+
+<GridLayout  row="12" col="0" class="border"></GridLayout>
+<GridLayout  row="13" col="0" rows="auto" columns="auto,*,*" *ngFor="let paystatus of GetPaymentReceivedStatus">
+<Label style="transform: scaleX(-1);"  row="0" col="0" [text]="aedata.Payment_Status" class="paymenttxt"> </Label>
+<Image style="transform: scaleX(-1);"  src="~/assets/order-management/tick-withBG.png" *ngIf="paystatus.PaymentReceivedStatus == 'Paid'" class="tickimg" row="0" col="1"></Image>
+<Image src="~/assets/order-management/pending-red.png" *ngIf="paystatus.PaymentReceivedStatus != 'Paid'" class="tickimg" row="0" col="1"></Image>
+<Button  row="0" col="2" horizontalAlignment="right" style="transform: scaleX(-1);"  verticalAlignment="middle"  [text]="paystatus.PaymentReceivedStatus" [ngClass]="paystatus.PaymentReceivedStatus == 'Paid'? 'paid-btn':'nopaid'" class="paid-btn"  ></Button>
+</GridLayout>
+
+<GridLayout  row="14" col="0" class="border"></GridLayout>
+
+       <!-- <==================Payment-details//end=========================-->
+
+       <!-- <==================Delivery Information=========================-->
+<StackLayout row="16" col="0" class="grey-bg">
+<label horizontalAlignment="left" style="transform: scaleX(-1);" class="header-txt" [text]="aedata.Delivery_Information"></label>
+</StackLayout>
+
+<GridLayout *ngFor="let address of GetBuyerAddress" row="17" col="0" rows="auto,auto" columns="*"   shadow="4"  cornerRadius="15" style="margin: 15;">
+<StackLayout row="0" col="0" class="order-bg">
+  <label horizontalAlignment="left" style="transform: scaleX(-1);" class="completeorder-txt" [text]="address.FirstName + address.LastName"></label>
+</StackLayout> 
+<GridLayout row="1" col="0" rows="auto" columns="auto,auto">
+  <Image src="~/assets/order-management/Delivered.png" class="itemimg" row="0" col="0"></Image>
+  <GridLayout row="0" col="1" rows="auto,auto,auto,auto,auto" columns="*"  class="bg-child1">
+    <!-- <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="detail-txt" [text]="address.Id"></label> -->
+    <label horizontalAlignment="left" style="transform: scaleX(-1);" row="1" col="0" class="detail-txt" [text]="address.Area +','+ address.StateName"></label>
+    <label horizontalAlignment="left" style="transform: scaleX(-1);" row="2" col="0" class="detail-txt" [text]="address.CountryName"></label>
+    <label horizontalAlignment="left" style="transform: scaleX(-1);" row="3" col="0" class="detail-txt" [text]="address.PhoneNo"></label>
+</GridLayout>
+</GridLayout>
+</GridLayout>
+
+
+       <!-- <==================Delivery Information//end=========================-->
+    </RGridLayout>
+        </RGridLayout>
+
+      </ScrollView>
+      </RGridLayout>
+</Page>

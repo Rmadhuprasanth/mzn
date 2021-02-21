@@ -1,0 +1,162 @@
+/* Add mobile styles for the component here.  */
+.my-class {
+    background-image: url("~/assets/background.jpg") no-repeat;
+} 
+.page {
+    align-items: center; 
+    flex-direction: column;
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .padings{
+    margin: 20; 
+  }
+  .dropflag{
+    height: 10;
+    width: 10;
+  }
+  /* .form {
+    margin-left: 30;
+    margin-right: 30;
+    flex-grow: 2;
+    margin-top: 150;
+  }
+  .drop{
+border: 1 solid red;
+  } 
+
+  .header {
+    font-size: 25;
+    font-weight: 600;
+    margin-bottom: 70;
+    text-align: center;
+    color: #D51A1A;
+  } */
+  .topgrid{
+margin-top: 40;
+  }
+  .form {
+    margin-left: 30;
+    margin-right: 30;
+    margin-top: 130;
+  }
+  .logo {
+    margin-bottom: 12;
+    height: 140;
+    font-weight: bold;
+    position: fixed;
+  }
+  
+  .input-field{
+      display: flex;
+      margin-left: -20;
+  }
+  .input-fieldae{
+    display: flex;
+    margin-right: -20;
+}
+ .m-icon{
+     height: 30;
+margin-top: 5;
+/* margin-right: 0; */
+/* margin-left: 0; */ 
+
+margin-right: -15;
+    }
+    .m-iconae{
+      height: 30;
+ margin-top: 5;
+ margin-left: -15;
+     }
+  .input {
+    font-size: 12;
+    placeholder-color: #A8A8A8;
+    border-color: black;
+    color: #05375c;
+  }
+  .input:disabled {
+    background-color: white;
+    opacity: 0.5;
+  }
+  
+  .btn-primary {
+    margin: 30 5 15 5;
+  }
+  
+  .login-label {
+    horizontal-align: center;
+    color: #A8A8A8;
+    font-size: 16;
+  }
+  .sign-up-label {
+    margin-bottom: 20;
+  }
+  .bold {
+    color: #000000; 
+  }
+  .cont-btn{
+      margin-top: 60;
+      background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+      color: white;
+      border-radius: 21; 
+      height: 40;
+      text-align: center !important;
+  }
+  
+.lang-btn{
+    border-width: 1;
+    border-color: gray;
+    border-radius: 21;  
+    height: 45;
+    color: black;
+    text-align: left; 
+    margin-top: 80;
+    display: flex;
+    width: 300;
+}
+.langtxt{
+    font-size: 15;
+    margin-left: 3;
+    margin-top: 2;
+    vertical-align: middle;
+    color: #05375c;
+    
+}
+.langtxtae{
+  font-size: 15;
+  margin-right: 3;
+  margin-top: 2;
+  vertical-align: middle;
+  color: #05375c;
+  
+}
+.arrow-icon{
+    height: 20 !important; 
+    /* margin-left: 210;  */
+    margin-top: 5;
+    horizontal-align:right;
+    margin-right: 10;
+}
+.flag{
+  height: 25;
+  width: 40;
+}
+.drops{
+    border-width: 1;
+    border-color: #eed688;
+    background-color: #eed688;  
+    height: 30;
+    width: 100;
+    text-align: center; 
+    margin-right: -15;
+    margin-top: -14;
+}
+.dropsae{
+  border-width: 1;
+  border-color: #eed688;
+  background-color: #eed688;  
+  height: 30;
+  width: 100;
+  text-align: center; 
+  margin-left: -15;
+  margin-top: -14;
+}

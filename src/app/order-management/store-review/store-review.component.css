@@ -1,0 +1,56 @@
+/* Add mobile styles for the component here.  */
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .img{
+      height: 80;
+      width: 80;
+  }
+  .stars{
+    padding:0 !important;
+    margin: 0 !important;
+    /* margin-right: -150;  */
+    background: rgb(207, 207, 207);
+    border-radius: 12px;
+  }
+  .order-txt{
+    font-size: 15;
+    color:#05375c ;
+    margin-bottom: -10;
+  }
+  .imgcard{
+    height: 100;
+    width: 100;
+  }
+  .starcard{
+      margin-left: -40;
+  }
+  .border{
+    border-width: 1 0 0 0;
+    margin-top: 5;
+    margin-bottom: 5;
+    border-color: gray;
+    
+    }
+    .txtbox{
+        placeholder-color: #05375c;   
+         color:#05375c ;
+         font-size: 13;
+      }

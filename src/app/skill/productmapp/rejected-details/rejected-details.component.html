@@ -1,0 +1,208 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+  <!-- <---------------english-header--------------------->
+  <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Products" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+   <!-- <---------------arabic-header--------------------->
+   <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Products" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+      <!-- <---------------english-content--------------------->
+    <GridLayout rows="auto,*" columns="*" *ngIf="lang=='English'">
+        <GridLayout row="0" height="250">
+            <Carousel #myCarousel [items]="myData" height="100%" width="100%" color="white"
+                android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10" autoPagingInterval="2"
+                autoPlay="true" showIndicator="true">
+                <CarouselItem *ngFor="let item of myData" [backgroundColor]="item.color" verticalAlignment="middle">
+                    <GridLayout>
+                        <Image [src]="imagurl+item.Small" stretch="aspectFill"></Image>
+                    </GridLayout>
+                </CarouselItem>
+            </Carousel>
+        </GridLayout>
+        <ScrollView row="1" scrollBarIndicatorVisible="false">
+            <GridLayout class="page">
+                <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="">
+
+                    <StackLayout row="0" col="0" shadow="2" cornerRadius="10" class="pr_name">
+                        <Label [text]="productdetailsarray.ProductName" verticalAlignment="center" class="nametxt"></Label>
+                    </StackLayout>
+
+                <GridLayout row="1" col="0" rows="auto,auto" columns="*,*">
+
+                <GridLayout row="0" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;margin-left: 15;margin-right: 15;">
+                    <Label text="Description"  row="0" col="0" class="description"></Label>
+                    <Label [text]="productdetailsarray.ProductDescription"  row="1" col="0" class="desc_content"></Label>
+                </GridLayout>
+                <StackLayout style="margin-left: 15;margin-right: 15;" row="0" col="1"><Label [text]="productdetailsarray.CategoryName +' '+ '>'+' '+ productdetailsarray.BrandName" horizontalAlignment="right"  class="Category"></Label></StackLayout>
+                <StackLayout style="margin-left: 15;margin-right: 15;" row="1" col="0"><Label text="Product Units (CM)" horizontalAlignment="left" class="Product_Units"></Label></StackLayout>
+                <StackLayout style="margin-left: 15;margin-right: 15;" row="1" col="1"><Label text="EU (Size Guide)" horizontalAlignment="right" class="Size_Guide"></Label></StackLayout>
+            </GridLayout>
+<!-- <-------------------------size------------IsMapped------------------->
+                <GridLayout row="2" col="0" style="margin: 15;">
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="80" width="20%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"    *ngFor="let size of sizearray" >
+                                        <Label [text]="size.Size" class="cardStyle"  shadow="2" cornerRadius="8"></Label>
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+            </ScrollView>
+                </GridLayout>
+                <GridLayout row="3" col="0"  class="border"></GridLayout>
+<!-- <-------------------------color------------------------------->
+<GridLayout row="4" col="0" style="margin-left: 15;margin-right: 15;">
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" >
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="150" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"    *ngFor="let color of colorarrray"> 
+                       
+                        <StackLayout  [ngStyle]="color.ColorCode != '' ? {'background': color.ColorCode}:{'background-image': '~/assets/dashbord/Background.jpg'}"   class="color_cardStyle"  dock="top">
+                        </StackLayout>
+                        
+                        <Label [text]="color.ColorName" dock="bottom" class="clrtxt"></Label>   
+                    </DockLayout>  
+            </WrapLayout>
+            </GridLayout> 
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout> 
+<GridLayout row="5" col="0"  class="border"></GridLayout>
+<StackLayout row="6" col="0" shadow="2" cornerRadius="10" class="pr_name">
+    <Label [text]="productdetailsarray.BrandName" verticalAlignment="center" class="nametxt"></Label>
+</StackLayout>
+<GridLayout row="7" col="0"  class="bgrej" width="100%">
+    <Label text="Rejected Reasons" class="rejecttxt"></Label>
+</GridLayout>
+<GridLayout row="8" col="0" rows="auto,auto,auto" columns="*"  class="pr_sku" style="margin: 15;">
+   <WrapLayout  orientation="horizontal" >  
+    <DockLayout   stretchLastChild="false" width="100%"    *ngFor="let Notes of rejectNotes" >
+        <GridLayout  rows="auto,auto,auto" columns="*" shadow="2" cornerRadius="15" class="pr_sku">
+        <Label [text]="Notes.ProductName"  row="0" col="0"  horizontalAlignment="left" class="nametxt"></Label>
+   <Label [text]="Notes.RejectDt"  row="1" col="0"  horizontalAlignment="left" class="datetxt"></Label>
+   <GridLayout row="2" col="0"  rows="auto" columns="*,*"> 
+
+    <Label text="Rejected Reason" row="1" col="0"  horizontalAlignment="left" class="reason"></Label>
+    <Label [text]="Notes.Notes" row="1" col="1"  horizontalAlignment="left" class="reason"></Label>
+   </GridLayout> 
+</GridLayout>
+    </DockLayout >  
+</WrapLayout>
+</GridLayout>
+                </GridLayout>  
+            </GridLayout>
+ 
+        </ScrollView>
+    </GridLayout>
+
+
+
+
+
+      <!-- <---------------arabic-content--------------------->
+      <RGridLayout rows="auto,*" isRtl="true" columns="*" *ngIf="lang=='Arabic'">
+        <GridLayout row="0" height="250">
+            <Carousel #myCarousel [items]="myData" height="100%" width="100%" color="white"
+                android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10" autoPagingInterval="2"
+                autoPlay="true" showIndicator="true">
+                <CarouselItem *ngFor="let item of myData" [backgroundColor]="item.color" verticalAlignment="middle">
+                    <GridLayout>
+                        <Image [src]="imagurl+item.Small" stretch="aspectFill"></Image>
+                    </GridLayout>
+                </CarouselItem>
+            </Carousel>
+        </GridLayout>
+        <ScrollView row="1" scrollBarIndicatorVisible="false">
+            <RGridLayout class="page" isRtl="true">
+                <RGridLayout isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="">
+
+                    <StackLayout row="0" col="0" shadow="2" cornerRadius="10" class="pr_name">
+                        <Label  style="transform: scaleX(-1);" [text]="productdetailsarray.ProductNameInArabic" verticalAlignment="center" class="nametxt"></Label>
+                    </StackLayout>
+
+                <GridLayout row="1" col="0" rows="auto,auto" columns="*,*">
+
+                <GridLayout row="0" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;margin-left: 15;margin-right: 15;">
+                    <Label style="transform: scaleX(-1);" horizontalAlignment="left" [text]="aedata.Description"  row="0" col="0" class="description"></Label>
+                    <Label  style="transform: scaleX(-1);" horizontalAlignment="left" [text]="productdetailsarray.ProductDescriptionInArabic"  row="1" col="0" class="desc_content"></Label>
+                </GridLayout>
+                <StackLayout  style="margin-left: 15;margin-right: 15;" row="0" col="1"><Label [text]="productdetailsarray.CategoryName +' '+ '>'+' '+ productdetailsarray.BrandName"  style="transform: scaleX(-1);" horizontalAlignment="right"  class="Category"></Label></StackLayout>
+                <StackLayout  style="margin-left: 15;margin-right: 15;" row="1" col="0"><Label   style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Product_Units_CM" horizontalAlignment="left" class="Product_Units"></Label></StackLayout>
+                <StackLayout  style="margin-left: 15;margin-right: 15;" row="1" col="1"><Label  style="transform: scaleX(-1);" [text]="aedata.EU_Size_Guide" horizontalAlignment="right" class="Size_Guide"></Label></StackLayout>
+            </GridLayout>
+<!-- <-------------------------size------------IsMapped------------------->
+                <GridLayout row="2" col="0" style="margin: 15;">
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="80" width="20%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"    *ngFor="let size of sizearray" >
+                                        <Label  horizontalAlignment="left" style="transform: scaleX(-1);" [text]="size.Size"  style="transform: scaleX(-1);" class="cardStyle"  shadow="2" cornerRadius="8"></Label>
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+            </ScrollView>
+                </GridLayout>
+                <GridLayout row="3" col="0"  class="border"></GridLayout>
+<!-- <-------------------------color------------------------------->
+<GridLayout row="4" col="0" style="margin-left: 15;margin-right: 15;">
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false" >
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="150" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"    *ngFor="let color of colorarrray"> 
+                       
+                        <StackLayout  [ngStyle]="color.ColorCode != '' ? {'background': color.ColorCode}:{'background-image': '~/assets/dashbord/Background.jpg'}"   class="color_cardStyle"  dock="top">
+                        </StackLayout>
+                        
+                        <Label horizontalAlignment="center" style="transform: scaleX(-1);" [text]="color.ColorName" dock="bottom" class="clrtxt"></Label>   
+                    </DockLayout>  
+            </WrapLayout>
+            </GridLayout> 
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout> 
+<GridLayout row="5" col="0"  class="border"></GridLayout>
+<StackLayout row="6" col="0" shadow="2" cornerRadius="10" class="pr_name">
+    <Label horizontalAlignment="center" style="transform: scaleX(-1);" [text]="productdetailsarray.BrandName" verticalAlignment="center" class="nametxt"></Label>
+</StackLayout>
+<GridLayout row="7" col="0"  class="bgrej" width="100%">
+    <Label  style="transform: scaleX(-1);"  horizontalAlignment="left" [text]="aedata.Rejected_Reason" class="rejecttxt"></Label>
+</GridLayout>
+<GridLayout row="8" col="0" rows="auto,auto,auto" columns="*"  class="pr_sku" style="margin: 15;">
+   <WrapLayout  orientation="horizontal" >  
+    <DockLayout   stretchLastChild="false" width="100%"    *ngFor="let Notes of rejectNotes" >
+        <GridLayout  rows="auto,auto,auto" columns="*" shadow="2" cornerRadius="15" class="pr_sku" style="padding-left: 8;">
+        <Label  style="transform: scaleX(-1);" [text]="Notes.ProductNameInArabic"  row="0" col="0"  horizontalAlignment="left" class="nametxt"></Label>
+   <Label  style="transform: scaleX(-1);" [text]="Notes.RejectDt"  style="transform: scaleX(-1);" row="1" col="0"  horizontalAlignment="left" class="datetxt"></Label>
+   <GridLayout row="2" col="0"  rows="auto" columns="*,*"> 
+
+    <Label  style="transform: scaleX(-1);" [text]="aedata.Rejected_Reasons" row="1" col="0"  horizontalAlignment="left" class="reason"></Label>
+    <Label  style="transform: scaleX(-1);" [text]="Notes.Notes" row="1" col="1"  horizontalAlignment="left" class="reason"></Label>
+   </GridLayout> 
+</GridLayout>
+    </DockLayout >  
+</WrapLayout>
+</GridLayout>
+                </RGridLayout>  
+            </RGridLayout>
+ 
+        </ScrollView>
+    </RGridLayout>
+</Page>

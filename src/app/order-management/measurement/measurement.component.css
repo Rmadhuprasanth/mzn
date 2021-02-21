@@ -1,0 +1,116 @@
+.header{
+
+    background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .dressdiv{
+    width: 80;
+    height: 80;
+    margin: 0;
+    padding: 0;
+  }
+  .dressimg{
+      height: auto;
+      width: auto;
+  }
+  .dressname{
+    font-size: 14;
+    color:#05375c;
+    vertical-align: middle; 
+  }
+  .cardStyle{
+    margin: 8;
+    text-align: center;
+background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+background-size:     cover;                      
+background-repeat:   no-repeat;
+background-position: center center;
+align-items: center;
+    border-width: 1 !important;
+border-color: #05375c !important; 
+border-radius: 16 16 16 16 ; 
+
+}
+.cardStyle1{
+  margin-bottom: -10;
+}
+.bg-card{
+  background-color:#05375c;
+  border-width: 2;
+  border-radius: 12;
+  /* border-color: rgb(252, 252, 252); */
+  border-color:rgb(247, 247, 247);
+  /* android-elevation:55 !important; */
+  
+}
+.bg-child{
+  background:white;
+  padding-bottom: 10;
+  padding-top: 10;
+  margin-right: 1;
+  border-radius: 0 0 0 10; 
+}
+.bg-child1{
+  background:white;
+  padding-bottom: 10;
+  padding-top: 10;
+  margin-left: 1;
+  border-radius: 0 0 10 0; 
+}
+.ordrimg{
+  background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+    height: 60;
+    width: 60;
+    margin:5;
+    border-radius: 60;
+}
+.order-txt{
+    font-size: 13;
+    color:#05375c ;
+    margin-top: -8;
+}
+.detail-txt{
+  font-size: 13;
+  color:#05375c ;
+  text-align: left;
+  margin-left: 10;
+  margin-top: -8;
+}
+.st-img{
+    height: 100;
+    width: auto;
+}
+.uncheck-img{
+height: 25;
+width: 25;
+}
+.st-txt{
+    border-radius: 0 0 14 14;
+    background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);
+    color: white;
+    width: auto;
+    height: 25;
+}
+.bgbtn{
+  height: 40;
+  background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+  font-size: 14;
+  text-align: center;
+  width: 100%;
+}

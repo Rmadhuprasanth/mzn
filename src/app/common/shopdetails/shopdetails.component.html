@@ -1,0 +1,372 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:maps="nativescript-google-maps-sdk" class="parent"
+    *ngIf="loader=='false'">
+    <!-- <------------------------english-header-------------------- -->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*,auto">
+            <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"
+                class="action-image"></Image>
+            <Label text="Branch Details" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+            <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right"
+                stretch="aspectFill" class="bell-image"></Image> 
+        </GridLayout>
+    </ActionBar>
+
+
+    <!-- <------------------------arabic-header-------------------- -->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*,auto" isRtl="true">
+            <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"
+                class="action-image"></Image>
+            <Label [text]="aedata.Branch_Details" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+            <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right"
+                stretch="aspectFill" class="bell-image"></Image>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <------------------------english-content-------------------- -->
+    <GridLayout class="page"  *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView">
+            <GridLayout rows="*" class="margins">
+                <!-- <==========================================shop-details==========================================-->
+                <GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+                    class="borders">
+                    <!-- <-------------------------------shop-no-edit-end-------------------------------------------->
+
+                    <!-- <-------------------------------shop--edit-------------------------------------------->
+                    <GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,200,auto,auto"
+                        columns="*">
+
+                        <form [formGroup]="shopForm">
+                            <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" class="txt-marg">
+
+                                <CardView row="1" class="mapbrdr" margin="10" elevation="25" radius="40"
+                                    (tap)="openmapmodal()">
+                                    <GridLayout rows=" auto, auto" columns="*">
+                                        <GridLayout row="0" col="0" rows="auto" columns="*,*" class="mapbg">
+                                            <Label class="maptxt" text="Location Address" horizontalAlignment="left"
+                                                row="0" col="0"></Label>
+                                            <Label class="maptxtone" text="Edit" horizontalAlignment="right" row="0"
+                                                col="1"></Label>
+                                        </GridLayout>
+                                        <GridLayout row="1" col="0" rows="auto" columns="*,90">
+                                            <Label row="0" col="0" class="bindmaptxt" textWrap="true"
+                                                [text]="mapadress"></Label>
+                                            <MapView #mapView row="0" col="1" [latitude]="latitude"
+                                                [longitude]="longitude" [zoom]="zoom" [minZoom]="minZoom"
+                                                [maxZoom]="maxZoom" [bearing]="bearing" [tilt]="tilt"
+                                                i-padding="50,50,50,50" [padding]="padding"
+                                                (mapReady)="onMapReady($event)" (markerSelect)="onMarkerEvent($event)"
+                                                (markerEndDragging)="onMarkerEvent($event)"
+                                                (markerInfoWindowTapped)="onMarkerEvent($event)"
+                                                (coordinateTapped)="onCoordinateTapped($event)"
+                                                (cameraChanged)="onCameraChanged($event)"
+                                                (cameraMove)="onCameraMove($event)" markerDraggable="true"></MapView>
+                                        </GridLayout>
+                                    </GridLayout>
+
+                                </CardView>
+
+                            </GridLayout>
+                            <GridLayout row="1" col="0" rows="auto,auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" editable="true" formControlName="ShopNameInEnglish" row="0"
+                                    col="0" hint=" Name in English" [(ngModel)]="shopprofilearr.ShopNameInEnglish"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="( shopForm.controls.ShopNameInEnglish.dirty ||  shopForm.controls.ShopNameInEnglish.touched) &&  shopForm.controls.ShopNameInEnglish.invalid &&  shopForm.controls.ShopNameInEnglish.errors.required"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="2" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" formControlName="ShopNameInArabic" editable="true" row="0"
+                                    col="0" hint="Name in Arabic" [(ngModel)]="shopprofilearr.ShopNameInArabic"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.ShopNameInArabic.errors && shopForm.controls.ShopNameInArabic.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="3" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" formControlName="CountryId" editable="false" row="0" col="0"
+                                    hint="Select Country" [(ngModel)]="shopprofilearr.CountryName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    (tap)="opencountrymodal()" src="~/assets/profile/arrow.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.CountryId.errors && shopForm.controls.CountryId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="4" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" formControlName="CityId" editable="false" row="0" col="0"
+                                    hint="Select State" [(ngModel)]="shopprofilearr.StateName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/arrow.png" (tap)="openStateModel()"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.CityId.errors && shopForm.controls.CityId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="5" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" formControlName="AreaId" editable="false" row="0" col="0"
+                                    hint="Area" [(ngModel)]="shopprofilearr.AreaName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    (tap)="openareaModal()" src="~/assets/profile/arrow.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.AreaId.errors && shopForm.controls.AreaId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="7" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextView class="inputs" formControlName="AddressInEnglish" editable="true" row="0"
+                                    col="0" textWrap="true" hint="Address in English"
+                                    [(ngModel)]="shopprofilearr.AddressInEnglish" autocorrect="false"
+                                    autocapitalizationType="none"></TextView>
+                                <Image class="shop-iconss" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.AddressInEnglish.errors && shopForm.controls.AddressInEnglish.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="8" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextView class="inputs" formControlName="AddressInArabic" editable="true" row="0"
+                                    col="0" textWrap="true" hint="Address in Arabic"
+                                    [(ngModel)]="shopprofilearr.AddressInArabic" autocorrect="false"
+                                    autocapitalizationType="none"></TextView>
+                                <Image class="shop-iconss" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.AddressInArabic.errors && shopForm.controls.AddressInArabic.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="9" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input" formControlName="LandMark" editable="true" row="0" col="0"
+                                    textWrap="true" hint="Landmark" [(ngModel)]="shopprofilearr.LandMark"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="center"
+                                    *ngIf="shopForm.controls.LandMark.errors && shopForm.controls.LandMark.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </GridLayout>
+                            <GridLayout row="10" col="0" rows="auto" columns="*" class="shop-bg">
+                                <Label row="0" col="0" class="shoptxt" text="Shop Images"></Label>
+                            </GridLayout>
+                            <GridLayout row="11" col="0" rows="auto" columns="*">
+
+                                <WrapLayout rows="40" col="40" orientation="horizontal">
+                                    <DockLayout stretchLastChild="false" width="25%" height="100"
+                                        *ngFor='let shop of showshopimgs'>
+                                        <GridLayout rows="auto" columns="*" class="margin-img">
+                                            <Image row="0" col="0" src="~/assets/profile/Minus.png" dock="top"
+                                                class="minusimg" (tap)="removeimg(shop.shopimg,shop.Id)"></Image>
+                                            <Image row="0" col="0" [src]="shop.shopimg" stretch="aspectFill"
+                                                class="imgbrdr"></Image>
+                                        </GridLayout>
+                                    </DockLayout>
+                                </WrapLayout>
+
+                            </GridLayout>
+                            <GridLayout row="12" col="0" rows="auto" columns="80" horizontalAlignment="right">
+                                <GridLayout class="uploadbg" row="0" col="0" rows="auto" columns="*"
+                                    (tap)="gotocammadal()">
+                                    <Image class="upload-icon" horizontalAlignment="left" row="0" col="0"
+                                        src="~/assets/profile/Plus.png"></Image>
+                                    <Label text="Upload" class="upload" row="0" horizontalAlignment="right"
+                                        col="0"></Label>
+                                </GridLayout>
+                            </GridLayout>
+
+                        </form>
+                    </GridLayout>
+                    <!-- <====================================shop-edit-end========================================================== -->
+                    <GridLayout row="1" col="0" rows="auto" columns="*" class="edit-marg">
+                        <Button text="Update" (tap)="insertshopdetails()" row="0" col="0" class="editbtn"></Button>
+                    </GridLayout>
+                </GridLayout>
+
+            </GridLayout>
+        </ScrollView>
+
+    </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <------------------------arabic-content-------------------- -->
+      <GridLayout class="page"   *ngIf="lang=='Arabic'">
+        <ScrollView orientation="vertical" id="scrollView">
+            <GridLayout    rows="*" class="margins">
+                <!-- <==========================================shop-details==========================================-->
+                <GridLayout   row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+                    class="borders">
+                    <!-- <-------------------------------shop-no-edit-end-------------------------------------------->
+ 
+                    <!-- <-------------------------------shop--edit-------------------------------------------->
+                    <GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,200,auto,auto"
+                        columns="*">
+
+                        <form [formGroup]="shopForm">
+                            <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" class="txt-marg">
+
+                                <CardView row="1" class="mapbrdr" margin="10" elevation="25" radius="40"
+                                    (tap)="openmapmodal()">
+                                    <GridLayout rows=" auto, auto" columns="*">
+                                        <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="*,*" class="mapbg">
+                                            <Label class="maptxt"    [text]="aedata.Location_Address" horizontalAlignment="left"
+                                                row="0" col="0"></Label>
+                                            <Label class="maptxtone"   [text]="aedata.Edit" horizontalAlignment="right" row="0"
+                                                col="1"></Label>
+                                        </RGridLayout>
+                                        <RGridLayout  isRtl="true"  row="1" col="0" rows="auto" columns="*,90">
+                                            <Label   row="0" col="0" class="bindmaptxt" textWrap="true"
+                                                [text]="mapadress"></Label>
+                                            <MapView   #mapView row="0" col="1" [latitude]="latitude"
+                                                [longitude]="longitude" [zoom]="zoom" [minZoom]="minZoom"
+                                                [maxZoom]="maxZoom" [bearing]="bearing" [tilt]="tilt"
+                                                i-padding="50,50,50,50" [padding]="padding"
+                                                (mapReady)="onMapReady($event)" (markerSelect)="onMarkerEvent($event)"
+                                                (markerEndDragging)="onMarkerEvent($event)"
+                                                (markerInfoWindowTapped)="onMarkerEvent($event)"
+                                                (coordinateTapped)="onCoordinateTapped($event)"
+                                                (cameraChanged)="onCameraChanged($event)"
+                                                (cameraMove)="onCameraMove($event)" markerDraggable="true"></MapView>
+                                        </RGridLayout>
+                                    </GridLayout>
+
+                                </CardView>
+
+                            </GridLayout>
+                            <RGridLayout  isRtl="true" row="1" col="0" rows="auto,auto" columns="*,auto" class="txt-marg">
+                                <TextField class="inputae"style="text-align:center"  editable="true" formControlName="ShopNameInEnglish" row="0"
+                                    col="0" hint="اسم الفرع باللغة الانجليزية" [(ngModel)]="shopprofilearr.ShopNameInEnglish"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="( shopForm.controls.ShopNameInEnglish.dirty ||  shopForm.controls.ShopNameInEnglish.touched) &&  shopForm.controls.ShopNameInEnglish.invalid &&  shopForm.controls.ShopNameInEnglish.errors.required"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="2" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="inputae"  style=" text-align: center;" formControlName="ShopNameInArabic" editable="true" row="0"
+                                    col="0" hint="اسم الفرع باللغة العربية" [(ngModel)]="shopprofilearr.ShopNameInArabic"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.ShopNameInArabic.errors && shopForm.controls.ShopNameInArabic.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="3" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="inputae"  style=" text-align: center;" formControlName="CountryId" editable="false" row="0" col="0"
+                                    hint="إختيار الدولة" [(ngModel)]="shopprofilearr.CountryName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    (tap)="opencountrymodal()" src="~/assets/profile/arrow.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.CountryId.errors && shopForm.controls.CountryId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="4" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="inputae"  style=" text-align: center;" formControlName="CityId" editable="false" row="0" col="0"
+                                    hint="اختر المدينة" [(ngModel)]="shopprofilearr.StateName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/arrow.png" (tap)="openStateModel()"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.CityId.errors && shopForm.controls.CityId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="5" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="input"  style=" text-align: center;" formControlName="AreaId" editable="false" row="0" col="0"
+                                    hint="اختر المنطقة" [(ngModel)]="shopprofilearr.AreaName" autocorrect="false"
+                                    autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    (tap)="openareaModal()" src="~/assets/profile/arrow.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.AreaId.errors && shopForm.controls.AreaId.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="7" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextView class="inputsae"  style=" text-align: center;" formControlName="AddressInEnglish" editable="true" row="0"
+                                    col="0" textWrap="true" hint="العنوان باللغة الانجليزية"
+                                    [(ngModel)]="shopprofilearr.AddressInEnglish" autocorrect="false"
+                                    autocapitalizationType="none"></TextView>
+                                <Image class="shop-iconss" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.AddressInEnglish.errors && shopForm.controls.AddressInEnglish.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="8" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextView class="inputsae"  style=" text-align: center;" formControlName="AddressInArabic" editable="true" row="0"
+                                    col="0" textWrap="true" hint="العنوان باللغة العربية"
+                                    [(ngModel)]="shopprofilearr.AddressInArabic" autocorrect="false"
+                                    autocapitalizationType="none"></TextView>
+                                <Image class="shop-iconss" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.AddressInArabic.errors && shopForm.controls.AddressInArabic.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="9" col="0" rows="auto" columns="*,auto" class="txt-marg">
+                                <TextField class="inputae"  style=" text-align: center;" formControlName="LandMark" editable="true" row="0" col="0"
+                                    textWrap="true" hint="معلم قريب" [(ngModel)]="shopprofilearr.LandMark"
+                                    autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="shop-icon" horizontalAlignment="right" row="0" col="0"
+                                    src="~/assets/profile/Shop Name.png"></Image>
+                                <Label style="color: #be1010;" class="error" horizontalAlignment="left"
+                                    *ngIf="shopForm.controls.LandMark.errors && shopForm.controls.LandMark.dirty"
+                                    text="Required !" row="0" col="0"></Label>
+                            </RGridLayout>
+                            <RGridLayout  isRtl="true" row="10" col="0" rows="auto" columns="*" class="shop-bg">
+                                <Label row="0"  horizontalAlignment="left"   col="0" class="shoptxt" [text]="aedata.Shop_Images"></Label>
+                            </RGridLayout>
+                            <GridLayout row="11" col="0" rows="auto" columns="*">
+
+                                <WrapLayout rows="40" col="40" orientation="horizontal">
+                                    <DockLayout stretchLastChild="false" width="25%" height="100"
+                                        *ngFor='let shop of showshopimgs'>
+                                        <RGridLayout  isRtl="true" rows="auto" columns="*" class="margin-img">
+                                            <Image row="0" col="0" src="~/assets/profile/Minus.png" dock="top"
+                                                class="minusimg" (tap)="removeimg(shop.shopimg,shop.Id)"></Image>
+                                            <Image    row="0" col="0" [src]="shop.shopimg" stretch="aspectFill"
+                                                class="imgbrdr"></Image>
+                                        </RGridLayout>
+                                    </DockLayout>
+                                </WrapLayout>
+
+                            </GridLayout>
+                            <GridLayout row="12" col="0" rows="auto" columns="80" horizontalAlignment="right">
+                                <RGridLayout  isRtl="true" class="uploadbg" row="0" col="0" rows="auto" columns="*"
+                                    (tap)="gotocammadal()">
+                                    <Image class="upload-icon" horizontalAlignment="left" row="0" col="0"
+                                        src="~/assets/profile/Plus.png"></Image>
+                                    <Label    [text]="aedata.Upload" class="upload" row="0" horizontalAlignment="right"
+                                        col="0"></Label>
+                                </RGridLayout>
+                            </GridLayout>
+ 
+                        </form>
+                    </GridLayout>
+                    <!-- <====================================shop-edit-end========================================================== -->
+                    <RGridLayout  isRtl="true" row="1" col="0" rows="auto" columns="*" class="edit-marg">
+                        <Button [text]="aedata.Update"   (tap)="insertshopdetails()" row="0" col="0" class="editbtn"></Button>
+                    </RGridLayout>
+                </GridLayout>
+
+            </GridLayout>
+        </ScrollView>
+
+    </GridLayout>
+</Page>

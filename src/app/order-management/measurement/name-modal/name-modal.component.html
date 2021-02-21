@@ -1,0 +1,38 @@
+<page>
+    <!-- <--------------english-content---------------------->
+    <GridLayout rows="auto,auto" columns="*" *ngIf="lang=='English'">
+<StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+    <StackLayout class="text-header" > 
+        <Label [text]="'Measurement Name for '+dressName" textWrap="true"></Label>
+    </StackLayout>
+    
+    <TextView hint="Enter some text..." 
+    hint="Measurement Name"
+    (textChange)="onTextChange($event)" class="inputtxt">
+</TextView>
+</StackLayout>  
+<GridLayout row="1" rows="auto" columns="*,*"> 
+    <Button row="0" col="0" class="Cancelbtn" text="Cancel"  (tap)="close()"></Button> 
+    <Button row="0" col="1" class="Cancelbtn" text="OK"  (tap)="getName()"></Button> 
+</GridLayout> 
+</GridLayout>
+
+    <!-- <--------------arabic-content---------------------->
+
+<GridLayout rows="auto,auto" columns="*"  *ngIf="lang=='Arabic'">
+    <StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+        <StackLayout class="text-header" > 
+            <Label [text]="aedata.Measurement_Name_for+dressName" textWrap="true"></Label>
+        </StackLayout>
+        
+        <TextView hint="Enter some text..." 
+        hint="اسم المقاس"
+        (textChange)="onTextChange($event)" class="inputtxt">
+    </TextView>
+    </StackLayout>  
+    <GridLayout row="1" rows="auto" columns="*,*"> 
+        <Button row="0" col="0" class="Cancelbtn" [text]="aedata.Cancel"  (tap)="close()"></Button> 
+        <Button row="0" col="1" class="Cancelbtn" [text]="aedata.Ok"  (tap)="getName()"></Button> 
+    </GridLayout> 
+    </GridLayout>
+</page>

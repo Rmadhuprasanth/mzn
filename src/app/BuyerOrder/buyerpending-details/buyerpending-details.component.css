@@ -1,0 +1,142 @@
+.header{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .ordrimg{
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+      height: 60;
+      width: 60;
+      margin:5;
+      border-radius: 60;
+  }
+  .order-txt{
+      font-size: 13;
+      color:#05375c ;
+      padding: 5;
+  }
+  .detail-txt{
+    font-size: 13;
+    color:#05375c ;
+    text-align: left;
+    margin-left: 10;
+  }
+  .bg-card{
+    background-color:#05375c;
+    border-width: 2;
+    border-radius: 12;
+    /* border-color: rgb(252, 252, 252); */
+    border-color:rgb(247, 247, 247);
+    /* android-elevation:55 !important; */
+    
+  }
+  .cardStyle{
+    margin-bottom: 10;
+  }
+  .bg-child{
+    background:white;
+    padding: 10;
+    border-radius: 12;
+  }
+  .bg-child1{
+    background:white;
+    padding: 10;
+    margin-top: 10;
+  }
+  .img{
+      height:100;
+      width: 80;
+  }
+  .btn-detail{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 40;
+    color: white;
+    font-size: 14;
+    border-radius: 25;
+    width: 110;
+    margin: 9;
+  }
+  .btn-detailae{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 40;
+    color: white;
+    font-size: 14;
+    border-radius: 25;
+    width: 110;
+  }
+  .btn-detail1{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 40;
+    color: white;
+    font-size: 10;
+    border-radius: 25;
+    width: 100%;
+  }
+  .downloadtxt{
+    font-size: 10;
+    color: white;
+    padding-left: 7;
+    text-align: center;
+  }
+  .downloadtxtae{
+    font-size: 10;
+    color: white;
+    padding-right: 7;
+    text-align: center;
+
+  }
+  .pdf{
+    height: 35;
+    width: 35;
+    padding-right: 7;
+  }
+  .detailsbtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 40;
+    width: 130;
+    color: white;
+    font-size: 15;
+    border-radius: 25;
+  }
+  .btn-detail2{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    height: 40;
+    color: white;
+    font-size: 14;
+    border-radius: 25;
+    width: 130;
+    margin: 9;
+  }
+  .bgbrdr{
+    background: rgb(202, 202, 202);
+  }
+  .mattxt{
+    font-size: 14;
+    color: #05375c;
+    padding: 7;
+  }
+  .st-img{
+    background-image: url("~/assets/dashbord/Background.jpg") no-repeat;
+    background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: auto;
+    width: auto;
+    border-radius: 10;
+    margin: 8;
+  }

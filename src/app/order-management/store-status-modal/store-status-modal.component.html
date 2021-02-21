@@ -1,0 +1,38 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" >
+<StackLayout style="width: 300;border-radius: 21 !important;" *ngIf="lang=='English'">  
+    <StackLayout class="text-header" > 
+    <Label text="Update Status" textWrap="true"></Label>
+</StackLayout>
+    <ListView [items]="items"  class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout style="text-align: center;" rows="auto" columns="*,auto">
+                <Label row="0" col="0" horizontalAlignment="left"  [text]="item.StatusInEnglish"  class="listitem"></Label>
+                <Image  row="0" col="1" *ngIf="item.status == true && item.isactive == true"   horizontalAlignment="right"  src="~/assets/dashbord/Check box.png" 
+                 dock="right"  class="uncheck-img"></Image>
+                <Image  row="0" col="1" *ngIf="item.isactive == false"  #checkcompany  horizontalAlignment="right"  [src]="item.status == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{item.status}}"
+                 dock="right" (tap)="getstatus(checkcompany.value,item.Id)" class="uncheck-img"></Image>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+    <Button class="Cancelbtn" text="Update" (tap)="updateStoreStatus()"></Button>  
+</StackLayout>
+
+
+<StackLayout style="width: 300;border-radius: 21 !important;" *ngIf="lang=='Arabic'">  
+    <StackLayout class="text-header" > 
+    <Label [text]="aedata.Update_Status" textWrap="true"></Label>
+</StackLayout>
+    <ListView [items]="items"  class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <RGridLayout   isRtl="true" style="text-align: center;" rows="auto" columns="*,auto">
+                <Label row="0" col="0" horizontalAlignment="left"  [text]="item.StatusInArabic"  class="listitem"></Label>
+                <Image  row="0" col="1" *ngIf="item.status == true && item.isactive == true"   horizontalAlignment="right"  src="~/assets/dashbord/Check box.png" 
+                 dock="right"  class="uncheck-img"></Image>
+                <Image  row="0" col="1" *ngIf="item.isactive == false"  #checkcompany  horizontalAlignment="right"  [src]="item.status == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{item.status}}"
+                 dock="right" (tap)="getstatus(checkcompany.value,item.Id)" class="uncheck-img"></Image>
+            </RGridLayout>
+        </ng-template>
+    </ListView>
+    <Button class="Cancelbtn" [text]="aedata.Update" (tap)="updateStoreStatus()"></Button>  
+</StackLayout>
+</Page>

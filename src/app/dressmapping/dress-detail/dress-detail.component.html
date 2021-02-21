@@ -1,0 +1,169 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <----------------------english-header------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+    <!-- <----------------------arabic-header------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Details" row="0" col="1"  android:horizontalAlignment="center" class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <----------------------english-content------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView"  scrollBarIndicatorVisible="false">
+            <GridLayout class="margins" rows="auto,auto,auto,auto" columns="*">
+                <StackLayout shadow="4" row="0">
+                    <CheckBox #CB1 text="I Stitch This Dress" class="check" [checked]="checked"
+                        (checkedChange)="istitch($event.value)" style="font-size:15" fillColor="#2f84b0"></CheckBox>
+                </StackLayout>
+                <GridLayout row="1" rows="auto,auto,auto,auto,auto,auto,auto" columns="*" *ngIf="istitchdress" >
+                    <GridLayout row="0" col="0" class="underln">
+                        <Label text="Customization" class="custtxt"></Label>
+                    </GridLayout>
+                    <GridLayout row="1">
+                        <WrapLayout orientation="horizontal">
+                            <DockLayout stretchLastChild="false" width="100%" class="cardStyle" shadow="2"
+                                cornerRadius="25" *ngFor="let customization of GetTailorCustomization" (tap)="gotoAttribute(customization.Id)">
+
+                                <Label style="z-index: 1000;" horizontalAlignment="left" class="genderdtxt"
+                                    [text]="customization.AttributeNameInEnglish" verticalAlignment="center"></Label>
+                                <Image dock="right" src="~/assets/dressmap/Right arrow.png" class="genderimg"></Image>
+
+                            </DockLayout>
+                        </WrapLayout>
+                    </GridLayout>
+                    <GridLayout row="2" rows="auto" columns="*,auto" class="stitchmrg">
+                        <Label row="0" col="0" text="Stitching Charges" class="stitchtxt"></Label>
+                        <TextField row="0" col="1" class="cherginput" eeditable="true" hint="00 | 00"
+                            [(ngModel)]="StichingChargesarr.StichingCharges" autocorrect="false"
+                            autocapitalizationType="none" verticalAlignment="center"></TextField>
+                    </GridLayout>
+
+
+                    <GridLayout row="3" rows="auto" columns="*,auto" class="stitchmrg">
+                        <Label row="0" col="0" text=" Stitching Time Required for Stitching " class="stitchtxt"></Label>
+                        <GridLayout row="0" col="1" rows="auto" ,columns="*,auto" class="nodaysbox">
+                            <Label row="0" col="0" horizontalAlignment="center" verticalAlignment="center"
+                                [text]="StichingChargesarr.NoOfDays" class="nodaystxt"></Label>
+                            <Image row="0" col="1" horizontalAlignment="right" (tap)="opennoofdaysmodal()" verticalAlignment="center"
+                                src="~/assets/dressmap/Down atrrow.png" class="downarrimg"></Image>
+                        </GridLayout>
+                    </GridLayout>
+
+
+                    <GridLayout row="4" rows="auto,auto" columns="*" >
+                        <StackLayout row="0" class="matchrgbrdr">
+                            <Label text="Material Charges" class="materialtxt"></Label>
+                        </StackLayout>
+                        <WrapLayout row="1" col="0"  orientation="horizontal" >
+                            <GridLayout  rows="auto,auto" columns="*,*" class="shop-card" *ngFor="let matcharge of materaialChargesArray" >
+                            <Label row="0" col="0" horizontalAlignment="left" verticalAlignment="center" [text]="matcharge.PatternInEnglish" class="stitchtxt"></Label>
+                            <TextField row="0" col="1"  class="matcherginput" eeditable="true" hint="00 | 00"
+                                autocorrect="false"  
+                                autocapitalizationType="none" [text]="matcharge.MaterialCharges" (textChange)="getmatcharges($event,matcharge.Id)"  horizontalAlignment="right" verticalAlignment="center"></TextField>
+                        </GridLayout> 
+                    </WrapLayout> 
+                      
+                    </GridLayout>
+                    <GridLayout row="5" rows="auto" columns="*,auto">
+                        <GridLayout row="0" col="1" rows="auto" columns="*,auto" style="margin-top: 10;">
+                            <Image row="0" col="0" #check [src]="checkimg" value="{{checkval}}"
+                                (tap)="getexpressval(check.value)" dock="top" class="uncheck-img"></Image>
+                            <Label row="0" col="1" text="Express" class="havemate"></Label>
+                        </GridLayout>
+                    </GridLayout>
+
+                    <GridLayout row="6" rows="auto" columns="*">
+                        <Button text="Save" class="savebtn" (tap)="insertDressSkill()"></Button>
+                    </GridLayout>
+
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+    </GridLayout>
+
+
+
+        <!-- <----------------------arabic-content------------------->
+        <GridLayout class="page" *ngIf="lang=='Arabic'" >
+            <ScrollView orientation="vertical" id="scrollView"  scrollBarIndicatorVisible="false">
+                <GridLayout  class="margins" rows="auto,auto,auto,auto" columns="*">
+                    <RStackLayout isRtl="true" shadow="4" row="0"   >
+                        <CheckBox #CB1 [text]="aedata.I_Stitch_This_Dress"   horizontalAlignment="left" class="check" [checked]="checked"
+                            (checkedChange)="istitch($event.value)" style="font-size:15" fillColor="#2f84b0"></CheckBox>
+                    </RStackLayout>
+                    <GridLayout  row="1" rows="auto,auto,auto,auto,auto,auto,auto" columns="*" *ngIf="istitchdress" >
+                        <RGridLayout isRtl="true"  row="0" col="0" class="underln">
+                            <Label     [text]="aedata.Customization" class="custtxt"></Label>
+                        </RGridLayout>
+                        <GridLayout row="1" >
+                            <WrapLayout orientation="horizontal">
+                                <RDockLayout isRtl="true" stretchLastChild="false" width="100%" class="cardStyle" shadow="2"
+                                    cornerRadius="25" *ngFor="let customization of GetTailorCustomization" (tap)="gotoAttribute(customization.Id)">
+    
+                                    <Label style="z-index: 1000;" horizontalAlignment="left" class="genderdtxt"
+                                        [text]="customization.AttributeNameinArabic" verticalAlignment="center"></Label>
+                                    <Image dock="right" style="transform: scaleX(-1);"  src="~/assets/dressmap/Right arrow.png" class="genderimg"></Image>
+    
+                                </RDockLayout>
+                            </WrapLayout>
+                        </GridLayout>
+                        <RGridLayout isRtl="true" row="2" rows="auto" columns="*,auto" class="stitchmrg">
+                            <Label   horizontalAlignment="left"  row="0" col="0" [text]="aedata.Stitching_Charges" class="stitchtxt"></Label>
+                            <TextField row="0" col="1" class="cherginput" eeditable="true" hint="00 | 00"
+                                [(ngModel)]="StichingChargesarr.StichingCharges" autocorrect="false"
+                                autocapitalizationType="none" verticalAlignment="center"></TextField>
+                        </RGridLayout>
+    
+    
+                        <RGridLayout isRtl="true" row="3" rows="auto" columns="*,auto" class="stitchmrg">
+                            <Label     horizontalAlignment="left"   row="0" col="0" [text]="aedata.Time_Required_for_Stitching" class="stitchtxt"></Label>
+                            <GridLayout row="0" col="1" rows="auto" ,columns="*,auto" class="nodaysbox">
+                                <Label row="0" col="0"   horizontalAlignment="center" verticalAlignment="center"
+                                    [text]="StichingChargesarr.NoOfDays" class="nodaystxt"></Label>
+                                <Image row="0" col="1" horizontalAlignment="right" (tap)="opennoofdaysmodal()" verticalAlignment="center"
+                                    src="~/assets/dressmap/Down atrrow.png" class="downarrimg"></Image>
+                            </GridLayout>
+                        </RGridLayout>
+    
+    
+                        <GridLayout  row="4" rows="auto,auto" columns="*" >
+                            <RStackLayout isRtl="true" row="0" class="matchrgbrdr">
+                                <Label    [text]="aedata.Material_Charges" class="materialtxt"></Label>
+                            </RStackLayout> 
+                            <WrapLayout row="1" col="0"  orientation="horizontal" >
+                                <RGridLayout isRtl="true"  rows="auto,auto" columns="*,*" class="shop-card" *ngFor="let matcharge of materaialChargesArray" >
+                                <Label     row="0" col="0" horizontalAlignment="left" verticalAlignment="center" [text]="matcharge.PatternInArabic" class="stitchtxt"></Label>
+                                <TextField  row="0" col="1"  class="matcherginput" eeditable="true" hint="00 | 00"
+                                    autocorrect="false"  
+                                    autocapitalizationType="none" [text]="matcharge.MaterialCharges" (textChange)="getmatcharges($event,matcharge.Id)" horizontalAlignment="right" verticalAlignment="center"></TextField>
+                            </RGridLayout> 
+                        </WrapLayout> 
+                          
+                        </GridLayout>
+                        <GridLayout  row="5" rows="auto" columns="*,auto">
+                            <RGridLayout isRtl="true" row="0" col="1" rows="auto" columns="*,auto" style="margin-top: 10;">
+                                <Image row="0" col="0"  #check [src]="checkimg" value="{{checkval}}"
+                                    (tap)="getexpressval(check.value)" dock="top" class="uncheck-img"></Image>
+                                <Label   horizontalAlignment="left"  row="0" col="1" [text]="aedata.Express" class="havemate"></Label>
+                            </RGridLayout>
+                        </GridLayout>
+    
+                        <GridLayout  row="6" rows="auto" columns="*">
+                            <Button   [text]="aedata.Save" class="savebtn" (tap)="insertDressSkill()"></Button>
+                        </GridLayout>
+    
+                    </GridLayout>
+                </GridLayout>
+            </ScrollView>
+        </GridLayout>
+</Page>

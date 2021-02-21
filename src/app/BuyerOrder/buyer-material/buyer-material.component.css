@@ -1,0 +1,92 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .underln{
+    border-width: 0 0 1 0;
+    border-color: gray;
+    margin-top: 10;
+}
+.headerlbl{
+  text-align: left;
+  font-size: 14px;
+  color: #05375c;
+}
+.txtlbl{
+  text-align: left;
+  font-size: 14px;
+  color: #05375c;
+  border-width: 0;
+  margin-top: -5;
+  margin-bottom: -5;
+}
+.txtlblview{
+  text-align: left;
+  font-size: 14px;
+  color: #05375c;
+  border-width: 0;
+  margin-top: -5;
+  margin-bottom: -5;
+  min-height: 40;
+}
+.colordiv{
+  height: 20;
+  width: 20;
+  margin: 4;
+  margin-left: 15;
+}
+
+
+
+.slidimg{
+  height: 80;
+  width: 100; 
+}
+.clrtxt{
+text-align: center;
+font-size: 12;
+background: #05375c ;
+color: white;
+}
+.cardStyle{
+/* background: rgb(212, 212, 212); */
+text-align: center;
+align-items: center;
+border-width: 1 !important;
+border-color: #05375c !important; 
+margin: 7;
+
+}
+.Previewtxt{
+  font-size: 15;
+  color: #05375c;
+  text-align: center;
+}
+.image{
+  margin: 15;  
+  height: 300;
+  width: 300;
+}
+.zoomimg{
+  height: 300;
+  width: 300;
+  border-radius: 15;
+
+}

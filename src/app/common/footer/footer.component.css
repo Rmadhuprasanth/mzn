@@ -1,0 +1,12 @@
+/* Add mobile styles for the component here.  */
+.m-icon{
+    height: 30;
+    width: 100; 
+    margin: 9;
+}
+.bg-footer{
+   
+    background: linear-gradient(to top,#fffbcc,#eed688,#ebbb10,#c3922e);
+    /* background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);  */
+}
+    

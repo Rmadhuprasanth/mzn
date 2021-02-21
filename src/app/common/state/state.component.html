@@ -1,0 +1,30 @@
+<page>
+    <GridLayout rows="500,auto" columns="*">
+ 
+    
+<StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+    <StackLayout class="text-header" *ngIf="lang=='English'" > 
+        <Label text="Choose Your State" textWrap="true"></Label>
+    </StackLayout>
+    <StackLayout class="text-header"  *ngIf="lang=='Arabic'"> 
+        <Label [text]="aedata.Choose_Your_State" textWrap="true"></Label>
+    </StackLayout>
+     
+    <ListView [items]="states" (tap)="onItemSelecting($event)" class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <FlexboxLayout flexDirection="row" class="list-group-item"  (tap)="closestate(item)">
+                <Label [text]="item.StateName" style="text-align: center;" class="list-group-item-heading" 
+                   style="width: 60%"></Label>
+        </FlexboxLayout> 
+        </ng-template>
+     
+    </ListView>   
+</StackLayout>  
+<StackLayout row="1" *ngIf="lang=='English'"> 
+    <Button class="Cancelbtn" text="Cancel"  (tap)="close()"></Button> 
+</StackLayout> 
+<StackLayout row="1" *ngIf="lang=='Arabic'"> 
+    <Button class="Cancelbtn" [text]="aedata.Cancel"  (tap)="close()"></Button> 
+</StackLayout> 
+</GridLayout>
+</page>

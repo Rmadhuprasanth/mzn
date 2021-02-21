@@ -1,0 +1,56 @@
+/* Add mobile styles for the component here.  */
+
+.text-header{
+    font-size: 17;
+    font-weight: bold;
+    text-align: center;  
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+  height: 50; 
+  vertical-align: middle; 
+  }
+  .Cancelbtn{
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+      color: white;
+      height: 40;
+      border-radius: 21;
+      width: 200;
+  } 
+  .donebtn{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    color: white;
+    font-size: 14;
+    height: 35;
+    border-radius: 18;
+}
+  .listitem{
+      font-size: 15;
+      font-weight: 500;
+  }
+  .margins{
+      
+    margin-left: 25;
+    margin-right: 25;
+    margin-top: 10;
+  }
+  .cardStyle{
+    margin-left: 15;
+    margin-right: 15;
+    border-width: 0,0,1,0 !important;
+border-color: #78797a !important; 
+padding: 10;
+}
+.cardStyleschild{
+    margin-left: 25;
+}
+.checkimg{
+    height: 25;
+    width: 25;
+
+}
+.cattxt{
+
+    font-size: 15;
+    margin-left: 20;
+    color: #05375c;
+}

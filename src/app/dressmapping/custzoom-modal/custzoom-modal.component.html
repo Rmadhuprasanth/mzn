@@ -1,0 +1,38 @@
+<!-- <GridLayout>
+<GridLayout row="auto,auto" >  
+    <GridLayout row="0" rows="auto" columns="auto,auto" class="text-header" > 
+        <Label row="0" col="0" text="Customization Image" textWrap="true"></Label>
+        <Image row="0" col="1" horizontalAlignment="right" verticalAlignment="center" class="closeimg" src="~/assets/profile/Minus.png"></Image>
+    </GridLayout>
+
+    <GridLayout row="1" rows="auto" columns="*"  > 
+        <Image row="0" col="0" [src]="zoomimage"></Image>
+    </GridLayout>
+ </GridLayout>
+</GridLayout> -->
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <----------------------english-content------------------->
+    <StackLayout *ngIf="lang=='English'">  
+        <GridLayout  rows="auto" columns="*,auto" class="text-header" > 
+            <Label row="0" col="0" text="Customization Image" class="htxt" textWrap="true"></Label>
+            <Image row="0" col="1" horizontalAlignment="right" verticalAlignment="center" (tap)="close()" class="closeimg" src="~/assets/profile/Minus.png"></Image>
+        </GridLayout>
+    
+        <StackLayout  height="100%" width="100%" > 
+            <Image class="zoomimg"  [src]="zoomimage"></Image> 
+        </StackLayout>
+     </StackLayout>
+
+
+    <!-- <----------------------arabic-content------------------->
+     <StackLayout *ngIf="lang=='Arabic'">  
+        <RGridLayout   isRtl="true" rows="auto" columns="*,auto" class="text-header" > 
+            <Label row="0"   col="0" [text]="aedata.Customization_Image" class="htxt" textWrap="true"></Label>
+            <Image row="0" col="1" horizontalAlignment="right" verticalAlignment="center" (tap)="close()" class="closeimg" src="~/assets/profile/Minus.png"></Image>
+        </RGridLayout>
+    
+        <StackLayout  height="100%" width="100%" > 
+            <Image class="zoomimg"  [src]="zoomimage"></Image> 
+        </StackLayout>
+     </StackLayout>
+    </Page>

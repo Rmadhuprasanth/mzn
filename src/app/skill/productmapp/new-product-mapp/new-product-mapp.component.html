@@ -1,0 +1,298 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <---------------------english-header----------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Products" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+        <!-- <---------------------english-header----------------->
+        <ActionBar class="header" *ngIf="lang=='Arabic'">
+            <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+                <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                    stretch="aspectFill" (tap)="goBack()" isRtl="true" class="action-image"></Image>
+                <Label [text]="aedata.Products"  row="0" col="1" android:horizontalAlignment="center"
+                    class="action-label"></Label>
+            </RGridLayout>
+        </ActionBar>
+
+  <!-- <---------------------english-content----------------->
+    <GridLayout rows="auto,*" columns="*" *ngIf="lang=='English'">
+        <GridLayout row="0" height="220">
+            <Carousel #myCarousel  height="100%" width="100%" color="white"
+                android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10" autoPagingInterval="2"
+                autoPlay="true" showIndicator="true">
+                <CarouselItem  verticalAlignment="middle">
+                    <GridLayout>
+                        <Image [src]="slectedimg" stretch="aspectFill"></Image>
+                    </GridLayout>
+                </CarouselItem>
+            </Carousel>
+        </GridLayout>
+        <ScrollView row="1" scrollBarIndicatorVisible="false">
+            <GridLayout class="page">
+                <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+                    <GridLayout row="0" col="0" rows="auto,auto" columns="*" class="uploadbrdr">
+                        <GridLayout row="0" col="0" rows="auto" columns="*" >
+                            <WrapLayout  orientation="horizontal" > 
+                                <DockLayout stretchLastChild="false"   width="25%" height="100"   *ngFor='let shop of showshopimgs' >
+                                    <GridLayout rows="auto" columns="*" class="margin-img">
+                                    <Image row="0" col="0" src="~/assets/profile/Minus.png" dock="top" class="minusimg" (tap)="removeimg(shop.small)"></Image>
+                                    <Image row="0" col="0"(tap)="gettappedimages(shop.small)" [src]="shop.small" stretch="aspectFill" class="imgbrdr" ></Image>  
+                                </GridLayout>
+                                </DockLayout> 
+                        </WrapLayout>
+                        </GridLayout> 
+                    <GridLayout row="1" col="0" rows="auto" columns="*,*" >
+                       <GridLayout  horizontalAlignment="left" rows="auto" (tap)="gotocammadal()" columns="auto,*" row="0" col="0" class="cambrdr">
+                        <Image row="0" col="0" verticalAlignment="middle" src="~/assets/profile/Plus.png" horizontalAlignment="left" class="addimg"></Image>
+                        <Label row="0" col="1"  verticalAlignment="middle" text="upload" class="uploadtxt"></Label>
+                       </GridLayout>
+                       <GridLayout  horizontalAlignment="right" (tap)="opencategormodal()" row="0" col="1" rows="auto" columns="*,auto" class="catbrdr">
+                        <Label row="0" col="0" verticalAlignment="middle" text="Category" class="uploadtxt"></Label>
+                        <Image row="0" col="1" verticalAlignment="middle" src="~/assets/dressmap/Down atrrowround.png" horizontalAlignment="right" class="addimg"></Image>
+                       </GridLayout> 
+                    </GridLayout>
+                </GridLayout>
+                <!-- shadow="2" cornerRadius="15" -->
+                <GridLayout row="1" col="0" rows="auto,auto,auto,auto,auto,auto" columns="*" class="uploadbrdr">
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle"  [(ngModel)]="updatedata.ProductName"  editable="true" row="0" col="0" textWrap="true" hint="Product Name In English"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >  
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle"  [(ngModel)]="updatedata.ProductNameInArabic" editable="true" row="1" col="0" textWrap="true" hint="Product Name In Arabic"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle"  [(ngModel)]="updatedata.ProductDescription" editable="true" row="2" col="0" textWrap="true" hint="Add Description in English"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle"  [(ngModel)]="updatedata.ProductDescriptionInArabic"  editable="true" row="3" col="0" textWrap="true" hint="Add Description in Arabic"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle"  row="4" col="0"  [(ngModel)]="updatedata.SKU" editable="true"  textWrap="true" hint="SKU"  autocorrect="false"
+    autocapitalizationType="none"></TextView >
+    <GridLayout row="5" col="0" rows="auto" columns="*,*">
+        <GridLayout row="0" col="1" rows="auto" columns="auto,*">
+            <Image  #checksize row="0" col="0" [src]="ownprimg" 
+            dock="right"    class="ownprod" (tap)="isownproduct(ownproductcheck)"></Image>
+            <Label  row="0" col="2" class="ownprtxt" text="My own Product"></Label>
+        </GridLayout>
+    </GridLayout>
+            </GridLayout>
+<!-- <-------------------------size------------------------------->
+                <GridLayout row="2" col="0"  rows="auto,auto" columns="*">
+                    <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                        <StackLayout row="1" col="0"><Label text="Product Units (CM)" horizontalAlignment="left" class="Product_Units"></Label></StackLayout>
+                        <StackLayout row="1" col="1"><Label text="EU (Size Guide)" horizontalAlignment="right" class="Size_Guide"></Label></StackLayout>
+                    </GridLayout>
+                    <GridLayout row="1" col="0" >
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="80" width="20%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"    *ngFor="let size of sizearray" (tap)="getcheckvalsize(size.IsMapped,size.Id)">
+                                        <Label [text]="size.Size" verticalAlignment="middle" class="cardStyle"  shadow="2" cornerRadius="8"></Label>
+                                        <Image  #checksize  [src]="size.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{size.IsMapped}}"
+                                         dock="right"    class="uncheck-img"></Image>
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+            </ScrollView>
+                </GridLayout>
+                </GridLayout>
+                <GridLayout row="3" col="0"  class="border"></GridLayout> 
+<!-- <-------------------------color------------------------------->
+<GridLayout row="4" col="0" >
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="150" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"    *ngFor="let color of colorarrray" (tap)="getcheckvalcolor(color.IsMapped,color.Id)"> 
+                        <StackLayout   [ngStyle]="(color.ColorCode !='' && color.ColorCode != null) ? {'background': color.ColorCode}:{'background-image': '~/assets/dashbord/Background.jpg'}"  class="color_cardStyle"  dock="top">
+                            <Image  #checksize  [src]="color.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{color.IsMapped}}"
+                            dock="right"    class="uncheck-color"></Image> 
+                        </StackLayout>    
+                        <Label [text]="color.ColorName "  dock="bottom" class="clrtxt"></Label>    
+                    </DockLayout>  
+            </WrapLayout>
+            </GridLayout> 
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout> 
+
+<GridLayout row="5" col="0"  class="border"></GridLayout>
+
+<GridLayout row="6" col="0" >
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="100" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"  *ngFor="let brand of brandarray" (tap)="getcheckvalbrand(brand.IsMapped,brand.Id)">
+                        <Label [text]="brand.ProductBrandName" class="brandcardStyle" ></Label>
+                        <Image  #checksize  [src]="brand.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{brand.IsMapped}}"
+                         dock="right"    class="uncheck-img"></Image>
+                    </DockLayout> 
+            </WrapLayout>
+            </GridLayout>  
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout>
+<GridLayout row="9" col="0"  class="border"></GridLayout>
+<GridLayout row="10" col="0" rows="auto" columns="*,*">
+
+<GridLayout row="0" col="0" rows="auto,auto" columns="*">
+    <Label row="0" col="0" text="Price" class="price"></Label>
+    <TextField row="1" col="0" [(ngModel)]="updatedata.Amount" class="cherginput" eeditable="true"   hint="00 | 00"
+    text="" autocorrect="false" autocapitalizationType="none"  horizontalAlignment="center"  shadow="2"  cornerRadius="15" verticalAlignment="middle"></TextField>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto,auto" columns="*"> 
+    <Button text="Save" class="savebtn" (tap)="insertnewProduct()"></Button> 
+</GridLayout>
+</GridLayout>
+                </GridLayout>  
+            </GridLayout>
+
+        </ScrollView>
+    </GridLayout>
+
+
+
+
+
+
+
+     <!-- <---------------------arabic-content----------------->
+     <RGridLayout rows="auto,*" columns="*"  isRtl="true" *ngIf="lang=='Arabic'">
+        <GridLayout row="0" height="220">
+            <Carousel #myCarousel  height="100%" width="100%" color="white"
+                android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10" autoPagingInterval="2"
+                autoPlay="true" showIndicator="true">
+                <CarouselItem  verticalAlignment="middle">
+                    <GridLayout>
+                        <Image [src]="slectedimg" stretch="aspectFill"></Image>
+                    </GridLayout>
+                </CarouselItem>
+            </Carousel>
+        </GridLayout>
+        <ScrollView row="1" scrollBarIndicatorVisible="false">
+            <RGridLayout class="page"  isRtl="true">
+                <RGridLayout  isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+                    <GridLayout row="0" col="0" rows="auto,auto" columns="*" class="uploadbrdr">
+                        <GridLayout row="0" col="0" rows="auto" columns="*" >
+                            <WrapLayout  orientation="horizontal" > 
+                                <DockLayout stretchLastChild="false"   width="25%" height="100"   *ngFor='let shop of showshopimgs' >
+                                    <GridLayout rows="auto" columns="*" class="margin-img">
+                                    <Image row="0" col="0" src="~/assets/profile/Minus.png" dock="top" class="minusimg" (tap)="removeimg(shop.small)"></Image>
+                                    <Image row="0" col="0"(tap)="gettappedimages(shop.small)" [src]="shop.small" stretch="aspectFill" class="imgbrdr" ></Image>  
+                                </GridLayout>
+                                </DockLayout> 
+                        </WrapLayout>
+                        </GridLayout> 
+                    <GridLayout row="1" col="0" rows="auto" columns="*,*"  isRtl="true">
+                       <GridLayout  horizontalAlignment="left" rows="auto" (tap)="gotocammadal()" columns="auto,*" row="0" col="0" class="cambrdr">
+                        <Image row="0" col="0" verticalAlignment="middle" src="~/assets/profile/Plus.png" horizontalAlignment="left" class="addimg"></Image>
+                        <Label row="0" col="1"  verticalAlignment="middle" style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.upload" class="uploadtxt"></Label>
+                       </GridLayout>
+                       <GridLayout  horizontalAlignment="right" (tap)="opencategormodal()" row="0" col="1" rows="auto" columns="*,auto" class="catbrdr">
+                        <Label row="0" col="0" style="transform: scaleX(-1);" horizontalAlignment="left"  verticalAlignment="middle" [text]="aedata.Category" class="uploadtxt"></Label>
+                        <Image row="0" col="1" verticalAlignment="middle" src="~/assets/dressmap/Down atrrowround.png" horizontalAlignment="right" class="addimg"></Image>
+                       </GridLayout> 
+                    </GridLayout>
+                </GridLayout>
+                <!-- shadow="2" cornerRadius="15" -->
+                <GridLayout row="1" col="0"  rows="auto,auto,auto,auto,auto,auto" columns="*" class="uploadbrdr">
+                    <TextView  class="pr_name" shadow="2"  style="transform: scaleX(-1);"   cornerRadius="15" verticalAlignment="middle" isRtl="false"  [(ngModel)]="updatedata.ProductName"  style="transform: scaleX(-1);" editable="true" row="0" col="0" textWrap="true" hint="اسم المنتج باللغة الانجليزية"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >  
+                    <TextView  class="pr_name" shadow="2" style="transform: scaleX(-1);"  cornerRadius="15" verticalAlignment="middle" isRtl="true" [(ngModel)]="updatedata.ProductNameInArabic" editable="true" row="1" col="0" textWrap="true" hint="اسم المنتج باللغة العربية"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2"  cornerRadius="15" verticalAlignment="middle" isRtl="true" [(ngModel)]="updatedata.ProductDescription" editable="true" row="2" col="0" style="transform: scaleX(-1);" textWrap="true" hint="اكتب التفصيل باللغة الانجليزية"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2" style="transform: scaleX(-1);" cornerRadius="15" verticalAlignment="middle" isRtl="true" [(ngModel)]="updatedata.ProductDescriptionInArabic"  editable="true" row="3" col="0" textWrap="true" hint="اكتب التفصيل باللغة العربية"  autocorrect="false"
+                    autocapitalizationType="none"></TextView >
+                    <TextView  class="pr_name" shadow="2" style="transform: scaleX(-1);" cornerRadius="15" verticalAlignment="middle"  row="4" col="0"  [(ngModel)]="updatedata.SKU" editable="true"  style="transform: scaleX(-1);"  textWrap="true" hint="رمز تعريف المنتج"  autocorrect="false"
+    autocapitalizationType="none"></TextView >
+    <GridLayout  row="5" col="0" rows="auto" columns="*,*">
+        <GridLayout row="0" col="1" rows="auto" columns="auto,*">
+            <Image  #checksize row="0" col="0" [src]="ownprimg" 
+            dock="left" style="transform: scaleX(-1);"   class="ownprod" (tap)="isownproduct(ownproductcheck)"></Image>
+            <Label style="transform: scaleX(-1);" row="0" col="2" class="ownprtxt" [text]="aedata.My_own_Product"></Label>
+        </GridLayout>
+    </GridLayout>
+            </GridLayout>
+<!-- <-------------------------size------------------------------->
+                <GridLayout row="2" col="0"  rows="auto,auto" columns="*" >
+                    <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                        <StackLayout row="1" col="0"><Label style="transform: scaleX(-1);" [text]="aedata.Product_Units_CM" horizontalAlignment="left" class="Product_Units"></Label></StackLayout>
+                        <StackLayout row="1" col="1"><Label style="transform: scaleX(-1);" [text]="aedata.EU_Size_Guide" horizontalAlignment="right" class="Size_Guide"></Label></StackLayout>
+                    </GridLayout>
+                    <GridLayout row="1" col="0" >
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="80" width="20%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"    *ngFor="let size of sizearray" (tap)="getcheckvalsize(size.IsMapped,size.Id)">
+                                        <Label style="transform: scaleX(-1);" [text]="size.Size" verticalAlignment="middle" style="transform: scaleX(-1);" class="cardStyle"  shadow="2" cornerRadius="8"></Label>
+                                        <Image style="transform: scaleX(-1);"  #checksize style="transform: scaleX(-1);" [src]="size.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{size.IsMapped}}"
+                                         dock="right"    class="uncheck-img"></Image>
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+            </ScrollView>
+                </GridLayout>
+                </GridLayout>
+                <GridLayout row="3" col="0"  class="border"></GridLayout> 
+<!-- <-------------------------color------------------------------->
+<GridLayout row="4" col="0" >
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="150" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"    *ngFor="let color of colorarrray" (tap)="getcheckvalcolor(color.IsMapped,color.Id)"> 
+                        <StackLayout   [ngStyle]="(color.ColorCode !='' && color.ColorCode != null) ? {'background': color.ColorCode}:{'background-image': '~/assets/dashbord/Background.jpg'}"  class="color_cardStyle"  dock="top">
+                            <Image style="transform: scaleX(-1);" #checksize  [src]="color.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{color.IsMapped}}"
+                            dock="right"    class="uncheck-color"></Image> 
+                        </StackLayout>    
+                        <Label style="transform: scaleX(-1);" [text]="color.ColorName "  dock="bottom" class="clrtxt"></Label>    
+                    </DockLayout>  
+            </WrapLayout>
+            </GridLayout> 
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout> 
+
+<GridLayout row="5" col="0"  class="border"></GridLayout>
+
+<GridLayout row="6" col="0" >
+    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+        <WrapLayout  orientation="vertical">
+            <GridLayout stretchLastChild="true"  height="100" width="20%" horizontalAlignment="left" >
+                <WrapLayout  orientation="vertical">
+                    <DockLayout stretchLastChild="true"  *ngFor="let brand of brandarray" (tap)="getcheckvalbrand(brand.IsMapped,brand.Id)">
+                        <Label style="transform: scaleX(-1);" [text]="brand.ProductBrandNameInArabic" class="brandcardStyle" ></Label>
+                        <Image  #checksize style="transform: scaleX(-1);" [src]="brand.IsMapped == true ? '~/assets/dashbord/Check box.png':''" value="{{brand.IsMapped}}"
+                         dock="right"    class="uncheck-img"></Image>
+                    </DockLayout> 
+            </WrapLayout>
+            </GridLayout>  
+        </WrapLayout>  
+</ScrollView> 
+</GridLayout>
+<GridLayout row="9" col="0"  class="border"></GridLayout>
+<GridLayout row="10" col="0" rows="auto" columns="*,*">
+
+<GridLayout row="0" col="0" rows="auto,auto" columns="*">
+    <Label style="transform: scaleX(-1);" row="0" col="0" [text]="aedata.Price" class="price"></Label>
+    <TextField style="transform: scaleX(-1);" row="1" col="0" [(ngModel)]="updatedata.Amount" style="transform: scaleX(-1);" isRtl="false" class="cherginput" eeditable="true"   hint="00 | 00"
+    text="" autocorrect="false" autocapitalizationType="none"  horizontalAlignment="center"  shadow="2"  cornerRadius="15" verticalAlignment="middle"></TextField>
+</GridLayout>
+<GridLayout row="0" col="1" rows="auto,auto" columns="*"> 
+    <Button style="transform: scaleX(-1);" [text]="aedata.Save" class="savebtn" (tap)="insertnewProduct()"></Button> 
+</GridLayout>
+</GridLayout>
+                </RGridLayout>  
+            </RGridLayout>
+
+        </ScrollView>
+    </RGridLayout>
+</Page>

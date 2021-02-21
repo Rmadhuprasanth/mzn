@@ -1,0 +1,708 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+  <!-- <--------------english-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='English'">
+    <GridLayout rows="auto" columns="auto,*">
+      <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+        stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+      <Label text="Store Timings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+    </GridLayout>
+  </ActionBar>
+
+  <!-- <--------------arabic-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+      <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+        stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+      <Label [text]="aedata.Store_Timings" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+    </RGridLayout>
+  </ActionBar>
+
+  <!-- <--------------english-header---------------------->
+  <GridLayout class="page" *ngIf="lang=='English'">
+    <GridLayout class="margins">
+      <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+        <form [formGroup]="shoppingHours" class="noselecticon">
+          <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" style="margin-bottom: 40;">
+            <!-- <-------------------------------sunday------------------------------------- -->
+            <GridLayout row="0" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+              <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+                <Image row="0" col="0" #check1 [src]="checkimg" value="{{checkval}}" (tap)="getmaterial(check1.value)"
+                  dock="top" class="uncheck-img"></Image>
+                <Label row="0" col="1" verticalAlignment="middle" [text]="SunnDay.Days" class="status"></Label>
+                <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                  class="status"></Label> -->
+              </GridLayout>
+
+              <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="sunhow">
+                <WrapLayout orientation="horizontal">
+                  <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                    <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                      <WrapLayout orientation="horizontal"  formArrayName="Sunday">
+                        <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                          *ngFor="let shoptime of shoppingHours.get('Sunday').controls; let i = index"
+                          [formGroupName]="i">
+                          <GridLayout rows="auto,auto,auto" columns="*">
+                            <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                              <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(SunnDay.DayId,'open','Sunday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(SunnDay.DayId,'close','Sunday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                              <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Sunday')" src="~/assets/dashbord/Cross.png" 
+                                 dock="top" class="cross-img"></Image>
+                            </GridLayout>
+
+                            <GridLayout row="1" col="0" class="borders"></GridLayout>
+                          </GridLayout>
+                        </DockLayout>
+                      </WrapLayout>
+                      <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                        <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                        <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+                          class="timetxt"></Label>
+                        <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                          (tap)="addTimeFormGroup('Sunday')" dock="top" class="cross-img">
+                        </Image>
+                      </GridLayout>
+                    </GridLayout>
+                  </DockLayout>
+                </WrapLayout>
+              </GridLayout>
+            </GridLayout>
+
+            <!-- <-------------------------------monDay------------------------------------- -->
+            <GridLayout row="1" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+              <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+                <Image row="0" col="0" #check2 [src]="monimg" value="{{monval}}" (tap)="getmodaytick(check2.value)"
+                  dock="top" class="uncheck-img"></Image>
+                <Label row="0" col="1" verticalAlignment="middle" [text]="monDay.Days" class="status"></Label>
+                <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                  class="status"></Label> -->
+              </GridLayout>
+
+              <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="monhow">
+                <WrapLayout orientation="horizontal">
+                  <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                    <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                      <WrapLayout orientation="horizontal"  formArrayName="Monday">
+                        <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                          *ngFor="let shoptime of shoppingHours.get('Monday').controls; let i = index"
+                          [formGroupName]="i">
+                          <GridLayout rows="auto,auto,auto" columns="*">
+                            <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                              <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(monDay.DayId,'open','Monday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(monDay.DayId,'close','Monday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                              <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Monday')" src="~/assets/dashbord/Cross.png" 
+                                 dock="top" class="cross-img"></Image>
+                            </GridLayout>
+
+                            <GridLayout row="1" col="0" class="borders"></GridLayout>
+                          </GridLayout>
+                        </DockLayout>
+                      </WrapLayout>
+                      <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                        <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                        <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+                          class="timetxt"></Label>
+                        <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                          (tap)="addTimeFormGroup('Monday')" dock="top" class="cross-img">
+                        </Image>
+                      </GridLayout>
+                    </GridLayout>
+                  </DockLayout>
+                </WrapLayout>
+              </GridLayout>
+            </GridLayout>
+
+
+              <!-- <-------------------------------TueDay------------------------------------- -->
+              <GridLayout row="2" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+                <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+                  <Image row="0" col="0" #check3 [src]="Tueimg" value="{{Tueval}}" (tap)="getTuetick(check3.value)"
+                    dock="top" class="uncheck-img"></Image>
+                  <Label row="0" col="1" verticalAlignment="middle" [text]="TueDay.Days" class="status"></Label>
+                  <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                    class="status"></Label> -->
+                </GridLayout>
+  
+                <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Tueshow">
+                  <WrapLayout orientation="horizontal">
+                    <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                      <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                        <WrapLayout orientation="horizontal"  formArrayName="Tuesday">
+                          <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                            *ngFor="let shoptime of shoppingHours.get('Tuesday').controls; let i = index"
+                            [formGroupName]="i">
+                            <GridLayout rows="auto,auto,auto" columns="*">
+                              <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                                <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(TueDay.DayId,'open','Tuesday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                  <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(TueDay.DayId,'close','Tuesday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                                <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Tuesday')" src="~/assets/dashbord/Cross.png" 
+                                   dock="top" class="cross-img"></Image>
+                              </GridLayout>
+  
+                              <GridLayout row="1" col="0" class="borders"></GridLayout>
+                            </GridLayout>
+                          </DockLayout>
+                        </WrapLayout>
+                        <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                          <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                          <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+                            class="timetxt"></Label>
+                          <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                            (tap)="addTimeFormGroup('Tuesday')" dock="top" class="cross-img">
+                          </Image>
+                        </GridLayout>
+                      </GridLayout>
+                    </DockLayout>
+                  </WrapLayout>
+                </GridLayout>
+              </GridLayout>
+
+  <!-- <-------------------------------WedneDay------------------------------------- -->
+  <GridLayout row="3" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+    <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+      <Image row="0" col="0" #check4 [src]="Wedneimg" value="{{Wedneval}}" (tap)="getWednetick(check4.value)"
+        dock="top" class="uncheck-img"></Image>
+      <Label row="0" col="1" verticalAlignment="middle" [text]="WedneDay.Days" class="status"></Label>
+      <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+        class="status"></Label> -->
+    </GridLayout>
+
+    <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Wedneshow">
+      <WrapLayout orientation="horizontal">
+        <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+          <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+            <WrapLayout orientation="horizontal"  formArrayName="Wednesday">
+              <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                *ngFor="let shoptime of shoppingHours.get('Wednesday').controls; let i = index"
+                [formGroupName]="i">
+                <GridLayout rows="auto,auto,auto" columns="*">
+                  <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                    <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(WedneDay.DayId,'open','Wednesday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                      <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(WedneDay.DayId,'close','Wednesday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                    <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Wednesday')" src="~/assets/dashbord/Cross.png" 
+                       dock="top" class="cross-img"></Image>
+                  </GridLayout>
+
+                  <GridLayout row="1" col="0" class="borders"></GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+            <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+              <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+              <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+                class="timetxt"></Label>
+              <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                (tap)="addTimeFormGroup('Wednesday')" dock="top" class="cross-img">
+              </Image>
+            </GridLayout>
+          </GridLayout>
+        </DockLayout>
+      </WrapLayout>
+    </GridLayout>
+  </GridLayout>
+
+
+ <!-- <-------------------------------ThurDay------------------------------------- -->
+ <GridLayout row="4" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check5 [src]="Thurimg" value="{{Thurval}}" (tap)="getThurtick(check5.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label row="0" col="1" verticalAlignment="middle" [text]="ThurDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </GridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Thurshow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Thursday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Thursday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout rows="auto,auto,auto" columns="*">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(ThurDay.DayId,'open','Thursday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(ThurDay.DayId,'close','Thursday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Thursday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </GridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Thursday')" dock="top" class="cross-img">
+            </Image>
+          </GridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+ <!-- <-------------------------------friDay------------------------------------- -->
+ <GridLayout row="5" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check6 [src]="friimg" value="{{frival}}" (tap)="getfritick(check6.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label row="0" col="1" verticalAlignment="middle" [text]="friDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </GridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="frishow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Friday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Friday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout rows="auto,auto,auto" columns="*">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(friDay.DayId,'open','Friday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(friDay.DayId,'close','Friday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Friday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </GridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Friday')" dock="top" class="cross-img">
+            </Image>
+          </GridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+
+ <!-- <-------------------------------SatDay------------------------------------- -->
+ <GridLayout row="6" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <GridLayout row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check7 [src]="satimg" value="{{satval}}" (tap)="getsattick(check7.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label row="0" col="1" verticalAlignment="middle" [text]="SatDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </GridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="satshow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Saturday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Saturday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout rows="auto,auto,auto" columns="*">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(SatDay.DayId,'open','Saturday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(SatDay.DayId,'close','Saturday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Saturday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </GridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <GridLayout row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" text="Add more hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Saturday')" dock="top" class="cross-img">
+            </Image>
+          </GridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+            <GridLayout row="7" col="0" rows="auto" columns="*">
+<Button text="Save" class="save" (tap)="insertStoreTimings()"></Button>
+            </GridLayout>
+
+          </GridLayout>
+        </form>
+      </ScrollView>
+    </GridLayout>
+
+
+   
+  </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- <--------------arabic-header---------------------->
+   <GridLayout class="page" *ngIf="lang=='Arabic'">
+    <GridLayout class="margins">
+      <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+        <form [formGroup]="shoppingHours" class="noselecticon">
+          <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" style="margin-bottom: 40;">
+            <!-- <-------------------------------sunday------------------------------------- -->
+            <GridLayout row="0" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+              <RGridLayout   isRtl="true"row="0" col="0" rows="auto" columns="auto,*,*">
+                <Image row="0" col="0" #check1 [src]="checkimg" value="{{checkval}}" (tap)="getmaterial(check1.value)"
+                  dock="top" class="uncheck-img"></Image>
+                <Label row="0" col="1" horizontalAlignment="left" verticalAlignment="middle" [text]="SunnDay.Days" class="status"></Label>
+                <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                  class="status"></Label> -->
+              </RGridLayout>
+
+              <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="sunhow">
+                <WrapLayout orientation="horizontal">
+                  <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                    <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                      <WrapLayout orientation="horizontal"  formArrayName="Sunday">
+                        <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                          *ngFor="let shoptime of shoppingHours.get('Sunday').controls; let i = index"
+                          [formGroupName]="i">
+                          <GridLayout rows="auto,auto,auto" columns="*">
+                            <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                              <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(SunnDay.DayId,'open','Sunday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(SunnDay.DayId,'close','Sunday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                              <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Sunday')" src="~/assets/dashbord/Cross.png" 
+                                 dock="top" class="cross-img"></Image>
+                            </RGridLayout>
+
+                            <GridLayout row="1" col="0" class="borders"></GridLayout>
+                          </GridLayout>
+                        </DockLayout>
+                      </WrapLayout>
+                      <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                        <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                        <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left" [text]="aedata.Add_more_hrs"
+                          class="timetxt"></Label>
+                        <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                          (tap)="addTimeFormGroup('Sunday')" dock="top" class="cross-img">
+                        </Image>
+                      </RGridLayout>
+                    </GridLayout>
+                  </DockLayout>
+                </WrapLayout>
+              </GridLayout>
+            </GridLayout>
+
+            <!-- <-------------------------------monDay------------------------------------- -->
+            <GridLayout row="1" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+              <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+                <Image row="0" col="0" #check2 [src]="monimg" value="{{monval}}" (tap)="getmodaytick(check2.value)"
+                  dock="top" class="uncheck-img"></Image>
+                <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="monDay.Days" class="status"></Label>
+                <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                  class="status"></Label> -->
+              </RGridLayout>
+
+              <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="monhow">
+                <WrapLayout orientation="horizontal">
+                  <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                    <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                      <WrapLayout orientation="horizontal"  formArrayName="Monday">
+                        <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                          *ngFor="let shoptime of shoppingHours.get('Monday').controls; let i = index"
+                          [formGroupName]="i">
+                          <GridLayout rows="auto,auto,auto" columns="*">
+                            <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                              <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(monDay.DayId,'open','Monday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(monDay.DayId,'close','Monday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                              <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Monday')" src="~/assets/dashbord/Cross.png" 
+                                 dock="top" class="cross-img"></Image>
+                            </RGridLayout>
+
+                            <GridLayout row="1" col="0" class="borders"></GridLayout>
+                          </GridLayout>
+                        </DockLayout>
+                      </WrapLayout>
+                      <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                        <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                        <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+                          class="timetxt"></Label>
+                        <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                          (tap)="addTimeFormGroup('Monday')" dock="top" class="cross-img">
+                        </Image>
+                      </RGridLayout>
+                    </GridLayout>
+                  </DockLayout>
+                </WrapLayout>
+              </GridLayout>
+            </GridLayout>
+
+
+              <!-- <-------------------------------TueDay------------------------------------- -->
+              <GridLayout row="2" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+                <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+                  <Image row="0" col="0" #check3 [src]="Tueimg" value="{{Tueval}}" (tap)="getTuetick(check3.value)"
+                    dock="top" class="uncheck-img"></Image>
+                  <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="TueDay.Days" class="status"></Label>
+                  <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+                    class="status"></Label> -->
+                </RGridLayout>
+  
+                <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Tueshow">
+                  <WrapLayout orientation="horizontal">
+                    <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+                      <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+                        <WrapLayout orientation="horizontal"  formArrayName="Tuesday">
+                          <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                            *ngFor="let shoptime of shoppingHours.get('Tuesday').controls; let i = index"
+                            [formGroupName]="i">
+                            <GridLayout rows="auto,auto,auto" columns="*">
+                              <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                                <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(TueDay.DayId,'open','Tuesday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                                  <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(TueDay.DayId,'close','Tuesday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                                <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Tuesday')" src="~/assets/dashbord/Cross.png" 
+                                   dock="top" class="cross-img"></Image>
+                              </RGridLayout>
+  
+                              <GridLayout row="1" col="0" class="borders"></GridLayout>
+                            </GridLayout>
+                          </DockLayout>
+                        </WrapLayout>
+                        <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+                          <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+                          <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+                            class="timetxt"></Label>
+                          <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                            (tap)="addTimeFormGroup('Tuesday')" dock="top" class="cross-img">
+                          </Image>
+                        </RGridLayout>
+                      </GridLayout>
+                    </DockLayout>
+                  </WrapLayout>
+                </GridLayout>
+              </GridLayout>
+
+  <!-- <-------------------------------WedneDay------------------------------------- -->
+  <GridLayout row="3" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+    <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+      <Image row="0" col="0" #check4 [src]="Wedneimg" value="{{Wedneval}}" (tap)="getWednetick(check4.value)"
+        dock="top" class="uncheck-img"></Image>
+      <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="WedneDay.Days" class="status"></Label>
+      <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+        class="status"></Label> -->
+    </RGridLayout>
+
+    <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Wedneshow">
+      <WrapLayout orientation="horizontal">
+        <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+          <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+            <WrapLayout orientation="horizontal"  formArrayName="Wednesday">
+              <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+                *ngFor="let shoptime of shoppingHours.get('Wednesday').controls; let i = index"
+                [formGroupName]="i">
+                <GridLayout rows="auto,auto,auto" columns="*">
+                  <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                    <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(WedneDay.DayId,'open','Wednesday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                      <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(WedneDay.DayId,'close','Wednesday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                    <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Wednesday')" src="~/assets/dashbord/Cross.png" 
+                       dock="top" class="cross-img"></Image>
+                  </RGridLayout>
+
+                  <GridLayout row="1" col="0" class="borders"></GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+            <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+              <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+              <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+                class="timetxt"></Label>
+              <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+                (tap)="addTimeFormGroup('Wednesday')" dock="top" class="cross-img">
+              </Image>
+            </RGridLayout>
+          </GridLayout>
+        </DockLayout>
+      </WrapLayout>
+    </GridLayout>
+  </GridLayout>
+
+
+ <!-- <-------------------------------ThurDay------------------------------------- -->
+ <GridLayout row="4" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check5 [src]="Thurimg" value="{{Thurval}}" (tap)="getThurtick(check5.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="ThurDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </RGridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="Thurshow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Thursday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Thursday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout rows="auto,auto,auto" columns="*">
+                <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(ThurDay.DayId,'open','Thursday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(ThurDay.DayId,'close','Thursday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Thursday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </RGridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Thursday')" dock="top" class="cross-img">
+            </Image>
+          </RGridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+ <!-- <-------------------------------friDay------------------------------------- -->
+ <GridLayout row="5" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check6 [src]="friimg" value="{{frival}}" (tap)="getfritick(check6.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="friDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </RGridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="frishow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Friday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Friday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout rows="auto,auto,auto" columns="*">
+                <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(friDay.DayId,'open','Friday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(friDay.DayId,'close','Friday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Friday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </RGridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Friday')" dock="top" class="cross-img">
+            </Image>
+          </RGridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+
+ <!-- <-------------------------------SatDay------------------------------------- -->
+ <GridLayout row="6" col="0" rows="auto,auto" columns="*" style="margin-bottom: 10;">
+  <RGridLayout   isRtl="true" row="0" col="0" rows="auto" columns="auto,*,*">
+    <Image row="0" col="0" #check7 [src]="satimg" value="{{satval}}" (tap)="getsattick(check7.value)"
+      dock="top" class="uncheck-img"></Image>
+    <Label  horizontalAlignment="left" row="0" col="1" verticalAlignment="middle" [text]="SatDay.Days" class="status"></Label>
+    <!-- <Label row="0" col="2" verticalAlignment="middle" horizontalAlignment="left" text="9.00am - 10.00pm"
+      class="status"></Label> -->
+  </RGridLayout>
+
+  <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="satshow">
+    <WrapLayout orientation="horizontal">
+      <DockLayout stretchLastChild="false" width="100%" class="innerSelect">
+        <GridLayout rows="auto,auto,auto" columns="*" style="margin-left: 20;margin-right: 20;background: white;">
+          <WrapLayout orientation="horizontal"  formArrayName="Saturday">
+            <DockLayout stretchLastChild="false" width="100%" class="innerSelect"
+              *ngFor="let shoptime of shoppingHours.get('Saturday').controls; let i = index"
+              [formGroupName]="i">
+              <GridLayout   isRtl="true" rows="auto,auto,auto" columns="*">
+                <RGridLayout row="0" col="0" rows="auto" columns="*,*,auto"  style="margin-bottom: 10;">
+                  <TextView class="input" row="0" col="0" (tap)="getDayIdbyTime(SatDay.DayId,'open','Saturday',i)" verticalAlignment="center" editable="false" hint="Open Time"  formControlName="Intime"  text="9.00am"></TextView>
+                    <TextView class="input" row="0" col="1" (tap)="getDayIdbyTime(SatDay.DayId,'close','Saturday',i)" verticalAlignment="center" editable="false" hint="Close Time"   formControlName="Outtime" text="10.00pm" ></TextView>
+                  <Image row="0" col="2"  (tap)="removeTimeFormGroup(i,'Saturday')" src="~/assets/dashbord/Cross.png" 
+                     dock="top" class="cross-img"></Image>
+                </RGridLayout>
+
+                <GridLayout row="1" col="0" class="borders"></GridLayout>
+              </GridLayout>
+            </DockLayout>
+          </WrapLayout>
+          <RGridLayout   isRtl="true" row="2" col="0" rows="auto" columns="*,*,auto" style="margin-top: 10;">
+            <Label row="0" col="0" verticalAlignment="middle" text="Open 24 Hrs" class="timetxt"></Label>
+            <Label row="0" col="1" verticalAlignment="middle" horizontalAlignment="left"  [text]="aedata.Add_more_hrs"
+              class="timetxt"></Label>
+            <Image row="0" col="2" src="~/assets/dashbord/Plus.png"  
+              (tap)="addTimeFormGroup('Saturday')" dock="top" class="cross-img">
+            </Image>
+          </RGridLayout>
+        </GridLayout>
+      </DockLayout>
+    </WrapLayout>
+  </GridLayout>
+</GridLayout>
+
+
+            <GridLayout row="7" col="0" rows="auto" columns="*">
+<Button [text]="aedata.Save" class="save" (tap)="insertStoreTimings()"></Button>
+            </GridLayout>
+
+          </GridLayout>
+        </form>
+      </ScrollView>
+    </GridLayout>
+
+
+   
+  </GridLayout>
+</Page>

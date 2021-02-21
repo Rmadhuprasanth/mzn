@@ -1,0 +1,293 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Create New Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Create_New_Promotions" row="0" col="1" android:horizontalAlignment="center"
+                class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label text="Choose Banner" class="header-txt"></Label>
+                </StackLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*" class="bg">
+                    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" class="margins">
+                        <Image row="0" col="0"  [src]="bannerurl"  stretch="aspectFill" class="banner"></Image>
+                        <GridLayout row="1" col="0" rows="auto" columns="*,*" style="margin-top: 10;">
+                            <Label row="0" col="0" textWrap='false' (tap)="gotobannerList()" text="Choose From Templates"
+                                class="templates"></Label>
+                            <Label row="0" col="1" textWrap='false'  (tap)="createNewBanner()" text="Upload Your Own Material"
+                                class="material"></Label>
+
+                        </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout row="2" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  class="margins"  style="margin-bottom: 40;" >
+                <GridLayout row="0" col="0" rows="auto" columns="*,*,*">
+<Label row="0" col="0" text="Offer Type" class="ofertext"></Label>
+<GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+    <Image  #checksize row="0" col="0"  (tap)="offertype(1)" [src]="selectedoffertype==1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" class="uncheck-img"></Image>
+    <Label row="0" col="1"  class="ofertext" verticalAlignment="center" text="Flat"></Label>
+</GridLayout>
+
+<GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+    <Image  #checksize row="0" col="0" (tap)="offertype(2)" [src]="selectedoffertype==2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+    dock="right"    class="uncheck-img"></Image>
+    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Discount"></Label>
+</GridLayout>
+                </GridLayout>
+                <GridLayout  row="1" col="0" class="border"></GridLayout>
+                <GridLayout row="2" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Offer Value"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" [(ngModel)]="textdata.DiscountValue" editable="true" keyboardType="number"  row="0" col="2" hint="Enter value" autocorrect="false" autocapitalizationType="none"></TextField>
+                </GridLayout>
+                <GridLayout  row="3" col="0" class="border"></GridLayout>
+                <GridLayout row="4" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Minimum Order Value"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" editable="true" keyboardType="number"  [(ngModel)]="textdata.MinimumAmount" row="0" col="2" hint="Enter value" autocorrect="false" autocapitalizationType="none"></TextField>
+                </GridLayout>
+
+                <GridLayout  row="5" col="0" class="border"></GridLayout>
+               
+                <GridLayout row="8" col="0" rows="auto" columns="*,auto,*" >
+
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Maximun Discount"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" editable="true" keyboardType="number"   [(ngModel)]="textdata.MaximumDiscount" row="0" col="2" hint="Maximun Discount Amount" autocorrect="false" autocapitalizationType="none"></TextField>
+                </GridLayout>
+
+                <GridLayout  row="9" col="0" class="border"></GridLayout>
+                <GridLayout row="10" col="0" rows="auto,auto" columns="*">
+                    <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Promotion Starts On"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" editable="false"  (tap)="showDatepickerstart(clickdatestart)" [(ngModel)]="textdata.ValidFrom" row="0" col="2" hint="Promotion Starting Date" autocorrect="false" autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="1" col="0" rows="150" columns="*" *ngIf="startDate">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" style="padding: 0;margin: 0;" 
+                        [minDate]="minstartDate" [maxDate]="maxstartDate" verticalAlignment="center"
+                        (dateChange)="onstartDateChanged($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+
+                <GridLayout  row="11" col="0" class="border"></GridLayout>
+                <GridLayout row="12" col="0" rows="auto" columns="*">
+                    <GridLayout row="0" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Promotion Ends On"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" editable="false"  (tap)="showDatepickerend(clickdateend)"  [(ngModel)]="textdata.ValidTo" row="0" col="2" hint="Promotion Ending Date" autocorrect="false" autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="1" col="0" rows="150" columns="*" *ngIf="EndDate">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                        [minDate]="minendDate" [maxDate]="maxendDate" verticalAlignment="center"
+                        (dateChange)="onendDateChangend($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+
+                <GridLayout  row="13" col="0" class="border"></GridLayout>
+                <GridLayout row="14" col="0" rows="auto" columns="*,*">
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Promotion Applies to"></Label>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="auto,*">
+                        <Image  #checksize row="0" col="0" [src]="stitchingorstore == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="gotostitchorstore(1)" class="uncheck-img"></Image>
+                    <Label row="0" col="1" class="alltext" verticalAlignment="center" text="Stitching"></Label>
+
+                    <Image  #checksize row="1" col="0" [src]="stitchingorstore == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""  (tap)="gotostitchorstore(2)" class="uncheck-img"></Image>
+                <Label row="1" col="1" class="alltext" verticalAlignment="center" text="Store Products"></Label>
+                    </GridLayout>
+                </GridLayout>
+
+
+                <GridLayout  row="15" col="0" class="border"></GridLayout>
+                <GridLayout row="16" col="0" rows="auto" columns="*,*">
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Applying Method"></Label>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="auto,*">
+                        <Image  #checksize row="0" col="0" *ngIf="ifstitchhide" [src]="applymodeval==2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="applymode(2)" class="uncheck-img"></Image>
+                    <Label row="0" col="1" class="alltext"  *ngIf="ifstitchhide" verticalAlignment="center" text="Automatic"></Label>
+
+                    <Image  #checksize row="1" col="0"  [src]="applymodeval==1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="applymode(1)" class="uncheck-img"></Image>
+                <Label row="1" col="1" class="alltext" verticalAlignment="center" text="Promocode"></Label>
+                    </GridLayout>
+                </GridLayout>
+
+                <GridLayout  row="17" col="0" class="border"></GridLayout>
+                <GridLayout row="18" col="0" rows="auto" columns="*,auto,*" style="margin-bottom: 40;" *ngIf="applymodeval==1">
+
+                    <Label row="0" col="0" class="alltext" verticalAlignment="center" text="Promo Code"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" editable="true"   [(ngModel)]="textdata.couponcodeId" row="0" col="2" hint="Enter Promo Code" autocorrect="false" autocapitalizationType="none"></TextField>
+                </GridLayout>
+                </GridLayout>
+
+            </GridLayout>
+        </ScrollView>   
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <Button row="1" col="0" text="Save" *ngIf="showsavebtn" class="donebtn " (tap)="savepromotion()" style="margin-bottom: 10;"> </Button>
+                
+                <Button row="1" col="0" text="Save"  *ngIf="showeditbtn" class="donebtn " (tap)="savepromotion()" style="margin-bottom: 10;"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+
+
+
+
+     <!-- <--------------arabic-content---------------------->
+     <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+            <GridLayout rows="auto,auto,auto" columns="*">
+                <StackLayout row="0" col="0" class="gray-bg">
+                    <Label [text]="aedata.Choose_Banner" class="header-txt"></Label>
+                </StackLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*" class="bg">
+                    <GridLayout row="0" col="0" rows="auto,auto,auto" columns="*" class="margins">
+                        <Image row="0" col="0"  [src]="bannerurl"  stretch="aspectFill" class="banner"></Image>
+                        <RGridLayout  isRtl="true" row="1" col="0" rows="auto" columns="*,*" style="margin-top: 10;">
+                            <Label row="0" col="0" textWrap='false' (tap)="gotobannerList()" [text]="aedata.Choose_From_Templates"
+                                class="templatesae"></Label>
+                            <Label row="0" col="1" textWrap='false'  (tap)="createNewBanner()" [text]="aedata.Upload_Your_Own_Material"
+                                class="materialae"></Label>
+
+                        </RGridLayout>
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout  isRtl="true" row="2" col="0" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  class="margins"  style="margin-bottom: 40;" >
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="*,*,*">
+<Label  horizontalAlignment="left"  row="0" col="0" [text]="aedata.Offer_Type" class="ofertext"></Label>
+<GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+    <Image  #checksize row="0" col="0"  (tap)="offertype(1)" [src]="selectedoffertype==1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" class="uncheck-img"></Image>
+    <Label row="0" col="1"  class="ofertext" verticalAlignment="center" [text]="aedata.Flat"></Label>
+</GridLayout>
+
+<GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+    <Image  #checksize row="0" col="0" (tap)="offertype(2)" [src]="selectedoffertype==2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+    dock="right"    class="uncheck-img"></Image>
+    <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Discount"></Label>
+</GridLayout>
+                </RGridLayout>
+                <GridLayout  row="1" col="0" class="border"></GridLayout>
+                <RGridLayout isRtl="true" row="2" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Offer_Value"></Label>
+                    <Label  horizontalAlignment="left"  row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" [(ngModel)]="textdata.DiscountValue" editable="true" keyboardType="number"  row="0" col="2" hint="أدخل القيمة" autocorrect="false" autocapitalizationType="none"></TextField>
+                </RGridLayout>
+                <GridLayout  row="3" col="0" class="border"></GridLayout>
+                <RGridLayout isRtl="true" row="4" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Minimum_Order_Value"></Label>
+                    <Label  horizontalAlignment="left"  row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" editable="true" keyboardType="number"  [(ngModel)]="textdata.MinimumAmount" row="0" col="2" hint="أدخل القيمة" autocorrect="false" autocapitalizationType="none"></TextField>
+                </RGridLayout>
+
+                <GridLayout  row="5" col="0" class="border"></GridLayout>
+               
+                <RGridLayout isRtl="true" row="8" col="0" rows="auto" columns="*,auto,*" >
+
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Maximun_Discount"></Label>
+                    <Label  horizontalAlignment="left"  row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" editable="true" keyboardType="number"   [(ngModel)]="textdata.MaximumDiscount" row="0" col="2" hint="الحد الاقصى للخصم" autocorrect="false" autocapitalizationType="none"></TextField>
+                </RGridLayout>
+
+                <GridLayout  row="9" col="0" class="border"></GridLayout>
+                <GridLayout  row="10" col="0" rows="auto,auto" columns="*">
+                    <RGridLayout  isRtl="true"  row="0" col="0" rows="auto" columns="*,auto,*">
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Promotion_Starts_On"></Label>
+                    <Label  horizontalAlignment="left"  row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" editable="false"  (tap)="showDatepickerstart(clickdatestart)" [(ngModel)]="textdata.ValidFrom" row="0" col="2" hint="تاريخ بداية العرض" autocorrect="false" autocapitalizationType="none"></TextField>
+                    </RGridLayout>
+                    <GridLayout row="1" col="0" rows="150" columns="*" *ngIf="startDate">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                        [minDate]="minstartDate" [maxDate]="maxstartDate" verticalAlignment="center"
+                        (dateChange)="onstartDateChanged($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+
+                <GridLayout  row="11" col="0" class="border"></GridLayout>
+                <GridLayout row="12" col="0" rows="auto" columns="*">
+                    <RGridLayout  isRtl="true"  row="0" col="0" rows="auto" columns="*,auto,*">
+
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Promotion_Ends_On"></Label>
+                    <Label  horizontalAlignment="left"  row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" editable="false"  (tap)="showDatepickerend(clickdateend)"  [(ngModel)]="textdata.ValidTo" row="0" col="2" hint="تاريخ نهاية العرض" autocorrect="false" autocapitalizationType="none"></TextField>
+                    </RGridLayout>
+                    <GridLayout row="1" col="0" rows="150" columns="*" *ngIf="EndDate">
+                        <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                        [minDate]="minendDate" [maxDate]="maxendDate" verticalAlignment="center"
+                        (dateChange)="onendDateChangend($event)" >
+                            </DatePicker>  
+                        </GridLayout>
+                </GridLayout>
+
+                <GridLayout  row="13" col="0" class="border"></GridLayout>
+                <RGridLayout  isRtl="true"  row="14" col="0" rows="auto" columns="*,*">
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Promotion_Applies_to"></Label>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="auto,*">
+                        <Image  #checksize row="0" col="0" [src]="stitchingorstore == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="gotostitchorstore(1)" class="uncheck-img"></Image>
+                    <Label row="0" col="1" class="alltext" verticalAlignment="center" [text]="aedata.Stitching"></Label>
+
+                    <Image  #checksize row="1" col="0" [src]="stitchingorstore == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""  (tap)="gotostitchorstore(2)" class="uncheck-img"></Image>
+                <Label row="1" col="1" class="alltext" verticalAlignment="center" [text]="aedata.Store_Products"></Label>
+                    </GridLayout>
+                </RGridLayout>
+
+
+                <GridLayout  row="15" col="0" class="border"></GridLayout>
+                <RGridLayout  isRtl="true"  row="16" col="0" rows="auto" columns="*,*">
+                    <Label  horizontalAlignment="left"  row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Applying_Method"></Label>
+                    <GridLayout row="0" col="1" rows="auto,auto" columns="auto,*">
+                        <Image  #checksize row="0" col="0" [src]="applymodeval==2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="applymode(2)" class="uncheck-img"></Image>
+                    <Label row="0" col="1" class="alltext" verticalAlignment="center" [text]="aedata.Automatic"></Label>
+
+                    <Image  #checksize row="1" col="0" [src]="applymodeval==1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="" (tap)="applymode(1)" class="uncheck-img"></Image>
+                <Label row="1" col="1" class="alltext" verticalAlignment="center" [text]="aedata.Promocode"></Label>
+                    </GridLayout>
+                </RGridLayout>
+
+                <GridLayout  row="17" col="0" class="border"></GridLayout>
+                <RGridLayout  isRtl="true"  row="18" col="0" rows="auto" columns="*,auto,*" style="margin-bottom: 40;" *ngIf="applymodeval==1">
+
+                    <Label horizontalAlignment="left" row="0" col="0" class="alltext" verticalAlignment="center" [text]="aedata.Promo_Code"></Label>
+                    <Label row="0" col="1" class="ofertext" verticalAlignment="center" text=":"></Label>
+                    <TextField class="input" style="text-align: center;" editable="true"   [(ngModel)]="textdata.couponcodeId" row="0" col="2" hint="اكتب الرمز الترويجي" autocorrect="false" autocapitalizationType="none"></TextField>
+                </RGridLayout>
+                </GridLayout>
+
+            </GridLayout>
+        </ScrollView>   
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <Button row="1" col="0" [text]="aedata.Save" *ngIf="showsavebtn" class="donebtn " (tap)="savepromotion()" style="margin-bottom: 10;"> </Button>
+                
+                <Button row="1" col="0" [text]="aedata.Save"  *ngIf="showeditbtn" class="donebtn " (tap)="savepromotion()" style="margin-bottom: 10;"> </Button>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

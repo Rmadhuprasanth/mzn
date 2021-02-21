@@ -1,0 +1,184 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Request Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar>
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Request_Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar>
+       <!-- <--------------english-content---------------------->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+                <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto,auto" columns="*" class="bg-child" *ngFor="let data of datalist"  shadow="2"  cornerRadius="15">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                    <label row="0" col="0" class="order-txt" text="Request Id"></label>
+                    <label row="0" col="1" horizontalAlignment="left" class="detail-txt" [text]="':' +data.OrderId"></label>
+                </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*,*">
+                    <label row="0" col="0" class="order-txt" text="Request on"></label>
+                    <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' + data.OrderDt"></label>
+                </GridLayout>
+                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                    <label row="0" col="0" class="order-txt" text="Material Type"></label>
+                    <label row="0" col="1" textWrap="true" horizontalAlignment="left" class="detail-txt" [text]="':' + data.MaterialType"></label>
+                </GridLayout>
+                <!-- <GridLayout row="3" col="0" rows="auto" columns="*,*">
+                    <label row="0" col="0" class="order-txt" text="Delivery Type"></label>
+                    <label row="0" col="1"  textWrap="true" horizontalAlignment="left" class="detail-txt" [text]="':' + data.DeliveryNameInEnglish"></label>
+                </GridLayout> -->
+                    
+                     </GridLayout>
+
+
+
+                     <GridLayout row="1" col="0" rows="auto" columns="*,auto" class="bg-child1"  *ngFor="let datas of datalist" shadow="2"  cornerRadius="15">
+                        <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto,auto" columns="*">
+                        <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                            <label row="0" col="0" class="order-txt" text="Dress Type"></label>
+                            <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' +datas.DressTypeNameInEnglish"></label>
+                        </GridLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="*,*">
+                            <label row="0" col="0" class="order-txt" text="Sub Dress"></label>
+                            <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' + datas.DressSubTypeNameInEnglish"></label>
+                        </GridLayout>
+                        <!-- <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                            <label row="0" col="0" class="order-txt" text="Price"></label>
+                            <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' + datas.Price"></label>
+                        </GridLayout> -->
+                        <GridLayout row="3" col="0" rows="auto" columns="*,*">
+                            <label row="0" col="0" class="order-txt" text="Qty"></label>
+                            <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' + datas.Qty"></label>
+                        </GridLayout>
+                    </GridLayout>
+                            <Image [src]="dresssubtypeimg+datas.Image" row="0" col="1" class="img"></Image>
+                             </GridLayout>
+
+                            <GridLayout row="2" col="0" rows="auto" columns="*,*,*" style="margin-top: 10;">
+                                <Button row="0" col="0"  horizontalAlignment="center" text="Measurment" class="btn-detail" (tap)="gotoMeasurement()"></Button>
+                                <Button row="0" col="1"  horizontalAlignment="center" text="Customization"  class="btn-detail" (tap)="gotoCustomization()"></Button>
+                            <GridLayout  row="0" col="2"  rows="auto" columns="*,auto" class="btn-detail1"  (tap)="gotoPdf()">
+                                <Label  row="0" col="0"  textWrap="true" class="downloadtxt" text="Download Order Details"></Label>
+                                <Image src="~/assets/order-management/pdfs.png" row="0" col="1" class="pdf"></Image>
+                            </GridLayout>
+                            </GridLayout>
+                            <StackLayout row="3" col="0" class="bgbrdr" style="margin-top: 10;">
+                                <Label   [text]="'Material Details-'+MaterialType" class="mattxt"></Label>
+                            </StackLayout>
+                            <GridLayout row="4" col="0" rows="auto,auto" columns="*" style="margin-top: 10;">  
+                                <GridLayout row="0" col="0" rows="auto,auto">
+                                    <WrapLayout  orientation="horizontal" > 
+                                        <DockLayout   stretchLastChild="false" width="25%" *ngFor="let img of MaterialImages">
+                                            <Image  [src]="imgUrlPattern+img.ImageName"    class="st-img"></Image>
+                                        </DockLayout>
+                                        </WrapLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" style="margin-top: 10;">
+                                    <Button row="0" col="1" text="Detail" class="detailsbtn" (tap)="gotomaterial()"></Button>
+                                </GridLayout>
+                            </GridLayout>
+
+                            <GridLayout row="5" col="0" rows="auto" columns="*,*" style="margin-top: 10;">
+                                <Button row="0" col="0" text="Accept" (tap)="gotoApprove()" class="btn-detail2"></Button>
+                                <Button row="0" col="1" text="Reject" (tap)="rejectBuyerRequest()" class="btn-detail2"></Button>
+                            </GridLayout>
+        </GridLayout>
+            </ScrollView>
+            </GridLayout>
+
+
+
+
+
+
+
+
+              <!-- <--------------arabic-content---------------------->
+    <RGridLayout isRtl="true" class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <RGridLayout isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+                <GridLayout   isRtl="true"  row="0" col="0" rows="auto,auto,auto,auto,auto,auto" columns="*" class="bg-child" *ngFor="let data of datalist"  shadow="2"  cornerRadius="15">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                    <label horizontalAlignment="left" style="transform: scaleX(-1);"  row="0" col="0" class="order-txt" [text]="aedata.Request_Id"></label>
+                    <label style="transform: scaleX(-1);"  row="0" col="1" horizontalAlignment="left" class="detail-txt" [text]="data.OrderId+  ':'"></label>
+                </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*,*">
+                    <label  horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Request_on"></label>
+                    <label  style="transform: scaleX(-1);"  row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="data.OrderDt+  ':'"></label>
+                </GridLayout>
+                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                    <label  horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Material_Type"></label>
+                    <label  style="transform: scaleX(-1);"  row="0" col="1" textWrap="true" horizontalAlignment="left" class="detail-txt" [text]="data.MaterialTypeInArabic+  ':'"></label>
+                </GridLayout>
+                <!-- <GridLayout row="3" col="0" rows="auto" columns="*,*">
+                    <label row="0" col="0" class="order-txt" text="Delivery Type"></label>
+                    <label row="0" col="1"  textWrap="true" horizontalAlignment="left" class="detail-txt" [text]="':' + data.DeliveryNameInEnglish"></label>
+                </GridLayout> -->
+                    
+                     </GridLayout>
+
+
+
+                     <GridLayout  isRtl="true" row="1" col="0" rows="auto" columns="*,auto" class="bg-child1"  *ngFor="let datas of datalist" shadow="2"  cornerRadius="15">
+                        <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto,auto" columns="*">
+                        <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Dress_Type"></label>
+                            <label style="transform: scaleX(-1);"  row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="datas.DressTypeNameInArabic+  ':'"></label>
+                        </GridLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="*,*">
+                            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Sub_Dress"></label>
+                            <label style="transform: scaleX(-1);"  row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="datas.DressSubTypeNameInArabic +  ':'"></label>
+                        </GridLayout>
+                        <!-- <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                            <label row="0" col="0" class="order-txt" text="Price"></label>
+                            <label row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="':' + datas.Price"></label>
+                        </GridLayout> -->
+                        <GridLayout row="3" col="0" rows="auto" columns="*,*">
+                            <label horizontalAlignment="left" style="transform: scaleX(-1);" row="0" col="0" class="order-txt" [text]="aedata.Qty"></label>
+                            <label style="transform: scaleX(-1);" row="0" col="1"  horizontalAlignment="left" class="detail-txt" [text]="datas.Qty+  ':'"></label>
+                        </GridLayout>
+                    </GridLayout>
+                            <Image [src]="dresssubtypeimg+datas.Image" row="0" col="1" class="img"></Image>
+                             </GridLayout>
+
+                            <GridLayout  isRtl="true"  row="2" col="0" rows="auto" columns="*,*,*" style="margin-top: 10;">
+                                <Button style="transform: scaleX(-1);"  row="0" col="0" [text]="aedata.Measurment" class="btn-detail" (tap)="gotoMeasurement()"></Button>
+                                <Button style="transform: scaleX(-1);"  row="0" col="1" [text]="aedata.Customization"  class="btn-detailae" (tap)="gotoCustomization()"></Button>
+                                <GridLayout  row="0" col="2"  rows="auto" columns="*,auto" class="btn-detail1"  (tap)="gotoPdf()">
+                                    <Label style="transform: scaleX(-1);"  row="0" col="0"  textWrap="true" class="downloadtxtae" text="Download Order Details"></Label>
+                                    <Image style="transform: scaleX(-1);" src="~/assets/order-management/pdfs.png" row="0" col="1" class="pdf"></Image>
+                                </GridLayout>
+                            </GridLayout>
+                            <StackLayout row="3" col="0" class="bgbrdr" style="margin-top: 10;">
+                                <Label  style="text-align: right;" [text]="aedata.Material_Details+'-'+MaterialTypeInArabic" class="mattxt"></Label>
+                            </StackLayout>
+                            <GridLayout  isRtl="true"  row="4" col="0" rows="auto,auto" columns="*" style="margin-top: 10;">
+                                <GridLayout row="0" col="0" rows="auto,auto">
+                                    <WrapLayout  orientation="horizontal" > 
+                                        <DockLayout   stretchLastChild="false" width="25%" *ngFor="let img of MaterialImages">
+                                            <Image  [src]="imgUrlPattern+img.ImageName"    class="st-img"></Image>
+                                        </DockLayout>
+                                        </WrapLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0" rows="auto" columns="*,auto,*" style="margin-top: 10;">
+                                    <Button style="transform: scaleX(-1);"  row="0" col="1" [text]="aedata.Detail" class="detailsbtn" (tap)="gotomaterial()"></Button>
+                                </GridLayout>
+                            </GridLayout>
+
+                            <GridLayout  isRtl="true"  row="5" col="0" rows="auto" columns="*,*" style="margin-top: 10;">
+                                <Button style="transform: scaleX(-1);"  row="0" col="0" [text]="aedata.Accept" (tap)="gotoApprove()" class="btn-detail2"></Button>
+                                <Button style="transform: scaleX(-1);"  row="0" col="1" [text]="aedata.Reject" (tap)="rejectBuyerRequest()" class="btn-detail2"></Button>
+                            </GridLayout>
+        </RGridLayout>
+            </ScrollView>
+            </RGridLayout>
+    </Page>

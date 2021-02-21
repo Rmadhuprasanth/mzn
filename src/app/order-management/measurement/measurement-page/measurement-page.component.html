@@ -1,0 +1,696 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:rtl="@nativescript-rtl/ui" class="parent">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*" >
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Measurement" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+    
+
+    <!-- <--------------arabic-header---------------------->
+
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Measurement" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+    <!-- <--------------english-content---------------------->
+    <GridLayout class="page"  *ngIf="lang=='English'">
+            <GridLayout rows="40,*" class="margins bottm" >
+                <GridLayout row="0" columns="*,*" height="48" class="bg-tabs">
+                    <StackLayout col="0" (tap)="selectedheader(0)"
+                        [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                        <Label text="Images" class="txt"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" (tap)="selectedheader(1)"
+                        [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                        <Label text="Parts" class="txt"></Label>
+
+                    </StackLayout>
+                </GridLayout>
+
+                <GridLayout row="1"  *ngIf="selectedheaders =='0'">
+                    <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false" >
+                        <GridLayout   rows="auto,auto,auto,auto" columns="*">
+        <Pager
+        [items]="items"
+        #pager
+        id='pager'
+        [selectedIndex]="currentPagerIndex"
+        (selectedIndexChange)="onIndexChanged($event)"
+        class="pager" 
+        row="0"
+        col="0"
+        pagesCount="5"
+      >
+        <ng-template let-i="index" let-item="item"> 
+            <WrapLayout  orientation="horizontal" > 
+                <DockLayout   stretchLastChild="false" width="100%" *ngFor="let identyfy of mapmeasurId">
+          <GridLayout row="1"  class="pager-item"  rows="auto" *ngIf="identyfy.Id == i+1" columns="*" setClipChildren="false" >
+                    
+            <Image [src]="item.Image"  horizontalAlignment="left" row="0" col="0"
+                class="img"></Image>  
+            <AbsoluteLayout class="meter"  *ngFor="let identyfys of Measurements">
+                <!-- <----------------------------------------1-17-33-49-65----------------------------- -->
+                <GridLayout rows="auto" *ngIf="(identyfy.Id == 1 && (identyfys.Id == 1 || identyfys.Id ==65  || identyfys.Id == 145  || identyfys.Id == 209))||(identyfy.Id == 2 && (identyfys.Id == 17 || identyfys.Id == 81 || identyfys.Id == 161 || identyfys.Id == 225))||(identyfy.Id == 3 && (identyfys.Id == 33 || identyfys.Id == 97 || identyfys.Id == 177 || identyfys.Id == 241))||(identyfy.Id == 4 && (identyfys.Id ==49 || identyfys.Id ==113 || identyfys.Id ==193 || identyfys.Id ==257))||(identyfy.Id == 5 && (identyfys.Id == 129 || identyfys.Id == 273 ))" columns="auto,auto" width="100%"  left="0" top="0"> 
+                    <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                        <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                        horizontalAlignment="center" verticalAlignment="center"></Gif>
+                    <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                        src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image> 
+                    </RGridLayout>    
+                <Button row="0" col="1"   [text]="identyfys.Value" (tap)="openmeasurementmodal(identyfys)"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+                <!-- <----------------------------------------1-17-33-49-65----------------------------- -->
+                <!-- <-------------2------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="30" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 2 || identyfys.Id == 66 || identyfys.Id == 146 || identyfys.Id == 210))||(identyfy.Id == 2 && (identyfys.Id == 18 || identyfys.Id == 82 ||identyfys.Id == 162 ||identyfys.Id == 226))||(identyfy.Id == 3 && (identyfys.Id == 34 || identyfys.Id == 98 || identyfys.Id == 178 || identyfys.Id == 242))||(identyfy.Id == 4 && (identyfys.Id ==50 || identyfys.Id ==114 ||identyfys.Id ==194||identyfys.Id ==258))||(identyfy.Id == 5 && (identyfys.Id == 130 || identyfys.Id == 274))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+  <!-- <-------------3------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"   left="0" top="60" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 3 ||identyfys.Id == 67 ||identyfys.Id == 147 ||identyfys.Id == 211))||(identyfy.Id == 2 && (identyfys.Id == 19||identyfys.Id == 83||identyfys.Id == 163||identyfys.Id == 227))||(identyfy.Id == 3 && (identyfys.Id == 35 ||identyfys.Id == 99 ||identyfys.Id == 179 ||identyfys.Id == 243))||(identyfy.Id == 4 && (identyfys.Id ==51||identyfys.Id ==115||identyfys.Id ==195||identyfys.Id ==259))||(identyfy.Id == 5 && (identyfys.Id == 131||identyfys.Id == 275))" flexWrap="wrap-reverse">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1" [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout> 
+              <!-- <-------------4------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="90" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 4||identyfys.Id == 68||identyfys.Id == 148||identyfys.Id == 212))||(identyfy.Id == 2 && (identyfys.Id == 20||identyfys.Id == 84||identyfys.Id == 164||identyfys.Id == 228))||(identyfy.Id == 3 && (identyfys.Id == 36||identyfys.Id == 100||identyfys.Id == 180||identyfys.Id == 244))||(identyfy.Id == 4 && (identyfys.Id ==52||identyfys.Id ==116||identyfys.Id ==196||identyfys.Id ==260))||(identyfy.Id == 5 && (identyfys.Id == 132||identyfys.Id == 276))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+              <!-- <-------------5------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="120" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 5||identyfys.Id == 69||identyfys.Id == 149||identyfys.Id == 213))||(identyfy.Id == 2 && (identyfys.Id == 21||identyfys.Id == 85||identyfys.Id == 165||identyfys.Id == 229))||(identyfy.Id == 3 && (identyfys.Id == 37||identyfys.Id == 101||identyfys.Id == 181||identyfys.Id == 245))||(identyfy.Id == 4 && (identyfys.Id ==53||identyfys.Id ==117||identyfys.Id ==197||identyfys.Id ==261))||(identyfy.Id == 5 && (identyfys.Id == 133||identyfys.Id == 277))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+              <!-- <-------------6------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="150" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 6||identyfys.Id == 70||identyfys.Id == 150||identyfys.Id == 214))||(identyfy.Id == 2 && (identyfys.Id == 22||identyfys.Id == 86||identyfys.Id == 166||identyfys.Id == 230))||(identyfy.Id == 3 && (identyfys.Id == 38||identyfys.Id == 102||identyfys.Id == 182||identyfys.Id == 246))||(identyfy.Id == 4 && (identyfys.Id ==54||identyfys.Id == 118||identyfys.Id == 198||identyfys.Id == 262))||(identyfy.Id == 5 && (identyfys.Id == 134||identyfys.Id == 278))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------7------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="180"
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 7||identyfys.Id == 71||identyfys.Id == 151||identyfys.Id == 215))||(identyfy.Id == 2 && (identyfys.Id == 23||identyfys.Id == 87||identyfys.Id == 167||identyfys.Id == 231))||(identyfy.Id == 3 && (identyfys.Id == 39||identyfys.Id == 103||identyfys.Id == 183||identyfys.Id == 247))||(identyfy.Id == 4 && (identyfys.Id ==55||identyfys.Id == 119||identyfys.Id == 199||identyfys.Id == 263))||(identyfy.Id == 5 && (identyfys.Id == 135||identyfys.Id == 279))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------8------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="210" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 8||identyfys.Id == 72||identyfys.Id == 152||identyfys.Id == 216))||(identyfy.Id == 2 && (identyfys.Id == 24||identyfys.Id == 88||identyfys.Id == 168||identyfys.Id == 232))||(identyfy.Id == 3 && (identyfys.Id == 40||identyfys.Id == 104||identyfys.Id == 184||identyfys.Id == 248))||(identyfy.Id == 4 && (identyfys.Id ==56||identyfys.Id == 120||identyfys.Id == 200||identyfys.Id == 264))||(identyfy.Id == 5 && (identyfys.Id == 136||identyfys.Id == 280))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------9------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="240"
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 9||identyfys.Id == 73||identyfys.Id == 153||identyfys.Id == 217))||(identyfy.Id == 2 && (identyfys.Id == 25||identyfys.Id == 89||identyfys.Id == 169||identyfys.Id == 233))||(identyfy.Id == 3 && (identyfys.Id == 41||identyfys.Id == 105||identyfys.Id == 185||identyfys.Id == 249))||(identyfy.Id == 4 && (identyfys.Id ==57||identyfys.Id == 121||identyfys.Id == 201||identyfys.Id == 265))||(identyfy.Id == 5 && (identyfys.Id == 137||identyfys.Id == 281))" >
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------10------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="270" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 10||identyfys.Id == 74||identyfys.Id == 154||identyfys.Id == 218))||(identyfy.Id == 2 && (identyfys.Id == 26||identyfys.Id == 90||identyfys.Id == 170||identyfys.Id == 234))||(identyfy.Id == 3 && (identyfys.Id == 42||identyfys.Id == 106||identyfys.Id == 186||identyfys.Id == 250))||(identyfy.Id == 4 && (identyfys.Id ==58||identyfys.Id == 122||identyfys.Id == 202||identyfys.Id == 266))||(identyfy.Id == 5 && (identyfys.Id == 138||identyfys.Id == 282))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------11------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="300" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 11||identyfys.Id == 75||identyfys.Id == 155||identyfys.Id == 219))||(identyfy.Id == 2 && (identyfys.Id == 27||identyfys.Id == 91||identyfys.Id == 171||identyfys.Id == 235))||(identyfy.Id == 3 && (identyfys.Id == 43||identyfys.Id == 107||identyfys.Id == 187||identyfys.Id == 251))||(identyfy.Id == 4 && (identyfys.Id ==59||identyfys.Id == 123||identyfys.Id == 203||identyfys.Id == 267))||(identyfy.Id == 5 && (identyfys.Id == 139||identyfys.Id == 283))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------12------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="330" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 12||identyfys.Id == 76||identyfys.Id == 156||identyfys.Id == 220))||(identyfy.Id == 2 && (identyfys.Id == 28||identyfys.Id == 92||identyfys.Id == 172||identyfys.Id == 236))||(identyfy.Id == 3 && (identyfys.Id == 44||identyfys.Id == 108||identyfys.Id == 188||identyfys.Id == 252))||(identyfy.Id == 4 && (identyfys.Id ==60||identyfys.Id == 124||identyfys.Id == 204||identyfys.Id == 268))||(identyfy.Id == 5 && (identyfys.Id == 140||identyfys.Id == 284))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------13------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="360" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 13||identyfys.Id == 77||identyfys.Id == 157||identyfys.Id == 221))||(identyfy.Id == 2 && (identyfys.Id == 29||identyfys.Id == 93||identyfys.Id == 173||identyfys.Id == 237))||(identyfy.Id == 3 && (identyfys.Id == 45||identyfys.Id == 109||identyfys.Id == 189||identyfys.Id == 253))||(identyfy.Id == 4 && (identyfys.Id ==61||identyfys.Id == 125||identyfys.Id == 205||identyfys.Id == 269))||(identyfy.Id == 5 && (identyfys.Id == 141||identyfys.Id == 285))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout>  
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------14------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="390" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 14||identyfys.Id == 78||identyfys.Id == 158||identyfys.Id == 222))||(identyfy.Id == 2 && (identyfys.Id == 30||identyfys.Id == 94||identyfys.Id == 174||identyfys.Id == 238))||(identyfy.Id == 3 && (identyfys.Id == 46||identyfys.Id == 110||identyfys.Id == 190||identyfys.Id == 254))||(identyfy.Id == 4 && (identyfys.Id ==62||identyfys.Id == 126||identyfys.Id == 206||identyfys.Id == 270))||(identyfy.Id == 5 && (identyfys.Id == 142||identyfys.Id == 286))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------15------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="420" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 15||identyfys.Id == 79||identyfys.Id == 159||identyfys.Id == 223))||(identyfy.Id == 2 && (identyfys.Id == 31||identyfys.Id == 95||identyfys.Id == 175||identyfys.Id == 239))||(identyfy.Id == 3 && (identyfys.Id == 47||identyfys.Id == 111||identyfys.Id == 191||identyfys.Id == 255))||(identyfy.Id == 4 && (identyfys.Id ==63||identyfys.Id == 127||identyfys.Id == 207||identyfys.Id == 271))||(identyfy.Id == 5 && (identyfys.Id == 143||identyfys.Id == 287))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------16------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="450" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 16||identyfys.Id == 80||identyfys.Id == 160||identyfys.Id == 224))||(identyfy.Id == 2 && (identyfys.Id == 32||identyfys.Id == 96||identyfys.Id == 176||identyfys.Id == 240))||(identyfy.Id == 3 && (identyfys.Id == 48||identyfys.Id == 112||identyfys.Id == 192||identyfys.Id == 256))||(identyfy.Id == 4 && (identyfys.Id ==64||identyfys.Id == 128||identyfys.Id == 208||identyfys.Id == 272))||(identyfy.Id == 5 && (identyfys.Id == 144||identyfys.Id == 288))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+                        <!-- <WrapLayout  orientation="horizontal" *ngFor="let Measurements of Measurements"> 
+                <DockLayout   stretchLastChild="false" width="100%" >
+                <GridLayout rows="auto" columns="auto,auto" width="100%"  left="30" [top]="0">
+                <GridLayout row="0" col="0" rows="auto" columns="auto,auto,auto,auto" width="80%" >
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="0"
+                        src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="2" class="gifimg"
+                        horizontalAlignment="center" verticalAlignment="center"></Gif>
+                </GridLayout>   
+                <Button row="0" col="1" text="" (tap)="openmeasurementmodal()"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+        </DockLayout>
+        </WrapLayout>  -->
+            </AbsoluteLayout>
+
+        </GridLayout>
+    </DockLayout>
+    </WrapLayout>
+        </ng-template>
+      </Pager>
+         <GridLayout row="1" col="0" rows="auto,auto,auto" columns="*">
+            <GridLayout row="0" col="0" rows="auto" columns="*" horizontalAlignment="center">
+                <WrapLayout  orientation="horizontal">
+                    <DockLayout stretchLastChild="true" *ngFor="let page of items; let i = index" width="10%">
+
+<StackLayout class="bground" [ngClass]="i == currentPagerIndex ? 'bground':'nobground'"><Label [text]="i+1" class="number"></Label></StackLayout>
+                    </DockLayout>
+                </WrapLayout>
+            </GridLayout>
+            
+            <!-- <GridLayout row="1" col="0" rows="auto" columns="*,*" *ngFor="let page of items; let i = index">
+                <StackLayout class="cmbg"  horizontalAlignment="left" row="0"  col="0">
+                    <Label text="CM"></Label>
+                </StackLayout>
+                
+                <Image row="0" verticalAlignment="center" (tap)="insertNewMeasurement()" horizontalAlignment="right" col="1"
+                src="~/assets/order-management/right arrow.png" class="rightarrow"></Image>
+            </GridLayout> -->
+         </GridLayout>
+        </GridLayout>
+        </ScrollView>
+    </GridLayout>
+    <!-- <------------------------------2nd-tab------------------------------->
+    <GridLayout row="1"   *ngIf="selectedheaders =='1'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  class="margins">
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" *ngFor="let parts of Measurements" style="margin-bottom: 10;">
+                        <GridLayout   rows="60" columns="*"  (tap)="openmeasurementmodal(parts)" >
+                            <GridLayout row="1"  rows="auto" columns="auto,*,auto"  shadow="2"  cornerRadius="15">
+                                <Image row="0"  col="0" verticalAlignment="center" horizontalAlignment="right"
+                                [src]="imgUrl+parts.Image" class="partimg"></Image>
+                                <Label row="0"  col="1" text="Parts" verticalAlignment="center" horizontalAlignment="left" class="parttxt"></Label>
+                                <Label row="0"  col="2" [text]="parts.Value == 0.0 ? '': parts.Value"   verticalAlignment="center" horizontalAlignment="right"  class="numbrtxt"></Label>
+                            </GridLayout>
+                        </GridLayout>
+                    </DockLayout>
+                    </WrapLayout>
+                    </GridLayout>
+                    </ScrollView>
+    </GridLayout>
+            </GridLayout>
+
+            <GridLayout rows="*,auto">
+                <GridLayout row="1" col="0" rows="auto" columns="*,*,auto" style="background: white;padding-left: 7;padding-right: 7;">
+                    <StackLayout class="cmbg"  horizontalAlignment="left" row="0"  col="0">
+                        <Label text="CM"></Label>
+                    </StackLayout>
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="right" col="1"
+                    src="~/assets/order-management/right arrow.png" (tap)="insertNewMeasurement()" class="rightarrow"></Image>
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="right" col="2"
+                    src="~/assets/Scroll.png" class="rightarrow"  ></Image>
+                </GridLayout>
+            </GridLayout>
+
+    </GridLayout>
+
+
+
+
+
+
+
+        <!-- <--------------arabic-content---------------------->
+        <GridLayout class="page"  *ngIf="lang=='Arabic'">
+            <GridLayout rows="40,*" class="margins bottm" >
+                <RGridLayout row="0" columns="*,*" height="48" class="bg-tabs"   isRtl="true">
+                    <StackLayout col="0" (tap)="selectedheader(0)"
+                        [ngClass]="(selectedheaders=='0')?'selectedae':'my-class2'">
+
+                        <Label [text]="aedata.Images" class="txt"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" (tap)="selectedheader(1)"
+                        [ngClass]="(selectedheaders=='1')?'selected1ae':'my-class2'">
+
+                        <Label [text]="aedata.Parts" class="txt"></Label>
+
+                    </StackLayout>
+                </RGridLayout>
+
+                <GridLayout row="1"  *ngIf="selectedheaders =='0'">
+                    <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false" >
+                        <GridLayout   rows="auto,auto,auto,auto" columns="*">
+        <Pager
+        [items]="items"
+        #pager
+        id='pager'
+        [selectedIndex]="currentPagerIndex"
+        (selectedIndexChange)="onIndexChanged($event)"
+        class="pager" 
+        row="0"
+        col="0"
+        pagesCount="5"
+      >
+        <ng-template let-i="index" let-item="item"> 
+            <WrapLayout  orientation="horizontal" > 
+                <DockLayout   stretchLastChild="false" width="100%" *ngFor="let identyfy of mapmeasurId">
+          <GridLayout row="1"  class="pager-item"  rows="auto" *ngIf="identyfy.Id == i+1" columns="*" setClipChildren="false" >
+                    
+            <Image [src]="item.Image"  horizontalAlignment="left" row="0" col="0"
+                class="img"></Image>  
+            <AbsoluteLayout class="meter"  *ngFor="let identyfys of Measurements">
+                <!-- <----------------------------------------1-17-33-49-65----------------------------- -->
+                <GridLayout rows="auto" *ngIf="(identyfy.Id == 1 && (identyfys.Id == 1 || identyfys.Id ==65  || identyfys.Id == 145  || identyfys.Id == 209))||(identyfy.Id == 2 && (identyfys.Id == 17 || identyfys.Id == 81 || identyfys.Id == 161 || identyfys.Id == 225))||(identyfy.Id == 3 && (identyfys.Id == 33 || identyfys.Id == 97 || identyfys.Id == 177 || identyfys.Id == 241))||(identyfy.Id == 4 && (identyfys.Id ==49 || identyfys.Id ==113 || identyfys.Id ==193 || identyfys.Id ==257))||(identyfy.Id == 5 && (identyfys.Id == 129 || identyfys.Id == 273 ))" columns="auto,auto" width="100%"  left="0" top="0"> 
+                    <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                        <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                        horizontalAlignment="center" verticalAlignment="center"></Gif>
+                    <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                        src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image> 
+                    </RGridLayout>    
+                <Button row="0" col="1"   [text]="identyfys.Value" (tap)="openmeasurementmodal(identyfys)"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+                <!-- <----------------------------------------1-17-33-49-65----------------------------- -->
+                <!-- <-------------2------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="30" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 2 || identyfys.Id == 66 || identyfys.Id == 146 || identyfys.Id == 210))||(identyfy.Id == 2 && (identyfys.Id == 18 || identyfys.Id == 82 ||identyfys.Id == 162 ||identyfys.Id == 226))||(identyfy.Id == 3 && (identyfys.Id == 34 || identyfys.Id == 98 || identyfys.Id == 178 || identyfys.Id == 242))||(identyfy.Id == 4 && (identyfys.Id ==50 || identyfys.Id ==114 ||identyfys.Id ==194||identyfys.Id ==258))||(identyfy.Id == 5 && (identyfys.Id == 130 || identyfys.Id == 274))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+  <!-- <-------------3------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"   left="0" top="60" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 3 ||identyfys.Id == 67 ||identyfys.Id == 147 ||identyfys.Id == 211))||(identyfy.Id == 2 && (identyfys.Id == 19||identyfys.Id == 83||identyfys.Id == 163||identyfys.Id == 227))||(identyfy.Id == 3 && (identyfys.Id == 35 ||identyfys.Id == 99 ||identyfys.Id == 179 ||identyfys.Id == 243))||(identyfy.Id == 4 && (identyfys.Id ==51||identyfys.Id ==115||identyfys.Id ==195||identyfys.Id ==259))||(identyfy.Id == 5 && (identyfys.Id == 131||identyfys.Id == 275))" flexWrap="wrap-reverse">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1" [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout> 
+              <!-- <-------------4------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="90" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 4||identyfys.Id == 68||identyfys.Id == 148||identyfys.Id == 212))||(identyfy.Id == 2 && (identyfys.Id == 20||identyfys.Id == 84||identyfys.Id == 164||identyfys.Id == 228))||(identyfy.Id == 3 && (identyfys.Id == 36||identyfys.Id == 100||identyfys.Id == 180||identyfys.Id == 244))||(identyfy.Id == 4 && (identyfys.Id ==52||identyfys.Id ==116||identyfys.Id ==196||identyfys.Id ==260))||(identyfy.Id == 5 && (identyfys.Id == 132||identyfys.Id == 276))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+              <!-- <-------------5------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="120" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 5||identyfys.Id == 69||identyfys.Id == 149||identyfys.Id == 213))||(identyfy.Id == 2 && (identyfys.Id == 21||identyfys.Id == 85||identyfys.Id == 165||identyfys.Id == 229))||(identyfy.Id == 3 && (identyfys.Id == 37||identyfys.Id == 101||identyfys.Id == 181||identyfys.Id == 245))||(identyfy.Id == 4 && (identyfys.Id ==53||identyfys.Id ==117||identyfys.Id ==197||identyfys.Id ==261))||(identyfy.Id == 5 && (identyfys.Id == 133||identyfys.Id == 277))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+              <!-- <-------------6------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="150" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 6||identyfys.Id == 70||identyfys.Id == 150||identyfys.Id == 214))||(identyfy.Id == 2 && (identyfys.Id == 22||identyfys.Id == 86||identyfys.Id == 166||identyfys.Id == 230))||(identyfy.Id == 3 && (identyfys.Id == 38||identyfys.Id == 102||identyfys.Id == 182||identyfys.Id == 246))||(identyfy.Id == 4 && (identyfys.Id ==54||identyfys.Id == 118||identyfys.Id == 198||identyfys.Id == 262))||(identyfy.Id == 5 && (identyfys.Id == 134||identyfys.Id == 278))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------7------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="180"
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 7||identyfys.Id == 71||identyfys.Id == 151||identyfys.Id == 215))||(identyfy.Id == 2 && (identyfys.Id == 23||identyfys.Id == 87||identyfys.Id == 167||identyfys.Id == 231))||(identyfy.Id == 3 && (identyfys.Id == 39||identyfys.Id == 103||identyfys.Id == 183||identyfys.Id == 247))||(identyfy.Id == 4 && (identyfys.Id ==55||identyfys.Id == 119||identyfys.Id == 199||identyfys.Id == 263))||(identyfy.Id == 5 && (identyfys.Id == 135||identyfys.Id == 279))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------8------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="210" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 8||identyfys.Id == 72||identyfys.Id == 152||identyfys.Id == 216))||(identyfy.Id == 2 && (identyfys.Id == 24||identyfys.Id == 88||identyfys.Id == 168||identyfys.Id == 232))||(identyfy.Id == 3 && (identyfys.Id == 40||identyfys.Id == 104||identyfys.Id == 184||identyfys.Id == 248))||(identyfy.Id == 4 && (identyfys.Id ==56||identyfys.Id == 120||identyfys.Id == 200||identyfys.Id == 264))||(identyfy.Id == 5 && (identyfys.Id == 136||identyfys.Id == 280))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------9------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="240"
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 9||identyfys.Id == 73||identyfys.Id == 153||identyfys.Id == 217))||(identyfy.Id == 2 && (identyfys.Id == 25||identyfys.Id == 89||identyfys.Id == 169||identyfys.Id == 233))||(identyfy.Id == 3 && (identyfys.Id == 41||identyfys.Id == 105||identyfys.Id == 185||identyfys.Id == 249))||(identyfy.Id == 4 && (identyfys.Id ==57||identyfys.Id == 121||identyfys.Id == 201||identyfys.Id == 265))||(identyfy.Id == 5 && (identyfys.Id == 137||identyfys.Id == 281))" >
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------10------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="270" 
+             *ngIf="(identyfy.Id == 1 && (identyfys.Id == 10||identyfys.Id == 74||identyfys.Id == 154||identyfys.Id == 218))||(identyfy.Id == 2 && (identyfys.Id == 26||identyfys.Id == 90||identyfys.Id == 170||identyfys.Id == 234))||(identyfy.Id == 3 && (identyfys.Id == 42||identyfys.Id == 106||identyfys.Id == 186||identyfys.Id == 250))||(identyfy.Id == 4 && (identyfys.Id ==58||identyfys.Id == 122||identyfys.Id == 202||identyfys.Id == 266))||(identyfy.Id == 5 && (identyfys.Id == 138||identyfys.Id == 282))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------11------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="300" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 11||identyfys.Id == 75||identyfys.Id == 155||identyfys.Id == 219))||(identyfy.Id == 2 && (identyfys.Id == 27||identyfys.Id == 91||identyfys.Id == 171||identyfys.Id == 235))||(identyfy.Id == 3 && (identyfys.Id == 43||identyfys.Id == 107||identyfys.Id == 187||identyfys.Id == 251))||(identyfy.Id == 4 && (identyfys.Id ==59||identyfys.Id == 123||identyfys.Id == 203||identyfys.Id == 267))||(identyfy.Id == 5 && (identyfys.Id == 139||identyfys.Id == 283))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------12------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="330" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 12||identyfys.Id == 76||identyfys.Id == 156||identyfys.Id == 220))||(identyfy.Id == 2 && (identyfys.Id == 28||identyfys.Id == 92||identyfys.Id == 172||identyfys.Id == 236))||(identyfy.Id == 3 && (identyfys.Id == 44||identyfys.Id == 108||identyfys.Id == 188||identyfys.Id == 252))||(identyfy.Id == 4 && (identyfys.Id ==60||identyfys.Id == 124||identyfys.Id == 204||identyfys.Id == 268))||(identyfy.Id == 5 && (identyfys.Id == 140||identyfys.Id == 284))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------13------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="360" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 13||identyfys.Id == 77||identyfys.Id == 157||identyfys.Id == 221))||(identyfy.Id == 2 && (identyfys.Id == 29||identyfys.Id == 93||identyfys.Id == 173||identyfys.Id == 237))||(identyfy.Id == 3 && (identyfys.Id == 45||identyfys.Id == 109||identyfys.Id == 189||identyfys.Id == 253))||(identyfy.Id == 4 && (identyfys.Id ==61||identyfys.Id == 125||identyfys.Id == 205||identyfys.Id == 269))||(identyfy.Id == 5 && (identyfys.Id == 141||identyfys.Id == 285))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout>  
+                <Button row="0" col="1"   [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------14------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="390" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 14||identyfys.Id == 78||identyfys.Id == 158||identyfys.Id == 222))||(identyfy.Id == 2 && (identyfys.Id == 30||identyfys.Id == 94||identyfys.Id == 174||identyfys.Id == 238))||(identyfy.Id == 3 && (identyfys.Id == 46||identyfys.Id == 110||identyfys.Id == 190||identyfys.Id == 254))||(identyfy.Id == 4 && (identyfys.Id ==62||identyfys.Id == 126||identyfys.Id == 206||identyfys.Id == 270))||(identyfy.Id == 5 && (identyfys.Id == 142||identyfys.Id == 286))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------15------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="420" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 15||identyfys.Id == 79||identyfys.Id == 159||identyfys.Id == 223))||(identyfy.Id == 2 && (identyfys.Id == 31||identyfys.Id == 95||identyfys.Id == 175||identyfys.Id == 239))||(identyfy.Id == 3 && (identyfys.Id == 47||identyfys.Id == 111||identyfys.Id == 191||identyfys.Id == 255))||(identyfy.Id == 4 && (identyfys.Id ==63||identyfys.Id == 127||identyfys.Id == 207||identyfys.Id == 271))||(identyfy.Id == 5 && (identyfys.Id == 143||identyfys.Id == 287))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)" horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+            
+              <!-- <-------------16------------ -->
+            <GridLayout rows="auto" columns="auto,auto" width="100%"  left="0" top="450" 
+            *ngIf="(identyfy.Id == 1 && (identyfys.Id == 16||identyfys.Id == 80||identyfys.Id == 160||identyfys.Id == 224))||(identyfy.Id == 2 && (identyfys.Id == 32||identyfys.Id == 96||identyfys.Id == 176||identyfys.Id == 240))||(identyfy.Id == 3 && (identyfys.Id == 48||identyfys.Id == 112||identyfys.Id == 192||identyfys.Id == 256))||(identyfy.Id == 4 && (identyfys.Id ==64||identyfys.Id == 128||identyfys.Id == 208||identyfys.Id == 272))||(identyfy.Id == 5 && (identyfys.Id == 144||identyfys.Id == 288))">
+                <RGridLayout isRtl="true" row="0" col="0" rows="auto" columns="auto,auto,auto" width="80%" >
+                        
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="0" class="gifimg"
+                    horizontalAlignment="center" verticalAlignment="center"></Gif>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="2"
+                    src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                </RGridLayout> 
+                <Button row="0" col="1"  [text]="identyfys.Value == 0.0 ? '': identyfys.Value" (tap)="openmeasurementmodal(identyfys)"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+                        <!-- <WrapLayout  orientation="horizontal" *ngFor="let Measurements of Measurements"> 
+                <DockLayout   stretchLastChild="false" width="100%" >
+                <GridLayout rows="auto" columns="auto,auto" width="100%"  left="30" [top]="0">
+                <GridLayout row="0" col="0" rows="auto" columns="auto,auto,auto,auto" width="80%" >
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="center" col="0"
+                        src="~/assets/order-management/Seeker_Dot.png" class="enddot"></Image>
+                <Label row="0" col="1"  verticalAlignment="center" class="line" ></Label>
+                    <Gif src="~/assets/gifs/gif-for-measurment-60x60.png" row="0" col="2" class="gifimg"
+                        horizontalAlignment="center" verticalAlignment="center"></Gif>
+                </GridLayout>   
+                <Button row="0" col="1" text="" (tap)="openmeasurementmodal()"  horizontalAlignment="left" class="btntxt"></Button>
+            </GridLayout>
+        </DockLayout>
+        </WrapLayout>  -->
+            </AbsoluteLayout>
+
+        </GridLayout>
+    </DockLayout>
+    </WrapLayout>
+        </ng-template>
+      </Pager>
+         <GridLayout row="1" col="0" rows="auto,auto,auto" columns="*">
+            <GridLayout row="0" col="0" rows="auto" columns="*" horizontalAlignment="center">
+                <WrapLayout  orientation="horizontal">
+                    <DockLayout stretchLastChild="true" *ngFor="let page of items; let i = index" width="10%">
+
+<StackLayout class="bground" [ngClass]="i == currentPagerIndex ? 'bground':'nobground'"><Label [text]="i+1" class="number"></Label></StackLayout>
+                    </DockLayout>
+                </WrapLayout>
+            </GridLayout>
+            
+            <!-- <GridLayout row="1" col="0" rows="auto" columns="*,*" *ngFor="let page of items; let i = index">
+                <StackLayout class="cmbg"  horizontalAlignment="left" row="0"  col="0">
+                    <Label text="CM"></Label>
+                </StackLayout>
+                
+                <Image row="0" verticalAlignment="center" (tap)="insertNewMeasurement()" horizontalAlignment="right" col="1"
+                src="~/assets/order-management/right arrow.png" class="rightarrow"></Image>
+            </GridLayout> -->
+         </GridLayout>
+        </GridLayout>
+        </ScrollView>
+    </GridLayout>
+    <!-- <------------------------------2nd-tab------------------------------->
+    <GridLayout row="1"   *ngIf="selectedheaders =='1'">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  class="margins">
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" *ngFor="let parts of Measurements" style="margin-bottom: 10;">
+                        <GridLayout   rows="60" columns="*"  (tap)="openmeasurementmodal(parts)" >
+                            <RGridLayout   isRtl="true" row="1"  rows="auto" columns="auto,*,auto"  shadow="2"  cornerRadius="15">
+                                <Image row="0"  col="0" verticalAlignment="center" horizontalAlignment="right"
+                                [src]="imgUrl+parts.Image" class="partimg"></Image>
+                                <Label row="0"  col="1" [text]="aedata.Parts" verticalAlignment="center" horizontalAlignment="left" class="parttxt"></Label>
+                                <Label row="0"  col="2" [text]="parts.Value == 0.0 ? '': parts.Value"   verticalAlignment="center" horizontalAlignment="right"  class="numbrtxt"></Label>
+                            </RGridLayout>
+                        </GridLayout>
+                    </DockLayout>
+                    </WrapLayout>
+                    </GridLayout>
+                    </ScrollView>
+    </GridLayout>
+            </GridLayout>
+
+            <GridLayout rows="*,auto">
+                <RGridLayout  isRtl="true" row="1" col="0" rows="auto" columns="*,*,auto" style="background: white;padding-left: 7;padding-right: 7;">
+                    <StackLayout class="cmbg"  horizontalAlignment="left" row="0"  col="0">
+                        <Label [text]="aedata.CM"></Label>
+                    </StackLayout>
+                    <Image row="0"   isRtl="true" verticalAlignment="center" horizontalAlignment="right" col="1"
+                    src="~/assets/order-management/right arrow.png" (tap)="insertNewMeasurement()" class="rightarrow"></Image>
+                    <Image row="0" verticalAlignment="center" horizontalAlignment="right" col="2"
+                    src="~/assets/Scroll.png" class="rightarrow"  ></Image>
+                </RGridLayout>
+            </GridLayout>
+
+    </GridLayout>
+</Page>

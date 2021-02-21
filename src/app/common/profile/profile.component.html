@@ -1,0 +1,636 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <------------------------english-header-------------------- -->
+    <ActionBar class="header"  *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*,auto" >
+        <Image [src]="profiledata.ShopOwnerImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+        <Label text="My Account" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right" (tap)="gotoNotifications()" stretch="aspectFill"  class="bell-image"></Image>
+      </GridLayout>
+       </ActionBar> 
+
+<!-- <------------------------arabic-header--------------------- -->
+       <ActionBar class="header"  *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*,auto"  isRtl="true">
+        <Image [src]="profiledata.ShopOwnerImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+        <Label [text]="aedata.My_Account" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right" (tap)="gotoNotifications()" stretch="aspectFill"  class="bell-image"></Image>
+      </RGridLayout>
+       </ActionBar> 
+    <!-- <FlexboxLayout class="page"> -->
+<!-- <---------------------------english-content------------------------------------>
+    <GridLayout class="page"   *ngIf="lang=='English'"> 
+            <GridLayout rows="40,*" class="margins">
+                <GridLayout row="0" columns="*,*" height="48" class="bg-tabs">
+                    <StackLayout col="0" (tap)="selectedheader(0)"
+                        [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                        <Label text="Personal Info" class="txt"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" (tap)="selectedheader(1)"
+                        [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                        <Label text="Branches" class="txt"></Label>
+
+                    </StackLayout>
+                </GridLayout>
+                <!-- <------------------personal info------------------------------------------ -->
+
+                    <ScrollView orientation="vertical" id="scrollView" row="1">
+                <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+                    *ngIf="selectedheaders =='0'" class="borders">
+                    <!-- <=========================existed-user================================> -->
+                    <GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  *ngIf="user=='existed'">
+                    <!-- <-----------------------not-editable----------------------------------------- -->
+                  
+                    <GridLayout row="0" *ngIf="noedittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                        <StackLayout row="0" orientation="vertical" class="img-layout">
+                            <Image class="camico"  stretch="aspectFill"  [src]="profiledata['ShopOwnerImageURL']"></Image>
+                            <Image class="opencamico" src="~/assets/profile/camera.png"></Image>
+                        </StackLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon"  stretch="aspectFill"  row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter English Name"
+                                [text]="profiledata.TailorNameInEnglish" autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter Arabic Name"
+                                [text]="profiledata.TailorNameInArabic" autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter mobile number"
+                                keyboardType="number" [text]="profiledata.PhoneNumber" maxLength=10 autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter Your Email"
+                                [text]="profiledata.EmailId" autocorrect="false" autocapitalizationType="none">
+                            </TextField>
+                        </GridLayout>
+                        <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter Date Of Birth"
+                                [text]="profiledata.Dob" autocorrect="false" autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn">
+                            <!-- <DockLayout row="0" col="0" (tap)="showModal()"> -->
+                            <Image row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+                            </Image>
+                            <Label row="0" col="1" *ngIf="!profiledata.Gender" text="Gender" class="gendertxt"></Label> 
+                            <Label row="0" col="1" *ngIf="profiledata.Gender" [text]="profiledata.Gender" class="gendertxt"></Label>
+                            <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+                            <!-- </DockLayout>  -->   
+                        </GridLayout>
+                    </GridLayout>
+                    <!-- <-----------------------not-editable-end----------------------------------------- -->
+
+
+                    <!-- <-----------------------editable----------------------------------------- -->
+                    <GridLayout row="0" *ngIf="edittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                        <StackLayout row="0" orientation="vertical" class="img-layout">
+                            <Image class="camico"  stretch="aspectFill" [src]="profiledata['ShopOwnerImageURL']"></Image>
+                            <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png">
+                            </Image>
+                        </StackLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                            <TextField class="input" editable="true" [(ngModel)]="profiledata.TailorNameInEnglish" row="1" col="1" hint="Enter First Name"
+                                autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                            <TextField class="input" editable="true" row="1" col="1" hint="Enter Second Name"
+                                 [(ngModel)]="profiledata.TailorNameInArabic" autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout>
+                        <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+                            <TextField class="input" editable="false" row="1" col="1" hint="Enter mobile number"
+                                keyboardType="number"  [(ngModel)]="profiledata.PhoneNumber" maxLength=10 autocorrect="false"
+                                autocapitalizationType="none"></TextField>
+                        </GridLayout> 
+                        <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+                            <TextField class="input" editable="true" row="1" col="1" hint="Enter Your Email"
+                            [(ngModel)]="profiledata.EmailId" autocorrect="false" autocapitalizationType="none">
+                            </TextField>
+                        </GridLayout>
+                        <GridLayout row="5" col="0" rows="auto,auto" columns="*" class="txt-marg">
+                            <GridLayout row="0" col="0" rows="auto,auto" columns="auto,*">
+                            <Image class="txt-icon" row="0" col="0" src="~/assets/profile/calender.png"></Image>
+                            <TextField class="input" [(ngModel)]="profiledata.Dob" editable="false" row="0" col="1" hint="Enter Date Of Birth"
+                                autocorrect="false" autocapitalizationType="none"></TextField>
+                                <Image class="tick-icon" row="0" col="1" horizontalAlignment="right" (tap)="showDatepicker(clickdate)" src="~/assets/dressmap/Check box.png"></Image>
+                            </GridLayout>
+                            <GridLayout row="1" col="0" rows="auto" columns="*" *ngIf="dateshow">
+                                <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                                [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                                (dateChange)="onDateChanged($event)" >
+                                    </DatePicker>  
+                                </GridLayout>
+                        </GridLayout>
+                        <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+                            (tap)="showgenderModal()">
+                            <Image row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+                            </Image> 
+                            <Label row="0" col="1" *ngIf="!profiledata.Gender" text="Gender" class="gendertxt"></Label> 
+                            <Label row="0" col="1" *ngIf="profiledata.Gender" [text]="profiledata.Gender" class="gendertxt"></Label>
+                            <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+                        </GridLayout>
+                    </GridLayout>
+                </GridLayout>
+                <!-- <-----------------------editable-end----------------------------------------- -->
+
+
+ <!-- <=========================new-user================================> -->
+ <GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" *ngIf="user=='new'" columns="*">
+     <!-- <-----------------------not-editable----------------------------------------- -->
+                  
+     <GridLayout row="0" *ngIf="noedittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+        <StackLayout row="0" orientation="vertical" class="img-layout">
+            <Image class="camico" src="~/assets/profile/Name.png"></Image>
+            <Image class="opencamico" (tap)="openprofilecamera()" src="~/assets/profile/camera.png">
+            </Image>
+        </StackLayout>
+        <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+            <TextField class="input" editable="false" row="1" col="1" hint="Enter Name in english"
+            text="" autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+            <TextField class="input" editable="false" row="1" col="1" hint="Enter Name in Arabic"
+            text="" autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+            <TextField class="input" editable="false" row="1" col="1" hint="Enter mobile number"
+                keyboardType="number"  text="" maxLength=10 autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+            <TextField class="input" editable="false" row="1" col="1" hint="Enter Your Email"
+                text="" autocorrect="false" autocapitalizationType="none">
+            </TextField>
+        </GridLayout>
+        <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+            <TextField class="input" editable="false" row="1" col="1" hint="Enter Date Of Birth"
+                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+            >
+            <Image row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+            </Image>
+            <Label row="0" col="1" text="Gender" hint="Gender" class="gendertxt"></Label>
+            <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+        </GridLayout>
+    </GridLayout>
+    <!-- <-----------------------not-editable-end----------------------------------------- -->
+
+
+    <!-- <-----------------------editable----------------------------------------- -->
+    <GridLayout row="0" *ngIf="edittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+        <StackLayout row="0" orientation="vertical" class="img-layout">
+            <Image class="camico" src="~/assets/profile/Name.png"></Image>
+            <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png">
+            </Image>
+        </StackLayout>
+        <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+            <TextField class="input" editable="true" row="1" col="1" hint="Enter Name in english"
+            text="" autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+            <TextField class="input" editable="true" row="1" col="1" hint="Enter Name in Arabic"
+            text="" autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+            <TextField class="input" editable="true" row="1" col="1" hint="Enter mobile number"
+                keyboardType="number"  text="" maxLength=10 autocorrect="false"
+                autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+            <TextField class="input" editable="true" row="1" col="1" hint="Enter Your Email"
+                text="" autocorrect="false" autocapitalizationType="none">
+            </TextField>
+        </GridLayout>
+        <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+            <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+            <TextField class="input" editable="true" row="1" col="1" hint="Enter Date Of Birth"
+                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+        </GridLayout>
+        <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+            (tap)="showgenderModal()">
+            <Image row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+            </Image>
+            <Label row="0" col="1" hint="Gender" text="Gender" class="gendertxt"></Label>
+            <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+        </GridLayout>
+    </GridLayout>
+ </GridLayout>
+
+
+ 
+                    <GridLayout row="1" col="0" rows="auto" *ngIf="showedit" columns="*" class="edit-marg">
+                        <Button text="Edit Profile" (tap)="editprofile()" row="0" col="0" class="editbtn"></Button>
+                    </GridLayout>
+                    <GridLayout row="1" col="0" rows="auto" columns="*,*" *ngIf="showupdate" class="edit-marg">
+                        <Button text="Cancel" row="0" col="0" class="cancelbtn" (tap)="cancelprofile()"></Button>
+                        <Button text="Update" row="0" col="1" class="updatebtn" (tap)="updatetailorProfile()"></Button>
+                    </GridLayout>
+                </GridLayout>
+            </ScrollView>
+                <!-- <==========================================shop-details==========================================-->
+                <GridLayout row="1" rows="*" columns="*"   *ngIf="selectedheaders =='1'">
+                    <ScrollView orientation="vertical" id="scrollView" row="0">
+                <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+                   class="borders" style="margin-bottom: 25;" >
+                    
+                   <GridLayout  *ngFor="let shop of Branches; let i = index" row="{{i}}" col="0"       rows="auto,auto" columns="*" class="shop-card" shadow="2"
+                   cornerRadius="15">
+                   <GridLayout row="0"  rows="auto,auto,auto" columns="*" (tap)="gotoshopdetailId(shop.ShopId)">
+                    <Label row="0" col="0" class="tailortxt" [text]="shop.ShopNameInEnglish"></Label>
+                    <Label row="1" col="0" textWrap="true"  class="tailorcitytxt" [text]="shop.StateName"></Label>
+                    <Label row="2" col="0" textWrap="true"  class="tailorcitytxt" [text]="shop.CountryName"></Label>
+                   </GridLayout>
+                   <StackLayout  row="0" col="0" horizontalAlignment="right" style="margin-right: 5;">
+
+                    <Image   #selctall horizontalAlignment="right" value="{{shop.IsActive}}"  [src]="shop.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" 
+                    (tap)="getactiveallval(selctall.value,shop.ShopId)"  class="selectallimg"></Image>
+                    <Label text="Active"  horizontalAlignment="right" class="isactivetxt"></Label>
+                   </StackLayout>
+               </GridLayout>
+                 </GridLayout> 
+                </ScrollView>
+                <!-- <AbsoluteLayout width="100%" height="100%"  row="0" col="0" > 
+                        <Image  top="350" left="280"  horizontalAlignment="right" (tap)="gotoshopdetail()" src="~/assets/profile/shopadd.png"  class="addimg"></Image>
+                    </AbsoluteLayout  > -->
+                </GridLayout>
+            </GridLayout>
+        <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+        <GridLayout>
+            <GridLayout rows="*,auto,auto">
+                <AbsoluteLayout   row="1" col="0" style="z-index: 1000000;" *ngIf="selectedheaders =='1'"> 
+                    <Image   left="280"  horizontalAlignment="right" (tap)="gotoshopdetail()" src="~/assets/profile/shopadd.png"  class="addimg"></Image>
+                </AbsoluteLayout  >
+                <GridLayout row="2" columns="*,*,*,*" height="48" class="bg-footer">
+                    <StackLayout col="0" (tap)="selectedindex(0)">
+
+                        <Image class="m-icon" *ngIf="selectedindexval != 0"
+                            src="~/assets/footer/beforeclick/home-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                    </StackLayout>
+                    <StackLayout col="1" (tap)="selectedindex(1)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 1"
+                            src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                    </StackLayout>
+                    <StackLayout col="2" (tap)="selectedindex(2)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 2"
+                            src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                        </Image>
+                    </StackLayout>
+                    <StackLayout col="3" (tap)="selectedindex(3)">
+                        <Image class="m-icon" *ngIf="selectedindexval != 3"
+                            src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                        <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+                    </StackLayout>
+                </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <---------------------------arabic-content------------------------------------>
+    <RGridLayout class="page"  isRtl="true" *ngIf="lang=='Arabic'"> 
+        <RGridLayout rows="40,*"  isRtl="true"  class="margins">
+            <GridLayout  row="0" columns="*,*" height="48" class="bg-tabs">
+                <StackLayout col="0"  (tap)="selectedheader(0)"
+                    [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                    <Label style="transform: scaleX(-1);" [text]="aedata.Personal_Info" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)"
+                    [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                    <Label style="transform: scaleX(-1);" [text]="aedata.Branches" class="txt"></Label>
+ 
+                </StackLayout>
+            </GridLayout>
+            <!-- <------------------personal info------------------------------------------ -->
+
+                <ScrollView orientation="vertical" id="scrollView" row="1">
+            <GridLayout  isRtl="false" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+                *ngIf="selectedheaders =='0'" class="borders">
+                <!-- <=========================existed-user================================> -->
+                <GridLayout  isRtl="false" row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*"  *ngIf="user=='existed'">
+                <!-- <-----------------------not-editable----------------------------------------- -->
+              
+                <GridLayout row="0" *ngIf="noedittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                    <StackLayout row="0" style="transform: scaleX(-1);" orientation="vertical" class="img-layout">
+                        <Image class="camico"  stretch="aspectFill" [src]="profiledata['ShopOwnerImageURL']"></Image>
+                        <Image class="opencamico"  src="~/assets/profile/camera.png"></Image>
+                    </StackLayout>
+                    <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                        <TextField style="transform: scaleX(-1);text-align: right;" class="input" editable="false" row="1" col="1" hint="أدخل الاسم باللغة الانجليزية"
+                            [text]="profiledata.TailorNameInEnglish" autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل الاسم باللغة العربية"
+                            [text]="profiledata.TailorNameInArabic" autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="الرجاء إدخال رقم الموبايل"
+                            keyboardType="number" [text]="profiledata.PhoneNumber" maxLength=10 autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل الايميل الإلكتروني"
+                            [text]="profiledata.EmailId" autocorrect="false" autocapitalizationType="none">
+                        </TextField>
+                    </GridLayout>
+                    <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل تاريخ الميلاد"
+                            [text]="profiledata.Dob" autocorrect="false" autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn">
+                        <!-- <DockLayout row="0" col="0" (tap)="showModal()"> -->
+                        <Image style="transform: scaleX(-1);" row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+                        </Image>
+                        <Label style="transform: scaleX(-1);text-align: right;" row="0" col="1" *ngIf="!profiledata.Gender" [text]="aedata.Gender" class="gendertxt"></Label> 
+                        <Label style="transform: scaleX(-1);text-align: right;" row="0" col="1" *ngIf="profiledata.Gender" [text]="profiledata.Gender" class="gendertxt"></Label>
+                        <Image  row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+                        <!-- </DockLayout>  -->   
+                    </GridLayout>
+                </GridLayout>
+                <!-- <-----------------------not-editable-end----------------------------------------- -->
+
+
+                <!-- <-----------------------editable----------------------------------------- -->
+                <GridLayout row="0" *ngIf="edittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+                    <StackLayout row="0" style="transform: scaleX(-1);" orientation="vertical" class="img-layout">
+                        <Image class="camico" stretch="aspectFill" [src]="profiledata['ShopOwnerImageURL']"></Image>
+                        <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png">
+                        </Image>
+                    </StackLayout>
+                    <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" [(ngModel)]="profiledata.TailorNameInEnglish" row="1" col="1" hint="أدخل الاسم الاول"
+                            autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل الكنية"
+                             [(ngModel)]="profiledata.TailorNameInArabic" autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout>
+                    <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="false" row="1" col="1" hint="الرجاء إدخال رقم الموبايل"
+                            keyboardType="number"  [(ngModel)]="profiledata.PhoneNumber" maxLength=10 autocorrect="false"
+                            autocapitalizationType="none"></TextField>
+                    </GridLayout> 
+                    <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+                        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل الايميل الإلكتروني"
+                        [(ngModel)]="profiledata.EmailId" autocorrect="false" autocapitalizationType="none">
+                        </TextField>
+                    </GridLayout>
+                    <GridLayout row="5" col="0" rows="auto,auto" columns="*" class="txt-marg">
+                        <GridLayout row="0" col="0" rows="auto,auto" columns="auto,*">
+                        <Image class="txt-icon" row="0" col="0" src="~/assets/profile/calender.png"></Image>
+                        <TextField class="input" style="transform: scaleX(-1);text-align: center;" [(ngModel)]="profiledata.Dob" editable="false" row="0" col="1" hint="أدخل تاريخ الميلاد"
+                            autocorrect="false" autocapitalizationType="none"></TextField>
+                            <Image class="tick-icon" style="transform: scaleX(-1);" row="0" col="1" horizontalAlignment="right" (tap)="showDatepicker(clickdate)" src="~/assets/dressmap/Check box.png"></Image>
+                        </GridLayout>
+                        <GridLayout style="transform: scaleX(-1);" row="1" col="0" rows="auto" columns="*" *ngIf="dateshow">
+                            <DatePicker row="0" col="0" year="1980" month="4" day="20" 
+                            [minDate]="minDate" [maxDate]="maxDate" verticalAlignment="center"
+                            (dateChange)="onDateChanged($event)" >
+                                </DatePicker>  
+                            </GridLayout>
+                    </GridLayout>
+                    <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+                        (tap)="showgenderModal()">
+                        <Image style="transform: scaleX(-1);" row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+                        </Image> 
+                        <Label style="transform: scaleX(-1);text-align: right;" row="0" col="1" *ngIf="!profiledata.Gender" [text]="aedata.Gender" class="gendertxt"></Label> 
+                        <Label style="transform: scaleX(-1);text-align: right;"  row="0" col="1" *ngIf="profiledata.Gender" [text]="profiledata.Gender" class="gendertxt"></Label>
+                        <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+            <!-- <-----------------------editable-end----------------------------------------- -->
+
+
+<!-- <=========================new-user================================> -->
+<GridLayout row="0" rows="auto,auto,auto,auto,auto,auto,auto,auto" *ngIf="user=='new'" columns="*">
+ <!-- <-----------------------not-editable----------------------------------------- -->
+              
+ <GridLayout row="0" *ngIf="noedittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+    <StackLayout row="0" style="transform: scaleX(-1);" orientation="vertical" class="img-layout">
+        <Image class="camico" src="~/assets/profile/Name.png"></Image>
+        <Image class="opencamico" (tap)="openprofilecamera()" src="~/assets/profile/camera.png">
+        </Image>
+    </StackLayout>
+    <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل الاسم باللغة الانجليزية"
+        text="" autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل الاسم باللغة العربية"
+        text="" autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="الرجاء إدخال رقم الموبايل"
+            keyboardType="number"  text="" maxLength=10 autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل الايميل الإلكتروني"
+            text="" autocorrect="false" autocapitalizationType="none">
+        </TextField>
+    </GridLayout>
+    <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: right;" editable="false" row="1" col="1" hint="أدخل تاريخ الميلاد"
+            text="" autocorrect="false" autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+        >
+        <Image style="transform: scaleX(-1);" row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+        </Image>
+        <Label style="transform: scaleX(-1);text-align: right;" row="0" col="1" [text]="aedata.Gender" hint="الجنس" class="gendertxt"></Label>
+        <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+    </GridLayout>
+</GridLayout>
+<!-- <-----------------------not-editable-end----------------------------------------- -->
+
+
+<!-- <-----------------------editable----------------------------------------- -->
+<GridLayout row="0" *ngIf="edittable" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
+    <StackLayout row="0" style="transform: scaleX(-1);" orientation="vertical" class="img-layout">
+        <Image class="camico" src="~/assets/profile/Name.png"></Image>
+        <Image class="opencamico" (tap)="gotocammadal()" src="~/assets/profile/camera.png">
+        </Image>
+    </StackLayout>
+    <GridLayout row="1" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل الاسم باللغة الانجليزية"
+        text="" autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="2" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Name.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل الاسم باللغة العربية"
+        text="" autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="3" col="0" rows="auto" columns="auto,*" class="txt-marg">
+
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/Mobile.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="الرجاء إدخال رقم الموبايل"
+            keyboardType="number"  text="" maxLength=10 autocorrect="false"
+            autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/E-mail.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل الايميل الإلكتروني"
+            text="" autocorrect="false" autocapitalizationType="none">
+        </TextField>
+    </GridLayout>
+    <GridLayout row="5" col="0" rows="auto" columns="auto,*" class="txt-marg">
+        <Image class="txt-icon" row="1" col="0" src="~/assets/profile/calender.png"></Image>
+        <TextField class="input" style="transform: scaleX(-1);text-align: center;" editable="true" row="1" col="1" hint="أدخل تاريخ الميلاد"
+            text="" autocorrect="false" autocapitalizationType="none"></TextField>
+    </GridLayout>
+    <GridLayout row="6" col="0" columns="auto,*,auto" rows="auto" class="gender-btn"
+        (tap)="showgenderModal()">
+        <Image style="transform: scaleX(-1);" row="0" col="0" src="~/assets/profile/Gender.png" dock="left" class="gender-icon">
+        </Image>
+        <Label style="transform: scaleX(-1);text-align: right;" row="0" col="1" hint="الجنس" [text]="aedata.Gender" class="gendertxt"></Label>
+        <Image row="0" col="2" src="~/assets/20_20.png" class="arrow-icon"></Image>
+    </GridLayout>
+</GridLayout>
+</GridLayout>
+
+
+
+                <GridLayout row="1" col="0" rows="auto" *ngIf="showedit" columns="*" class="edit-marg">
+                    <Button [text]="aedata.Edit_Profile" style="transform: scaleX(-1);" (tap)="editprofile()" row="0" col="0" class="editbtn"></Button>
+                </GridLayout>
+                <GridLayout row="1" col="0" rows="auto" columns="*,*" *ngIf="showupdate" class="edit-marg">
+                    <Button [text]="aedata.Cancel" style="transform: scaleX(-1);" row="0" col="0" class="cancelbtn" (tap)="cancelprofile()"></Button>
+                    <Button [text]="aedata.Update" style="transform: scaleX(-1);" row="0" col="1" class="updatebtn" (tap)="updatetailorProfile()"></Button>
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+            <!-- <==========================================shop-details==========================================-->
+            <GridLayout row="1" rows="*" columns="*"   *ngIf="selectedheaders =='1'">
+                <ScrollView orientation="vertical" id="scrollView" row="0">
+            <GridLayout  rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*"
+               class="borders" style="margin-bottom: 25;" >
+                
+               <GridLayout  *ngFor="let shop of Branches; let i = index" row="{{i}}" col="0"       rows="auto,auto" columns="*" class="shop-card" shadow="2"
+               cornerRadius="15">
+               <GridLayout row="0"  rows="auto,auto" columns="*" (tap)="gotoshopdetailId(shop.ShopId)">
+                <Label style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="0" class="tailortxt" [text]="shop.ShopNameInArabic"></Label>
+                <Label style="transform: scaleX(-1);" horizontalAlignment="left" row="1" col="0" textWrap="true" class="tailorcitytxt"  class="tailorcitytxt" [text]="shop.StateName +'-'+ shop.CountryName"></Label>
+               </GridLayout>
+               <StackLayout  row="0" col="0" horizontalAlignment="right" style="margin-right: 5;">
+
+                <Image  style="transform: scaleX(-1);" #selctall horizontalAlignment="right" value="{{shop.IsActive}}"  [src]="shop.IsActive == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" 
+                (tap)="getactiveallval(selctall.value,shop.ShopId)"  class="selectallimg"></Image>
+                <Label [text]="aedata.IsActive" style="transform: scaleX(-1);" horizontalAlignment="right" class="isactivetxt"></Label>
+               </StackLayout>
+           </GridLayout>
+             </GridLayout> 
+            </ScrollView>
+            <!-- <AbsoluteLayout width="100%" height="100%"  row="0" col="0" > 
+                    <Image  top="350" left="280"  horizontalAlignment="right" (tap)="gotoshopdetail()" src="~/assets/profile/shopadd.png"  class="addimg"></Image>
+                </AbsoluteLayout  > -->
+            </GridLayout>
+        </RGridLayout>
+    <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+    <GridLayout  isRtl="true">
+        <GridLayout rows="*,auto,auto" >
+            <AbsoluteLayout   row="1" col="0" style="z-index: 1000000;" *ngIf="selectedheaders =='1'"> 
+                <Image style="transform: scaleX(-1);"  left="280"  horizontalAlignment="right" (tap)="gotoshopdetail()" src="~/assets/profile/shopadd.png"  class="addimg"></Image>
+            </AbsoluteLayout  >
+            <GridLayout row="2" columns="*,*,*,*" height="48" class="bg-footer">
+                <StackLayout col="0" (tap)="selectedindex(0)">
+
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval != 0"
+                        src="~/assets/footer/beforeclick/home-n.png"></Image>
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedindex(1)">
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval != 1"
+                        src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                </StackLayout>
+                <StackLayout col="2" (tap)="selectedindex(2)">
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval != 2"
+                        src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png">
+                    </Image>
+                </StackLayout>
+                <StackLayout col="3" (tap)="selectedindex(3)">
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval != 3"
+                        src="~/assets/footer/beforeclick/reward-n.png"></Image>
+                    <Image style="transform: scaleX(-1);" class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+                </StackLayout>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</RGridLayout>
+    <!-- </FlexboxLayout> -->
+</Page>

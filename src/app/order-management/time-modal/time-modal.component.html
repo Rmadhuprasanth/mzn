@@ -1,0 +1,46 @@
+<page>
+    <GridLayout rows="500,auto" columns="*" *ngIf="lang=='English'">
+<StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+    <StackLayout class="text-header" > 
+        <Label text="Choose Your TimeSlot" textWrap="true"></Label>
+    </StackLayout>
+    
+    <ListView [items]="timeData"  class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout  class="list-group-item" (tap)="getTime(item.time)"  horizontalAlignment="center">
+                <Label [text]="item.time"  horizontalAlignment="center"  class="list-group-item-heading" 
+                 ></Label>
+        </StackLayout> 
+        </ng-template>
+     
+    </ListView>   
+</StackLayout>  
+<StackLayout row="1"> 
+    <Button class="Cancelbtn" text="Cancel"  (tap)="close()"></Button> 
+</StackLayout> 
+</GridLayout>
+
+
+
+
+<GridLayout rows="500,auto" columns="*" *ngIf="lang=='Arabic'">
+    <StackLayout row="0" style="width: 300;height:auto;border-radius: 21 !important;">  
+        <StackLayout class="text-header" > 
+            <Label [text]="aedata.Choose_Your_TimeSlot" textWrap="true"></Label>
+        </StackLayout>
+        
+        <ListView [items]="timeData"  class="list-group">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <StackLayout  class="list-group-item" (tap)="getTime(item.time)"  horizontalAlignment="center">
+                    <Label [text]="item.time"  horizontalAlignment="center"  class="list-group-item-heading" 
+                     ></Label>
+            </StackLayout> 
+            </ng-template>
+         
+        </ListView>   
+    </StackLayout>  
+    <StackLayout row="1"> 
+        <Button class="Cancelbtn" [text]="aedata.Cancel"  (tap)="close()"></Button> 
+    </StackLayout> 
+    </GridLayout>
+</page>

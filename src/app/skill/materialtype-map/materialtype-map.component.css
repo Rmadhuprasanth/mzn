@@ -1,0 +1,45 @@
+/* Add mobile styles for the component here.  */
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .uncheck-img{
+    height: 30;
+    width: 30;
+  }
+  .cardStyle{
+    height: 50;
+    padding: 10;
+    margin-top: 20;
+    margin-bottom: 10;
+  }
+  .genderdtxt{
+      font-size: 14;
+  }
+  .savebtn{
+    margin-top: 20;
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    border-radius: 21;
+    color: white;
+    font-size: 14;
+    font-weight: bold;
+    height: 40;
+    width: 100%;
+  }

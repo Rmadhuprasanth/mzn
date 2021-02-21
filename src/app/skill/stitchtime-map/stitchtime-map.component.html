@@ -1,0 +1,61 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <------------------------english-header-------------------- -->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Stitching Time" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+<!-- <------------------------arabic--header-------------------- -->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Stitching_Time" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <------------------------english-content-------------------- -->
+    <GridLayout class="page" *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView"> 
+            <GridLayout  class="margins" rows="*,auto" columns="*">
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="100%" class="cardStyle" shadow="4"
+                    cornerRadius="25"  *ngFor="let STitchingTime of STitchingTimeTypearray">
+                        <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="STitchingTime.DeliveryTypeInEnglish" verticalAlignment="center"></Label>
+           
+                        <Image  #checkcompany  [src]="STitchingTime.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{STitchingTime.Switch}}"
+                        (tap)="getcheckvalcompany(checkcompany.value,STitchingTime.Id)" dock="right" class="uncheck-img"></Image>
+                    </DockLayout >
+                    
+            </WrapLayout> 
+            <StackLayout row="1"  col="0"  >
+                <Button text="Save" verticalAlignment="bottom" style="margin-bottom: 0;" class="savebtn" (tap)="insertSTitchingTimeType()"></Button>
+        </StackLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+
+
+                <!-- <------------------------english-content-------------------- -->
+    <GridLayout class="page" *ngIf="lang=='Arabic'">
+        <ScrollView  orientation="vertical" id="scrollView"> 
+            <GridLayout  class="margins" rows="*,auto" columns="*">
+                <WrapLayout  orientation="horizontal" > 
+                    <RDockLayout    isRtl="true" stretchLastChild="false" width="100%" class="cardStyle" shadow="4"
+                    cornerRadius="25"  *ngFor="let STitchingTime of STitchingTimeTypearray">
+                        <Label style="z-index: 1000;" dock="left" horizontalAlignment="left" class="genderdtxt" [text]="STitchingTime.DeliveryTypeInArabic" verticalAlignment="center"></Label>
+           
+                        <Image  #checkcompany  [src]="STitchingTime.Switch == true ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value="{{STitchingTime.Switch}}"
+                        (tap)="getcheckvalcompany(checkcompany.value,STitchingTime.Id)" dock="right" class="uncheck-img"></Image>
+                    </RDockLayout >
+                    
+            </WrapLayout> 
+            <StackLayout row="1"  col="0"  >
+                <Button [text]="aedata.Save" verticalAlignment="bottom" style="margin-bottom: 0;" class="savebtn" (tap)="insertSTitchingTimeType()"></Button>
+        </StackLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout> 
+    </Page>

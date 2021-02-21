@@ -1,0 +1,17 @@
+<StackLayout  horizontalAlignment="center" verticalAlignment="center" class="borderfull" width="100%">
+    <StackLayout  *ngIf="lang=='English'">
+    <Label [text]="alerttxt" class="txt" textWrap="true"></Label>
+    <GridLayout rows="auto" columns="*,*" orientation="horizontal" marginTop="12" class="fullbtn">
+    <Button text="Ok"  horizontalAlignment="left" verticalAlignment="center" row="0" col="0" (tap)="okfunc('true')" class="okbtn"></Button>
+    <Button text="Cancel"   horizontalAlignment="right" verticalAlignment="center" row="0" col="1" (tap)="close('false')" class="canclbtn"></Button>
+    </GridLayout>
+</StackLayout>
+
+<StackLayout  *ngIf="lang=='Arabic'">
+    <Label [text]="alerttxtae" class="txt" textWrap="true"></Label>
+    <GridLayout rows="auto" columns="*,*" orientation="horizontal" marginTop="12" class="fullbtn">
+        <Button [text]="aedata.Cancel"   horizontalAlignment="left" verticalAlignment="center" row="0" col="0" (tap)="close('false')" class="canclbtn"></Button>
+    <Button [text]="aedata.Ok"  horizontalAlignment="right" verticalAlignment="center" row="0" col="1" (tap)="okfunc('true')" class="okbtn"></Button>
+    </GridLayout>
+</StackLayout>
+</StackLayout>

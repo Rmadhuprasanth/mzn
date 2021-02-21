@@ -1,0 +1,271 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+        <GridLayout rows="auto" columns="auto,*">
+            <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label text="Promotions" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        </GridLayout>
+    </ActionBar>
+
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+            <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+                stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+            <Label [text]="aedata.Promotions" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+        </RGridLayout>
+    </ActionBar>
+
+    <!-- <--------------english-cotent---------------------->
+
+    <GridLayout class="page" *ngIf="lang=='English'">
+
+        <GridLayout rows="40,*" class="margins">
+            <GridLayout row="0" columns="*,*" height="48" class="bg-tabs">
+                <StackLayout col="0" (tap)="selectedheader(0)"
+                    [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                    <Label text="Ongoing Promotions" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)"
+                    [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                    <Label text="Expired Promotions" class="txt"></Label>
+
+                </StackLayout>
+            </GridLayout>
+            <GridLayout row="1" *ngIf="selectedheaders =='0'" class="borders">
+                <ScrollView orientation="vertical" id="scrollView">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let ongoing of ongoingpromo">
+                            <GridLayout rows="auto,auto,auto,auto" columns="*" class="bg-all">
+                                <GridLayout row="0" col="0" rows="auto" columns="*">
+                                    <Image row="0" col="0" loadMode="async"  [src]="bannerurl+ongoing.Image" stretch="aspectFill"
+                                        class="banner"></Image>
+                                    <StackLayout row="0" col="0" style="z-index: 1000;" class="Expresstxt"
+                                        horizontalAlignment="left" verticalAlignment="center">
+
+                                        <Label class="protxtx1" text="Promo Code"></Label>
+                                        <Label class="protxtx" [text]="ongoing.couponcodeId"></Label>
+                                    </StackLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0">
+                                    <Label [text]="'Shop Name :'+ ongoing.ShopNameInEnglish" class="shoptxt"></Label>
+                                </GridLayout>
+                                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                                    <StackLayout row="0" col="0" class="offbg" horizontalAlignment="left"
+                                        verticalAlignment="center">
+                                        <Label class="protxtx" [text]="ongoing.DiscountValue+'%'"></Label>
+                                    </StackLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" style="margin-bottom: 5;">
+                                        <Label row="0" col="0" class="exptxt" text="Expires On"></Label>
+                                        <Label row="1" col="0" class="exptxt" [text]="ongoing.ValidTo"></Label>
+                                    </GridLayout>
+                                </GridLayout>
+
+                                <GridLayout row="3" col="0" rows="auto" columns="auto,*">
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*">
+                                        <Label row="0" col="0" class="shoptxt"
+                                            [text]="'MiniMum Order Value :'+ ongoing.MinimumAmount"></Label>
+                                        <Label row="1" col="0" class="shoptxt"
+                                            [text]="'Minimum Discount Value :'+ ongoing.MaximumDiscount"></Label>
+                                    </GridLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" (tap)="gotoeditPromotion(ongoing.Id)">
+                                        <Image row="0" col="0" horizontalAlignment="right" src="~/assets/profile/Shop Name.png" stretch="aspectFill"
+                                            class="editico"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+
+                </ScrollView>
+            </GridLayout>
+
+
+
+
+
+
+            <!-- <--------------------------------expired-promotions--------------------------- -->
+            <GridLayout row="1" *ngIf="selectedheaders =='1'" class="borders">
+                <ScrollView orientation="vertical" id="scrollView">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let expired of expiredpromo">
+                            <GridLayout rows="auto,auto,auto,auto" columns="*" class="bg-all">
+                                <GridLayout row="0" col="0" rows="auto" columns="*">
+                                    <Image row="0" col="0" loadMode="async"  [src]="bannerurl+expired.Image" stretch="aspectFill"
+                                        class="banner"></Image>
+                                    <StackLayout row="0" col="0" style="z-index: 1000;" class="Expresstxt"
+                                        horizontalAlignment="left" verticalAlignment="center">
+
+                                        <Label class="protxtx1" text="Promo Code"></Label>
+                                        <Label class="protxtx" [text]="expired.couponcodeId"></Label>
+                                    </StackLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0">
+                                    <Label [text]="'Shop Name :'+ expired.ShopNameInEnglish" class="shoptxt"></Label>
+                                </GridLayout>
+                                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                                    <StackLayout row="0" col="0" class="offbg" horizontalAlignment="left"
+                                        verticalAlignment="center">
+                                        <Label class="protxtx" [text]="expired.DiscountValue+'%'"></Label>
+                                    </StackLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" style="margin-bottom: 5;">
+                                        <Label row="0" col="0" class="exptxt" text="Expires On"></Label>
+                                        <Label row="1" col="0" class="exptxt" [text]="expired.ValidTo"></Label>
+                                    </GridLayout>
+                                </GridLayout>
+
+                                <GridLayout row="3" col="0" rows="auto" columns="auto,*">
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*">
+                                        <Label row="0" col="0" class="shoptxt"
+                                            [text]="'MiniMum Order Value :'+ expired.MinimumAmount"></Label>
+                                        <Label row="1" col="0" class="shoptxt"
+                                            [text]="'Minimum Discount Value :'+ expired.MaximumDiscount"></Label>
+                                    </GridLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" (tap)="gotoeditPromotion(expired.Id)">
+                                        <Image row="0" col="0" horizontalAlignment="right" src="~/assets/profile/Shop Name.png" stretch="aspectFill"
+                                            class="editico"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+
+                </ScrollView>
+            </GridLayout>
+
+        </GridLayout>
+    </GridLayout>
+
+
+
+
+
+     <!-- <--------------arabic-cotent---------------------->
+
+     <RGridLayout class="page"   isRtl="true" *ngIf="lang=='Arabic'">
+
+        <RGridLayout rows="40,*"   isRtl="true" class="margins">
+            <GridLayout row="0"   columns="*,*" height="48" class="bg-tabs">
+                <StackLayout col="0" (tap)="selectedheader(0)"
+                    [ngClass]="(selectedheaders=='0')?'selected':'my-class2'">
+
+                    <Label style="transform: scaleX(-1);" [text]="aedata.Ongoing_Promotions" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)"
+                    [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+
+                    <Label style="transform: scaleX(-1);" [text]="aedata.Expired_Promotions" class="txt"></Label>
+
+                </StackLayout>
+            </GridLayout>
+            <RGridLayout isRtl="true"  row="1" *ngIf="selectedheaders =='0'" class="borders">
+                <ScrollView orientation="vertical" id="scrollView">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let ongoing of ongoingpromo">
+                            <GridLayout rows="auto,auto,auto,auto" columns="*" class="bg-all">
+                                <GridLayout row="0" col="0" rows="auto" columns="*">
+                                    <Image row="0" col="0" loadMode="async"  [src]="bannerurl+ongoing.Image" stretch="aspectFill"
+                                        class="banner"></Image>
+                                    <StackLayout row="0" col="0" style="z-index: 1000;" class="Expresstxt"
+                                        horizontalAlignment="left" verticalAlignment="center">
+
+                                        <Label style="transform: scaleX(-1);" class="protxtx1" [text]="aedata.Promo_Code"></Label>
+                                        <Label style="transform: scaleX(-1);" class="protxtx" [text]="ongoing.couponcodeId"></Label>
+                                    </StackLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0">
+                                    <Label horizontalAlignment="left" style="transform: scaleX(-1);" [text]="ongoing.ShopNameInArabic+':'+  aedata.Shop_Name " class="shoptxt"></Label>
+                                </GridLayout>
+                                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                                    <StackLayout row="0" col="0" class="offbg" horizontalAlignment="left"
+                                        verticalAlignment="center">
+                                        <Label style="transform: scaleX(-1);" class="protxtx" [text]="ongoing.DiscountValue+'%'"></Label>
+                                    </StackLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" style="margin-bottom: 5;">
+                                        <Label style="transform: scaleX(-1);" horizontalAlignment="right" row="0" col="0" class="exptxt" [text]="aedata.Expires_On"></Label>
+                                        <Label style="transform: scaleX(-1);" horizontalAlignment="right" row="1" col="0" class="exptxt" [text]="ongoing.ValidTo"></Label>
+                                    </GridLayout>
+                                </GridLayout>
+
+                                <GridLayout row="3" col="0" rows="auto" columns="auto,*">
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*">
+                                        <Label style="transform: scaleX(-1);" row="0" col="0" class="shoptxt"
+                                            [text]="aedata.MiniMum_Order_Value +':'+ ongoing.MinimumAmount"></Label>
+                                        <Label style="transform: scaleX(-1);" row="1" col="0" class="shoptxt"
+                                            [text]="aedata.Minimum_Discount_Value +':'+ ongoing.MaximumDiscount"></Label>
+                                    </GridLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" (tap)="gotoeditPromotion(ongoing.Id)">
+                                        <Image style="transform: scaleX(-1);"  row="0" col="0" horizontalAlignment="right" src="~/assets/profile/Shop Name.png" stretch="aspectFill"
+                                            class="editico"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+
+                </ScrollView>
+            </RGridLayout>
+
+
+
+
+
+
+            <!-- <--------------------------------expired-promotions--------------------------- -->
+            <RGridLayout isRtl="true"  row="1" *ngIf="selectedheaders =='1'" class="borders">
+                <ScrollView orientation="vertical" id="scrollView">
+                    <WrapLayout orientation="horizontal">
+                        <DockLayout stretchLastChild="false" width="100%" class="cardStyle" *ngFor="let expired of expiredpromo">
+                            <GridLayout rows="auto,auto,auto,auto" columns="*" class="bg-all">
+                                <GridLayout row="0" col="0" rows="auto" columns="*">
+                                    <Image row="0" col="0" loadMode="async"  [src]="bannerurl+expired.Image" stretch="aspectFill"
+                                        class="banner"></Image>
+                                    <StackLayout row="0" col="0" style="z-index: 1000;" class="Expresstxt"
+                                        horizontalAlignment="left" verticalAlignment="center">
+
+                                        <Label style="transform: scaleX(-1);"  class="protxtx1" [text]="aedata.Promo_Code"></Label>
+                                        <Label style="transform: scaleX(-1);"  class="protxtx" [text]="expired.couponcodeId"></Label>
+                                    </StackLayout>
+                                </GridLayout>
+                                <GridLayout row="1" col="0">
+                                    <Label style="transform: scaleX(-1);"  horizontalAlignment="left" [text]="expired.ShopNameInArabic+':'+  aedata.Shop_Name " class="shoptxt"></Label>
+                                </GridLayout>
+                                <GridLayout row="2" col="0" rows="auto" columns="*,*">
+                                    <StackLayout row="0" col="0" class="offbg" horizontalAlignment="left"
+                                        verticalAlignment="center">
+                                        <Label style="transform: scaleX(-1);"  class="protxtx" [text]="expired.DiscountValue+'%'"></Label>
+                                    </StackLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" style="margin-bottom: 5;">
+                                        <Label style="transform: scaleX(-1);"  horizontalAlignment="right" row="0" col="0" class="exptxt" [text]="aedata.Expires_On"></Label>
+                                        <Label style="transform: scaleX(-1);"  horizontalAlignment="right" row="1" col="0" class="exptxt" [text]="expired.ValidTo"></Label>
+                                    </GridLayout>
+                                </GridLayout>
+
+                                <GridLayout row="3" col="0" rows="auto" columns="auto,*">
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*">
+                                        <Label style="transform: scaleX(-1);"  row="0" col="0" class="shoptxt"
+                                            [text]="aedata.MiniMum_Order_Value +':'+ expired.MinimumAmount"></Label>
+                                        <Label style="transform: scaleX(-1);"  row="1" col="0" class="shoptxt"
+                                            [text]="aedata.Minimum_Discount_Value +':'+ expired.MaximumDiscount"></Label>
+                                    </GridLayout>
+                                    <GridLayout row="0" col="1" rows="auto,auto" columns="*" (tap)="gotoeditPromotion(expired.Id)">
+                                        <Image style="transform: scaleX(-1);"  row="0" col="0" horizontalAlignment="right" src="~/assets/profile/Shop Name.png" stretch="aspectFill"
+                                            class="editico"></Image>
+                                    </GridLayout>
+                                </GridLayout>
+                            </GridLayout>
+                        </DockLayout>
+                    </WrapLayout>
+
+                </ScrollView>
+            </RGridLayout>
+
+        </RGridLayout>
+    </RGridLayout>
+</Page>

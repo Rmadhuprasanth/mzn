@@ -1,0 +1,197 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <--------------english-header------------------>
+    <ActionBar class="header"  *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Material Details" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+<!-- <--------------arabic-header------------------>
+    <ActionBar class="header"  *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"  isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"  isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Material_Details" row="0" col="1"  android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <--------------english-content------------------>
+    <GridLayout rows="auto,*" columns="*"  *ngIf="lang=='English'">
+        <GridLayout row="0" height="210">
+        <Carousel #myCarousel  [items]="myData" height="100%" width="100%" color="white"  
+        android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10"  autoPagingInterval="2" autoPlay="true" showIndicator="true">
+    <CarouselItem *ngFor="let item of myData" [backgroundColor]="item.color" verticalAlignment="middle" >
+        <GridLayout>
+            <Image [src]="imageurl+item.ImageName" stretch="aspectFill"></Image>  
+        </GridLayout>
+    </CarouselItem> 
+</Carousel>
+</GridLayout>
+<ScrollView  row="1" scrollBarIndicatorVisible="false">
+<GridLayout  class="page"> 
+<GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins">
+
+<GridLayout row="0" col="0" rows="auto" columns="*,*" class="underln">
+<Label text="Material" class="headerlbl" row="0" col="0"></Label>
+<TextField hint="none" editable="false" [(ngModel)]="getPattern.MaterialInEnglish" class="txtlbl" row="0" col="1"></TextField>
+</GridLayout>
+
+<GridLayout row="1" col="0" rows="auto" columns="*,*" class="underln">
+    <Label text="Seasonal" class="headerlbl" row="0" col="0"></Label>
+    <TextField hint="none"  editable="false" [(ngModel)]="getPattern.PlaceInEnglish" class="txtlbl" row="0" col="1"></TextField>
+    </GridLayout>
+
+    <GridLayout row="2" col="0" rows="auto" columns="*,*" class="underln">
+        <Label text="Place of Industry" class="headerlbl" row="0" col="0"></Label>
+        <TextField hint="none"  editable="false" [(ngModel)]="getPattern.PlaceInEnglish" class="txtlbl" row="0" col="1"></TextField>
+        </GridLayout>
+
+        <GridLayout row="3" col="0" rows="auto" columns="*,*" class="underln">
+            <Label text="Brands" class="headerlbl" row="0" col="0"></Label>
+            <TextField hint="none" editable="false" [(ngModel)]="getPattern.BrandInEnglish" class="txtlbl" row="0" col="1"></TextField>
+            </GridLayout>
+
+            <GridLayout row="4" col="0" rows="auto" columns="*,*" class="underln">
+                <Label text="Material Type" class="headerlbl" row="0" col="0"></Label>
+                <TextField hint="none" [(ngModel)]="getPattern.PatternInEnglish" editable="false" horizontalAlignment="left" class="txtlbl" row="0" col="1"></TextField>
+                </GridLayout>
+
+                <GridLayout row="5" col="0" rows="auto" columns="*,*" class="underln">
+                    <Label text="Color" class="headerlbl" row="0" col="0"></Label>
+                    <!-- <GridLayout row="0" col="1" rows="auto" columns="*">
+                        <StackLayout row="0" col="0" class="colordiv"></StackLayout>
+                    </GridLayout> -->
+                    <WrapLayout rows="0" col="1" orientation="horizontal"> 
+                        <StackLayout horizontalAlignment="left"  *ngFor="let color of getColors" [style.backgroundColor]="color.ColorInEnglish" width="10%" class="colordiv">
+                          
+                        </StackLayout>
+                </WrapLayout>
+                    </GridLayout>
+
+                    <GridLayout row="6" col="0" rows="auto" columns="*,*" class="underln">
+                        <Label text="Thickness" class="headerlbl" row="0" col="0"></Label>
+                        <Label *ngFor="let thickness of Thicknesseng" [text]="thickness.Thickness" class="txtlblthick" row="0" col="1"></Label> 
+                        </GridLayout>
+                        <GridLayout row="7" col="0" rows="auto,auto" columns="*" shadow="4" cornerRadius="10"  class="checkdiv">
+                            <GridLayout row="0" col="0" rows="40" columns="auto,*" style="margin: 2;">
+                            <Image row="0" col="0" #check [src]="checkimg" value="{{checkval}}" (tap)="getmaterial(check.value)" dock="top" class="uncheck-img"></Image>
+                            <Label row="0" col="1"  text="I have the material" class="havemate"></Label>
+                        </GridLayout>
+                            <GridLayout row="1" col="0" rows="auto,auto" columns="*" style="margin: 2;" *ngIf="frndName">
+                                <TextField class="input" eeditable="true" row="0" col="0" [(ngModel)]="friendlyName.FriendlyNameInEnglish" (textChange)="frndlyNameeng($event)" hint="Friendly Name In English"
+                                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+                                <TextField class="input" eeditable="true" row="1" col="0" [(ngModel)]="friendlyName.FriendlyNameInArabic" (textChange)="frndlyNamearb($event)" hint="Friendly Name In Arabic"
+                                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+                            </GridLayout> 
+                        </GridLayout> 
+                        <GridLayout row="8" col="0" rows="auto" columns="*" *ngIf="frndName">
+                            <WrapLayout  orientation="horizontal" > 
+                                <DockLayout   stretchLastChild="false"  class="cardStylecarges" shadow="4" cornerRadius="10" *ngFor="let materialcherges of materialcherges; let i = index" >
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*,*">
+                                        <Label [text]="materialcherges.NameInEnglish" class="chrtxt" verticalAlignment="center"></Label>
+                                        <TextField row="0" col="1" class="cherginput" eeditable="true"   hint="00 | 00"
+                                        [text]="materialcherges.MaterialCharges" autocorrect="false" autocapitalizationType="none" (textChange)="getCharges($event,materialcherges.Id)" horizontalAlignment="right" verticalAlignment="middle"></TextField>
+                                    </GridLayout>
+                                </DockLayout > 
+                                </WrapLayout> 
+                            </GridLayout>
+                        <GridLayout row="9" col="0" rows="auto" columns="*" *ngIf="frndName">
+                            <Button text="Save" class="savebtn" (tap)="mapMaterialSave()"></Button>
+                            </GridLayout>
+                      
+</GridLayout>
+</GridLayout>
+</ScrollView>
+    </GridLayout>
+
+
+
+
+     <!-- <--------------arabic-content------------------>
+     <RGridLayout rows="auto,*" columns="*"  isRtl="true" *ngIf="lang=='Arabic'">
+        <GridLayout row="0" height="210">
+        <Carousel #myCarousel  [items]="myData" height="100%" width="100%" color="white"  
+        android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10"  autoPagingInterval="2" autoPlay="true" showIndicator="true">
+    <CarouselItem *ngFor="let item of myData" [backgroundColor]="item.color" verticalAlignment="middle" >
+        <GridLayout>
+            <Image [src]="imageurl+item.ImageName" stretch="aspectFill"></Image>  
+        </GridLayout>
+    </CarouselItem> 
+</Carousel>
+</GridLayout>
+<ScrollView  row="1" scrollBarIndicatorVisible="false">
+<RGridLayout  class="page"  isRtl="true"> 
+<RGridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"  isRtl="true" columns="*" class="margins">
+
+<GridLayout row="0" col="0" rows="auto" columns="*,*" class="underln">
+<Label style="transform: scaleX(-1);" horizontalAlignment="left" [text]="aedata.Material" class="headerlbl" row="0" col="0"></Label>
+<TextField  style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false" [(ngModel)]="getPattern.MaterialInArabic" class="txtlbl" row="0" col="1"></TextField>
+</GridLayout>
+
+<GridLayout row="1" col="0" rows="auto" columns="*,*" class="underln">
+    <Label  style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Seasonal" class="headerlbl" row="0" col="0"></Label>
+    <TextField  style="transform: scaleX(-1);"  horizontalAlignment="left" hint="none"  editable="false" [(ngModel)]="getPattern.PlaceInArabic" class="txtlbl" row="0" col="1"></TextField>
+    </GridLayout>
+
+    <GridLayout row="2" col="0" rows="auto" columns="*,*" class="underln">
+        <Label  style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Place_of_Industry" class="headerlbl" row="0" col="0"></Label>
+        <TextField  style="transform: scaleX(-1);" horizontalAlignment="left" hint="none"  editable="false" [(ngModel)]="getPattern.PlaceInArabic" class="txtlbl" row="0" col="1"></TextField>
+        </GridLayout>
+
+        <GridLayout row="3" col="0" rows="auto" columns="*,*" class="underln">
+            <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Brands" class="headerlbl" row="0" col="0"></Label>
+            <TextField  style="transform: scaleX(-1);" horizontalAlignment="left" hint="none" editable="false" [(ngModel)]="getPattern.BrandInEnglish" class="txtlbl" row="0" col="1"></TextField>
+            </GridLayout>
+
+            <GridLayout row="4" col="0" rows="auto" columns="*,*" class="underln">
+                <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Material_Type" class="headerlbl" row="0" col="0"></Label>
+                <TextField  style="transform: scaleX(-1);"  hint="none" [(ngModel)]="getPattern.PatternInArabic" editable="false" horizontalAlignment="left" class="txtlbl" row="0" col="1"></TextField>
+                </GridLayout>
+
+                <GridLayout row="5" col="0" rows="auto" columns="*,*" class="underln">
+                    <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Color" class="headerlbl" row="0" col="0"></Label>
+                    <!-- <GridLayout row="0" col="1" rows="auto" columns="*">
+                        <StackLayout row="0" col="0" class="colordiv"></StackLayout>
+                    </GridLayout> -->
+                    <WrapLayout rows="0" col="1" orientation="horizontal"> 
+                        <StackLayout horizontalAlignment="left"  *ngFor="let color of getColors" [style.backgroundColor]="color.ColorInEnglish" width="10%" class="colordiv">
+                          
+                        </StackLayout>
+                </WrapLayout>
+                    </GridLayout>
+
+                    <GridLayout row="6" col="0" rows="auto" columns="*,*" class="underln">
+                        <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Thickness" class="headerlbl" row="0" col="0"></Label>
+                        <Label style="transform: scaleX(-1);" horizontalAlignment="left"  *ngFor="let thickness of Thicknesseng" [text]="thickness.Thickness" class="txtlblthick" row="0" col="1"></Label> 
+                        </GridLayout>
+                        <GridLayout row="7" col="0" rows="auto,auto" columns="*" shadow="4" cornerRadius="10"  class="checkdiv">
+                            <GridLayout row="0" col="0" rows="40" columns="auto,*" style="margin: 2;">
+                            <Image row="0" col="0"  style="transform: scaleX(-1);" #check [src]="checkimg" value="{{checkval}}" (tap)="getmaterial(check.value)" dock="top" class="uncheck-img"></Image>
+                            <Label  style="transform: scaleX(-1);" horizontalAlignment="left"  row="0" col="1"  [text]="aedata.I_have_the_material" class="havemate"></Label>
+                        </GridLayout>
+                            <GridLayout row="1" col="0" rows="auto,auto" columns="*" style="margin: 2;" *ngIf="frndName">
+                                <TextField  style="transform: scaleX(-1);"  class="input" eeditable="true" row="0" col="0" [(ngModel)]="friendlyName.FriendlyNameInEnglish" (textChange)="frndlyNameeng($event)" hint="الاسم المتعارف عليه لدي باللغة الانجليزية"
+                                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+                                <TextField  style="transform: scaleX(-1);"  class="input" eeditable="true" row="1" col="0" [(ngModel)]="friendlyName.FriendlyNameInArabic" (textChange)="frndlyNamearb($event)" hint="الاسم المتعارف عليه لدي باللغة العربية"
+                                text="" autocorrect="false" autocapitalizationType="none"></TextField>
+                            </GridLayout> 
+                        </GridLayout> 
+                        <GridLayout row="8" col="0" rows="auto" columns="*" *ngIf="frndName">
+                            <WrapLayout  orientation="horizontal" > 
+                                <DockLayout   stretchLastChild="false"  class="cardStylecarges" shadow="4" cornerRadius="10" *ngFor="let materialcherges of materialcherges; let i = index" >
+                                    <GridLayout row="0" col="0" rows="auto,auto" columns="*,*">
+                                        <Label  style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="materialcherges.NameInArabic" class="chrtxt" verticalAlignment="center"></Label>
+                                        <TextField  style="transform: scaleX(-1);"   row="0" col="1" class="cherginput" eeditable="true"   hint="00 | 00"
+                                        [text]="materialcherges.MaterialCharges" autocorrect="false" autocapitalizationType="none" (textChange)="getCharges($event,materialcherges.Id)" horizontalAlignment="right" verticalAlignment="middle"></TextField>
+                                    </GridLayout>
+                                </DockLayout > 
+                                </WrapLayout> 
+                            </GridLayout>
+                        <GridLayout row="9" col="0" rows="auto" columns="*" *ngIf="frndName">
+                            <Button  style="transform: scaleX(-1);"   [text]="aedata.Save" class="savebtn" (tap)="mapMaterialSave()"></Button>
+                            </GridLayout>
+                      
+</RGridLayout>
+</RGridLayout>
+</ScrollView>
+    </RGridLayout>
+    </Page>

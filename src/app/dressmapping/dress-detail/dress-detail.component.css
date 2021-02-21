@@ -1,0 +1,139 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 15;
+}
+  .action-image{
+    height: 30;
+    width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+  .check{
+      font-size: 30 !important;
+      height: 40;
+  }
+  .genderimg{
+    height: 15;
+    width: 15;
+    margin-right: 5;
+  }
+  .custtxt{
+    font-size: 14;
+    font-weight: bold;
+    color: #05375c;
+    text-align: center;
+  }
+  .underln{
+    margin-top: 10;
+    background-color: darkgray;
+  }
+  .cardStyle{
+    height: 40;
+    padding-left: 10;
+    
+    margin-top: 10;
+    margin-bottom: 10;
+  }
+  .genderdtxt{
+    font-size: 13;
+    color: #05375c;
+
+  }
+  .cherginput{
+border-width: 1;
+border-color: darkgray;
+border-radius: 21;
+width: 90;
+height: 25;
+font-size: 13;
+text-align: center;
+margin-right: 0;
+color: #05375c;
+padding: 0;
+  }
+  .stitchtxt{
+    font-size: 14;
+    color: #05375c;
+  }
+  .stitchmrg{
+    margin-top: 10;
+  }
+  .downarrimg{
+    height: 15;
+    width: 15;
+    margin-top: 3;
+    margin-right: 3;
+  }
+  .nodaysbox{
+    border-width: 1;
+    border-color: darkgray;
+    border-radius: 21;
+    width: 90;
+    height: 25;
+    font-size: 13;
+margin-top: 3;
+  }
+  .nodaystxt{
+    font-size: 14;
+font-weight: bold;
+text-align: center;
+  }
+  .uncheck-img{
+    height: 30;
+    width: 30;
+  }
+  .havemate{
+    text-align: left;
+    font-size: 14;
+    margin-left: 5;
+    vertical-align: middle;
+    color:#05375c ;
+  }
+  .materialtxt{
+    text-align: center;
+    font-size: 14;
+    color:#05375c ;
+    font-weight: bold;
+  }
+  .matchrgbrdr{
+    
+    /* border-width: 1;
+border-color: #05375c; */
+margin-top: 10;
+/* border-radius: 5; */
+font-size: 14;
+font-weight: bold;
+background-color: darkgray;
+  }
+  .savebtn{
+    margin-top: 20;
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+    border-radius: 21;
+    color: white;
+    font-size: 14;
+    font-weight: bold;
+    height: 40;
+  }
+  .matcherginput{
+    border-width: 1;
+    border-color: darkgray;
+    border-radius: 21;
+    width: 90;
+    height: 25;
+    font-size: 13;
+    text-align: center;
+    margin-right: 0;
+    color: #05375c;
+    padding: 0;
+  }

@@ -1,0 +1,206 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent"  *ngIf="loader=='false'">
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Material Selection" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <--------------arabic-header---------------------->
+    <ActionBar class="header" *ngIf="lang=='Arabic'">
+        <RGridLayout rows="auto" columns="auto,*"   isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png"   isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Material_Selection" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+       <!-- <--------------english-content---------------------->
+       <GridLayout *ngIf="lang=='English'">
+    <GridLayout rows="auto,*" columns="*"  *ngIf="showmain">
+        <GridLayout row="0" height="250">
+        <Carousel #myCarousel  [items]="bannerimg" height="100%" width="100%" color="white"  
+        android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10"  autoPagingInterval="2" autoPlay="true" showIndicator="true">
+    <CarouselItem *ngFor="let item of bannerimg" verticalAlignment="middle" >
+        <GridLayout>
+            <Image [src]="imgUrlPattern+item.ImageName" stretch="aspectFill"></Image>  
+        </GridLayout>
+    </CarouselItem> 
+</Carousel>
+</GridLayout>
+<ScrollView  row="1" scrollBarIndicatorVisible="false">
+<GridLayout  class="page"> 
+<GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins" *ngIf="patternShow">
+    <GridLayout row="0" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let material of GetPattern">
+        <Label text="Material" class="headerlbl" row="0" col="0"></Label>
+        <TextField hint="none" editable="false" [text]="material.PatternInEnglish" class="txtlbl" row="0" col="1"></TextField>
+        </GridLayout>
+
+        <GridLayout row="1" col="0" rows="auto" columns="*,*" class="underln">
+            <Label text="Seasonal" class="headerlbl" row="0" col="0"></Label>
+            <TextField hint="none" editable="false" text="Summer" class="txtlbl" row="0" col="1"></TextField>
+            </GridLayout>
+
+            <GridLayout row="2" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let place of GetPattern">
+                <Label text="Place Of Industry" class="headerlbl" row="0" col="0"></Label>
+                <TextField hint="none" editable="false"[text]="place.PlaceInEnglish" class="txtlbl" row="0" col="1"></TextField>
+                </GridLayout>
+
+                <GridLayout row="3" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let brand of GetPattern">
+                    <Label text="Brands" class="headerlbl" row="0" col="0"></Label>
+                    <TextField hint="none" editable="false" [text]="brand.BrandInEnglish" class="txtlbl" row="0" col="1"></TextField>
+                    </GridLayout>
+
+                    <GridLayout row="4" col="0" rows="auto" columns="*,*" class="underln"  *ngFor="let type of GetPattern">
+                        <Label text="Material Type" class="headerlbl" row="0" col="0"></Label>
+                        <TextView hint="none" editable="false" textWrap="true" [text]="type.MaterialInEnglish" class="txtlblview" row="0" col="1"></TextView>
+                        </GridLayout>
+
+                        <GridLayout row="5" col="0" rows="auto" columns="*,*" class="underln">
+                            <Label text="Color" class="headerlbl" row="0" col="0"></Label>
+                            <WrapLayout rows="0" col="1" orientation="horizontal"> 
+                                <StackLayout horizontalAlignment="left"  *ngFor="let color of GetColors"   [style.backgroundColor]="color.ColorInEnglish" width="15%" class="colordiv">
+                                </StackLayout>
+                        </WrapLayout>
+                            </GridLayout>
+
+                            <GridLayout row="6" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let thickness of GetThickness" >
+                                <Label text="Thickness" class="headerlbl" row="0" col="0"></Label>
+                                <TextField hint="none" editable="false" [text]="thickness.Thickness" class="txtlbl" row="0" col="1"></TextField>
+                                </GridLayout>
+</GridLayout>
+</GridLayout>
+</ScrollView>
+    </GridLayout>
+    
+    <GridLayout class="page"  *ngIf="hidemain">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+                <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+                <Image  [src]="zoomimg"  stretch="aspectFill" class="zoomimg" style="padding: 15;"></Image>
+                </StackLayout>
+            </GridLayout> 
+        </ScrollView> 
+    
+        <GridLayout>
+            <GridLayout rows="*,auto">
+                <GridLayout row="1"  height="120" style="background-color: white;">
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"  *ngFor="let cust of customization" class="cardStyle" (tap)="selecimg(cust.Image)"> 
+                                        <Image *ngIf="detailId == cust.DetailId" [src]="imgUrlPattern+cust.Image"  stretch="aspectFill" dock="top" class="slidimg"></Image> 
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+                    </ScrollView>
+                    </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    
+    </GridLayout>
+</GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <--------------english-content---------------------->
+  <GridLayout *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto,*" columns="*" isRtl="true" *ngIf="showmain">
+        <GridLayout row="0" height="250">
+        <Carousel #myCarousel  [items]="bannerimg" height="100%" width="100%" color="white"  
+        android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, -10"  autoPagingInterval="2" autoPlay="true" showIndicator="true">
+    <CarouselItem *ngFor="let item of bannerimg" verticalAlignment="middle" >
+        <GridLayout>
+            <Image [src]="imgUrlPattern+item.ImageName" stretch="aspectFill"></Image>  
+        </GridLayout>
+    </CarouselItem> 
+</Carousel>
+</GridLayout>
+<ScrollView  row="1" scrollBarIndicatorVisible="false">
+<RGridLayout  class="page" isRtl="true"> 
+<RGridLayout isRtl="true" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*" class="margins" *ngIf="patternShow">
+    <GridLayout row="0" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let material of GetPattern">
+        <Label  style="transform: scaleX(-1);" horizontalAlignment="left" [text]="aedata.Material" class="headerlbl" row="0" col="0"></Label>
+        <TextField  style="transform: scaleX(-1);" horizontalAlignment="left" hint="none" editable="false" [text]="material.PatternInArabic" class="txtlbl" row="0" col="1"></TextField>
+        </GridLayout>
+
+        <GridLayout row="1" col="0" rows="auto" columns="*,*" class="underln">
+            <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Seasonal" class="headerlbl" row="0" col="0"></Label>
+            <TextField style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false" text="Summer" class="txtlbl" row="0" col="1"></TextField>
+            </GridLayout>
+
+            <GridLayout row="2" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let place of GetPattern">
+                <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Place_Of_Industry" class="headerlbl" row="0" col="0"></Label>
+                <TextField style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false"[text]="place.PlaceInArabic" class="txtlbl" row="0" col="1"></TextField>
+                </GridLayout>
+
+                <GridLayout row="3" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let brand of GetPattern">
+                    <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Brands" class="headerlbl" row="0" col="0"></Label>
+                    <TextField style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false" [text]="brand.BrandInArabic" class="txtlbl" row="0" col="1"></TextField>
+                    </GridLayout>
+
+                    <GridLayout row="4" col="0" rows="auto" columns="*,*" class="underln"  *ngFor="let type of GetPattern">
+                        <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Material_Type" class="headerlbl" row="0" col="0"></Label>
+                        <TextView style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false" textWrap="true" [text]="type.MaterialInArabic" class="txtlblview" row="0" col="1"></TextView>
+                        </GridLayout>
+
+                        <GridLayout row="5" col="0" rows="auto" columns="*,*" class="underln">
+                            <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Color" class="headerlbl" row="0" col="0"></Label>
+                            <WrapLayout rows="0" col="1" orientation="horizontal"> 
+                                <StackLayout horizontalAlignment="left"  *ngFor="let color of GetColors"   [style.backgroundColor]="color.ColorInEnglish" width="15%" class="colordiv">
+                                </StackLayout>
+                        </WrapLayout>
+                            </GridLayout>
+
+                            <GridLayout row="6" col="0" rows="auto" columns="*,*" class="underln" *ngFor="let thickness of GetThickness" >
+                                <Label style="transform: scaleX(-1);" horizontalAlignment="left"  [text]="aedata.Thickness" class="headerlbl" row="0" col="0"></Label>
+                                <TextField style="transform: scaleX(-1);" horizontalAlignment="left"  hint="none" editable="false" [text]="thickness.ThicknessInArabic" class="txtlbl" row="0" col="1"></TextField>
+                                </GridLayout>
+</RGridLayout>
+</RGridLayout>
+</ScrollView>
+    </RGridLayout>
+    
+    <GridLayout class="page"  *ngIf="hidemain">
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+            <GridLayout  rows="auto,auto,auto,auto" columns="*" style="margin-bottom: 50;"> 
+                <StackLayout row="1" col="0" class="image"   shadow="4"  cornerRadius="15">
+                <Image  [src]="zoomimg"  stretch="aspectFill" class="zoomimg" style="padding: 15;"></Image>
+                </StackLayout>
+            </GridLayout> 
+        </ScrollView> 
+    
+        <GridLayout>
+            <GridLayout rows="*,auto">
+                <GridLayout row="1"  height="120" style="background-color: white;">
+                    <ScrollView orientation="horizontal" scrollBarIndicatorVisible="false">
+                        <WrapLayout  orientation="vertical">
+                            <GridLayout stretchLastChild="true"  height="120" width="40%" horizontalAlignment="left" >
+                                <WrapLayout  orientation="vertical">
+                                    <DockLayout stretchLastChild="true"  *ngFor="let cust of customization" class="cardStyle" (tap)="selecimg(cust.Image)"> 
+                                        <Image *ngIf="detailId == cust.DetailId" [src]="imgUrlPattern+cust.Image"  stretch="aspectFill" dock="top" class="slidimg"></Image> 
+                                    </DockLayout>  
+                            </WrapLayout>
+                            </GridLayout> 
+                        </WrapLayout>  
+                    </ScrollView>
+                    </GridLayout>
+            </GridLayout>
+        </GridLayout>
+    
+    </GridLayout>
+</GridLayout>
+</Page>

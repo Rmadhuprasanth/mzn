@@ -1,0 +1,285 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+
+<!-- <------------------------english--------------------- -->
+<ActionBar class="header" *ngIf="lang=='English'">
+    <GridLayout rows="auto" columns="auto,*,auto" >
+    <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+    <Label text="Skills/Product Update" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+    <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right" (tap)="gotoNotifications()" stretch="aspectFill"  class="bell-image"></Image>
+  </GridLayout>
+   </ActionBar> 
+<!-- <------------------------arabic--------------------- -->
+   <ActionBar class="header"  *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*,auto"  isRtl="true">
+    <Image [src]="profilImageURL" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill"  class="action-image"></Image>
+    <Label [text]="aedata.Skills_Product_Update" row="0"  col="1" android:horizontalAlignment="center" class="action-label"></Label>
+    <Image src="~/assets/profile/White.png" row="0" col="2" android:horizontalAlignment="right" (tap)="gotoNotifications()" stretch="aspectFill"  class="bell-image"></Image>
+  </RGridLayout>
+   </ActionBar> 
+<!-- <FlexboxLayout class="page"> -->
+    <!-- <-------------------------english-content-------------------------- -->
+    <GridLayout class="page"  *ngIf="lang=='English'">
+        <ScrollView  orientation="vertical" id="scrollView">      
+        
+        <GridLayout rows="40,*" class="margins">
+            <GridLayout row="0" columns="*,*" height="48" class="bg-tabs">
+                <StackLayout col="0" (tap)="selectedheader(0)" [ngClass]="(selectedheaders=='0')?'selected':'my-class2'"> 
+                    
+                    <Label text="Skills" class="txt"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" (tap)="selectedheader(1)" [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+                      
+                      <Label text="Products" class="txt"></Label>
+                   
+                        </StackLayout>
+            </GridLayout> 
+            <GridLayout row="1" rows="auto,auto,auto,auto"  *ngIf="selectedheaders =='0'" class="borders">
+                <GridLayout row="0" rows="auto" columns="*,*">
+                <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotomaterialmap()">
+                        <Image src="~/assets/dashbord/materialmapp.png" verticalAlignment="center"  dock="top" class="st-img"></Image>
+                        <Label text="Material Mapping" dock="bottom"  verticalAlignment="center" class="st-txt"></Label>
+                    </DockLayout >
+                    <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotodressMap()">
+                        <Image src="~/assets/dashbord/dresstyp.png"  dock="top" class="st-img"></Image>
+                        <Label text="Dress Type" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                </GridLayout>
+                <GridLayout row="1" rows="auto" columns="*,*">
+                    <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotomaterialtype()">
+                        <Image src="~/assets/dashbord/materialtype.png"  dock="top" class="st-img"></Image>
+                        <Label text="Material Type" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                    <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotomeasurementtype()">
+                        <Image src="~/assets/dashbord/measure.png"  dock="top" class="st-img"></Image>
+                        <Label text="Measurement Type" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                </GridLayout>
+                <GridLayout row="2" rows="auto" columns="*,*">
+                    <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotostitchtimetype()">
+                        <Image src="~/assets/dashbord/stitch time.png"  dock="top" class="st-img"></Image>
+                        <Label text="Stitching Time" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                    <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotoshoBranches()">
+                        <Image src="~/assets/dashbord/location.png"  dock="top" class="st-img"></Image>
+                        <Label text="Location" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                </GridLayout> 
+            </GridLayout>
+<!-- <--------------------------------------product-update------------------------------------------- -->
+            <GridLayout row="1" rows="auto,auto,auto,auto"  *ngIf="selectedheaders =='1'">
+                <GridLayout row="0" rows="auto" columns="*,*" class="borders">
+                <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" [nsRouterLink]="['/ProductListComponent']">
+                        <Image src="~/assets/dashbord/productmap.png"  dock="top" class="pr-img"></Image>
+                        <Label text="Product Mapping" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                    <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" [nsRouterLink]="['/NewProductMappComponent']">
+                        <Image src="~/assets/dashbord/addnewproduct.png"  dock="top" class="pr-img"></Image>
+                        <Label text="Add New Product" dock="bottom" class="st-txt"></Label>
+                    </DockLayout >
+                </GridLayout>  
+                <StackLayout  row="1" class="allborder"></StackLayout>
+                <GridLayout row="2" rows="auto,auto,auto" columns="*"  class="borders">
+                    <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                        <Image row="0" col="0"   src="~/assets/productmapp/filter-skills update.png"  horizontalAlignment="left" class="filterimg"></Image>
+                   <Label  row="0" col="1"  [text]="Removetxt" horizontalAlignment="right" (tap)="showremove(rmvalue)" class="removetxt"></Label>
+                    </GridLayout>
+                    
+                    <GridLayout row="1" col="0" >
+                        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                            <GridLayout  class=""> 
+                                
+                                <WrapLayout  orientation="horizontal" >  
+                                    <DockLayout   stretchLastChild="false" width="33%"   *ngFor="let mappedprod of prodctsarray" >
+                                        <GridLayout rows="auto,auto" columns="*">
+                                        <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyleprod"> 
+                                        <Image row="0"  col="0" [src]="imagurl+mappedprod.ProductImage" loadMode="async"  (tap)="gotomappeddetails(mappedprod.Id)" class="st-imgprod"></Image>
+                                        <Image   src="~/assets/productmapp/close.png" (tap)="deletemappedProducts(mappedprod.Id)" *ngIf="showcloseicon" verticalAlignment="top" horizontalAlignment="right"   class="remove-icon"></Image>  
+                                        <Image   [src]="mappedprod.IsActive ==true ? '~/assets/icon/green icon.png': '~/assets/icon/red icon.png'" verticalAlignment="top" horizontalAlignment="left"   class="dot-icon"></Image>    
+                                    </GridLayout>   
+                                        <StackLayout  row="1"  col="0" class="namestarttxt"> 
+                                            <Label  [text]="mappedprod.ProductName" textWrap="true"   class="st-txtprod"></Label> 
+                                            <StackLayout class="border"></StackLayout>
+                                            <!-- <Label  [text]="mappedprod.BrandName" textWrap="true"   class="st-txtprods"></Label>  -->
+                                            <Label  [text]="mappedprod.Amount+'.00'" textWrap="true"   class="st-txtprods"></Label> 
+                                            <!-- <Image row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="mappedprod.RatingsCount == 0"  class="star-img"></Image>
+                                            <Image row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="mappedprod.RatingsCount == 1"  class="star-img"></Image>
+                                            <Image row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="mappedprod.RatingsCount == 2"  class="star-img"></Image>
+                                            <Image row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="mappedprod.RatingsCount == 3"  class="star-img"></Image>
+                                            <Image row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="mappedprod.RatingsCount == 4"  class="star-img"></Image>
+                                            <Image row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="mappedprod.RatingsCount == 5"  class="star-img"></Image> -->
+                                        </StackLayout>    
+                                    </GridLayout> 
+                                    </DockLayout >  
+                            </WrapLayout>
+                                </GridLayout>
+                                </ScrollView>
+                    </GridLayout>
+                </GridLayout>
+            </GridLayout>
+          </GridLayout>
+          </ScrollView>
+        <!-- </GridLayout> --> 
+
+<!-- <GridLayout> -->
+    <GridLayout>
+        <GridLayout rows="*,auto">
+           
+            <GridLayout row="1" columns="*,*,*,*" height="48" class="bg-footer">
+                <StackLayout col="0" (tap)="selectedindex(0)">
+                  
+                <Image class="m-icon" *ngIf="selectedindexval != 0" src="~/assets/footer/beforeclick/home-n.png"></Image>
+                <Image class="m-icon" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedindex(1)">
+                    <Image class="m-icon" *ngIf="selectedindexval != 1" src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                    <Image class="m-icon" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+                </StackLayout>
+                <StackLayout col="2" (tap)="selectedindex(2)">
+                    <Image class="m-icon" *ngIf="selectedindexval != 2" src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                    <Image class="m-icon" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png"></Image>
+                </StackLayout> 
+                <StackLayout col="3" (tap)="selectedindex(3)">
+                    <Image class="m-icon" *ngIf="selectedindexval != 3" src="~/assets/footer/beforeclick/reward-n.png"></Image> 
+                    <Image class="m-icon" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+                </StackLayout>
+            </GridLayout>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>
+<!-- </FlexboxLayout> --> 
+
+<!-- <--------------------------arabic-content------------------------------ -->
+
+
+
+<RGridLayout class="page"  isRtl="true"   *ngIf="lang=='Arabic'">
+    <ScrollView  orientation="vertical" id="scrollView">      
+    
+    <RGridLayout rows="40,*"  isRtl="true"  class="margins">
+        <GridLayout row="0"columns="*,*"  isRtl="true"  height="48" class="bg-tabs">
+            <StackLayout col="0" (tap)="selectedheader(0)" [ngClass]="(selectedheaders=='0')?'selected':'my-class2'"> 
+                
+                <Label [text]="aedata.Skills" style="transform: scaleX(-1);" class="txt"></Label>
+                </StackLayout>
+                <StackLayout col="1" (tap)="selectedheader(1)" [ngClass]="(selectedheaders=='1')?'selected1':'my-class2'">
+                  
+                  <Label [text]="aedata.Products" style="transform: scaleX(-1);" class="txt"></Label>
+               
+                    </StackLayout>
+        </GridLayout> 
+        <GridLayout row="1" rows="auto,auto,auto,auto"  isRtl="true" *ngIf="selectedheaders =='0'" class="borders">
+            <GridLayout row="0" rows="auto" columns="*,*">
+            <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotomaterialmap()">
+                    <Image src="~/assets/dashbord/materialmapp.png" style="transform: scaleX(-1);"  verticalAlignment="center"  dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Material_Mapping" style="transform: scaleX(-1);" dock="bottom"  verticalAlignment="center" class="st-txt"></Label>
+                </DockLayout >
+                <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotodressMap()">
+                    <Image src="~/assets/dashbord/dresstyp.png" style="transform: scaleX(-1);"   dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Dress_Type" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+            </GridLayout>
+            <GridLayout row="1" rows="auto" columns="*,*">
+                <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotomaterialtype()">
+                    <Image src="~/assets/dashbord/materialtype.png" style="transform: scaleX(-1);"  dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Material_Type" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+                <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotomeasurementtype()">
+                    <Image src="~/assets/dashbord/measure.png" style="transform: scaleX(-1);"  dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Measurement_Type" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+            </GridLayout>
+            <GridLayout row="2" rows="auto" columns="*,*">
+                <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" (tap)="gotostitchtimetype()">
+                    <Image src="~/assets/dashbord/stitch time.png" style="transform: scaleX(-1);"  dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Stitching_Time" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+                <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" (tap)="gotoshoBranches()">
+                    <Image src="~/assets/dashbord/location.png" style="transform: scaleX(-1);"  dock="top" class="st-img"></Image>
+                    <Label [text]="aedata.Location" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+            </GridLayout> 
+        </GridLayout>
+<!-- <--------------------------------------product-update------------------------------------------- -->
+        <GridLayout row="1" rows="auto,auto,auto,auto"  isRtl="true" *ngIf="selectedheaders =='1'">
+            <GridLayout row="0" rows="auto" columns="*,*" class="borders">
+            <DockLayout  class="cardStyle"  row="0" col="0" stretchLastChild="false" [nsRouterLink]="['/ProductListComponent']">
+                    <Image src="~/assets/dashbord/productmap.png" style="transform: scaleX(-1);"  dock="top" class="pr-img"></Image>
+                    <Label [text]="aedata.Product_Mapping" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+                <DockLayout  class="cardStyle"  row="0" col="1" stretchLastChild="false" [nsRouterLink]="['/NewProductMappComponent']">
+                    <Image src="~/assets/dashbord/addnewproduct.png" style="transform: scaleX(-1);"  dock="top" class="pr-img"></Image>
+                    <Label [text]="aedata.Add_New_Product" style="transform: scaleX(-1);" dock="bottom" class="st-txt"></Label>
+                </DockLayout >
+            </GridLayout>  
+            <StackLayout  row="1" class="allborder"></StackLayout>
+            <GridLayout row="2" rows="auto,auto,auto" columns="*"  class="borders">
+                <GridLayout row="0" col="0" rows="auto" columns="*,*">
+                    <Image row="0" col="0"  style="transform: scaleX(-1);"  src="~/assets/productmapp/filter-skills update.png"  horizontalAlignment="left" class="filterimg"></Image>
+               <Label  row="0" col="1" style="transform: scaleX(-1);"  [text]="Removetxtae" horizontalAlignment="right" (tap)="showremoveae(rmvalue)" class="removetxt"></Label>
+                </GridLayout>
+                
+                <GridLayout row="1" col="0" >
+                    <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">  
+                        <GridLayout  class=""> 
+                            
+                            <WrapLayout  orientation="horizontal" >  
+                                <DockLayout   stretchLastChild="false" width="33%"   *ngFor="let mappedprod of prodctsarray" >
+                                    <GridLayout rows="auto,auto" columns="*">
+                                    <GridLayout  row="0"  col="0" rows="90,auto" columns="*" class="cardStyleprod"> 
+                                    <Image row="0"  col="0" [src]="imagurl+mappedprod.ProductImage" loadMode="async"  (tap)="gotomappeddetails(mappedprod.Id)" class="st-imgprod"></Image>
+                                    <Image   src="~/assets/productmapp/close.png" (tap)="deletemappedProducts(mappedprod.Id)" *ngIf="showcloseicon" verticalAlignment="top" horizontalAlignment="right"   class="remove-icon"></Image> 
+                                    <Image   [src]="mappedprod.IsActive ==true ? '~/assets/icon/green icon.png': '~/assets/icon/red icon.png'" verticalAlignment="top" horizontalAlignment="left"   class="dot-icon"></Image>     
+                                </GridLayout>   
+                                    <StackLayout  row="1"  col="0" class="namestarttxt"> 
+                                        <Label style="transform: scaleX(-1);" [text]="mappedprod.ProductNameInArabic" textWrap="true"   class="st-txtprod"></Label> 
+                                        <StackLayout class="border"></StackLayout>
+                                        <!-- <Label style="transform: scaleX(-1);" [text]="mappedprod.BrandNameInArabic" textWrap="true"   class="st-txtprods"></Label>  -->
+                                        <Label style="transform: scaleX(-1);" [text]="mappedprod.Amount+'.00'" textWrap="true"  style="transform: scaleX(-1);"  class="st-txtprods"></Label> 
+                                        <!-- <Image row="0"  col="0" src="~/assets/productmapp/zero.png"  *ngIf="mappedprod.RatingsCount == 0"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/one.png"  *ngIf="mappedprod.RatingsCount == 1"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/two.png"  *ngIf="mappedprod.RatingsCount == 2"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/three.png"  *ngIf="mappedprod.RatingsCount == 3"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/four.png"  *ngIf="mappedprod.RatingsCount == 4"  class="star-img"></Image>
+                                        <Image row="0"  col="0" src="~/assets/productmapp/five.png"  *ngIf="mappedprod.RatingsCount == 5"  class="star-img"></Image> -->
+                                    </StackLayout>    
+                                </GridLayout> 
+                                </DockLayout >  
+                        </WrapLayout>
+                            </GridLayout>
+                            </ScrollView>
+                </GridLayout>
+            </GridLayout>
+        </GridLayout>
+      </RGridLayout>
+      </ScrollView>
+    <!-- </GridLayout> --> 
+
+<!-- <GridLayout> -->
+<GridLayout   isRtl="true">
+    <GridLayout rows="*,auto" >
+       
+        <GridLayout row="1" columns="*,*,*,*" height="48" class="bg-footer">
+            <StackLayout col="0" (tap)="selectedindex(0)">
+              
+            <Image class="m-icon"  style="transform: scaleX(-1);" *ngIf="selectedindexval != 0" src="~/assets/footer/beforeclick/home-n.png"></Image>
+            <Image class="m-icon"  style="transform: scaleX(-1);" *ngIf="selectedindexval == 0" src="~/assets/footer/home.png"></Image>
+            </StackLayout>
+            <StackLayout col="1" (tap)="selectedindex(1)">
+                <Image class="m-icon"  style="transform: scaleX(-1);" *ngIf="selectedindexval != 1" src="~/assets/footer/beforeclick/dashboard-n.png"></Image>
+                <Image class="m-icon" style="transform: scaleX(-1);" *ngIf="selectedindexval == 1" src="~/assets/footer/dash.png"></Image>
+            </StackLayout>
+            <StackLayout col="2" (tap)="selectedindex(2)">
+                <Image class="m-icon" style="transform: scaleX(-1);" *ngIf="selectedindexval != 2" src="~/assets/footer/beforeclick/skill-update-n.png"></Image>
+                <Image class="m-icon" style="transform: scaleX(-1);" *ngIf="selectedindexval == 2" src="~/assets/footer/skillupdate.png"></Image>
+            </StackLayout> 
+            <StackLayout col="3" (tap)="selectedindex(3)">
+                <Image class="m-icon" style="transform: scaleX(-1);" *ngIf="selectedindexval != 3" src="~/assets/footer/beforeclick/reward-n.png"></Image> 
+                <Image class="m-icon" style="transform: scaleX(-1);" *ngIf="selectedindexval == 3" src="~/assets/footer/reward.png"></Image>
+            </StackLayout>
+        </GridLayout>
+    </GridLayout>
+</GridLayout>
+</RGridLayout>
+
+</Page> 

@@ -1,0 +1,349 @@
+<ns-loader *ngIf="loader=='true'"></ns-loader>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" *ngIf="loader=='false'">
+  <!-- <--------------english-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='English'">
+    <GridLayout rows="auto" columns="auto,*">
+      <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left"
+        stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+      <Label text="Create New Promotions" row="0" col="1" android:horizontalAlignment="center"
+        class="action-label"></Label>
+    </GridLayout>
+  </ActionBar>
+
+    <!-- <--------------arabic-header---------------------->
+  <ActionBar class="header" *ngIf="lang=='Arabic'">
+    <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+      <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left"
+        stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+      <Label [text]="aedata.Create_New_Promotions" row="0" col="1" android:horizontalAlignment="center"
+        class="action-label"></Label>
+    </RGridLayout>
+  </ActionBar>
+
+    <!-- <--------------english-content---------------------->
+  <GridLayout class="page" *ngIf="lang=='English'">
+    <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+      <GridLayout rows="auto,auto,auto" columns="*">
+        <StackLayout row="0" col="0" class="gray-bg">
+          <Label text="Choose Store Products" class="header-txt"></Label>
+        </StackLayout>
+
+        <GridLayout row="2" col="0"
+          rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"
+          columns="*">
+
+          <GridLayout row="0" col="0" rows="auto" columns="*,*,*" class="margins">
+            <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                class="uncheck-img" (tap)="getprodforcat(1)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Brands"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                class="uncheck-img" (tap)="getprodforcat(2)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Products"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                dock="right" class="uncheck-img" (tap)="getprodforcat(3)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Catagories"></Label>
+            </GridLayout>
+          </GridLayout>
+
+          <GridLayout row="1" col="0" class="border"></GridLayout>
+
+          <GridLayout row="2" col="0" rows="auto" columns="*,*,*,*" class="margins" *ngIf="selestedcat == 3">
+            <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" class="uncheck-img" (tap)="getdresstypeforbanner(2)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Male"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" class="uncheck-img" (tap)="getdresstypeforbanner(3)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Female"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 4 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(4)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Boy"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="3" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 11 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(11)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" text="Girl"></Label>
+            </GridLayout>
+          </GridLayout>
+
+          <GridLayout row="3" col="0" class="border" *ngIf="selestedcat == 3"></GridLayout>
+
+
+          <GridLayout row="4" col="0" rows="auto" columns="auto,*" class="margins">
+            <Image row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
+              src="~/assets/productmapp/filters.png" class="filter"></Image>
+            <GridLayout row="0" col="1" rows="auto" columns="*,auto">
+              <TextField class="search" autocorrect="false" hint="Search Products" autocapitalizationType="none" row="0"
+                col="0"></TextField>
+              <Image src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"
+                row="0" col="0" class="searchico"></Image>
+            </GridLayout>
+          </GridLayout>
+
+          <GridLayout row="5" col="0" class="margins">
+
+            <!-- <------------------------brands------------------------------ -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 1">
+              <DockLayout stretchLastChild="false" width="45%" class="brandcardStyle" shadow="2" cornerRadius="15"
+                *ngFor="let brand of brandprod">
+                <GridLayout rows="110,auto" columns="*" (tap)="selectBrand(brand.BrandId)">
+
+                  <Image row="0" col="0" [src]="brandimgurl+brand.BrandImage" stretch="aspectFill" dock="top"
+                    class="st-img"></Image>
+                  <Label row="1" col="0" [text]="brand.BrandInEnglish" dock="bottom" class="st-txt"></Label>
+                  <Image #checksize horizontalAlignment="right" verticalAlignment="top" row="0" col="0"
+                    [src]="brand.BrandId==slectedbrandId ? '~/assets/dashbord/Check box.png':''" value=""
+                    class="uncheck-img"></Image>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+            <!-- <---------------------products-------------------------- -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 2">
+              <DockLayout stretchLastChild="false" width="100%" class="cardStyle" shadow="2" cornerRadius="15"
+                *ngFor="let prod of storeproducts">
+                <GridLayout rows="auto" columns="*" class="bg-card">
+                  <GridLayout row="0" col="0" rows="auto" columns="*" (tap)="getselestoreprod(prod.Id)">
+                    <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                      <Image [src]="imagurl+prod.ProductImage" stretch="aspectFill" class="ordrimg" row="0" col="0">
+                      </Image>
+                      <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                        <GridLayout row="0" col="0" rows="auto,auto,auto,auto">
+                          <label row="0" col="0" class="order-txt" [text]="prod.ProductName"></label>
+                        </GridLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,auto,*">
+                          <label row="0" col="0" class="order-txt" text="Price"></label>
+                          <label row="0" col="1" class="order-txt" text=":"></label>
+                          <label row="0" col="2" class="order-txt" [text]="prod.Amount"></label>
+                        </GridLayout>
+                        <GridLayout row="3" col="0" rows="auto" columns="auto,auto,*">
+                          <label row="0" col="0" class="order-txt" text="Brand"></label>
+                          <label row="0" col="1" class="order-txt" text=":"></label>
+                          <label row="0" col="2" class="order-txt" [text]="prod.BrandName"></label>
+                        </GridLayout>
+                      </GridLayout>
+                    </GridLayout>
+                    <Image #checksize horizontalAlignment="right" verticalAlignment="top" row="0" col="0"
+                      [src]="prod.Id==slectedprodId ? '~/assets/dashbord/Check box.png':''" value=""
+                      class="uncheck-img"></Image>
+                  </GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+
+
+            <!-- <---------------------category-------------------------- -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 3">
+              <DockLayout stretchLastChild="false" width="100%"  shadow="2" cornerRadius="15"
+                *ngFor="let category of categoryforprod" >
+                <GridLayout rows="auto" columns="*" class="bg-card"  *ngIf="slectedgender==category.ParentId">
+                  <GridLayout row="0" col="0" rows="auto" columns="*" (tap)="getselestorecategory(category.CategoryId)">
+                    <GridLayout row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                      <Image [src]="CategoriesIconImage+category.Image" class="ordrimg" row="0" col="0"></Image>
+                      <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                        <label row="0" col="0" horizontalAlignment="center" verticalAlignment="middle" class="order-txt"
+                          [text]="category.DisplayId"></label>
+                      </GridLayout>
+                    </GridLayout>
+                    <Image #checksize horizontalAlignment="right" verticalAlignment="top" row="0" col="0"
+                      [src]="category.CategoryId==selectedcategoryid ? '~/assets/dashbord/Check box.png':''" value=""
+                      class="uncheck-img"></Image>
+                  </GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+          </GridLayout>
+        </GridLayout>
+      </GridLayout>
+    </ScrollView>
+       <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+       <GridLayout>
+        <GridLayout rows="*,auto,auto">
+            <Button row="1" col="0" text="Save" class="donebtn " (tap)="Save()"> </Button>
+        </GridLayout>
+    </GridLayout>
+  </GridLayout>
+
+
+
+
+
+
+   <!-- <--------------arabic-content---------------------->
+   <GridLayout class="page" *ngIf="lang=='Arabic'">
+    <ScrollView orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false">
+      <GridLayout rows="auto,auto,auto" columns="*">
+        <StackLayout row="0" col="0" class="gray-bg">
+          <Label [text]="aedata.Choose_Store_Products" class="header-txt"></Label>
+        </StackLayout>
+
+        <GridLayout row="2" col="0"
+          rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"
+          columns="*">
+
+          <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="*,*,*" class="margins">
+            <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 1 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                class="uncheck-img" (tap)="getprodforcat(1)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Brands"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                class="uncheck-img" (tap)="getprodforcat(2)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Products"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="selestedcat == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'" value=""
+                dock="right" class="uncheck-img" (tap)="getprodforcat(3)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Catagories"></Label>
+            </GridLayout>
+          </RGridLayout>
+
+          <GridLayout row="1" col="0" class="border"></GridLayout>
+
+          <RGridLayout  isRtl="true" row="2" col="0" rows="auto" columns="*,*,*,*" class="margins" *ngIf="selestedcat == 3">
+            <GridLayout row="0" col="0" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 2 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" class="uncheck-img" (tap)="getdresstypeforbanner(2)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Male"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="1" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 3 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" class="uncheck-img" (tap)="getdresstypeforbanner(3)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Female"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="2" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 4 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(4)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Boy"></Label>
+            </GridLayout>
+            <GridLayout row="0" col="3" rows="auto" columns="auto,auto">
+              <Image #checksize row="0" col="0"
+                [src]="slectedgender == 11 ? '~/assets/dashbord/Check box.png':'~/assets/dashbord/Unchecked.png'"
+                value="" dock="right" class="uncheck-img" (tap)="getdresstypeforbanner(11)"></Image>
+              <Label row="0" col="1" class="ofertext" verticalAlignment="center" [text]="aedata.Girl"></Label>
+            </GridLayout>
+          </RGridLayout>
+
+          <GridLayout row="3" col="0" class="border" *ngIf="selestedcat == 3"></GridLayout>
+
+
+          <RGridLayout  isRtl="true" row="4" col="0" rows="auto" columns="auto,*" class="margins">
+            <Image row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
+              src="~/assets/productmapp/filters.png" class="filter"></Image>
+            <GridLayout row="0" col="1" rows="auto" columns="*,auto">
+              <TextField class="search" autocorrect="false" hint="إبحث عن منتجات" style="text-align: center;" autocapitalizationType="none" row="0"
+                col="0"></TextField>
+              <Image src="~/assets/productmapp/searchs.png" horizontalAlignment="right" verticalAlignment="center"
+                row="0" col="0" class="searchico"></Image>
+            </GridLayout>
+          </RGridLayout>
+
+          <GridLayout row="5" col="0" class="margins">
+
+            <!-- <------------------------brands------------------------------ -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 1">
+              <DockLayout stretchLastChild="false" width="45%" class="brandcardStyle" shadow="2" cornerRadius="15"
+                *ngFor="let brand of brandprod">
+                <RGridLayout  isRtl="true" rows="110,auto" columns="*" (tap)="selectBrand(brand.BrandId)">
+
+                  <Image row="0" col="0" [src]="brandimgurl+brand.BrandImage" stretch="aspectFill" dock="top"
+                    class="st-img"></Image>
+                  <Label row="1" col="0" [text]="brand.BrandInEnglish" dock="bottom" class="st-txt"></Label>
+                  <Image #checksize horizontalAlignment="right" verticalAlignment="top" row="0" col="0"
+                    [src]="brand.BrandId==slectedbrandId ? '~/assets/dashbord/Check box.png':''" value=""
+                    class="uncheck-img"></Image>
+                </RGridLayout>
+              </DockLayout>
+            </WrapLayout>
+            <!-- <---------------------products-------------------------- -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 2">
+              <DockLayout stretchLastChild="false" width="100%" class="cardStyle" shadow="2" cornerRadius="15"
+                *ngFor="let prod of storeproducts">
+                <GridLayout rows="auto" columns="*" class="bg-card">
+                  <GridLayout row="0" col="0" rows="auto" columns="*" (tap)="getselestoreprod(prod.Id)">
+                    <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                      <Image [src]="imagurl+prod.ProductImage" stretch="aspectFill" class="ordrimg" row="0" col="0">
+                      </Image>
+                      <RGridLayout  isRtl="true" row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                        <GridLayout row="0" col="0" rows="auto,auto,auto,auto">
+                          <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="0" class="order-txt" [text]="prod.ProductName"></label>
+                        </GridLayout>
+                        <GridLayout row="1" col="0" rows="auto" columns="auto,auto,*">
+                          <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="0" class="order-txt" [text]="aedata.Price"></label>
+                          <label style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="1" class="order-txt" text=":"></label>
+                          <label  style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="2" class="order-txt" [text]="prod.Amount"></label>
+                        </GridLayout>
+                        <GridLayout row="3" col="0" rows="auto" columns="auto,auto,*">
+                          <label style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="0" class="order-txt" [text]="aedata.Brand"></label>
+                          <label style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="1" class="order-txt" text=":"></label>
+                          <label style="transform: scaleX(-1);" horizontalAlignment="left" row="0" col="2" class="order-txt" [text]="prod.BrandName"></label>
+                        </GridLayout>
+                      </RGridLayout>
+                    </RGridLayout>
+                    <Image #checksize horizontalAlignment="left" verticalAlignment="top" row="0" col="0"
+                      [src]="prod.Id==slectedprodId ? '~/assets/dashbord/Check box.png':''" value=""
+                      class="uncheck-img"></Image>
+                  </GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+
+
+            <!-- <---------------------category-------------------------- -->
+            <WrapLayout orientation="horizontal" *ngIf="selestedcat == 3">
+              <DockLayout stretchLastChild="false" width="100%"  shadow="2" cornerRadius="15"
+                *ngFor="let category of categoryforprod" >
+                <GridLayout rows="auto" columns="*" class="bg-card"  *ngIf="slectedgender==category.ParentId">
+                  <GridLayout  row="0" col="0" rows="auto" columns="*" (tap)="getselestorecategory(category.CategoryId)">
+                    <RGridLayout  isRtl="true" row="0" col="0" rows="auto" columns="auto,*" class="bg-child">
+                      <Image [src]="CategoriesIconImage+category.Image" class="ordrimg" row="0" col="0"></Image>
+                      <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="*">
+                        <label row="0" col="0" horizontalAlignment="center" verticalAlignment="middle" class="order-txt"
+                          [text]="category.DisplayId"></label>
+                      </GridLayout>
+                    </RGridLayout>
+                    <Image #checksize horizontalAlignment="left" verticalAlignment="top" row="0" col="0"
+                      [src]="category.CategoryId==selectedcategoryid ? '~/assets/dashbord/Check box.png':''" value=""
+                      class="uncheck-img"></Image>
+                  </GridLayout>
+                </GridLayout>
+              </DockLayout>
+            </WrapLayout>
+          </GridLayout>
+        </GridLayout>
+      </GridLayout>
+    </ScrollView>
+       <!-- <--------------------------------------footer---top="350"---------------------------------------- -->
+       <GridLayout>
+        <GridLayout rows="*,auto,auto">
+            <Button row="1" col="0" [text]="aedata.Save" class="donebtn " (tap)="Save()"> </Button>
+        </GridLayout>
+    </GridLayout>
+  </GridLayout>
+</Page>

@@ -1,0 +1,26 @@
+
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent" >
+    <!-- <--------------english-header---------------------->
+    <ActionBar class="header">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="PDF" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+    <GridLayout>
+    <GridLayout width="100%" columns="*">
+        <PDFView  [src]="pdfurl" ></PDFView>
+    </GridLayout>
+
+    <GridLayout>
+        <GridLayout rows="*,auto,auto" >
+            <AbsoluteLayout   row="1" col="0" style="z-index: 1000000;" > 
+                <Image   left="280"  horizontalAlignment="right" (tap)="download()" src="~/assets/profile/download icon.png"  class="addimg"></Image>
+            </AbsoluteLayout  >
+            <AbsoluteLayout   row="2" col="0" style="z-index: 1000000;" > 
+                <Image   left="280"  horizontalAlignment="right" (tap)="sharefile()" src="~/assets/profile/share icon.png"  class="addimg"></Image>
+            </AbsoluteLayout  >
+        </GridLayout>
+    </GridLayout>
+</GridLayout>
+    </Page>

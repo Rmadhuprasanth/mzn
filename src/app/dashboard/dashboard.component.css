@@ -1,0 +1,78 @@
+.header{
+
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+  .margins{
+    margin: 20;
+}
+  .action-image{
+height: 30;
+width: 30;
+margin-left: auto;
+  }
+  .action-label{
+      text-align: center !important;
+      font-size: 15;
+      font-weight: bold;
+  }
+.m-icon{
+    height: 25;
+    width: 100; 
+    margin: 9;
+}
+.bg-footer{
+   
+  background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+}
+.uncheck-img{
+    height: 30;
+    width: 30;
+  }
+  .cross-img{
+    height: 25;
+    width: 25;
+
+  }
+   .status{
+    font-size: 15;
+    font-weight: bold;
+    color:#05375c;
+}
+ .borders{
+   height: 2;
+  background-image: url("~/assets/order-management/single.png");
+  background-size: 30 20;
+  background-repeat: repeat;
+}
+.timetxt{
+  font-size: 14;
+  font-weight: bold;
+  color:#05375c;
+  text-align: center;
+}
+.input{
+  border-width: 0;
+  font-size: 14;
+  font-weight: bold;
+  color:#05375c;
+  text-align: center;
+  placeholder-color: #05375c;
+  height: 30;
+  margin-top: 5;
+  margin-bottom: 5;
+  margin-left: 5;
+  margin-right: 5;
+  padding: 0;
+}
+.save{
+  background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+  height: 40;
+  width: auto;
+  color: white;
+  font-size: 15;
+  border-radius: 25;
+}

@@ -1,0 +1,81 @@
+
+.header{
+    background-image: linear-gradient(to bottom, #05375c, #05486f, #045a83, #026d96, #0080a9);
+}
+.page {
+    align-items: center; 
+    background-image: url("~/assets/background.jpg") no-repeat;
+  }
+.bell-image{
+    height: 25;
+    width: 25;
+    margin-right: auto;
+}
+.action-image{
+    height: 40;
+    width: 40;
+    margin-left: auto;
+    border-radius: 50%;
+    border-width: 1;
+    border-color: gold;
+      }
+      .action-label{
+          text-align: center !important;
+          font-size: 15;
+          font-weight: bold;
+      }
+  .margins{
+    margin: 15;
+}
+
+
+  .uncheck-img{
+    height: 30;
+    width: 30;
+  }
+  .cardStyle{
+    height: 50;
+    padding: 10;
+    margin-top: 20;
+    margin-bottom: 10;
+  }
+  .genderdtxt{
+      font-size: 14;
+  }
+  .shop-card{
+    background-color: white;
+    margin: 5;
+    padding-left: 10;
+    padding-top: 5;
+    padding-bottom: 5;
+    margin-bottom: 10;
+}
+.shop-cardadd{
+    margin-top: 10;
+    
+    padding: 10;
+    
+    background-color: transparent;
+    
+}
+.tailortxt{
+    font-size: 14;
+    font-weight: bold;
+    color: #05375c;
+}
+.tailorcitytxt{
+    
+    font-size: 14;
+    color: #05375c;
+}
+
+.m-icon{
+    height: 25;
+    width: 100; 
+    margin: 9;
+}
+.bg-footer{
+   
+    background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
+    /* background: linear-gradient(to top, #2798cf, #2f84b0, #337092, #335d75, #314a5a);  */
+}

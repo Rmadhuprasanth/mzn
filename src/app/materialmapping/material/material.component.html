@@ -1,0 +1,57 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="parent">
+    <!-- <------------------english-header------------------>
+    <ActionBar class="header"  *ngIf="lang=='English'">
+     <GridLayout rows="auto" columns="auto,*" >
+     <Image src="~/assets/sidebar/Back Arrow.png" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+     <Label text="Material Mapping" row="0" col="1" android:horizontalAlignment="center" class="action-label"></Label>
+   </GridLayout>
+    </ActionBar> 
+
+    <!-- <------------------arabic-header------------------>
+    <ActionBar class="header"  *ngIf="lang=='Arabic'" >
+        <RGridLayout rows="auto" columns="auto,*" isRtl="true">
+        <Image src="~/assets/sidebar/Back Arrow.png" isRtl="true" row="0" col="0" android:horizontalAlignment="left" stretch="aspectFill" (tap)="goBack()" class="action-image"></Image>
+        <Label [text]="aedata.Material_Mapping" row="0" col="1"  android:horizontalAlignment="center" class="action-label"></Label>
+      </RGridLayout>
+       </ActionBar> 
+
+    <!-- <------------------english-content------------------>
+    <GridLayout class="page"  *ngIf="lang=='English'"> 
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <GridLayout  class="margins">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="45%" class="cardStyle" (tap)="gotodetails(Pattern.Id)" *ngFor="let Pattern of material; let i = index" >
+                        <GridLayout rows="110,auto" columns="*">
+                            <Label row="0" col="0" style="z-index: 1000;" *ngIf="Pattern.IsMapped == true" horizontalAlignment="right" class="mappedtxt" text="Mapped" verticalAlignment="center"></Label>
+                            
+                        <Image row="0"  col="0" [src]="imageurl+Pattern.Image"   dock="top" class="st-img"></Image>
+                        <Label row="1"  col="0" [text]="Pattern.PatternInEnglish" dock="bottom" class="st-txt"></Label>  
+                        </GridLayout>
+                           
+                    </DockLayout >
+            </WrapLayout>
+                </GridLayout>
+                </ScrollView>
+                </GridLayout>
+
+
+                  <!-- <------------------arabic-content------------------>
+    <RGridLayout class="page"  isRtl="true" *ngIf="lang=='Arabic'"> 
+        <ScrollView  orientation="vertical" id="scrollView" scrollBarIndicatorVisible="false"> 
+            <RGridLayout  isRtl="true" class="margins">
+                
+                <WrapLayout  orientation="horizontal" > 
+                    <DockLayout   stretchLastChild="false" width="45%" class="cardStyle" (tap)="gotodetails(Pattern.Id)" *ngFor="let Pattern of material; let i = index" >
+                        <RGridLayout  isRtl="true" rows="110,auto" columns="*">
+                            <Label  horizontalAlignment="right" row="0" col="0" isRtl="true" style="z-index: 1000;transform: scaleX(-1);text-align: right;" *ngIf="Pattern.IsMapped == true"  class="mappedtxtae" [text]="aedata.Mapped" verticalAlignment="center"></Label>
+                            
+                        <Image row="0"  col="0" [src]="imageurl+Pattern.Image"   dock="top" class="st-img"></Image>
+                        <Label style="transform: scaleX(-1);" row="1" isRtl="true"  col="0" [text]="Pattern.PatternInArabic" dock="bottom" class="st-txt"></Label>  
+                        </RGridLayout>
+                    </DockLayout >
+            </WrapLayout>
+                </RGridLayout>
+                </ScrollView>
+                </RGridLayout>
+    </Page>

@@ -1,0 +1,50 @@
+
+
+<GridLayout class="page modal-container" >
+    <!-- <--------------english-content---------------------->
+    <GridLayout rows="auto,auto,auto,auto" columns="*"  *ngIf="lang=='English'">
+        <GridLayout row="0" col="0">
+            <Gif [src]="data.PartGifImage" width="100%" class="gifimg" horizontalAlignment="center" verticalAlignment="center" ></Gif>
+        </GridLayout>
+    <GridLayout row="1">
+<TextField class="input" [(ngModel)]="numbers" hint="Enter value"
+keyboardType="number" text=""  maxLength=10 autocorrect="false"
+autocapitalizationType="none"   (textChange)="ongetnumber($event)"
+></TextField>
+    </GridLayout> 
+    <GridLayout row="2" rows="auto" columns="*,*" class="margin">
+        <Label  row="0" col="0" horizontalAlignment="left" [text]="'min  :'+ data.StartMeasurementValue" class="labeltxt"></Label>
+        <Label  row="0" col="1" horizontalAlignment="right"  [text]="'max  :'+ data.EndMeasurementValue"  class="labeltxt"></Label>
+    </GridLayout>
+    <GridLayout row="3" rows="auto" columns="*,*,*">
+<Button row="0" col="0" horizontalAlignment="left" class="cancelbtn" text="Cancel" (tap)="cancel()"></Button>
+<Button row="0" col="1"  horizontalAlignment="center" [text]="sliderval" class="valbtn"></Button>
+<Button row="0" col="2" horizontalAlignment="right" class="cancelbtn" (tap)="save()" text="Save"></Button>
+    </GridLayout>
+    </GridLayout>
+
+
+    <!-- <--------------arabic-content---------------------->
+
+
+    <GridLayout rows="auto,auto,auto,auto" columns="*"  *ngIf="lang=='Arabic'">
+        <GridLayout row="0" col="0">
+            <Gif [src]="data.PartGifImage" width="100%" class="gifimg" horizontalAlignment="center" verticalAlignment="center" ></Gif>
+        </GridLayout>
+    <GridLayout row="1">
+<TextField class="input" [(ngModel)]="numbers" hint="أدخل القيمة"
+keyboardType="number" text=""  maxLength=10 autocorrect="false"
+autocapitalizationType="none"   (textChange)="ongetnumber($event)"
+></TextField>
+    </GridLayout> 
+    <GridLayout row="2" rows="auto" columns="*,*" class="margin">
+        <Label  row="0" col="0" horizontalAlignment="left" [text]=" data.StartMeasurementValue+': '+aedata.min" class="labeltxt"></Label>
+        <Label  row="0" col="1" horizontalAlignment="right"  [text]=" data.EndMeasurementValue+':  '+aedata.max"  class="labeltxt"></Label>
+    </GridLayout>
+    <GridLayout row="3" rows="auto" columns="*,*,*">
+        <Button row="0" col="0" horizontalAlignment="left" class="cancelbtn" (tap)="save()" [text]="aedata.Save"></Button>
+<Button row="0" col="1"  horizontalAlignment="center" [text]="sliderval" class="valbtn"></Button>
+<Button row="0" col="2" horizontalAlignment="right" class="cancelbtn" [text]="aedata.Cancel" (tap)="cancel()"></Button>
+    </GridLayout>
+    </GridLayout>
+</GridLayout> 

@@ -1,0 +1,81 @@
+
+<page *ngIf="lang=='English'">
+  <FlexboxLayout class="page"   >   
+     <StackLayout class="form">
+        <Image class="logo" src="~/assets/512_512.png"></Image>
+     </StackLayout> 
+     <PreviousNextView>
+        <GridLayout columns="*" rows="auto" class="topgrid padings" > 
+
+           <GridLayout row="0" col="0" columns="80,60, *" rows="auto" width="auto" height="auto">
+            <DockLayout row="0" col="0"  class="drops" (tap)="showcountryModal()" >
+                <Image [src]="imageurl+flag"  class="flag" ></Image>  
+                <Label [text]="code" class="langtxt"></Label>
+                <Image src="~/assets/20_20.png"  class="dropflag" ></Image>    
+              </DockLayout> 
+            <StackLayout row="0" col="1" >
+                <Image class="m-icon" src="~/assets/mobile.png"></Image>
+            </StackLayout>
+            <StackLayout row="0" col="2"  class="input-field"> 
+                <TextField class="input" [(ngModel)]="number" hint="Enter mobile number"
+                    keyboardType="number" text=""  maxLength=10 autocorrect="false"
+                    autocapitalizationType="none"   (textChanged)="ongetnumber()"
+                    ></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>  
+    </GridLayout>
+    <GridLayout row="1" col="0" columns="*" rows="auto,auto" width="auto" height="auto">  
+        <DockLayout row="0" col="0" class="lang-btn"(tap)="showModal()">
+            <Label [text]="langtext" class="langtxt"></Label>
+            <Image src="~/assets/20_20.png"  class="arrow-icon"  ></Image>   
+          </DockLayout> 
+        <Button  row="1" col="0" class="cont-btn" (tap)="gotootp()" text="Continue" ></Button>
+    </GridLayout>
+           
+        </GridLayout>
+    </PreviousNextView>
+</FlexboxLayout>
+
+</page>
+
+<page *ngIf="lang=='Arabic'">
+    <FlexboxLayout class="page"   >   
+       <StackLayout class="form">
+          <Image class="logo" src="~/assets/512_512.png"></Image>
+       </StackLayout> 
+       <PreviousNextView>
+          <RGridLayout  isRtl="true"  columns="*" rows="auto" class="topgrid padings" > 
+  
+             <RGridLayout  isRtl="true"  row="0" col="0" columns="*,60,80" rows="auto" width="auto" height="auto">
+              
+                <StackLayout row="0" col="0"  class="input-fieldae"> 
+                    <TextField   style="transform: scaleX(-1);text-align: right;" class="input" [(ngModel)]="number" hint="الرجاء إدخال رقم الموبايل"
+                        keyboardType="number" text=""  maxLength=10 autocorrect="false"
+                        autocapitalizationType="none"   (textChanged)="ongetnumber()"
+                        ></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                
+              <StackLayout row="0" col="1" >
+                <Image class="m-iconae" src="~/assets/mobile.png"></Image>
+            </StackLayout> 
+                <DockLayout row="0" col="2"  class="dropsae" (tap)="showcountryModal()" > 
+                    <Image src="~/assets/20_20.png"  class="dropflag" ></Image>
+                  <Label  horizontalAlignment="left" [text]="code" style="transform: scaleX(-1);" class="langtxtae"></Label>  
+                  <Image [src]="imageurl+flag"  class="flag" ></Image>   
+                </DockLayout>  
+      </RGridLayout>
+      <RGridLayout  isRtl="true"  row="1" col="0" columns="*" rows="auto,auto" width="auto" height="auto">  
+          <DockLayout row="0" col="0" class="lang-btn"(tap)="showModal()">
+              <Label   horizontalAlignment="left" style="transform: scaleX(-1);" [text]="langtext" class="langtxt"></Label>
+              <Image src="~/assets/20_20.png"  class="arrow-icon"  ></Image>   
+            </DockLayout> 
+          <Button  row="1" col="0" style="transform: scaleX(-1);" class="cont-btn" (tap)="gotootp()" [text]="aedata.Continue" ></Button>
+      </RGridLayout>
+             
+          </RGridLayout>
+      </PreviousNextView>
+  </FlexboxLayout>
+  
+  </page>
+<!-- RGridLayout isRtl="true"  -->

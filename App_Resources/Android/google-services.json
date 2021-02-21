@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "395034501620",
+    "firebase_url": "https://mzyoon-tailor.firebaseio.com",
+    "project_id": "mzyoon-tailor",
+    "storage_bucket": "mzyoon-tailor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395034501620:android:910a0dad2abc2fa60919a1",
+        "android_client_info": {
+          "package_name": "org.gbmportal.tailor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395034501620-hffed1imopdvivmcmm508d61avloh3h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxED7vjEztPyk10lN7EbCypvbp0Ltscsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395034501620-hffed1imopdvivmcmm508d61avloh3h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,7 +7,13 @@
     color: white;
   height: 50; 
   vertical-align: middle; 
-  }
+  } 
+   
+
+
+
+  
+
   .Cancelbtn{
     background-image: linear-gradient(to bottom, #bf9a4d, #c7ab61, #d0bc76, #d8cd8c, #e2dea2, #e2dea2, #e2dea2, #e2dea2, #d9cd8c, #d0bc76, #c8ab61, #c09a4d);
       color: white;
@@ -15,6 +21,7 @@
       border-radius: 21;
       width: 200;
   } 
+  
   .listitem{
       font-size: 15;
       font-weight: 500;
